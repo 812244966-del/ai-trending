@@ -253,6 +253,14 @@
         margin-top: 22px;
       }
 
+      .card-body.has-side-image > .field {
+        grid-column: 1;
+      }
+
+      .card-body.has-side-image > .story-figure {
+        grid-column: 1;
+      }
+
       .story-figure {
         margin: 0;
         overflow: hidden;
@@ -433,6 +441,36 @@
         }
       }
 
+      @media (min-width: 1025px) {
+        .card-body.has-side-image {
+          grid-template-columns: minmax(0, 1.18fr) minmax(280px, 0.82fr);
+          align-items: start;
+        }
+
+        .card-body.has-side-image > .story-figure {
+          grid-column: 2;
+          grid-row: 1 / span 2;
+        }
+
+        .short-card.with-figure {
+          display: grid;
+          gap: 18px;
+          grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+          align-items: start;
+        }
+
+        .short-card.with-figure h3,
+        .short-card.with-figure p {
+          grid-column: 1;
+        }
+
+        .short-card.with-figure .story-figure {
+          margin-top: 0 !important;
+          grid-column: 2;
+          grid-row: 1 / span 2;
+        }
+      }
+
       @media (max-width: 720px) {
         .wrap {
           width: min(100vw - 20px, 1240px);
@@ -495,7 +533,7 @@
                 <div><strong>date</strong>: 2026-04-08</div>
               </div>
             </div>
-            <div class="card-body">
+            <div class="card-body has-side-image">
               <figure class="story-figure">
                 <img class="story-image" src="https://about.fb.com/wp-content/uploads/2026/04/01_Subagent-1.gif?resize=960%2C836" alt="Meta AI 在官方新闻稿中的产品演示图" loading="lazy" decoding="async" />
                 <figcaption class="story-caption">
@@ -527,7 +565,7 @@
                 <div><strong>date</strong>: 2026-04-08</div>
               </div>
             </div>
-            <div class="card-body">
+            <div class="card-body has-side-image">
               <figure class="story-figure">
                 <img class="story-image" src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/ec/af/4e/ecaf4e28-4e4b-eb1a-1c7b-7aa872c151c8/Placeholder.mill/1200x630wa.jpg" alt="Gemini App Store 预览图" loading="lazy" decoding="async" />
                 <figcaption class="story-caption">
@@ -559,7 +597,7 @@
                 <div><strong>date</strong>: 2026-04-07</div>
               </div>
             </div>
-            <div class="card-body">
+            <div class="card-body has-side-image">
               <figure class="story-figure">
                 <img class="story-image" src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/d1/17/de/d117de20-75b7-f1d4-ae5a-4ad1ac5fc8bd/Placeholder.mill/1200x630wa.jpg" alt="Google AI Edge Eloquent App Store 预览图" loading="lazy" decoding="async" />
                 <figcaption class="story-caption">
@@ -591,7 +629,7 @@
                 <div><strong>date</strong>: 2026-04-09</div>
               </div>
             </div>
-            <div class="card-body">
+            <div class="card-body has-side-image">
               <figure class="story-figure">
                 <img class="story-image" src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/e1/5d/25/e15d25a4-ab3e-709d-4941-1090f824b7bc/Placeholder.mill/1200x630wa.jpg" alt="ChatGPT App Store 预览图" loading="lazy" decoding="async" />
                 <figcaption class="story-caption">
@@ -623,7 +661,7 @@
                 <div><strong>date</strong>: 2026-04-10</div>
               </div>
             </div>
-            <div class="card-body">
+            <div class="card-body has-side-image">
               <figure class="story-figure">
                 <img class="story-image" src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/59/c0/66/59c066c5-2bec-d591-e635-38755dfd36b7/Placeholder.mill/1200x630wa.jpg" alt="豆包 App Store 预览图" loading="lazy" decoding="async" />
                 <figcaption class="story-caption">
@@ -655,7 +693,7 @@
                 <div><strong>date</strong>: 2026-04-10</div>
               </div>
             </div>
-            <div class="card-body">
+            <div class="card-body has-side-image">
               <figure class="story-figure">
                 <img class="story-image" src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/a0/4c/74/a04c747f-ed54-b8a7-2f94-6f9dc31f99f0/Placeholder.mill/1200x630wa.jpg" alt="即梦AI App Store 预览图" loading="lazy" decoding="async" />
                 <figcaption class="story-caption">
@@ -687,7 +725,7 @@
                 <div><strong>date</strong>: 2026-04-12</div>
               </div>
             </div>
-            <div class="card-body">
+            <div class="card-body has-side-image">
               <figure class="story-figure">
                 <img class="story-image" src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/c9/5f/4e/c95f4ea2-9268-c280-6261-00f113544c40/Placeholder.mill/1200x630wa.jpg" alt="点点 App Store 预览图" loading="lazy" decoding="async" />
                 <figcaption class="story-caption">
@@ -803,7 +841,7 @@
           <p>美国本周的重点更偏模型升级、助手工作台和任务型单点工具。</p>
         </div>
         <div class="grid-2">
-          <article class="short-card">
+          <article class="short-card with-figure">
             <h3>Meta 把模型升级直接做成消费者增长事件</h3>
             <figure class="story-figure" style="margin-top: 18px">
               <img class="story-image" src="https://about.fb.com/wp-content/uploads/2026/04/01_Subagent-1.gif?resize=960%2C836" alt="Meta AI 在官方新闻稿中的产品演示图" loading="lazy" decoding="async" />
@@ -813,7 +851,7 @@
             </figure>
             <p><strong>Muse Spark 与 Meta AI app 的同步更新，说明 Meta 正在把“模型更强”直接翻译成新的消费端入口和下载事件。</strong>TechCrunch 援引 Appfigures 的数据给出了非常强的冲榜信号，这种打法更像互联网产品发版，而不只是研究团队更新模型。</p>
           </article>
-          <article class="short-card">
+          <article class="short-card with-figure">
             <h3>Gemini 开始把长期项目上下文产品化</h3>
             <figure class="story-figure" style="margin-top: 18px">
               <img class="story-image" src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/ec/af/4e/ecaf4e28-4e4b-eb1a-1c7b-7aa872c151c8/Placeholder.mill/1200x630wa.jpg" alt="Gemini App Store 预览图" loading="lazy" decoding="async" />
@@ -823,7 +861,7 @@
             </figure>
             <p><strong>notebooks in Gemini 是本周最清晰的“从聊天到工作台”信号之一。</strong>它对未来竞争格局的影响，可能比一次单独模型升级更大，因为它直接关系到用户是否愿意把资料和项目长期沉淀在某个 AI 平台里。</p>
           </article>
-          <article class="short-card">
+          <article class="short-card with-figure">
             <h3>Google 仍在试单点高频 AI 工具</h3>
             <figure class="story-figure" style="margin-top: 18px">
               <img class="story-image" src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/d1/17/de/d117de20-75b7-f1d4-ae5a-4ad1ac5fc8bd/Placeholder.mill/1200x630wa.jpg" alt="Google AI Edge Eloquent App Store 预览图" loading="lazy" decoding="async" />
@@ -833,7 +871,7 @@
             </figure>
             <p><strong>Google AI Edge Eloquent 不是超级助手，而是一个聚焦口述转写和文本净化的任务型 App。</strong>美国市场仍然给这种“一个场景做深”的工具型产品留出了空间，而且离线、本地和隐私会是它们的重要卖点。</p>
           </article>
-          <article class="short-card">
+          <article class="short-card with-figure">
             <h3>OpenAI 继续把模型层变化显性化给用户</h3>
             <figure class="story-figure" style="margin-top: 18px">
               <img class="story-image" src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/e1/5d/25/e15d25a4-ab3e-709d-4941-1090f824b7bc/Placeholder.mill/1200x630wa.jpg" alt="ChatGPT App Store 预览图" loading="lazy" decoding="async" />
@@ -853,7 +891,7 @@
           <p>中国本周正式新品不算密集，但头部 AI 助手、视频生成应用和社区型生活助手都保持了强更新或强分发。</p>
         </div>
         <div class="grid-2">
-          <article class="short-card">
+          <article class="short-card with-figure">
             <h3>豆包继续把高频工作流塞进一个超级入口</h3>
             <figure class="story-figure" style="margin-top: 18px">
               <img class="story-image" src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/59/c0/66/59c066c5-2bec-d591-e635-38755dfd36b7/Placeholder.mill/1200x630wa.jpg" alt="豆包 App Store 预览图" loading="lazy" decoding="async" />
@@ -863,7 +901,7 @@
             </figure>
             <p><strong>专家模型、AI PPT、Seedance 2.0 视频生成被放进同一轮更新说明里，说明字节仍在强化“一个 App 覆盖更多刚需场景”的策略。</strong>总榜第 1 的位置也让这种打法有更大分发优势。</p>
           </article>
-          <article class="short-card">
+          <article class="short-card with-figure">
             <h3>视频生成仍是中国最接近大众创作工具的 AI 赛道</h3>
             <figure class="story-figure" style="margin-top: 18px">
               <img class="story-image" src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/a0/4c/74/a04c747f-ed54-b8a7-2f94-6f9dc31f99f0/Placeholder.mill/1200x630wa.jpg" alt="即梦AI App Store 预览图" loading="lazy" decoding="async" />
@@ -873,7 +911,7 @@
             </figure>
             <p><strong>即梦AI 更新 Seedance 2.0 快速版后仍位于中国摄影与录像榜第 1 位，可灵AI 也保持在 Top 20 区间。</strong>这组信号说明视频生成在中国并没有退成小众炫技功能，而是继续向大众创作流程渗透。</p>
           </article>
-          <article class="short-card">
+          <article class="short-card with-figure">
             <h3>社区内容开始被压缩成生活决策型 AI 入口</h3>
             <figure class="story-figure" style="margin-top: 18px">
               <img class="story-image" src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/c9/5f/4e/c95f4ea2-9268-c280-6261-00f113544c40/Placeholder.mill/1200x630wa.jpg" alt="点点 App Store 预览图" loading="lazy" decoding="async" />

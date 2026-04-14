@@ -801,14 +801,22 @@ function FindingCard({ finding, index }: { finding: Finding; index: number }) {
         </div>
       </div>
 
-      <div className="space-y-5 pt-6">
-        {finding.image ? <FindingImageFigure image={finding.image} /> : null}
-        <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">summary</p>
-          <RichParagraphs blocks={finding.summary} className="mt-3 space-y-3" />
-          <SourceLine links={finding.sources} />
+      <div
+        className={
+          finding.image
+            ? "grid gap-5 pt-6 xl:grid-cols-[minmax(0,1.2fr)_minmax(280px,0.8fr)] xl:items-start"
+            : "space-y-5 pt-6"
+        }
+      >
+        <div className="space-y-5">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">summary</p>
+            <RichParagraphs blocks={finding.summary} className="mt-3 space-y-3" />
+            <SourceLine links={finding.sources} />
+          </div>
+          <InsightBlock blocks={finding.whyItMatters} />
         </div>
-        <InsightBlock blocks={finding.whyItMatters} />
+        {finding.image ? <FindingImageFigure image={finding.image} /> : null}
       </div>
     </article>
   );
