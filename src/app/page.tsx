@@ -10,6 +10,15 @@ type RichSegment = {
 
 type RichTextBlock = RichSegment[];
 
+type FindingImage = {
+  url: string;
+  alt: string;
+  type: "official newsroom" | "app store preview";
+  sourceLabel: string;
+  sourceHref?: string;
+  note: string;
+};
+
 type Finding = {
   name: string;
   market: "美国" | "中国";
@@ -18,6 +27,7 @@ type Finding = {
   summary: RichTextBlock[];
   whyItMatters: RichTextBlock[];
   sources: ReportLink[];
+  image?: FindingImage;
 };
 
 type RankingSlice = {
@@ -96,6 +106,14 @@ const keyFindings: Finding[] = [
         href: "https://techcrunch.com/2026/04/08/meta-debuts-the-muse-spark-model-in-a-ground-up-overhaul-of-its-ai/",
       },
     ],
+    image: {
+      url: "https://about.fb.com/wp-content/uploads/2026/04/01_Subagent-1.gif?resize=960%2C836",
+      alt: "Meta AI 在官方新闻稿中的产品演示图",
+      type: "official newsroom",
+      sourceLabel: "Meta 官方新闻稿",
+      sourceHref: "https://about.fb.com/news/2026/04/introducing-muse-spark-meta-superintelligence-labs/",
+      note: "官方新闻稿里的 Meta AI 产品演示图，用来对应 Muse Spark 带动的消费端入口更新。",
+    },
   },
   {
     name: "notebooks in Gemini",
@@ -133,6 +151,14 @@ const keyFindings: Finding[] = [
         href: "https://apps.apple.com/us/app/google-gemini/id6477489729",
       },
     ],
+    image: {
+      url: "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/ec/af/4e/ecaf4e28-4e4b-eb1a-1c7b-7aa872c151c8/Placeholder.mill/1200x630wa.jpg",
+      alt: "Gemini App Store 预览图",
+      type: "app store preview",
+      sourceLabel: "Gemini App Store",
+      sourceHref: "https://apps.apple.com/us/app/google-gemini/id6477489729",
+      note: "官方产品博文未稳定暴露可直链主视觉图，因此按 skill 规则回退到 App Store 预览图。",
+    },
   },
   {
     name: "Google AI Edge Eloquent",
@@ -161,6 +187,14 @@ const keyFindings: Finding[] = [
         href: "https://techcrunch.com/2026/04/07/google-quietly-releases-an-offline-first-ai-dictation-app-on-ios/",
       },
     ],
+    image: {
+      url: "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/d1/17/de/d117de20-75b7-f1d4-ae5a-4ad1ac5fc8bd/Placeholder.mill/1200x630wa.jpg",
+      alt: "Google AI Edge Eloquent App Store 预览图",
+      type: "app store preview",
+      sourceLabel: "Google AI Edge Eloquent App Store",
+      sourceHref: "https://apps.apple.com/us/app/google-ai-edge-eloquent/id6756505519",
+      note: "使用 App Store 官方预览图来展示这款离线优先的语音转写工具。",
+    },
   },
   {
     name: "ChatGPT GPT-5.3 Instant mini",
@@ -190,6 +224,14 @@ const keyFindings: Finding[] = [
         href: "https://apps.apple.com/us/genre/ios-apps/id6016",
       },
     ],
+    image: {
+      url: "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/e1/5d/25/e15d25a4-ab3e-709d-4941-1090f824b7bc/Placeholder.mill/1200x630wa.jpg",
+      alt: "ChatGPT App Store 预览图",
+      type: "app store preview",
+      sourceLabel: "ChatGPT App Store",
+      sourceHref: "https://apps.apple.com/us/app/chatgpt/id6448311069",
+      note: "OpenAI 更新日志页没有稳定开放主视觉图，因此回退到 ChatGPT 的 App Store 预览图。",
+    },
   },
   {
     name: "豆包",
@@ -219,6 +261,14 @@ const keyFindings: Finding[] = [
         href: "https://apps.apple.com/cn/charts/iphone",
       },
     ],
+    image: {
+      url: "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/59/c0/66/59c066c5-2bec-d591-e635-38755dfd36b7/Placeholder.mill/1200x630wa.jpg",
+      alt: "豆包 App Store 预览图",
+      type: "app store preview",
+      sourceLabel: "豆包 App Store",
+      sourceHref: "https://apps.apple.com/cn/app/%E8%B1%86%E5%8C%85-%E9%9A%8F%E6%97%B6%E5%B8%AE%E5%BF%99%E7%9A%84-ai-%E5%8A%A9%E6%89%8B/id6459478672",
+      note: "使用豆包官方 App Store 预览图，直接对应本周版本更新与总榜高位。",
+    },
   },
   {
     name: "即梦AI",
@@ -248,6 +298,14 @@ const keyFindings: Finding[] = [
         href: "https://apps.apple.com/cn/iphone/charts/6008?chart=top-free",
       },
     ],
+    image: {
+      url: "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/a0/4c/74/a04c747f-ed54-b8a7-2f94-6f9dc31f99f0/Placeholder.mill/1200x630wa.jpg",
+      alt: "即梦AI App Store 预览图",
+      type: "app store preview",
+      sourceLabel: "即梦AI App Store",
+      sourceHref: "https://apps.apple.com/cn/app/%E5%8D%B3%E6%A2%A6ai-%E6%8A%96%E9%9F%B3%E6%97%97%E4%B8%8Bai%E5%9B%BE%E7%89%87%E5%92%8C%E8%A7%86%E9%A2%91%E5%B7%A5%E5%85%B7/id6503676563",
+      note: "使用即梦AI 的官方 App Store 预览图，突出其视频生成与多模态创作定位。",
+    },
   },
   {
     name: "点点",
@@ -273,6 +331,14 @@ const keyFindings: Finding[] = [
         href: "https://apps.apple.com/us/app/%E7%82%B9%E7%82%B9-%E4%BD%A0%E7%9A%84ai%E7%94%9F%E6%B4%BB%E5%B0%8F%E5%8A%A9%E6%89%8B/id6529536122",
       },
     ],
+    image: {
+      url: "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/c9/5f/4e/c95f4ea2-9268-c280-6261-00f113544c40/Placeholder.mill/1200x630wa.jpg",
+      alt: "点点 App Store 预览图",
+      type: "app store preview",
+      sourceLabel: "点点 App Store",
+      sourceHref: "https://apps.apple.com/us/app/%E7%82%B9%E7%82%B9-%E4%BD%A0%E7%9A%84ai%E7%94%9F%E6%B4%BB%E5%B0%8F%E5%8A%A9%E6%89%8B/id6529536122",
+      note: "使用点点 App Store 预览图，帮助读者快速理解它作为生活决策型助手的产品形态。",
+    },
   },
   {
     name: "中国 AI 助手继续占据总榜高位",
@@ -654,6 +720,43 @@ function InsightBlock({ blocks }: { blocks: RichTextBlock[] }) {
   );
 }
 
+function FindingImageFigure({ image }: { image: FindingImage }) {
+  return (
+    <figure className="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-slate-50">
+      <img
+        src={image.url}
+        alt={image.alt}
+        loading="lazy"
+        decoding="async"
+        className="block aspect-[16/9] w-full object-cover"
+      />
+      <figcaption className="grid gap-2 border-t border-slate-200 bg-white/92 px-4 py-3 text-sm leading-6 text-slate-600">
+        <p>
+          <span className="font-semibold text-slate-950">图片类型</span>: {image.type}
+        </p>
+        <p>
+          <span className="font-semibold text-slate-950">图片说明</span>: {image.note}
+        </p>
+        <p>
+          <span className="font-semibold text-slate-950">图片来源</span>:{" "}
+          {image.sourceHref ? (
+            <a
+              href={image.sourceHref}
+              target="_blank"
+              rel="noreferrer"
+              className="underline decoration-slate-300 underline-offset-4 transition hover:text-slate-950 hover:decoration-cyan-500"
+            >
+              {image.sourceLabel}
+            </a>
+          ) : (
+            image.sourceLabel
+          )}
+        </p>
+      </figcaption>
+    </figure>
+  );
+}
+
 function SectionHeader({
   eyebrow,
   title,
@@ -699,6 +802,7 @@ function FindingCard({ finding, index }: { finding: Finding; index: number }) {
       </div>
 
       <div className="space-y-5 pt-6">
+        {finding.image ? <FindingImageFigure image={finding.image} /> : null}
         <div>
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">summary</p>
           <RichParagraphs blocks={finding.summary} className="mt-3 space-y-3" />
