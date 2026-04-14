@@ -834,32 +834,9 @@ function RankingCard({ slice }: { slice: RankingSlice }) {
   return (
     <article className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_18px_70px_rgba(15,23,42,0.08)] sm:p-8">
       <div className="space-y-5">
-        <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-700">{slice.title}</p>
-            <h3 className="mt-3 font-display text-3xl font-bold text-slate-950">{slice.market}</h3>
-          </div>
-
-          <div className="grid gap-3 rounded-[1.5rem] bg-slate-50 p-5 text-sm text-slate-700">
-            <div>
-              <span className="font-semibold text-slate-950">storefront</span>: {slice.storefront}
-            </div>
-            <div>
-              <span className="font-semibold text-slate-950">chart</span>: {slice.chart}
-            </div>
-            <div>
-              <span className="font-semibold text-slate-950">rank_start</span>: {slice.rankStart}
-            </div>
-            <div>
-              <span className="font-semibold text-slate-950">rank_end</span>: {slice.rankEnd}
-            </div>
-            <div>
-              <span className="font-semibold text-slate-950">delta</span>: {slice.delta}
-            </div>
-            <div>
-              <span className="font-semibold text-slate-950">date_window</span>: {slice.dateWindow}
-            </div>
-          </div>
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-700">{slice.title}</p>
+          <h3 className="mt-3 font-display text-3xl font-bold text-slate-950">{slice.market}</h3>
         </div>
 
         <InsightBlock blocks={slice.whyItMatters} />
