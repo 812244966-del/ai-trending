@@ -504,6 +504,16 @@ const rankingSlices: RankingSlice[] = [
   },
 ];
 
+const topFindingNames = new Set([
+  "Meta AI + Muse Spark",
+  "notebooks in Gemini",
+  "ChatGPT GPT-5.3 Instant mini",
+  "豆包",
+  "即梦AI",
+  "中国 AI 助手继续占据总榜高位",
+]);
+
+const topFindings = keyFindings.filter((item) => topFindingNames.has(item.name));
 const usFindings = keyFindings.filter((item) => item.market === "美国");
 const cnFindings = keyFindings.filter((item) => item.market === "中国");
 
@@ -993,10 +1003,10 @@ export default function Home() {
             <SectionHeader
               eyebrow="Section 1"
               title="Section 1：本周重点发现"
-              description="保留最重要的 8 个中美 AI C 端信号，按核心事实、趋势含义与正文内来源引用的方式展开。"
+              description="保留最重要的 6 个中美 AI C 端信号，影响面较窄的条目下沉到市场动态中。"
             />
             <div className="space-y-5">
-              {keyFindings.map((finding, index) => (
+              {topFindings.map((finding, index) => (
                 <FindingCard key={`${finding.name}-${finding.date}`} finding={finding} index={index} />
               ))}
             </div>
