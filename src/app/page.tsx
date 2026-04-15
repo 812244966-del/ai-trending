@@ -69,10 +69,10 @@ const reportDate = "2026-04-14";
 
 const navigation = [
   ["section-1", "本周重点"],
-  ["section-3", "美国动态"],
-  ["section-4", "中国动态"],
-  ["section-5", "趋势判断"],
-  ["section-6", "继续跟踪"],
+  ["section-2", "美国市场"],
+  ["section-3", "中国市场"],
+  ["section-4", "趋势判断"],
+  ["section-5", "继续跟踪"],
 ] as const;
 
 const reportArchive: ReportArchiveItem[] = [
@@ -1003,7 +1003,7 @@ export default function Home() {
             <SectionHeader
               eyebrow="Section 1"
               title="Section 1：本周重点发现"
-              description="保留最重要的 6 个中美 AI C 端信号，影响面较窄的条目下沉到市场动态中。"
+              description="保留最重要的 6 个中美 AI C 端信号，影响面较窄的条目下沉到对应市场模块中。"
             />
             <div className="space-y-5">
               {topFindings.map((finding, index) => (
@@ -1012,10 +1012,10 @@ export default function Home() {
             </div>
           </section>
 
-          <section id="section-3" className="space-y-6 rounded-[2.25rem] border border-slate-200/80 bg-white/60 p-6 backdrop-blur sm:p-8">
+          <section id="section-2" className="space-y-6 rounded-[2.25rem] border border-slate-200/80 bg-white/60 p-6 backdrop-blur sm:p-8">
             <SectionHeader
-              eyebrow="Section 3"
-              title="Section 3：美国动态"
+              eyebrow="Section 2"
+              title="Section 2：美国市场"
               description="美国本周的重点更偏模型升级、助手工作台和任务型单点工具。"
             />
             <div className="grid gap-5">
@@ -1025,10 +1025,10 @@ export default function Home() {
             </div>
           </section>
 
-          <section id="section-4" className="space-y-6 rounded-[2.25rem] border border-slate-200/80 bg-white/60 p-6 backdrop-blur sm:p-8">
+          <section id="section-3" className="space-y-6 rounded-[2.25rem] border border-slate-200/80 bg-white/60 p-6 backdrop-blur sm:p-8">
             <SectionHeader
-              eyebrow="Section 4"
-              title="Section 4：中国动态"
+              eyebrow="Section 3"
+              title="Section 3：中国市场"
               description="中国本周正式新品不算密集，但头部 AI 助手、视频生成应用和社区型生活助手都保持了强更新或强分发。"
             />
             <div className="grid gap-5">
@@ -1038,10 +1038,10 @@ export default function Home() {
             </div>
           </section>
 
-          <section id="section-5" className="space-y-6 rounded-[2.25rem] border border-slate-200/80 bg-white/60 p-6 backdrop-blur sm:p-8">
+          <section id="section-4" className="space-y-6 rounded-[2.25rem] border border-slate-200/80 bg-white/60 p-6 backdrop-blur sm:p-8">
             <SectionHeader
-              eyebrow="Section 5"
-              title="Section 5：跨市场趋势判断"
+              eyebrow="Section 4"
+              title="Section 4：跨市场趋势判断"
               description="以下判断都明确区分来源事实与推断，证据来自本期已收录条目与榜单快照。"
             />
             <div className="grid gap-5 lg:grid-cols-2">
@@ -1070,10 +1070,10 @@ export default function Home() {
             </div>
           </section>
 
-          <section id="section-6" className="space-y-6 rounded-[2.25rem] border border-slate-200/80 bg-white/60 p-6 backdrop-blur sm:p-8">
+          <section id="section-5" className="space-y-6 rounded-[2.25rem] border border-slate-200/80 bg-white/60 p-6 backdrop-blur sm:p-8">
             <SectionHeader
-              eyebrow="Section 6"
-              title="Section 6：值得继续跟踪的产品/功能"
+              eyebrow="Section 5"
+              title="Section 5：值得继续跟踪的产品/功能"
               description="这些条目要么处在增长拐点，要么代表下一阶段中美 C 端 AI 产品竞争方向。"
             />
             <div className="grid gap-5 lg:grid-cols-2">

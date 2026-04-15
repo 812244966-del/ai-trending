@@ -7,7 +7,7 @@
 
 ## 项目内容
 
-- 首页周报：展示中美 AI C 端周报的 7 个 section，包括重点发现、榜单异动、美国动态、中国动态、趋势判断、继续跟踪和来源列表。
+- 首页周报：展示中美 AI C 端周报的 5 个可见 section，包括重点发现、美国市场、中国市场、趋势判断和继续跟踪。
 - 静态落地页：[weekly-ai-report-2026-04-14.html](/Users/lulu/Desktop/codex/adhd/weekly-ai-report-2026-04-14.html)
 - Next.js 首页实现：[src/app/page.tsx](/Users/lulu/Desktop/codex/adhd/src/app/page.tsx)
 
