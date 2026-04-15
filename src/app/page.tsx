@@ -918,21 +918,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[linear-gradient(180deg,#f6f1e8_0%,#f8f7f2_28%,#eef4f7_100%)] text-slate-950">
       <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
-        <section className="overflow-hidden rounded-[2.25rem] border border-slate-200 bg-slate-950 px-6 py-8 text-white shadow-[0_40px_120px_rgba(15,23,42,0.24)] sm:px-8 lg:px-10 lg:py-10">
-          <div className="max-w-5xl space-y-5">
-            <p className="text-sm font-semibold uppercase tracking-[0.32em] text-cyan-300">{reportDate}</p>
-            <h1 className="font-display text-5xl font-bold leading-[0.92] tracking-[-0.04em] text-white sm:text-6xl lg:text-[6.8rem]">
-              Weekly AI
-              <br />
-              Consumer Trends
-            </h1>
-            <p className="max-w-3xl text-base leading-8 text-slate-300">
-              本网站整理并分析在过去7天内中美市场的AI行业相关应用的最新趋势，信息来源于产品官网，appstore及36氪等行业媒体
-            </p>
-          </div>
-        </section>
-
-        <details className="mt-6 overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white/88 shadow-[0_20px_80px_rgba(15,23,42,0.08)] backdrop-blur">
+        <details className="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white/88 shadow-[0_20px_80px_rgba(15,23,42,0.08)] backdrop-blur">
           <summary className="cursor-pointer list-none px-6 py-5 text-sm font-semibold tracking-[0.18em] text-slate-950 marker:content-none sm:px-7">
             <span className="flex items-center justify-between gap-4">
               <span className="uppercase">Weekly Archive</span>
@@ -966,6 +952,20 @@ export default function Home() {
             </div>
           </div>
         </details>
+
+        <section className="overflow-hidden rounded-[2.25rem] border border-slate-200 bg-slate-950 px-6 py-8 text-white shadow-[0_40px_120px_rgba(15,23,42,0.24)] sm:px-8 lg:px-10 lg:py-10">
+          <div className="max-w-5xl space-y-5">
+            <p className="text-sm font-semibold uppercase tracking-[0.32em] text-cyan-300">{reportDate}</p>
+            <h1 className="font-display text-5xl font-bold leading-[0.92] tracking-[-0.04em] text-white sm:text-6xl lg:text-[6.8rem]">
+              Weekly AI
+              <br />
+              Consumer Trends
+            </h1>
+            <p className="max-w-3xl text-base leading-8 text-slate-300">
+              本网站整理并分析在过去7天内中美市场的AI行业相关应用的最新趋势，信息来源于产品官网，appstore及36氪等行业媒体
+            </p>
+          </div>
+        </section>
 
         <nav className="sticky top-4 z-20 mt-6 rounded-[1.5rem] border border-slate-200 bg-white/88 p-3 shadow-[0_20px_80px_rgba(15,23,42,0.08)] backdrop-blur">
           <div className="flex flex-wrap gap-2">
