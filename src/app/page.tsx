@@ -57,17 +57,33 @@ type WatchItem = {
   next: RichTextBlock;
 };
 
+type ReportArchiveItem = {
+  date: string;
+  title: string;
+  href: string;
+  status: "current" | "archive";
+  note: string;
+};
+
 const reportDate = "2026-04-14";
 
 const navigation = [
   ["section-1", "本周重点"],
-  ["section-2", "榜单异动"],
   ["section-3", "美国动态"],
   ["section-4", "中国动态"],
   ["section-5", "趋势判断"],
   ["section-6", "继续跟踪"],
-  ["section-7", "来源列表"],
 ] as const;
+
+const reportArchive: ReportArchiveItem[] = [
+  {
+    date: "2026-04-14",
+    title: "Weekly AI Consumer Trends",
+    href: "/",
+    status: "current",
+    note: "当前线上版本。后续每周新增一期时，只需要在这里补一条归档数据。",
+  },
+];
 
 function t(text: string, strong = false): RichSegment {
   return { text, strong };
@@ -887,6 +903,41 @@ export default function Home() {
           </div>
         </section>
 
+        <details className="mt-6 overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white/88 shadow-[0_20px_80px_rgba(15,23,42,0.08)] backdrop-blur">
+          <summary className="cursor-pointer list-none px-6 py-5 text-sm font-semibold tracking-[0.18em] text-slate-950 marker:content-none sm:px-7">
+            <span className="flex items-center justify-between gap-4">
+              <span className="uppercase">Weekly Archive</span>
+              <span className="text-xs uppercase tracking-[0.22em] text-cyan-700">查看过往周报</span>
+            </span>
+          </summary>
+          <div className="border-t border-slate-200 px-6 py-5 sm:px-7">
+            <div className="grid gap-4">
+              {reportArchive.map((item) => (
+                <a
+                  key={item.date}
+                  href={item.href}
+                  className="rounded-[1.4rem] border border-slate-200 bg-slate-50 px-5 py-4 transition hover:border-cyan-500 hover:bg-white"
+                >
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span className="text-sm font-semibold text-slate-950">{item.date}</span>
+                    <span
+                      className={`rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] ${
+                        item.status === "current"
+                          ? "border border-cyan-200 bg-cyan-50 text-cyan-700"
+                          : "border border-slate-200 bg-white text-slate-600"
+                      }`}
+                    >
+                      {item.status}
+                    </span>
+                  </div>
+                  <p className="mt-3 text-base font-semibold text-slate-950">{item.title}</p>
+                  <p className="mt-2 text-sm leading-7 text-slate-600">{item.note}</p>
+                </a>
+              ))}
+            </div>
+          </div>
+        </details>
+
         <nav className="sticky top-4 z-20 mt-6 rounded-[1.5rem] border border-slate-200 bg-white/88 p-3 shadow-[0_20px_80px_rgba(15,23,42,0.08)] backdrop-blur">
           <div className="flex flex-wrap gap-2">
             {navigation.map(([id, label]) => (
@@ -911,19 +962,6 @@ export default function Home() {
             <div className="space-y-5">
               {keyFindings.map((finding, index) => (
                 <FindingCard key={`${finding.name}-${finding.date}`} finding={finding} index={index} />
-              ))}
-            </div>
-          </section>
-
-          <section id="section-2" className="space-y-6 rounded-[2.25rem] border border-slate-200/80 bg-white/60 p-6 backdrop-blur sm:p-8">
-            <SectionHeader
-              eyebrow="Section 2"
-              title="Section 2：榜单异动"
-              description="本周按 skill 要求检查了美国区和中国区 Apple App Store 的总榜、效率榜、摄影与录像榜，并优先尝试核对中国区七麦数据。能确认当前快照，但两边都缺少足够清晰的 7 天历史端点，因此不补推测性 delta。"
-            />
-            <div className="grid gap-5 xl:grid-cols-2">
-              {rankingSlices.map((slice) => (
-                <RankingCard key={slice.market} slice={slice} />
               ))}
             </div>
           </section>
@@ -1009,29 +1047,6 @@ export default function Home() {
                     <p>
                       <span className="font-semibold text-slate-950">下周应关注什么</span>: {renderInline(item.next)}
                     </p>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </section>
-
-          <section id="section-7" className="space-y-6 rounded-[2.25rem] border border-slate-200/80 bg-white/60 p-6 backdrop-blur sm:p-8">
-            <SectionHeader
-              eyebrow="Section 7"
-              title="Section 7：来源列表"
-              description="按官方来源、媒体来源、榜单来源分类整理，方便直接继续追踪。"
-            />
-            <div className="grid gap-5 lg:grid-cols-3">
-              {sourceGroups.map((group) => (
-                <article
-                  key={group.label}
-                  className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_18px_70px_rgba(15,23,42,0.08)]"
-                >
-                  <h3 className="font-display text-2xl font-bold text-slate-950">{group.label}</h3>
-                  <div className="mt-5 flex flex-wrap gap-3">
-                    {group.links.map((link) => (
-                      <LinkChip key={link.href} link={link} />
-                    ))}
                   </div>
                 </article>
               ))}
