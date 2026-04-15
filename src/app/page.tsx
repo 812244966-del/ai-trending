@@ -712,6 +712,35 @@ function renderInline(block: RichTextBlock, strongClassName = "font-semibold tex
   );
 }
 
+function needsInlineSpace(previous: RichTextBlock, next: RichTextBlock) {
+  const previousText = previous.map((segment) => segment.text).join("").trim();
+  const nextText = next.map((segment) => segment.text).join("").trim();
+  const previousLast = previousText.slice(-1);
+  const nextFirst = nextText.charAt(0);
+  return /[A-Za-z0-9)]/.test(previousLast) && /[A-Za-z0-9(]/.test(nextFirst);
+}
+
+function RichInlineParagraph({
+  blocks,
+  className,
+  strongClassName,
+}: {
+  blocks: RichTextBlock[];
+  className?: string;
+  strongClassName?: string;
+}) {
+  return (
+    <p className={className ?? "text-sm leading-7 text-slate-700 sm:text-[15px]"}>
+      {blocks.map((block, index) => (
+        <span key={index}>
+          {index > 0 && needsInlineSpace(blocks[index - 1], block) ? " " : ""}
+          {renderInline(block, strongClassName)}
+        </span>
+      ))}
+    </p>
+  );
+}
+
 function RichParagraphs({
   blocks,
   className,
@@ -835,7 +864,7 @@ function FindingCard({ finding, index }: { finding: Finding; index: number }) {
         <div className="space-y-5">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">summary</p>
-            <RichParagraphs blocks={finding.summary} className="mt-3 space-y-3" />
+            <RichInlineParagraph blocks={finding.summary} className="mt-3 text-sm leading-7 text-slate-700 sm:text-[15px]" />
             <SourceLine links={finding.sources} />
           </div>
           <InsightBlock blocks={finding.whyItMatters} />
@@ -898,7 +927,7 @@ export default function Home() {
               Consumer Trends
             </h1>
             <p className="max-w-3xl text-base leading-8 text-slate-300">
-              本网站整理并分析在过去7天内中美市场的AI行业相关应用的最新趋势，信息来源于可靠的产品官网及36氪等行业自媒体。
+              本网站整理并分析在过去7天内中美市场的AI行业相关应用的最新趋势，信息来源于产品官网，appstore及36氪等行业媒体
             </p>
           </div>
         </section>

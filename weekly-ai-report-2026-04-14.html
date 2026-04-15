@@ -126,6 +126,97 @@
         color: var(--deep);
       }
 
+      .archive {
+        margin-top: 24px;
+        overflow: hidden;
+        border-radius: 28px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.88);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(14px);
+      }
+
+      .archive summary {
+        list-style: none;
+        cursor: pointer;
+        padding: 20px 24px;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--ink);
+      }
+
+      .archive summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .archive-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .archive-head span:last-child {
+        font-size: 11px;
+        letter-spacing: 0.22em;
+        color: var(--accent-ink);
+      }
+
+      .archive-body {
+        padding: 20px 24px 24px;
+        border-top: 1px solid var(--line);
+      }
+
+      .archive-item {
+        display: block;
+        padding: 18px 20px;
+        border-radius: 22px;
+        border: 1px solid rgba(16, 32, 51, 0.08);
+        background: #f8fafc;
+      }
+
+      .archive-meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .archive-date {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--ink);
+      }
+
+      .archive-status {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(125, 211, 252, 0.48);
+        background: rgba(236, 254, 255, 0.9);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--accent-ink);
+      }
+
+      .archive-item h3 {
+        margin-top: 12px;
+        font-size: 20px;
+        font-weight: 700;
+      }
+
+      .archive-item p {
+        margin: 10px 0 0;
+        font-size: 14px;
+        line-height: 1.8;
+        color: var(--muted);
+      }
+
       .section {
         margin-top: 24px;
         padding: 30px;
@@ -501,17 +592,34 @@
           <br />
           Consumer Trends
         </h1>
-        <p>本网站整理并分析在过去7天内中美市场的AI行业相关应用的最新趋势，信息来源于可靠的产品官网及36氪等行业自媒体。</p>
+        <p>本网站整理并分析在过去7天内中美市场的AI行业相关应用的最新趋势，信息来源于产品官网，appstore及36氪等行业媒体</p>
       </section>
+
+      <details class="archive">
+        <summary>
+          <div class="archive-head">
+            <span>Weekly Archive</span>
+            <span>查看过往周报</span>
+          </div>
+        </summary>
+        <div class="archive-body">
+          <a class="archive-item" href="./weekly-ai-report-2026-04-14.html">
+            <div class="archive-meta">
+              <span class="archive-date">2026-04-14</span>
+              <span class="archive-status">current</span>
+            </div>
+            <h3>Weekly AI Consumer Trends</h3>
+            <p>当前归档入口已经预留好，后续每周只需要新增一个页面链接，就能在这里折叠查看往期周报。</p>
+          </a>
+        </div>
+      </details>
 
       <nav class="nav">
         <a href="#section-1">本周重点</a>
-        <a href="#section-2">榜单异动</a>
         <a href="#section-3">美国动态</a>
         <a href="#section-4">中国动态</a>
         <a href="#section-5">趋势判断</a>
         <a href="#section-6">继续跟踪</a>
-        <a href="#section-7">来源列表</a>
       </nav>
 
       <section class="section" id="section-1">
@@ -772,68 +880,6 @@
         </div>
       </section>
 
-      <section class="section" id="section-2">
-        <div class="section-head">
-          <div class="section-kicker">Section 2</div>
-          <h2>Section 2：榜单异动</h2>
-          <p>本周按 skill 要求检查了美国区和中国区 Apple App Store 的总榜、效率榜、摄影与录像榜，并优先尝试核对中国区七麦数据。能确认当前快照，但两边都缺少足够清晰的 7 天历史端点，因此不补推测性 delta。</p>
-        </div>
-
-        <div class="grid-2">
-          <article class="ranking-card">
-            <div class="ranking-label">美国区</div>
-            <h3>美国</h3>
-            <div class="kv">
-              <div><strong>storefront</strong>: Apple App Store US</div>
-              <div><strong>chart</strong>: overall free / Productivity / Photo &amp; Video</div>
-              <div><strong>rank_start</strong>: 数据不足</div>
-              <div><strong>rank_end</strong>: 仅能确认当前或发布后短时快照</div>
-              <div><strong>delta</strong>: 无法写入可信 7 天 delta</div>
-              <div><strong>date_window</strong>: 2026-04-08 - 2026-04-14</div>
-            </div>
-            <div class="field insight-block" style="margin-top: 20px">
-              <div class="name">why_it_matters</div>
-              <div><strong>本周美国区能确认的是分发热度显著上升，但不能把它写成严格符合 skill 标准的 7 天榜单异动。</strong>Meta AI 的确在 TechCrunch 援引 Appfigures 的报道里出现了从第 57 位到第 5 位的快速跃升，但时间跨度并非可审计的 7 天窗口；Apple 公开可访问页面也未提供足够清晰的同榜历史端点。</div>
-            </div>
-            <div class="note">按 skill 规则，本周美国区不输出满足“当前 Top 100 且 7 天净提升超过 20”条件的正式条目。</div>
-            <div class="bullets">
-              <ul>
-                <li><span class="dot"></span><span>Apple 美国总榜可见 ChatGPT、Google Gemini、Claude 继续位于免费总榜前列。</span></li>
-                <li><span class="dot"></span><span>Apple 美国 Productivity 榜可见 ChatGPT、Claude、Google Gemini 位于前列。</span></li>
-                <li><span class="dot"></span><span>Apple 美国 Photo &amp; Video 榜可见 Meta AI 位于前列，TechCrunch 还给出发布后短时冲榜信号。</span></li>
-              </ul>
-            </div>
-            <p class="source-line"><strong>来源：</strong><a href="https://apps.apple.com/us/genre/ios-apps/id6016" target="_blank" rel="noreferrer">Apple 美国总榜</a>、<a href="https://apps.apple.com/us/iphone/charts/6007?chart=top-free" target="_blank" rel="noreferrer">Apple 美国 Productivity 榜</a>、<a href="https://apps.apple.com/us/iphone/charts/6008?chart=top-free" target="_blank" rel="noreferrer">Apple 美国 Photo &amp; Video 榜</a>、<a href="https://techcrunch.com/2026/04/08/meta-debuts-the-muse-spark-model-in-a-ground-up-overhaul-of-its-ai/" target="_blank" rel="noreferrer">TechCrunch - Meta AI 冲榜</a></p>
-          </article>
-
-          <article class="ranking-card">
-            <div class="ranking-label">中国区</div>
-            <h3>中国</h3>
-            <div class="kv">
-              <div><strong>storefront</strong>: Apple App Store CN</div>
-              <div><strong>chart</strong>: overall free / Productivity / Photo &amp; Video</div>
-              <div><strong>rank_start</strong>: 数据不足</div>
-              <div><strong>rank_end</strong>: 可确认当前快照高位</div>
-              <div><strong>delta</strong>: 无法写入可信 7 天 delta</div>
-              <div><strong>date_window</strong>: 2026-04-08 - 2026-04-14</div>
-            </div>
-            <div class="field insight-block" style="margin-top: 20px">
-              <div class="name">why_it_matters</div>
-              <div><strong>本周中国区可以稳定确认的是当前榜单位置，而不是可审计的 7 天净跃升。</strong>按照 skill 要求，我优先检查了七麦作为历史点位候选来源，但公开可访问结果没有给出足够清晰、带同日标签且可直接核验的 7 天前端点，因此不能估算 rank_start 或 delta。</div>
-            </div>
-            <div class="note">按 skill 规则，本周中国区保留榜单 section，但不补猜测性涨幅数字。</div>
-            <div class="bullets">
-              <ul>
-                <li><span class="dot"></span><span>Apple 中国免费总榜快照显示豆包位于第 1 位，腾讯元宝与千问位于 Top 10 区间。</span></li>
-                <li><span class="dot"></span><span>Apple 中国效率榜快照里，AI 助手类应用继续密集分布在前列。</span></li>
-                <li><span class="dot"></span><span>Apple 中国摄影与录像榜快照里，即梦AI 位于第 1 位，可灵AI 位于 Top 20 区间。</span></li>
-              </ul>
-            </div>
-            <p class="source-line"><strong>来源：</strong><a href="https://apps.apple.com/cn/charts/iphone" target="_blank" rel="noreferrer">Apple 中国总榜</a>、<a href="https://apps.apple.com/cn/iphone/charts/6007?chart=top-free" target="_blank" rel="noreferrer">Apple 中国效率榜</a>、<a href="https://apps.apple.com/cn/iphone/charts/6008?chart=top-free" target="_blank" rel="noreferrer">Apple 中国摄影与录像榜</a>、<a href="https://www.qimai.cn/rank" target="_blank" rel="noreferrer">七麦数据</a></p>
-          </article>
-        </div>
-      </section>
-
       <section class="section" id="section-3">
         <div class="section-head">
           <div class="section-kicker">Section 3</div>
@@ -988,48 +1034,6 @@
         </div>
       </section>
 
-      <section class="section" id="section-7">
-        <div class="section-head">
-          <div class="section-kicker">Section 7</div>
-          <h2>Section 7：来源列表</h2>
-          <p>按官方来源、媒体来源、榜单来源分类整理，方便直接继续追踪。</p>
-        </div>
-        <div class="grid-3">
-          <article class="short-card">
-            <h3>官方来源</h3>
-            <div class="chips">
-              <a class="chip" href="https://about.fb.com/news/2026/04/introducing-muse-spark-meta-superintelligence-labs/" target="_blank" rel="noreferrer">Meta 官方</a>
-              <a class="chip" href="https://blog.google/products/gemini/notebooks-gemini-notebooklm/" target="_blank" rel="noreferrer">Google 官方</a>
-              <a class="chip" href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes" target="_blank" rel="noreferrer">OpenAI Release Notes</a>
-              <a class="chip" href="https://apps.apple.com/us/app/google-ai-edge-eloquent/id6756505519" target="_blank" rel="noreferrer">Eloquent App Store</a>
-              <a class="chip" href="https://apps.apple.com/cn/app/%E8%B1%86%E5%8C%85-%E9%9A%8F%E6%97%B6%E5%B8%AE%E5%BF%99%E7%9A%84-ai-%E5%8A%A9%E6%89%8B/id6459478672" target="_blank" rel="noreferrer">豆包 App Store</a>
-              <a class="chip" href="https://apps.apple.com/cn/app/%E5%8D%B3%E6%A2%A6ai-%E6%8A%96%E9%9F%B3%E6%97%97%E4%B8%8Bai%E5%9B%BE%E7%89%87%E5%92%8C%E8%A7%86%E9%A2%91%E5%B7%A5%E5%85%B7/id6503676563" target="_blank" rel="noreferrer">即梦AI App Store</a>
-              <a class="chip" href="https://apps.apple.com/us/app/%E7%82%B9%E7%82%B9-%E4%BD%A0%E7%9A%84ai%E7%94%9F%E6%B4%BB%E5%B0%8F%E5%8A%A9%E6%89%8B/id6529536122" target="_blank" rel="noreferrer">点点 App Store</a>
-            </div>
-          </article>
-          <article class="short-card">
-            <h3>媒体来源</h3>
-            <div class="chips">
-              <a class="chip" href="https://techcrunch.com/2026/04/08/meta-debuts-the-muse-spark-model-in-a-ground-up-overhaul-of-its-ai/" target="_blank" rel="noreferrer">TechCrunch - Meta AI</a>
-              <a class="chip" href="https://www.theverge.com/tech/909031/google-gemini-notebooks-notebooklm" target="_blank" rel="noreferrer">The Verge - Gemini</a>
-              <a class="chip" href="https://techcrunch.com/2026/04/07/google-quietly-releases-an-offline-first-ai-dictation-app-on-ios/" target="_blank" rel="noreferrer">TechCrunch - Eloquent</a>
-            </div>
-          </article>
-          <article class="short-card">
-            <h3>榜单来源</h3>
-            <div class="chips">
-              <a class="chip" href="https://apps.apple.com/us/genre/ios-apps/id6016" target="_blank" rel="noreferrer">Apple 美国总榜</a>
-              <a class="chip" href="https://apps.apple.com/us/iphone/charts/6007?chart=top-free" target="_blank" rel="noreferrer">Apple 美国 Productivity 榜</a>
-              <a class="chip" href="https://apps.apple.com/us/iphone/charts/6008?chart=top-free" target="_blank" rel="noreferrer">Apple 美国 Photo &amp; Video 榜</a>
-              <a class="chip" href="https://apps.apple.com/cn/charts/iphone" target="_blank" rel="noreferrer">Apple 中国总榜</a>
-              <a class="chip" href="https://apps.apple.com/cn/iphone/charts/6007?chart=top-free" target="_blank" rel="noreferrer">Apple 中国效率榜</a>
-              <a class="chip" href="https://apps.apple.com/cn/iphone/charts/6008?chart=top-free" target="_blank" rel="noreferrer">Apple 中国摄影与录像榜</a>
-              <a class="chip" href="https://www.qimai.cn/rank" target="_blank" rel="noreferrer">七麦数据</a>
-            </div>
-          </article>
-        </div>
-        <p class="footer-note">注：榜单 section 严格遵循 skill 的核验标准。本周虽能确认中美多个 AI App 位于高位，但由于无法稳定拿到公开且同日可核验的 7 天前历史点位，因此没有写入任何估算式 rank_start 或 delta。</p>
-      </section>
     </div>
   </body>
 </html>
