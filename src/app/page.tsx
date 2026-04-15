@@ -791,7 +791,14 @@ function InsightBlock({ blocks }: { blocks: RichTextBlock[] }) {
         <span className="h-10 w-1 rounded-full bg-cyan-500" />
         <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-700">why_it_matters</p>
       </div>
-      <RichParagraphs blocks={blocks} className="space-y-3" />
+      <ul className="space-y-3">
+        {blocks.map((block, index) => (
+          <li key={index} className="flex gap-3 text-sm leading-7 text-slate-700 sm:text-[15px]">
+            <span className="mt-2 h-2 w-2 rounded-full bg-cyan-600" />
+            <span>{renderInline(block)}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
