@@ -1,0 +1,64 @@
+<svg width="1280" height="820" viewBox="0 0 1280 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="820" fill="#F5F7FF"/>
+  <rect x="48" y="42" width="1184" height="736" rx="34" fill="#FFFFFF" stroke="#DDE3F6"/>
+  <text x="86" y="104" fill="#0F172A" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="800">方案 A：分类机会地图</text>
+  <text x="86" y="140" fill="#64748B" font-family="Inter, Arial, sans-serif" font-size="16">按赛道展示中美强弱，节点大小与蓝紫色饱和度表示热度；点击节点看详情。</text>
+  <g transform="translate(86 176)">
+    <rect x="0" y="0" width="760" height="542" rx="24" fill="#F8FAFF" stroke="#DDE3F6"/>
+    <text x="232" y="38" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="3">UNITED STATES</text>
+    <text x="548" y="38" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="3">CHINA</text>
+    <line x1="430" y1="62" x2="430" y2="518" stroke="#CBD5E1" stroke-dasharray="6 8"/>
+    <g font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#334155">
+      <text x="28" y="94">AI 助手/搜索</text>
+      <text x="28" y="154">AI 教育/学习</text>
+      <text x="28" y="214">AI 陪伴/社交</text>
+      <text x="28" y="274">AI 游戏/娱乐</text>
+      <text x="28" y="334">AI 创作</text>
+      <text x="28" y="394">AI 效率/办公</text>
+      <text x="28" y="454">AI 生活工具</text>
+      <text x="28" y="514">AI 硬件入口</text>
+    </g>
+    <g stroke="#E2E8F0">
+      <line x1="180" y1="88" x2="724" y2="88"/><line x1="180" y1="148" x2="724" y2="148"/>
+      <line x1="180" y1="208" x2="724" y2="208"/><line x1="180" y1="268" x2="724" y2="268"/>
+      <line x1="180" y1="328" x2="724" y2="328"/><line x1="180" y1="388" x2="724" y2="388"/>
+      <line x1="180" y1="448" x2="724" y2="448"/><line x1="180" y1="508" x2="724" y2="508"/>
+    </g>
+    <g font-family="Inter, Arial, sans-serif">
+      <circle cx="290" cy="88" r="28" fill="#4F46E5"/><circle cx="290" cy="88" r="38" fill="#4F46E5" fill-opacity="0.12"/><text x="325" y="82" font-size="13" font-weight="700" fill="#0F172A">Meta AI</text><text x="325" y="101" font-size="12" fill="#64748B">Gemini / ChatGPT</text>
+      <circle cx="586" cy="88" r="30" fill="#5B21B6"/><circle cx="586" cy="88" r="41" fill="#5B21B6" fill-opacity="0.13"/><text x="624" y="82" font-size="13" font-weight="700" fill="#0F172A">豆包</text><text x="624" y="101" font-size="12" fill="#64748B">元宝 / 千问</text>
+      <circle cx="290" cy="148" r="24" fill="#7C3AED"/><circle cx="290" cy="148" r="34" fill="#7C3AED" fill-opacity="0.14"/><text x="320" y="142" font-size="13" font-weight="700" fill="#0F172A">Khanmigo</text><text x="320" y="161" font-size="12" fill="#64748B">Duolingo / Gauth</text>
+      <circle cx="586" cy="148" r="19" fill="#A78BFA"/><circle cx="586" cy="148" r="28" fill="#A78BFA" fill-opacity="0.16"/><text x="616" y="142" font-size="13" font-weight="700" fill="#0F172A">作业帮</text><text x="616" y="161" font-size="12" fill="#64748B">夸克 / 学而思</text>
+      <circle cx="290" cy="208" r="25" fill="#8B5CF6"/><circle cx="290" cy="208" r="36" fill="#8B5CF6" fill-opacity="0.14"/><text x="322" y="202" font-size="13" font-weight="700" fill="#0F172A">Replika</text><text x="322" y="221" font-size="12" fill="#64748B">Character.AI / Nomi</text>
+      <circle cx="586" cy="208" r="24" fill="#7C3AED"/><circle cx="586" cy="208" r="34" fill="#7C3AED" fill-opacity="0.14"/><text x="618" y="202" font-size="13" font-weight="700" fill="#0F172A">星野</text><text x="618" y="221" font-size="12" fill="#64748B">Talkie / 名人朋友圈</text>
+      <circle cx="290" cy="268" r="19" fill="#A78BFA"/><circle cx="290" cy="268" r="28" fill="#A78BFA" fill-opacity="0.16"/><text x="320" y="262" font-size="13" font-weight="700" fill="#0F172A">AI Dungeon</text><text x="320" y="281" font-size="12" fill="#64748B">Hidden Door</text>
+      <circle cx="586" cy="268" r="18" fill="#C4B5FD"/><circle cx="586" cy="268" r="27" fill="#C4B5FD" fill-opacity="0.16"/><text x="616" y="262" font-size="13" font-weight="700" fill="#0F172A">逆水寒</text><text x="616" y="281" font-size="12" fill="#64748B">AI NPC / 角色互动</text>
+      <circle cx="290" cy="328" r="20" fill="#8B5CF6"/><circle cx="290" cy="328" r="29" fill="#8B5CF6" fill-opacity="0.14"/><text x="320" y="333" font-size="12" fill="#475569">Meta AI</text>
+      <circle cx="586" cy="328" r="31" fill="#6D28D9"/><circle cx="586" cy="328" r="43" fill="#6D28D9" fill-opacity="0.15"/><text x="624" y="322" font-size="13" font-weight="700" fill="#0F172A">即梦AI</text><text x="624" y="341" font-size="12" fill="#64748B">可灵AI / 豆包</text>
+      <circle cx="290" cy="388" r="29" fill="#4338CA"/><circle cx="290" cy="388" r="40" fill="#4338CA" fill-opacity="0.13"/><text x="325" y="382" font-size="13" font-weight="700" fill="#0F172A">Gemini notebooks</text><text x="325" y="401" font-size="12" fill="#64748B">Notion / Eloquent</text>
+      <circle cx="586" cy="388" r="24" fill="#7C3AED"/><circle cx="586" cy="388" r="34" fill="#7C3AED" fill-opacity="0.13"/><text x="618" y="382" font-size="13" font-weight="700" fill="#0F172A">豆包</text><text x="618" y="401" font-size="12" fill="#64748B">WPS / 飞书</text>
+      <circle cx="290" cy="448" r="19" fill="#C4B5FD"/><circle cx="290" cy="448" r="28" fill="#C4B5FD" fill-opacity="0.16"/><text x="318" y="442" font-size="13" font-weight="700" fill="#0F172A">Eloquent</text><text x="318" y="461" font-size="12" fill="#64748B">ChatGPT Voice</text>
+      <circle cx="586" cy="448" r="25" fill="#8B5CF6"/><circle cx="586" cy="448" r="35" fill="#8B5CF6" fill-opacity="0.14"/><text x="618" y="442" font-size="13" font-weight="700" fill="#0F172A">点点</text><text x="618" y="461" font-size="12" fill="#64748B">小红书 / 夸克</text>
+      <circle cx="290" cy="508" r="24" fill="#7C3AED"/><circle cx="290" cy="508" r="34" fill="#7C3AED" fill-opacity="0.14"/><text x="320" y="502" font-size="13" font-weight="700" fill="#0F172A">Ray-Ban Meta</text><text x="320" y="521" font-size="12" fill="#64748B">Plaud / Rabbit</text>
+      <circle cx="586" cy="508" r="19" fill="#A78BFA"/><circle cx="586" cy="508" r="28" fill="#A78BFA" fill-opacity="0.16"/><text x="616" y="502" font-size="13" font-weight="700" fill="#0F172A">学而思</text><text x="616" y="521" font-size="12" fill="#64748B">讯飞 / Rokid</text>
+    </g>
+  </g>
+  <g transform="translate(886 176)">
+    <rect width="300" height="542" rx="24" fill="#FFFFFF" stroke="#DDE3F6"/>
+    <rect x="16" y="16" width="268" height="510" rx="20" fill="#F8FAFF"/>
+    <text x="28" y="52" fill="#6D28D9" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="800" letter-spacing="3">SELECTED NODE</text>
+    <text x="28" y="96" fill="#0F172A" font-family="Georgia, serif" font-size="31" font-weight="700">中国 / AI 创作</text>
+    <rect x="28" y="124" width="70" height="28" rx="14" fill="#EDE9FE" stroke="#C4B5FD"/><text x="45" y="143" fill="#5B21B6" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="800">极强</text>
+    <rect x="28" y="174" width="244" height="86" rx="18" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="48" y="206" fill="#64748B" font-family="Inter, Arial, sans-serif" font-size="13">代表产品</text>
+    <text x="48" y="234" fill="#0F172A" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800">即梦AI / 可灵AI</text>
+    <rect x="28" y="284" width="244" height="108" rx="18" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <text x="48" y="316" fill="#64748B" font-family="Inter, Arial, sans-serif" font-size="13">产品形态</text>
+    <text x="48" y="344" fill="#334155" font-family="Inter, Arial, sans-serif" font-size="15">视频生成和多模态创作工具</text>
+    <text x="48" y="368" fill="#334155" font-family="Inter, Arial, sans-serif" font-size="15">同时具备模型更新与榜单高位。</text>
+    <rect x="28" y="414" width="244" height="90" rx="18" fill="#F3F0FF" stroke="#DDD6FE"/>
+    <text x="48" y="446" fill="#6D28D9" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700">产品机会</text>
+    <text x="48" y="474" fill="#334155" font-family="Inter, Arial, sans-serif" font-size="15">模板化生产、短视频发布链路、</text>
+    <text x="48" y="498" fill="#334155" font-family="Inter, Arial, sans-serif" font-size="15">会员权益和社交传播能力。</text>
+  </g>
+</svg>
