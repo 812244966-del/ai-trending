@@ -926,14 +926,17 @@ function InsightBlock({ blocks }: { blocks: RichTextBlock[] }) {
 
 function FindingImageFigure({ image }: { image: FindingImage }) {
   return (
-    <figure className="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-slate-50">
+    <figure className="overflow-hidden rounded-[1.35rem] border border-slate-200 bg-slate-50 shadow-[0_10px_30px_rgba(15,23,42,0.06)]">
       <img
         src={image.url}
         alt={image.alt}
         loading="lazy"
         decoding="async"
-        className="block aspect-[16/9] w-full object-cover"
+        className="block aspect-[4/3] w-full object-cover"
       />
+      <figcaption className="border-t border-slate-200 bg-white/90 px-3 py-2 text-[11px] leading-5 text-slate-500">
+        {image.sourceLabel}
+      </figcaption>
     </figure>
   );
 }
@@ -985,7 +988,7 @@ function FindingCard({ finding, index }: { finding: Finding; index: number }) {
       <div
         className={
           finding.image
-            ? "grid gap-5 pt-6 xl:grid-cols-[minmax(0,1.2fr)_minmax(280px,0.8fr)] xl:items-start"
+            ? "grid gap-5 pt-6 lg:grid-cols-[minmax(0,1fr)_220px] lg:items-start xl:grid-cols-[minmax(0,1fr)_240px]"
             : "space-y-5 pt-6"
         }
       >
@@ -997,7 +1000,11 @@ function FindingCard({ finding, index }: { finding: Finding; index: number }) {
           </div>
           <InsightBlock blocks={finding.whyItMatters} />
         </div>
-        {finding.image ? <FindingImageFigure image={finding.image} /> : null}
+        {finding.image ? (
+          <div className="lg:pl-1">
+            <FindingImageFigure image={finding.image} />
+          </div>
+        ) : null}
       </div>
     </article>
   );
