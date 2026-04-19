@@ -32,27 +32,6 @@ type Finding = {
   image?: FindingImage;
 };
 
-type RankingSlice = {
-  title: string;
-  market: string;
-  storefront: string;
-  chart: string;
-  rankStart: string;
-  rankEnd: string;
-  delta: string;
-  dateWindow: string;
-  whyItMatters: RichTextBlock[];
-  note: RichTextBlock[];
-  currentSnapshot: RichTextBlock[];
-  sources: ReportLink[];
-};
-
-type TrendJudgment = {
-  title: string;
-  evidence: RichTextBlock;
-  comparison: RichTextBlock;
-};
-
 type ReportArchiveItem = {
   date: string;
   title: string;
@@ -68,7 +47,6 @@ const navigation = [
   ["section-2", "分类热力图"],
   ["section-3", "美国市场"],
   ["section-4", "中国市场"],
-  ["section-5", "趋势判断"],
 ] as const;
 
 const reportArchive: ReportArchiveItem[] = [
@@ -421,85 +399,6 @@ const keyFindings: Finding[] = [
   },
 ];
 
-const rankingSlices: RankingSlice[] = [
-  {
-    title: "美国区",
-    market: "美国",
-    storefront: "Apple App Store US",
-    chart: "overall free / Productivity / Photo & Video",
-    rankStart: "数据不足",
-    rankEnd: "仅能确认当前或发布后短时快照",
-    delta: "无法写入可信 7 天 delta",
-    dateWindow: "2026-04-08 - 2026-04-14",
-    whyItMatters: [
-      [t("本周美国区能确认的是 "), t("分发热度显著上升", true), t("，但不能把它写成严格符合 skill 标准的 7 天榜单异动。")],
-      [t("Meta AI 的确在 TechCrunch 援引 Appfigures 的报道里出现了 "), t("从第 57 位到第 5 位的快速跃升", true), t("，但时间跨度并非可审计的 7 天窗口；Apple 公开可访问页面也未提供足够清晰的同榜历史端点。")],
-    ],
-    note: [[t("按 skill 规则，本周美国区不输出满足 "), t("“当前 Top 100 且 7 天净提升超过 20”", true), t(" 条件的正式条目。")]],
-    currentSnapshot: [
-      [t("Apple 美国总榜可见 "), t("ChatGPT、Google Gemini、Claude", true), t(" 继续位于免费总榜前列。")],
-      [t("Apple 美国 Productivity 榜可见 "), t("ChatGPT、Claude、Google Gemini", true), t(" 位于前列。")],
-      [t("Apple 美国 Photo & Video 榜可见 "), t("Meta AI", true), t(" 位于前列，TechCrunch 还给出发布后短时冲榜信号。")],
-    ],
-    sources: [
-      {
-        label: "Apple 美国总榜",
-        href: "https://apps.apple.com/us/genre/ios-apps/id6016",
-      },
-      {
-        label: "Apple 美国 Productivity 榜",
-        href: "https://apps.apple.com/us/iphone/charts/6007?chart=top-free",
-      },
-      {
-        label: "Apple 美国 Photo & Video 榜",
-        href: "https://apps.apple.com/us/iphone/charts/6008?chart=top-free",
-      },
-      {
-        label: "TechCrunch - Meta AI 冲榜",
-        href: "https://techcrunch.com/2026/04/08/meta-debuts-the-muse-spark-model-in-a-ground-up-overhaul-of-its-ai/",
-      },
-    ],
-  },
-  {
-    title: "中国区",
-    market: "中国",
-    storefront: "Apple App Store CN",
-    chart: "overall free / Productivity / Photo & Video",
-    rankStart: "数据不足",
-    rankEnd: "可确认当前快照高位",
-    delta: "无法写入可信 7 天 delta",
-    dateWindow: "2026-04-08 - 2026-04-14",
-    whyItMatters: [
-      [t("本周中国区可以稳定确认的是 "), t("当前榜单位置", true), t("，而不是可审计的 7 天净跃升。")],
-      [t("按照 skill 要求，我优先检查了七麦作为历史点位候选来源，但公开可访问结果没有给出 "), t("足够清晰且可直接核验的 7 天前端点", true), t("，因此不能估算 rank_start 或 delta。")],
-    ],
-    note: [[t("按 skill 规则，本周中国区保留榜单 section，但 "), t("不补猜测性涨幅数字", true), t("。")]],
-    currentSnapshot: [
-      [t("Apple 中国免费总榜快照显示 "), t("豆包位于第 1 位，腾讯元宝与千问位于 Top 10 区间", true), t("。")],
-      [t("Apple 中国效率榜快照里，"), t("AI 助手类应用继续密集分布在前列", true), t("。")],
-      [t("Apple 中国摄影与录像榜快照里，"), t("即梦AI 位于第 1 位，可灵AI 位于 Top 20 区间", true), t("。")],
-    ],
-    sources: [
-      {
-        label: "Apple 中国总榜",
-        href: "https://apps.apple.com/cn/charts/iphone",
-      },
-      {
-        label: "Apple 中国效率榜",
-        href: "https://apps.apple.com/cn/iphone/charts/6007?chart=top-free",
-      },
-      {
-        label: "Apple 中国摄影与录像榜",
-        href: "https://apps.apple.com/cn/iphone/charts/6008?chart=top-free",
-      },
-      {
-        label: "七麦数据",
-        href: "https://www.qimai.cn/rank",
-      },
-    ],
-  },
-];
-
 const topFindingNames = new Set([
   "Meta AI + Muse Spark",
   "notebooks in Gemini",
@@ -512,163 +411,6 @@ const topFindingNames = new Set([
 const topFindings = keyFindings.filter((item) => topFindingNames.has(item.name));
 const usFindings = keyFindings.filter((item) => item.market === "美国");
 const cnFindings = keyFindings.filter((item) => item.market === "中国");
-
-const trendJudgments: TrendJudgment[] = [
-  {
-    title: "美国更像“模型升级带动分发”，中国更像“超级入口继续叠能力”",
-    evidence: [
-      t("美国本周最强事件是 "),
-      t("Meta 把 Muse Spark、Meta AI app 和多入口分发绑在一起推", true),
-      t("；Google 也把 notebooks 做成 Gemini 的长期工作台。中国这边最清晰的证据是 "),
-      t("豆包持续把专家模型、AI PPT 和视频生成叠进同一个主入口", true),
-      t("。"),
-    ],
-    comparison: [
-      t("这是一条基于本周样本的推断。美国强调 "),
-      t("模型升级和产品容器", true),
-      t("，中国强调 "),
-      t("一个入口内覆盖更多高频工作流", true),
-      t("。"),
-    ],
-  },
-  {
-    title: "视频生成在中国已经更接近主流消费产品，而非小众创作玩具",
-    evidence: [
-      t("即梦AI 2026-04-10 更新 "),
-      t("Seedance 2.0 快速版", true),
-      t(" 后仍处于中国摄影与录像榜第 1 位，可灵AI 也处于 Top 20 区间。相较之下，美国本周更突出的并不是视频生成新品，而是助手能力和单点工具。"),
-    ],
-    comparison: [
-      t("中国用户更早在主流榜单里反复碰到 "),
-      t("AI 视频工具", true),
-      t("，这意味着视频生成在中国的消费端渗透速度快于美国。"),
-    ],
-  },
-  {
-    title: "社区数据和生活决策，正在成为中国 AI 产品的重要差异化资产",
-    evidence: [
-      t("点点把 "),
-      t("小红书真实经验内容做成“攻略模式”", true),
-      t("，从问答扩展到旅行、探店、购物等生活决策建议。这个方向与豆包、元宝、千问的通用助手路线不同，但都在争夺高频入口。"),
-    ],
-    comparison: [
-      t("美国本周更强调 "),
-      t("项目知识管理和生产力容器", true),
-      t("，中国则更明显地把 AI 嵌进内容社区和日常生活选择场景。"),
-    ],
-  },
-  {
-    title: "榜单能说明需求热度，但还不能单独说明长期质量优势",
-    evidence: [
-      t("本周中美两边都能确认不少 AI 应用处于 "),
-      t("榜单高位", true),
-      t("，但只有部分条目能拿到强发布证据和完整历史点位。Meta AI 的冲榜、豆包与即梦AI 的高位，都说明分发很强；是否会转化为长期活跃，还要继续看下周。"),
-    ],
-    comparison: [
-      t("这条判断更多是方法论提醒："),
-      t("榜单是强信号，但不是充分证据", true),
-      t("，所以本期没有硬写任何无法核实的 7 天 delta。"),
-    ],
-  },
-];
-
-const sourceGroups = [
-  {
-    label: "官方来源",
-    links: [
-      {
-        label: "Meta 官方",
-        href: "https://about.fb.com/news/2026/04/introducing-muse-spark-meta-superintelligence-labs/",
-      },
-      {
-        label: "Google 官方 - notebooks in Gemini",
-        href: "https://blog.google/products/gemini/notebooks-gemini-notebooklm/",
-      },
-      {
-        label: "OpenAI Release Notes",
-        href: "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
-      },
-      {
-        label: "Google AI Edge Eloquent App Store",
-        href: "https://apps.apple.com/us/app/google-ai-edge-eloquent/id6756505519",
-      },
-      {
-        label: "豆包 App Store",
-        href: "https://apps.apple.com/cn/app/%E8%B1%86%E5%8C%85-%E9%9A%8F%E6%97%B6%E5%B8%AE%E5%BF%99%E7%9A%84-ai-%E5%8A%A9%E6%89%8B/id6459478672",
-      },
-      {
-        label: "即梦AI App Store",
-        href: "https://apps.apple.com/cn/app/%E5%8D%B3%E6%A2%A6ai-%E6%8A%96%E9%9F%B3%E6%97%97%E4%B8%8Bai%E5%9B%BE%E7%89%87%E5%92%8C%E8%A7%86%E9%A2%91%E5%B7%A5%E5%85%B7/id6503676563",
-      },
-      {
-        label: "点点 App Store",
-        href: "https://apps.apple.com/us/app/%E7%82%B9%E7%82%B9-%E4%BD%A0%E7%9A%84ai%E7%94%9F%E6%B4%BB%E5%B0%8F%E5%8A%A9%E6%89%8B/id6529536122",
-      },
-      {
-        label: "腾讯元宝 App Store",
-        href: "https://apps.apple.com/cn/app/%E8%85%BE%E8%AE%AF%E5%85%83%E5%AE%9D-%E6%8E%A5%E5%85%A5deepseek-r1%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/id6480446430",
-      },
-      {
-        label: "千问 App Store",
-        href: "https://apps.apple.com/cn/app/%E5%8D%83%E9%97%AE-%E9%98%BF%E9%87%8C%E6%9C%80%E5%BC%BA%E6%A8%A1%E5%9E%8B%E5%AE%98%E6%96%B9ai%E5%8A%A9%E6%89%8B/id6466733523",
-      },
-      {
-        label: "可灵AI App Store",
-        href: "https://apps.apple.com/cn/app/%E5%8F%AF%E7%81%B5ai-ai%E5%9B%BE%E7%89%87-%E8%A7%86%E9%A2%91%E5%88%9B%E4%BD%9C%E5%B7%A5%E5%85%B7/id6670396916",
-      },
-    ],
-  },
-  {
-    label: "媒体来源",
-    links: [
-      {
-        label: "TechCrunch - Meta AI / Muse Spark",
-        href: "https://techcrunch.com/2026/04/08/meta-debuts-the-muse-spark-model-in-a-ground-up-overhaul-of-its-ai/",
-      },
-      {
-        label: "The Verge - notebooks in Gemini",
-        href: "https://www.theverge.com/tech/909031/google-gemini-notebooks-notebooklm",
-      },
-      {
-        label: "TechCrunch - Google AI Edge Eloquent",
-        href: "https://techcrunch.com/2026/04/07/google-quietly-releases-an-offline-first-ai-dictation-app-on-ios/",
-      },
-    ],
-  },
-  {
-    label: "榜单来源",
-    links: [
-      {
-        label: "Apple 美国总榜",
-        href: "https://apps.apple.com/us/genre/ios-apps/id6016",
-      },
-      {
-        label: "Apple 美国 Productivity 榜",
-        href: "https://apps.apple.com/us/iphone/charts/6007?chart=top-free",
-      },
-      {
-        label: "Apple 美国 Photo & Video 榜",
-        href: "https://apps.apple.com/us/iphone/charts/6008?chart=top-free",
-      },
-      {
-        label: "Apple 中国总榜",
-        href: "https://apps.apple.com/cn/charts/iphone",
-      },
-      {
-        label: "Apple 中国效率榜",
-        href: "https://apps.apple.com/cn/iphone/charts/6007?chart=top-free",
-      },
-      {
-        label: "Apple 中国摄影与录像榜",
-        href: "https://apps.apple.com/cn/iphone/charts/6008?chart=top-free",
-      },
-      {
-        label: "七麦数据",
-        href: "https://www.qimai.cn/rank",
-      },
-    ],
-  },
-];
 
 const categoryHeatmapItems: CategoryHeatmapItem[] = [
   {
@@ -1101,19 +843,6 @@ const categoryHeatmapItems: CategoryHeatmapItem[] = [
   },
 ];
 
-function LinkChip({ link }: { link: ReportLink }) {
-  return (
-    <a
-      href={link.href}
-      target="_blank"
-      rel="noreferrer"
-      className="inline-flex items-center rounded-full border border-slate-300/80 bg-white/86 px-3 py-2 text-xs font-medium text-slate-700 transition hover:-translate-y-0.5 hover:border-cyan-500 hover:text-slate-950"
-    >
-      {link.label}
-    </a>
-  );
-}
-
 function renderInline(block: RichTextBlock, strongClassName = "font-semibold text-slate-950") {
   return block.map((segment, index) =>
     segment.strong ? (
@@ -1152,28 +881,6 @@ function RichInlineParagraph({
         </span>
       ))}
     </p>
-  );
-}
-
-function RichParagraphs({
-  blocks,
-  className,
-  paragraphClassName,
-  strongClassName,
-}: {
-  blocks: RichTextBlock[];
-  className?: string;
-  paragraphClassName?: string;
-  strongClassName?: string;
-}) {
-  return (
-    <div className={className ?? "space-y-3"}>
-      {blocks.map((block, index) => (
-        <p key={index} className={paragraphClassName ?? "text-sm leading-7 text-slate-700 sm:text-[15px]"}>
-          {renderInline(block, strongClassName)}
-        </p>
-      ))}
-    </div>
   );
 }
 
@@ -1296,63 +1003,24 @@ function FindingCard({ finding, index }: { finding: Finding; index: number }) {
   );
 }
 
-function RankingCard({ slice }: { slice: RankingSlice }) {
-  return (
-    <article className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_18px_70px_rgba(15,23,42,0.08)] sm:p-8">
-      <div className="space-y-5">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-700">{slice.title}</p>
-          <h3 className="mt-3 font-display text-3xl font-bold text-slate-950">{slice.market}</h3>
-        </div>
-
-        <InsightBlock blocks={slice.whyItMatters} />
-
-        <div className="rounded-[1.5rem] bg-slate-950 p-5 text-slate-100">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-300">note</p>
-          <RichParagraphs
-            blocks={slice.note}
-            className="mt-3 space-y-3"
-            paragraphClassName="text-sm leading-7 text-slate-200 sm:text-[15px]"
-            strongClassName="font-semibold text-white"
-          />
-        </div>
-
-        <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">当前可确认快照</p>
-          <ul className="mt-4 space-y-3 text-sm leading-7 text-slate-700">
-            {slice.currentSnapshot.map((item, index) => (
-              <li key={index} className="flex gap-3">
-                <span className="mt-2 h-2 w-2 rounded-full bg-cyan-600" />
-                <span>{renderInline(item)}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <SourceLine links={slice.sources} />
-      </div>
-    </article>
-  );
-}
-
 export default function Home() {
   return (
     <main className="min-h-screen bg-[linear-gradient(180deg,#f6f1e8_0%,#f8f7f2_28%,#eef4f7_100%)] text-slate-950">
       <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
-        <details className="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white/88 shadow-[0_20px_80px_rgba(15,23,42,0.08)] backdrop-blur">
-          <summary className="cursor-pointer list-none px-6 py-5 text-sm font-semibold tracking-[0.18em] text-slate-950 marker:content-none sm:px-7">
-            <span className="flex items-center justify-between gap-4">
-              <span className="uppercase">Weekly Archive</span>
-              <span className="text-xs uppercase tracking-[0.22em] text-cyan-700">查看过往周报</span>
+        <details className="group mb-4">
+          <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-2 text-sm font-semibold tracking-[0.18em] text-slate-950 marker:content-none">
+            <span className="uppercase">Weekly Archive</span>
+            <span className="text-xs uppercase tracking-[0.22em] text-cyan-700 transition group-open:text-slate-500">
+              查看过往周报
             </span>
           </summary>
-          <div className="border-t border-slate-200 px-6 py-5 sm:px-7">
-            <div className="grid gap-4">
+          <div className="mt-3 border-l border-slate-200 pl-4 sm:pl-5">
+            <div className="grid gap-3">
               {reportArchive.map((item) => (
                 <a
                   key={item.date}
                   href={item.href}
-                  className="rounded-[1.4rem] border border-slate-200 bg-slate-50 px-5 py-4 transition hover:border-cyan-500 hover:bg-white"
+                  className="rounded-[1.1rem] px-3 py-3 transition hover:bg-white/80"
                 >
                   <div className="flex flex-wrap items-center gap-3">
                     <span className="text-sm font-semibold text-slate-950">{item.date}</span>
@@ -1360,14 +1028,14 @@ export default function Home() {
                       className={`rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] ${
                         item.status === "current"
                           ? "border border-cyan-200 bg-cyan-50 text-cyan-700"
-                          : "border border-slate-200 bg-white text-slate-600"
+                          : "border border-slate-200 bg-white/80 text-slate-600"
                       }`}
                     >
                       {item.status}
                     </span>
                   </div>
-                  <p className="mt-3 text-base font-semibold text-slate-950">{item.title}</p>
-                  <p className="mt-2 text-sm leading-7 text-slate-600">{item.note}</p>
+                  <p className="mt-2 text-base font-semibold text-slate-950">{item.title}</p>
+                  <p className="mt-1 text-sm leading-7 text-slate-600">{item.note}</p>
                 </a>
               ))}
             </div>
@@ -1451,37 +1119,6 @@ export default function Home() {
             </div>
           </section>
 
-          <section id="section-5" className="space-y-6 rounded-[2.25rem] border border-slate-200/80 bg-white/60 p-6 backdrop-blur sm:p-8">
-            <SectionHeader
-              eyebrow="Section 5"
-              title="Section 5：跨市场趋势判断"
-              description="以下判断都明确区分来源事实与推断，证据来自本期已收录条目与榜单快照。"
-            />
-            <div className="grid gap-5 lg:grid-cols-2">
-              {trendJudgments.map((item, index) => (
-                <article
-                  key={item.title}
-                  className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_18px_70px_rgba(15,23,42,0.08)]"
-                >
-                  <div className="flex items-center gap-3">
-                    <span className="inline-flex h-9 min-w-9 items-center justify-center rounded-full bg-cyan-600 px-3 text-xs font-semibold tracking-[0.2em] text-white">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-700">趋势判断</p>
-                  </div>
-                  <h3 className="mt-4 font-display text-2xl font-bold text-slate-950">{item.title}</h3>
-                  <div className="mt-5 space-y-4 text-sm leading-7 text-slate-700">
-                    <p>
-                      <span className="font-semibold text-slate-950">证据</span>: {renderInline(item.evidence)}
-                    </p>
-                    <p>
-                      <span className="font-semibold text-slate-950">对比</span>: {renderInline(item.comparison)}
-                    </p>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </section>
         </div>
       </div>
     </main>
