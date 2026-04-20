@@ -73,22 +73,22 @@ const legendItems = [
 
 function productPreview(products: string[]) {
   if (products.length === 0) {
-    return "暂无代表产品";
+    return [];
   }
 
-  return products.slice(0, 2).join(" / ");
-}
-
-function productList(products: string[]) {
-  if (products.length === 0) {
-    return "本周暂无代表产品";
-  }
-
-  return products.join(" / ");
+  return products.slice(0, 2);
 }
 
 function patternPreview(pattern: string) {
-  return pattern.length > 24 ? `${pattern.slice(0, 24)}...` : pattern;
+  return pattern.length > 34 ? `${pattern.slice(0, 34)}...` : pattern;
+}
+
+function strongestCategories(items: CategoryHeatmapItem[], market: CategoryHeatmapItem["market"]) {
+  return [...items]
+    .filter((item) => item.market === market && item.intensity > 0)
+    .sort((a, b) => b.intensity - a.intensity || a.category.localeCompare(b.category))
+    .slice(0, 2)
+    .map((item) => item.category);
 }
 
 export function CategoryHeatmap({ items }: { items: CategoryHeatmapItem[] }) {
@@ -100,9 +100,38 @@ export function CategoryHeatmap({ items }: { items: CategoryHeatmapItem[] }) {
   const [selectedId, setSelectedId] = useState(defaultItem?.id ?? items[0]?.id ?? "");
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const selected = items.find((item) => item.id === selectedId) ?? defaultItem ?? items[0];
+  const usStrongest = useMemo(() => strongestCategories(items, "美国"), [items]);
+  const cnStrongest = useMemo(() => strongestCategories(items, "中国"), [items]);
+  const watchCategories = useMemo(
+    () =>
+      categories.filter((category) =>
+        items.filter((item) => item.category === category).every((item) => item.intensity <= 1),
+      ),
+    [categories, items],
+  );
 
   return (
     <div className="space-y-6">
+      <div className="grid gap-3 md:grid-cols-3">
+        <article className="rounded-[1.4rem] border border-[#dbe0f4] bg-[linear-gradient(135deg,#fbfcff,rgba(241,244,255,0.92))] p-4 shadow-[0_12px_34px_rgba(15,23,42,0.05)]">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#5c67a8]">美国更强</p>
+          <p className="mt-3 text-base font-semibold leading-7 text-slate-900">{usStrongest.join(" / ") || "暂无明确主导方向"}</p>
+          <p className="mt-2 text-sm leading-6 text-slate-600">近 30 天的强信号主要集中在助手、效率与工作台类入口。</p>
+        </article>
+        <article className="rounded-[1.4rem] border border-[#dbe0f4] bg-[linear-gradient(135deg,#fbfcff,rgba(243,241,255,0.92))] p-4 shadow-[0_12px_34px_rgba(15,23,42,0.05)]">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#5c67a8]">中国更强</p>
+          <p className="mt-3 text-base font-semibold leading-7 text-slate-900">{cnStrongest.join(" / ") || "暂无明确主导方向"}</p>
+          <p className="mt-2 text-sm leading-6 text-slate-600">本期更清晰的是超级入口、视频创作和生活决策类能力整合。</p>
+        </article>
+        <article className="rounded-[1.4rem] border border-[#e4e7f2] bg-[linear-gradient(135deg,#fdfdff,rgba(246,247,252,0.96))] p-4 shadow-[0_12px_34px_rgba(15,23,42,0.05)]">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500">空白观察</p>
+          <p className="mt-3 text-base font-semibold leading-7 text-slate-900">
+            {watchCategories.slice(0, 2).join(" / ") || "暂无明显低信号方向"}
+          </p>
+          <p className="mt-2 text-sm leading-6 text-slate-600">这些方向没有强行延用旧案例，等下一个可验证发布窗口再抬高权重。</p>
+        </article>
+      </div>
+
       <div className="flex flex-wrap items-center gap-2">
         <span className="mr-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">信号强度</span>
         {legendItems.map((item) => {
@@ -132,8 +161,11 @@ export function CategoryHeatmap({ items }: { items: CategoryHeatmapItem[] }) {
           <div className="space-y-4">
             {categories.map((category, categoryIndex) => (
               <div key={category} className="grid gap-3 lg:grid-cols-[180px_repeat(2,minmax(0,1fr))] lg:items-stretch">
-                <div className="flex items-center rounded-[1.25rem] border border-slate-200 bg-[#f5f6fb] px-4 py-3 text-sm font-semibold text-slate-800 lg:min-h-[8.5rem]">
-                  {category}
+                <div className="rounded-[1.25rem] border border-slate-200 bg-[#f5f6fb] px-4 py-4 text-slate-800 lg:min-h-[8.5rem]">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-400">
+                    {String(categoryIndex + 1).padStart(2, "0")}
+                  </p>
+                  <p className="mt-3 text-sm font-semibold leading-6">{category}</p>
                 </div>
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:contents">
                   {markets.map((market) => {
@@ -171,13 +203,28 @@ export function CategoryHeatmap({ items }: { items: CategoryHeatmapItem[] }) {
                               {item.signalLabel}
                             </span>
                           </span>
-                          <span className="mt-6 block text-base font-bold leading-6">{productPreview(item.products)}</span>
+                          <span className="mt-5 flex flex-wrap gap-2">
+                            {productPreview(item.products).length > 0 ? (
+                              productPreview(item.products).map((product) => (
+                                <span
+                                  key={product}
+                                  className="rounded-full border border-white/60 bg-white/72 px-2.5 py-1 text-xs font-semibold text-slate-700"
+                                >
+                                  {product}
+                                </span>
+                              ))
+                            ) : (
+                              <span className="rounded-full border border-white/60 bg-white/72 px-2.5 py-1 text-xs font-semibold text-slate-500">
+                                暂无代表产品
+                              </span>
+                            )}
+                          </span>
                           <span className="mt-3 line-clamp-2 block text-sm leading-6 opacity-75">{patternPreview(item.pattern)}</span>
                         </button>
 
                         {isHovered ? (
                           <div
-                            className={`pointer-events-none absolute z-30 hidden w-[22rem] rounded-[1.25rem] border border-[#dfe5f7] bg-white/98 p-5 text-left shadow-[0_20px_60px_rgba(27,39,94,0.14)] backdrop-blur md:block ${alignClass} ${verticalClass}`}
+                            className={`pointer-events-none absolute z-30 hidden w-[23rem] rounded-[1.35rem] border border-[#dfe5f7] bg-white/98 p-5 text-left shadow-[0_24px_70px_rgba(27,39,94,0.16)] backdrop-blur md:block ${alignClass} ${verticalClass}`}
                           >
                             <div className="flex items-center justify-between gap-3">
                               <div className="flex items-center gap-3">
@@ -190,19 +237,38 @@ export function CategoryHeatmap({ items }: { items: CategoryHeatmapItem[] }) {
                               <p className={`rounded-full px-2.5 py-1 text-xs font-semibold ring-1 ${style.label}`}>{item.signalLabel}</p>
                             </div>
 
+                            <div className="mt-4 border-t border-slate-100 pt-4">
+                              <div className="flex flex-wrap gap-2">
+                                {item.products.length > 0 ? (
+                                  item.products.map((product) => (
+                                    <span
+                                      key={product}
+                                      className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] font-semibold text-slate-700"
+                                    >
+                                      {product}
+                                    </span>
+                                  ))
+                                ) : (
+                                  <span className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] font-semibold text-slate-500">
+                                    暂无代表产品
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+
                             <div className="mt-4 space-y-4 text-sm leading-6 text-slate-700">
-                              <p>
-                                <span className="font-semibold text-slate-950">代表产品</span>: {productList(item.products)}
-                              </p>
-                              <p>
-                                <span className="font-semibold text-slate-950">产品形态</span>: {item.pattern}
-                              </p>
-                              <p>
-                                <span className="font-semibold text-slate-950">产品机会</span>: {item.opportunity}
-                              </p>
-                              <p>
-                                <span className="font-semibold text-slate-950">继续观察</span>: {item.watchNext}
-                              </p>
+                              <div>
+                                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">产品形态</p>
+                                <p className="mt-2">{item.pattern}</p>
+                              </div>
+                              <div>
+                                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">产品机会</p>
+                                <p className="mt-2">{item.opportunity}</p>
+                              </div>
+                              <div>
+                                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">继续观察</p>
+                                <p className="mt-2">{item.watchNext}</p>
+                              </div>
                             </div>
                           </div>
                         ) : null}
@@ -216,7 +282,7 @@ export function CategoryHeatmap({ items }: { items: CategoryHeatmapItem[] }) {
         </div>
 
         {selected ? (
-          <aside className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_18px_70px_rgba(15,23,42,0.08)] xl:sticky xl:top-28">
+          <aside className="rounded-[2rem] border border-slate-200 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(246,248,255,0.95))] p-6 shadow-[0_18px_70px_rgba(15,23,42,0.08)] xl:sticky xl:top-28">
             <div className="flex flex-wrap items-center gap-3">
               <span className="rounded-full bg-slate-950 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-white">
                 {selected.market}
@@ -228,30 +294,35 @@ export function CategoryHeatmap({ items }: { items: CategoryHeatmapItem[] }) {
 
             <h3 className="mt-4 font-display text-3xl font-bold leading-tight text-slate-950">{selected.category}</h3>
 
+            <div className="mt-2 h-1.5 w-16 rounded-full bg-[#b8c0ea]" />
+
             <div className="mt-5 flex flex-wrap gap-2">
               {selected.products.length > 0 ? (
                 selected.products.map((product) => (
-                  <span key={product} className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-slate-700">
+                  <span key={product} className="rounded-full border border-slate-200 bg-white/88 px-3 py-1.5 text-xs font-semibold text-slate-700">
                     {product}
                   </span>
                 ))
               ) : (
-                <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-slate-500">
+                <span className="rounded-full border border-slate-200 bg-white/88 px-3 py-1.5 text-xs font-semibold text-slate-500">
                   本周暂无代表产品
                 </span>
               )}
             </div>
 
             <div className="mt-6 space-y-5 text-sm leading-7 text-slate-700">
-              <p>
-                <span className="font-semibold text-slate-950">产品形态</span>: {selected.pattern}
-              </p>
-              <p>
-                <span className="font-semibold text-slate-950">产品机会</span>: {selected.opportunity}
-              </p>
-              <p>
-                <span className="font-semibold text-slate-950">继续观察</span>: {selected.watchNext}
-              </p>
+              <div className="rounded-[1.25rem] border border-white/70 bg-white/70 p-4">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">产品形态</p>
+                <p className="mt-2">{selected.pattern}</p>
+              </div>
+              <div className="rounded-[1.25rem] border border-white/70 bg-white/70 p-4">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">产品机会</p>
+                <p className="mt-2">{selected.opportunity}</p>
+              </div>
+              <div className="rounded-[1.25rem] border border-white/70 bg-white/70 p-4">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">继续观察</p>
+                <p className="mt-2">{selected.watchNext}</p>
+              </div>
             </div>
 
             <div className="mt-6 border-t border-slate-200 pt-5">
