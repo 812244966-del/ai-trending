@@ -38,28 +38,28 @@ const heatStyles: Record<
     panelAccent: "bg-slate-300",
   },
   1: {
-    cell: "border-[#d8dcf6] bg-[#f3f5ff] text-slate-800 hover:border-[#c6ccf0]",
-    label: "bg-white/92 text-[#5a67a5] ring-[#dde2f7]",
-    dot: "bg-[#b8c0ea]",
-    panelAccent: "bg-[#b8c0ea]",
+    cell: "border-[#c5ddfb] bg-[#eef6ff] text-slate-800 hover:border-[#add0f8]",
+    label: "bg-white/92 text-[#2f6ba7] ring-[#cfe3fb]",
+    dot: "bg-[#7fb5ee]",
+    panelAccent: "bg-[#7fb5ee]",
   },
   2: {
-    cell: "border-[#cfd4f3] bg-[#ecefff] text-slate-900 hover:border-[#b9c1ee]",
-    label: "bg-white/92 text-[#515fa0] ring-[#d4daf6]",
-    dot: "bg-[#9ea8e3]",
-    panelAccent: "bg-[#9ea8e3]",
+    cell: "border-[#9dc6f5] bg-[#dfeeff] text-slate-900 hover:border-[#85b7ef]",
+    label: "bg-white/92 text-[#235f9d] ring-[#bddaf8]",
+    dot: "bg-[#4b94dc]",
+    panelAccent: "bg-[#4b94dc]",
   },
   3: {
-    cell: "border-[#bcc4ed] bg-[#e4e9ff] text-slate-950 hover:border-[#a7b1e6]",
-    label: "bg-white/90 text-[#445190] ring-[#c5ccf0]",
-    dot: "bg-[#7f8fd7]",
-    panelAccent: "bg-[#7f8fd7]",
+    cell: "border-[#f0d08c] bg-[#fff3d6] text-slate-950 hover:border-[#e3c06c]",
+    label: "bg-white/92 text-[#8b6210] ring-[#f2ddb1]",
+    dot: "bg-[#deac3f]",
+    panelAccent: "bg-[#deac3f]",
   },
   4: {
-    cell: "border-[#aab5e7] bg-[#d8dfff] text-slate-950 hover:border-[#95a3dc]",
-    label: "bg-white/92 text-[#38457d] ring-[#bcc6ee]",
-    dot: "bg-[#6577cb]",
-    panelAccent: "bg-[#6577cb]",
+    cell: "border-[#dcaeb2] bg-[#f6e0e2] text-slate-950 hover:border-[#cf959c]",
+    label: "bg-white/92 text-[#9a555c] ring-[#e8c3c7]",
+    dot: "bg-[#c96f78]",
+    panelAccent: "bg-[#c96f78]",
   },
 };
 
@@ -93,13 +93,7 @@ function strongestCategories(items: CategoryHeatmapItem[], market: CategoryHeatm
 
 export function CategoryHeatmap({ items }: { items: CategoryHeatmapItem[] }) {
   const categories = useMemo(() => Array.from(new Set(items.map((item) => item.category))), [items]);
-  const defaultItem = useMemo(
-    () => [...items].sort((a, b) => b.intensity - a.intensity || a.category.localeCompare(b.category))[0],
-    [items],
-  );
-  const [selectedId, setSelectedId] = useState(defaultItem?.id ?? items[0]?.id ?? "");
   const [hoveredId, setHoveredId] = useState<string | null>(null);
-  const selected = items.find((item) => item.id === selectedId) ?? defaultItem ?? items[0];
   const usStrongest = useMemo(() => strongestCategories(items, "美国"), [items]);
   const cnStrongest = useMemo(() => strongestCategories(items, "中国"), [items]);
   const watchCategories = useMemo(
@@ -113,18 +107,18 @@ export function CategoryHeatmap({ items }: { items: CategoryHeatmapItem[] }) {
   return (
     <div className="space-y-6">
       <div className="grid gap-3 md:grid-cols-3">
-        <article className="rounded-[1.4rem] border border-[#dbe0f4] bg-[linear-gradient(135deg,#fbfcff,rgba(241,244,255,0.92))] p-4 shadow-[0_12px_34px_rgba(15,23,42,0.05)]">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#5c67a8]">美国更强</p>
+        <article className="rounded-[1.4rem] border border-[#c9ddf7] bg-[linear-gradient(135deg,#fbfdff,rgba(231,243,255,0.96))] p-4 shadow-[0_12px_34px_rgba(15,23,42,0.05)]">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#306ba7]">美国更强</p>
           <p className="mt-3 text-base font-semibold leading-7 text-slate-900">{usStrongest.join(" / ") || "暂无明确主导方向"}</p>
-          <p className="mt-2 text-sm leading-6 text-slate-600">近 30 天的强信号主要集中在助手、效率与工作台类入口。</p>
+          <p className="mt-2 text-sm leading-6 text-slate-600">近 60 天的强信号主要集中在助手、效率与工作台类入口。</p>
         </article>
-        <article className="rounded-[1.4rem] border border-[#dbe0f4] bg-[linear-gradient(135deg,#fbfcff,rgba(243,241,255,0.92))] p-4 shadow-[0_12px_34px_rgba(15,23,42,0.05)]">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#5c67a8]">中国更强</p>
+        <article className="rounded-[1.4rem] border border-[#f0d493] bg-[linear-gradient(135deg,#fffdf7,rgba(255,242,214,0.96))] p-4 shadow-[0_12px_34px_rgba(15,23,42,0.05)]">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#8b6210]">中国更强</p>
           <p className="mt-3 text-base font-semibold leading-7 text-slate-900">{cnStrongest.join(" / ") || "暂无明确主导方向"}</p>
-          <p className="mt-2 text-sm leading-6 text-slate-600">本期更清晰的是超级入口、视频创作和生活决策类能力整合。</p>
+          <p className="mt-2 text-sm leading-6 text-slate-600">近 60 天更清晰的是超级入口、视频创作和生活决策类能力整合。</p>
         </article>
-        <article className="rounded-[1.4rem] border border-[#e4e7f2] bg-[linear-gradient(135deg,#fdfdff,rgba(246,247,252,0.96))] p-4 shadow-[0_12px_34px_rgba(15,23,42,0.05)]">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500">空白观察</p>
+        <article className="rounded-[1.4rem] border border-[#e2c0c4] bg-[linear-gradient(135deg,#fffdfd,rgba(247,228,231,0.96))] p-4 shadow-[0_12px_34px_rgba(15,23,42,0.05)]">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#9a555c]">空白观察</p>
           <p className="mt-3 text-base font-semibold leading-7 text-slate-900">
             {watchCategories.slice(0, 2).join(" / ") || "暂无明显低信号方向"}
           </p>
@@ -149,8 +143,7 @@ export function CategoryHeatmap({ items }: { items: CategoryHeatmapItem[] }) {
         })}
       </div>
 
-      <div className="grid gap-6 xl:grid-cols-[minmax(0,1.35fr)_minmax(320px,0.65fr)] xl:items-start">
-        <div className="space-y-4 rounded-[2rem] border border-slate-200 bg-white p-4 shadow-[0_18px_70px_rgba(15,23,42,0.08)] sm:p-5">
+      <div className="space-y-4 rounded-[2rem] border border-slate-200 bg-white p-4 shadow-[0_18px_70px_rgba(15,23,42,0.08)] sm:p-5">
           <div className="hidden grid-cols-[180px_repeat(2,minmax(0,1fr))] gap-3 px-1 text-xs font-semibold uppercase tracking-[0.22em] text-slate-500 lg:grid">
             <span>方向</span>
             {markets.map((market) => (
@@ -176,24 +169,25 @@ export function CategoryHeatmap({ items }: { items: CategoryHeatmapItem[] }) {
                     }
 
                     const style = heatStyles[item.intensity];
-                    const isSelected = selected?.id === item.id;
                     const isHovered = hoveredId === item.id;
-                    const alignClass = market === "中国" ? "right-0" : "left-0";
-                    const verticalClass = categoryIndex >= categories.length - 2 ? "bottom-full mb-3" : "top-full mt-3";
+                    const previewProducts = productPreview(item.products);
+                    const alignClass = market === "中国" ? "right-0 origin-top-right" : "left-0 origin-top-left";
+                    const isUpperPanel = categoryIndex >= categories.length - 2;
+                    const verticalClass = isUpperPanel ? "bottom-full mb-4" : "top-full mt-4";
+                    const panelShiftClass = market === "中国" ? "md:translate-x-1" : "md:-translate-x-1";
+                    const markerClass = isUpperPanel ? "bottom-[-7px]" : "top-[-7px]";
 
                     return (
                       <div key={item.id} className="relative">
                         <button
                           type="button"
-                          aria-pressed={isSelected}
-                          onClick={() => setSelectedId(item.id)}
                           onMouseEnter={() => setHoveredId(item.id)}
                           onMouseLeave={() => setHoveredId(null)}
                           onFocus={() => setHoveredId(item.id)}
                           onBlur={() => setHoveredId(null)}
                           className={`min-h-[8.5rem] w-full rounded-[1.25rem] border p-4 text-left transition focus:outline-none focus:ring-4 focus:ring-[#d9def8] ${style.cell} ${
-                            isSelected
-                              ? "shadow-[0_0_0_3px_rgba(129,143,215,0.20),0_18px_45px_rgba(15,23,42,0.12)]"
+                            isHovered
+                              ? "shadow-[0_0_0_3px_rgba(201,111,120,0.16),0_18px_45px_rgba(15,23,42,0.12)]"
                               : "shadow-[inset_0_1px_0_rgba(255,255,255,0.42)] hover:-translate-y-0.5 hover:shadow-[0_14px_34px_rgba(15,23,42,0.12)]"
                           }`}
                         >
@@ -204,8 +198,8 @@ export function CategoryHeatmap({ items }: { items: CategoryHeatmapItem[] }) {
                             </span>
                           </span>
                           <span className="mt-5 flex flex-wrap gap-2">
-                            {productPreview(item.products).length > 0 ? (
-                              productPreview(item.products).map((product) => (
+                            {previewProducts.length > 0 ? (
+                              previewProducts.map((product) => (
                                 <span
                                   key={product}
                                   className="rounded-full border border-white/60 bg-white/72 px-2.5 py-1 text-xs font-semibold text-slate-700"
@@ -224,8 +218,11 @@ export function CategoryHeatmap({ items }: { items: CategoryHeatmapItem[] }) {
 
                         {isHovered ? (
                           <div
-                            className={`pointer-events-none absolute z-30 hidden w-[23rem] rounded-[1.35rem] border border-[#dfe5f7] bg-white/98 p-5 text-left shadow-[0_24px_70px_rgba(27,39,94,0.16)] backdrop-blur md:block ${alignClass} ${verticalClass}`}
+                            className={`pointer-events-none absolute z-30 hidden w-[min(24rem,calc(100vw-2.5rem))] rounded-[1.35rem] border border-[#dfe5f7] bg-white/98 p-5 text-left shadow-[0_24px_70px_rgba(27,39,94,0.16)] backdrop-blur transition-transform md:block ${alignClass} ${verticalClass} ${panelShiftClass}`}
                           >
+                            <span
+                              className={`absolute left-8 h-3.5 w-3.5 rotate-45 border border-[#dfe5f7] bg-white ${markerClass} ${market === "中国" ? "left-auto right-8" : ""}`}
+                            />
                             <div className="flex items-center justify-between gap-3">
                               <div className="flex items-center gap-3">
                                 <span className={`h-9 w-1.5 rounded-full ${style.panelAccent}`} />
@@ -279,74 +276,6 @@ export function CategoryHeatmap({ items }: { items: CategoryHeatmapItem[] }) {
               </div>
             ))}
           </div>
-        </div>
-
-        {selected ? (
-          <aside className="rounded-[2rem] border border-slate-200 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(246,248,255,0.95))] p-6 shadow-[0_18px_70px_rgba(15,23,42,0.08)] xl:sticky xl:top-28">
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="rounded-full bg-slate-950 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-white">
-                {selected.market}
-              </span>
-              <span className={`rounded-full px-3 py-1.5 text-xs font-semibold ring-1 ${heatStyles[selected.intensity].label}`}>
-                {selected.signalLabel}
-              </span>
-            </div>
-
-            <h3 className="mt-4 font-display text-3xl font-bold leading-tight text-slate-950">{selected.category}</h3>
-
-            <div className="mt-2 h-1.5 w-16 rounded-full bg-[#b8c0ea]" />
-
-            <div className="mt-5 flex flex-wrap gap-2">
-              {selected.products.length > 0 ? (
-                selected.products.map((product) => (
-                  <span key={product} className="rounded-full border border-slate-200 bg-white/88 px-3 py-1.5 text-xs font-semibold text-slate-700">
-                    {product}
-                  </span>
-                ))
-              ) : (
-                <span className="rounded-full border border-slate-200 bg-white/88 px-3 py-1.5 text-xs font-semibold text-slate-500">
-                  本周暂无代表产品
-                </span>
-              )}
-            </div>
-
-            <div className="mt-6 space-y-5 text-sm leading-7 text-slate-700">
-              <div className="rounded-[1.25rem] border border-white/70 bg-white/70 p-4">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">产品形态</p>
-                <p className="mt-2">{selected.pattern}</p>
-              </div>
-              <div className="rounded-[1.25rem] border border-white/70 bg-white/70 p-4">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">产品机会</p>
-                <p className="mt-2">{selected.opportunity}</p>
-              </div>
-              <div className="rounded-[1.25rem] border border-white/70 bg-white/70 p-4">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">继续观察</p>
-                <p className="mt-2">{selected.watchNext}</p>
-              </div>
-            </div>
-
-            <div className="mt-6 border-t border-slate-200 pt-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">来源</p>
-              {selected.sources.length > 0 ? (
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {selected.sources.map((source) => (
-                    <a
-                      key={source.href}
-                      href={source.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 transition hover:border-cyan-500 hover:text-slate-950"
-                    >
-                      {source.label}
-                    </a>
-                  ))}
-                </div>
-              ) : (
-                <p className="mt-3 text-sm leading-7 text-slate-500">本周暂无足够可验证事件，未附来源。</p>
-              )}
-            </div>
-          </aside>
-        ) : null}
       </div>
     </div>
   );
