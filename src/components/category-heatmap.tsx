@@ -28,32 +28,38 @@ const heatStyles: Record<
     cell: string;
     label: string;
     dot: string;
+    panelAccent: string;
   }
 > = {
   0: {
-    cell: "border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-300",
-    label: "bg-white text-slate-500 ring-slate-200",
+    cell: "border-slate-200 bg-[#f6f6fb] text-slate-700 hover:border-slate-300",
+    label: "bg-white/90 text-slate-500 ring-slate-200",
     dot: "bg-slate-300",
+    panelAccent: "bg-slate-300",
   },
   1: {
-    cell: "border-sky-200 bg-sky-50 text-slate-800 hover:border-sky-400",
-    label: "bg-white text-sky-700 ring-sky-200",
-    dot: "bg-sky-400",
+    cell: "border-[#d8dcf6] bg-[#f3f5ff] text-slate-800 hover:border-[#c6ccf0]",
+    label: "bg-white/92 text-[#5a67a5] ring-[#dde2f7]",
+    dot: "bg-[#b8c0ea]",
+    panelAccent: "bg-[#b8c0ea]",
   },
   2: {
-    cell: "border-teal-200 bg-teal-100 text-slate-900 hover:border-teal-500",
-    label: "bg-white text-teal-700 ring-teal-200",
-    dot: "bg-teal-500",
+    cell: "border-[#cfd4f3] bg-[#ecefff] text-slate-900 hover:border-[#b9c1ee]",
+    label: "bg-white/92 text-[#515fa0] ring-[#d4daf6]",
+    dot: "bg-[#9ea8e3]",
+    panelAccent: "bg-[#9ea8e3]",
   },
   3: {
-    cell: "border-amber-300 bg-amber-200 text-slate-950 hover:border-amber-500",
-    label: "bg-white/90 text-amber-800 ring-amber-300",
-    dot: "bg-amber-500",
+    cell: "border-[#bcc4ed] bg-[#e4e9ff] text-slate-950 hover:border-[#a7b1e6]",
+    label: "bg-white/90 text-[#445190] ring-[#c5ccf0]",
+    dot: "bg-[#7f8fd7]",
+    panelAccent: "bg-[#7f8fd7]",
   },
   4: {
-    cell: "border-rose-300 bg-rose-500 text-white hover:border-rose-600",
-    label: "bg-white/95 text-rose-700 ring-rose-200",
-    dot: "bg-rose-100",
+    cell: "border-[#aab5e7] bg-[#d8dfff] text-slate-950 hover:border-[#95a3dc]",
+    label: "bg-white/92 text-[#38457d] ring-[#bcc6ee]",
+    dot: "bg-[#6577cb]",
+    panelAccent: "bg-[#6577cb]",
   },
 };
 
@@ -73,6 +79,18 @@ function productPreview(products: string[]) {
   return products.slice(0, 2).join(" / ");
 }
 
+function productList(products: string[]) {
+  if (products.length === 0) {
+    return "本周暂无代表产品";
+  }
+
+  return products.join(" / ");
+}
+
+function patternPreview(pattern: string) {
+  return pattern.length > 24 ? `${pattern.slice(0, 24)}...` : pattern;
+}
+
 export function CategoryHeatmap({ items }: { items: CategoryHeatmapItem[] }) {
   const categories = useMemo(() => Array.from(new Set(items.map((item) => item.category))), [items]);
   const defaultItem = useMemo(
@@ -86,7 +104,7 @@ export function CategoryHeatmap({ items }: { items: CategoryHeatmapItem[] }) {
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-center gap-2">
-        <span className="mr-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">热度图例</span>
+        <span className="mr-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">信号强度</span>
         {legendItems.map((item) => {
           const style = heatStyles[item.intensity];
 
@@ -105,16 +123,16 @@ export function CategoryHeatmap({ items }: { items: CategoryHeatmapItem[] }) {
       <div className="grid gap-6 xl:grid-cols-[minmax(0,1.35fr)_minmax(320px,0.65fr)] xl:items-start">
         <div className="space-y-4 rounded-[2rem] border border-slate-200 bg-white p-4 shadow-[0_18px_70px_rgba(15,23,42,0.08)] sm:p-5">
           <div className="hidden grid-cols-[180px_repeat(2,minmax(0,1fr))] gap-3 px-1 text-xs font-semibold uppercase tracking-[0.22em] text-slate-500 lg:grid">
-            <span>Category</span>
+            <span>方向</span>
             {markets.map((market) => (
               <span key={market}>{market}</span>
             ))}
           </div>
 
           <div className="space-y-4">
-            {categories.map((category) => (
+            {categories.map((category, categoryIndex) => (
               <div key={category} className="grid gap-3 lg:grid-cols-[180px_repeat(2,minmax(0,1fr))] lg:items-stretch">
-                <div className="flex items-center rounded-[1.25rem] border border-slate-200 bg-slate-950 px-4 py-3 text-sm font-semibold text-white lg:min-h-[8.5rem]">
+                <div className="flex items-center rounded-[1.25rem] border border-slate-200 bg-[#f5f6fb] px-4 py-3 text-sm font-semibold text-slate-800 lg:min-h-[8.5rem]">
                   {category}
                 </div>
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:contents">
@@ -128,6 +146,8 @@ export function CategoryHeatmap({ items }: { items: CategoryHeatmapItem[] }) {
                     const style = heatStyles[item.intensity];
                     const isSelected = selected?.id === item.id;
                     const isHovered = hoveredId === item.id;
+                    const alignClass = market === "中国" ? "right-0" : "left-0";
+                    const verticalClass = categoryIndex >= categories.length - 2 ? "bottom-full mb-3" : "top-full mt-3";
 
                     return (
                       <div key={item.id} className="relative">
@@ -139,9 +159,9 @@ export function CategoryHeatmap({ items }: { items: CategoryHeatmapItem[] }) {
                           onMouseLeave={() => setHoveredId(null)}
                           onFocus={() => setHoveredId(item.id)}
                           onBlur={() => setHoveredId(null)}
-                          className={`min-h-[8.5rem] w-full rounded-[1.25rem] border p-4 text-left transition focus:outline-none focus:ring-4 focus:ring-cyan-200 ${style.cell} ${
+                          className={`min-h-[8.5rem] w-full rounded-[1.25rem] border p-4 text-left transition focus:outline-none focus:ring-4 focus:ring-[#d9def8] ${style.cell} ${
                             isSelected
-                              ? "shadow-[0_0_0_3px_rgba(8,145,178,0.28),0_18px_45px_rgba(15,23,42,0.16)]"
+                              ? "shadow-[0_0_0_3px_rgba(129,143,215,0.20),0_18px_45px_rgba(15,23,42,0.12)]"
                               : "shadow-[inset_0_1px_0_rgba(255,255,255,0.42)] hover:-translate-y-0.5 hover:shadow-[0_14px_34px_rgba(15,23,42,0.12)]"
                           }`}
                         >
@@ -152,18 +172,38 @@ export function CategoryHeatmap({ items }: { items: CategoryHeatmapItem[] }) {
                             </span>
                           </span>
                           <span className="mt-6 block text-base font-bold leading-6">{productPreview(item.products)}</span>
-                          <span className="mt-3 line-clamp-2 block text-sm leading-6 opacity-80">{item.pattern}</span>
+                          <span className="mt-3 line-clamp-2 block text-sm leading-6 opacity-75">{patternPreview(item.pattern)}</span>
                         </button>
 
                         {isHovered ? (
-                          <div className="pointer-events-none absolute left-1/2 top-0 z-30 hidden w-72 -translate-x-1/2 -translate-y-[calc(100%+0.75rem)] rounded-[1rem] border border-slate-200 bg-white p-4 text-left shadow-[0_20px_70px_rgba(15,23,42,0.18)] md:block">
+                          <div
+                            className={`pointer-events-none absolute z-30 hidden w-[22rem] rounded-[1.25rem] border border-[#dfe5f7] bg-white/98 p-5 text-left shadow-[0_20px_60px_rgba(27,39,94,0.14)] backdrop-blur md:block ${alignClass} ${verticalClass}`}
+                          >
                             <div className="flex items-center justify-between gap-3">
-                              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-700">{item.market}</p>
-                              <p className="rounded-full bg-slate-950 px-2.5 py-1 text-xs font-semibold text-white">{item.signalLabel}</p>
+                              <div className="flex items-center gap-3">
+                                <span className={`h-9 w-1.5 rounded-full ${style.panelAccent}`} />
+                                <div>
+                                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#5a67a5]">{item.market}</p>
+                                  <p className="mt-1 text-sm font-bold text-slate-950">{item.category}</p>
+                                </div>
+                              </div>
+                              <p className={`rounded-full px-2.5 py-1 text-xs font-semibold ring-1 ${style.label}`}>{item.signalLabel}</p>
                             </div>
-                            <p className="mt-2 text-sm font-bold text-slate-950">{item.category}</p>
-                            <p className="mt-2 text-sm leading-6 text-slate-600">{productPreview(item.products)}</p>
-                            <p className="mt-2 text-sm leading-6 text-slate-700">{item.pattern}</p>
+
+                            <div className="mt-4 space-y-4 text-sm leading-6 text-slate-700">
+                              <p>
+                                <span className="font-semibold text-slate-950">代表产品</span>: {productList(item.products)}
+                              </p>
+                              <p>
+                                <span className="font-semibold text-slate-950">产品形态</span>: {item.pattern}
+                              </p>
+                              <p>
+                                <span className="font-semibold text-slate-950">产品机会</span>: {item.opportunity}
+                              </p>
+                              <p>
+                                <span className="font-semibold text-slate-950">继续观察</span>: {item.watchNext}
+                              </p>
+                            </div>
                           </div>
                         ) : null}
                       </div>

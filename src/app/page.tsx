@@ -32,6 +32,18 @@ type Finding = {
   image?: FindingImage;
 };
 
+type TrendJudgment = {
+  title: string;
+  evidence: RichTextBlock;
+  comparison: RichTextBlock;
+};
+
+type MarketSummaryPoint = {
+  title: string;
+  bullets: RichTextBlock[];
+  sources: ReportLink[];
+};
+
 type ReportArchiveItem = {
   date: string;
   title: string;
@@ -44,9 +56,10 @@ const reportDate = "2026-04-14";
 
 const navigation = [
   ["section-1", "本周重点"],
-  ["section-2", "分类热力图"],
+  ["section-2", "AI+各方向最新应用情况"],
   ["section-3", "美国市场"],
   ["section-4", "中国市场"],
+  ["section-5", "趋势判断"],
 ] as const;
 
 const reportArchive: ReportArchiveItem[] = [
@@ -409,8 +422,65 @@ const topFindingNames = new Set([
 ]);
 
 const topFindings = keyFindings.filter((item) => topFindingNames.has(item.name));
-const usFindings = keyFindings.filter((item) => item.market === "美国");
-const cnFindings = keyFindings.filter((item) => item.market === "中国");
+
+const trendJudgments: TrendJudgment[] = [
+  {
+    title: "美国更像“模型升级带动分发”，中国更像“超级入口继续叠能力”",
+    evidence: [
+      t("美国本周最强事件是 "),
+      t("Meta 把 Muse Spark、Meta AI app 和多入口分发绑在一起推", true),
+      t("；Google 也把 notebooks 做成 Gemini 的长期工作台。中国这边最清晰的证据是 "),
+      t("豆包持续把专家模型、AI PPT 和视频生成叠进同一个主入口", true),
+      t("。"),
+    ],
+    comparison: [
+      t("这是一条基于本周样本的推断。美国强调 "),
+      t("模型升级和产品容器", true),
+      t("，中国强调 "),
+      t("一个入口内覆盖更多高频工作流", true),
+      t("。"),
+    ],
+  },
+  {
+    title: "视频生成在中国已经更接近主流消费产品，而非小众创作玩具",
+    evidence: [
+      t("即梦AI 2026-04-10 更新 "),
+      t("Seedance 2.0 快速版", true),
+      t(" 后仍处于中国摄影与录像榜第 1 位，可灵AI 也处于 Top 20 区间。相较之下，美国本周更突出的并不是视频生成新品，而是助手能力和单点工具。"),
+    ],
+    comparison: [
+      t("中国用户更早在主流榜单里反复碰到 "),
+      t("AI 视频工具", true),
+      t("，这意味着视频生成在中国的消费端渗透速度快于美国。"),
+    ],
+  },
+  {
+    title: "社区数据和生活决策，正在成为中国 AI 产品的重要差异化资产",
+    evidence: [
+      t("点点把 "),
+      t("小红书真实经验内容做成“攻略模式”", true),
+      t("，从问答扩展到旅行、探店、购物等生活决策建议。这个方向与豆包、元宝、千问的通用助手路线不同，但都在争夺高频入口。"),
+    ],
+    comparison: [
+      t("美国本周更强调 "),
+      t("项目知识管理和生产力容器", true),
+      t("，中国则更明显地把 AI 嵌进内容社区和日常生活选择场景。"),
+    ],
+  },
+  {
+    title: "榜单能说明需求热度，但还不能单独说明长期质量优势",
+    evidence: [
+      t("本周中美两边都能确认不少 AI 应用处于 "),
+      t("榜单高位", true),
+      t("，但只有部分条目能拿到强发布证据和完整历史点位。Meta AI 的冲榜、豆包与即梦AI 的高位，都说明分发很强；是否会转化为长期活跃，还要继续看下周。"),
+    ],
+    comparison: [
+      t("这条判断更多是方法论提醒："),
+      t("榜单是强信号，但不是充分证据", true),
+      t("，所以本期没有硬写任何无法核实的 7 天 delta。"),
+    ],
+  },
+];
 
 const categoryHeatmapItems: CategoryHeatmapItem[] = [
   {
@@ -419,10 +489,10 @@ const categoryHeatmapItems: CategoryHeatmapItem[] = [
     market: "美国",
     intensity: 4,
     signalLabel: "极强",
-    products: ["ChatGPT", "Gemini", "Meta AI", "Claude", "Perplexity"],
-    pattern: "头部助手把模型升级、项目上下文、搜索和订阅层级做成用户可感知的消费端事件。",
-    opportunity: "新产品可以从“更强回答”转向“可持续上下文容器”，用项目、记忆、配额后的稳定体验提升留存。",
-    watchNext: "继续看 Meta AI 的多入口分发能否沉淀留存，以及 Gemini notebooks 是否扩展到移动端和更低价订阅层。",
+    products: ["Meta AI", "Gemini", "ChatGPT"],
+    pattern: "近 30 天美国助手方向最强的信号来自 Meta、Google 和 OpenAI：模型升级、项目容器与订阅层级调整，都被直接做成消费者可感知的产品事件。",
+    opportunity: "新产品值得从“回答更强”转向“上下文更稳”，把项目资料、配额后的默认体验和多入口分发一起设计成留存机制。",
+    watchNext: "继续看 Meta AI 的多入口分发能否沉淀活跃，以及 Gemini notebooks 是否从网页工作台扩展到更高频的移动端入口。",
     sources: [
       {
         label: "Meta 官方",
@@ -448,10 +518,10 @@ const categoryHeatmapItems: CategoryHeatmapItem[] = [
     market: "中国",
     intensity: 4,
     signalLabel: "极强",
-    products: ["豆包", "腾讯元宝", "千问", "Kimi", "夸克", "纳米AI搜索"],
-    pattern: "中国 AI 助手继续以超级入口形态占位，搜索、办公、学习、生活决策和多模态创作被打包进同一入口。",
-    opportunity: "机会不只在单点问答，而在把 PPT、视频、搜索、学习、生活决策等高频任务压进一个入口后做清晰分层。",
-    watchNext: "继续看头部助手是否从免费高频入口转向会员化能力包，以及功能叠加是否带来体验复杂度问题。",
+    products: ["豆包", "腾讯元宝", "千问"],
+    pattern: "近 30 天中国助手方向的强信号不是密集新品，而是头部入口持续叠功能并稳居榜单高位，助手、搜索、PPT 和视频能力继续收敛到同一入口。",
+    opportunity: "更有机会的不是再做一个通用问答，而是把工作流分层做得足够清楚，让用户知道不同任务为什么留在同一个超级入口里。",
+    watchNext: "继续看头部助手是否把高频入口进一步转成会员权益包，以及功能持续叠加后是否出现体验复杂化的拐点。",
     sources: [
       {
         label: "豆包 App Store",
@@ -475,28 +545,16 @@ const categoryHeatmapItems: CategoryHeatmapItem[] = [
     id: "education-us",
     category: "AI 教育/学习",
     market: "美国",
-    intensity: 3,
-    signalLabel: "强",
-    products: ["Khanmigo", "Duolingo Max", "Gauth", "Gemini notebooks"],
-    pattern: "美国 AI 教育覆盖 AI tutor、语言学习角色扮演、拍题答疑和学习资料工作台，既有独立教育产品，也有通用助手的学习模式。",
-    opportunity: "教育产品可以围绕课程、论文、资料包和长期复习做“学习项目容器”，也可以在垂直学科里用 Socratic 引导替代直接给答案。",
-    watchNext: "继续看学生订阅、拍题答疑和 AI tutor 是否形成更明确的付费分层，以及平台如何处理未成年人安全。",
+    intensity: 1,
+    signalLabel: "弱",
+    products: ["Gemini notebooks"],
+    pattern: "近 30 天美国没有看到足够强的独立教育类新品信号，较清晰的变化主要还是通用助手把 notebook 式资料整理能力吸收进学习场景。",
+    opportunity: "教育方向如果继续做，机会更像把长期资料管理、复习和作业上下文做成稳定工作台，而不是只提供一次性答题。",
+    watchNext: "继续看头部助手是否把学习模式单独产品化，以及是否出现面向学生的新定价或校园分发动作。",
     sources: [
       {
         label: "Google 官方",
         href: "https://blog.google/products/gemini/notebooks-gemini-notebooklm/",
-      },
-      {
-        label: "Khanmigo",
-        href: "https://www.khanmigo.ai/",
-      },
-      {
-        label: "Duolingo Max",
-        href: "https://blog.duolingo.com/duolingo-max/",
-      },
-      {
-        label: "Gauth",
-        href: "https://www.gauthmath.com/",
       },
     ],
   },
@@ -504,57 +562,36 @@ const categoryHeatmapItems: CategoryHeatmapItem[] = [
     id: "education-cn",
     category: "AI 教育/学习",
     market: "中国",
-    intensity: 2,
-    signalLabel: "中",
-    products: ["作业帮", "夸克", "豆包爱学", "学而思学习机"],
-    pattern: "中国 AI 教育更偏拍照答疑、分步讲解、学习 Agent 和学习硬件入口，产品常和既有教育内容、题库或硬件结合。",
-    opportunity: "机会在于把“搜答案”升级成“解释思路 + 练习巩固 + 家长可见进度”，而不是只提高解题速度。",
-    watchNext: "关注 App Store 教育榜、学习机厂商发布、以及小红书/Bilibili 上是否出现新的学习工作流 demo。",
-    sources: [
-      {
-        label: "作业帮 App Store",
-        href: "https://apps.apple.com/us/app/%E4%BD%9C%E4%B8%9A%E5%B8%AE-%E4%B8%AD%E5%B0%8F%E5%AD%A6%E5%AE%B6%E9%95%BF%E4%BD%9C%E4%B8%9A%E6%A3%80%E6%9F%A5%E5%92%8C%E8%BE%85%E5%AF%BC%E5%B7%A5%E5%85%B7/id803781859",
-      },
-      {
-        label: "夸克学习 Agent",
-        href: "https://news.sina.com.cn/c/2025-04-18/doc-inetquyn4700562.shtml",
-      },
-      {
-        label: "学而思智能",
-        href: "https://www.xessw.com/",
-      },
-    ],
+    intensity: 0,
+    signalLabel: "暂无",
+    products: [],
+    pattern: "近 30 天中国市场没有收集到足够强、且能直接验证的教育向 C 端新品或重要版本更新，因此这一格只保留空白信号，不延用更早的存量案例。",
+    opportunity: "如果后续出现学习 Agent、拍题或学习硬件的新动作，这一类目值得重新拉高；当前更像观察窗口，而不是本期重点。",
+    watchNext: "继续盯 App Store 教育榜、学习硬件发布和头部助手的学习入口更新，确认是否有新的消费者级信号出现。",
+    sources: [],
   },
   {
     id: "companion-us",
     category: "AI 陪伴/情感/社交",
     market: "美国",
-    intensity: 3,
-    signalLabel: "强",
-    products: ["Replika", "Character.AI", "Nomi", "Kindroid"],
-    pattern: "美国 AI 陪伴已经是独立 C 端赛道，竞争点集中在长期记忆、人格设定、语音/图像互动、角色社区和安全限制。",
-    opportunity: "新产品不能只做“可聊天角色”，更需要清楚设计关系边界、记忆可控性、角色创作工具和未成年人保护。",
-    watchNext: "继续观察 Character.AI 的未成年人限制、Replika/Nomi/Kindroid 的记忆与订阅设计，以及各州 AI companion 监管。",
+    intensity: 2,
+    signalLabel: "中",
+    products: ["Character.AI", "Replika"],
+    pattern: "近 30 天美国陪伴方向最明确的新信号来自 Character.AI 的 4 月产品更新，重点落在模型、记忆和可玩内容；Replika 仍然是用户心智里的代表产品，但本期没有同等级的新发布证据。",
+    opportunity: "这个方向的机会已经不是“做一个能聊的角色”，而是围绕记忆、内容世界观、创作者供给和安全边界做产品差异。",
+    watchNext: "继续看 Character.AI 的新模型和记忆升级是否带来创作活跃，以及 Replika 这类老牌产品会不会在近月给出更明确的消费者级更新。",
     sources: [
       {
-        label: "Replika",
-        href: "https://replika.com/",
+        label: "Character.AI April Update",
+        href: "https://blog.character.ai/",
       },
       {
-        label: "Replika App Store",
-        href: "https://apps.apple.com/us/app/replika-ai-friend/id1158555867",
+        label: "Character.AI Books",
+        href: "https://blog.character.ai/introducing-c-ai-books-classic-literature-now-playable/",
       },
       {
-        label: "Character.AI 官方",
-        href: "https://blog.character.ai/character-ai-launches-mobile-app-for-ios-and-android/",
-      },
-      {
-        label: "Nomi App Store",
-        href: "https://apps.apple.com/us/app/nomi-ai-companion-with-a-soul/id6450270929",
-      },
-      {
-        label: "Kindroid",
-        href: "https://landing.kindroid.ai/",
+        label: "Replika Help Center",
+        href: "https://help.replika.com/hc/en-us/articles/5040453297293-Can-Replika-be-my-virtual-assistant",
       },
     ],
   },
@@ -562,53 +599,28 @@ const categoryHeatmapItems: CategoryHeatmapItem[] = [
     id: "companion-cn",
     category: "AI 陪伴/情感/社交",
     market: "中国",
-    intensity: 3,
-    signalLabel: "强",
-    products: ["星野", "名人朋友圈", "Talkie", "Cici"],
-    pattern: "中国 AI 陪伴更偏角色扮演、语音互动、同人/剧情社区和轻社交；同时也有 Talkie、Cici 这类中国团队面向海外分发的产品。",
-    opportunity: "机会在角色生态和创作者供给，而不是单一虚拟恋人；但合规、安全和应用商店政策会直接影响分发稳定性。",
-    watchNext: "继续看星野和名人朋友圈的角色社区供给，也要跟踪 Talkie 类产品在海外 App Store 的上架状态。",
-    sources: [
-      {
-        label: "星野 App Store",
-        href: "https://apps.apple.com/cn/app/%E6%98%9F%E9%87%8E-%E6%89%80%E5%BB%BA%E7%9A%86%E4%BD%A0%E6%89%80ai/id6463076337",
-      },
-      {
-        label: "名人朋友圈 App Store",
-        href: "https://apps.apple.com/cr/app/%E5%90%8D%E4%BA%BA%E6%9C%8B%E5%8F%8B%E5%9C%88-%E7%9C%9F%E4%BA%BAai-%E8%A7%92%E8%89%B2%E6%89%AE%E6%BC%94%E7%A4%BE%E5%8C%BA/id982115698",
-      },
-      {
-        label: "SCMP - Talkie",
-        href: "https://www.scmp.com/tech/tech-trends/article/3291715/chinese-owned-characterai-rival-vanishes-us-app-store",
-      },
-      {
-        label: "WIRED - Cici",
-        href: "https://www.wired.com/story/bytedances-ai-chatbot-is-quietly-gaining-traction-around-the-world/",
-      },
-    ],
+    intensity: 0,
+    signalLabel: "暂无",
+    products: [],
+    pattern: "近 30 天没有收集到足够强、且能稳定验证的中国陪伴类新应用或关键版本更新，因此这一方向本期不继续沿用旧产品列表充数。",
+    opportunity: "陪伴方向依然值得看，但当前更需要新的可验证发布或分发信号，而不是把历史代表产品重复放进本期判断。",
+    watchNext: "继续跟踪角色扮演社区、语音互动产品和出海陪伴应用，等出现明确版本更新或榜单异常再抬高信号。",
+    sources: [],
   },
   {
     id: "game-us",
     category: "AI 游戏/互动娱乐",
     market: "美国",
-    intensity: 2,
-    signalLabel: "中",
-    products: ["AI Dungeon", "Hidden Door", "Suck Up!", "Inworld Arcade"],
-    pattern: "美国 AI 游戏更偏生成式叙事、角色互动和可玩 demo，尚未像助手或创作工具那样进入主流榜单高位。",
-    opportunity: "机会在“可重复游玩”的系统设计，而不是只让 NPC 会聊天；需要把生成式内容嵌进关卡、叙事、社交传播和付费循环。",
-    watchNext: "关注 Steam、Product Hunt、TikTok/YouTube demo，以及 App Store 游戏榜中的 AI 互动产品。",
+    intensity: 1,
+    signalLabel: "弱",
+    products: ["c.ai Books"],
+    pattern: "近 30 天美国 AI 娱乐方向的可验证消费者信号更多出现在 Character.AI 的可玩内容实验，而不是独立 AI 游戏 App 的主流爆发。",
+    opportunity: "这说明互动娱乐机会更接近“故事世界 + 角色互动 + 可分享体验”，而不是单独堆一个会聊天的 NPC。",
+    watchNext: "继续看 c.ai Books 这类轻娱乐形态是否形成稳定使用，以及是否有新的 AI 原生互动产品冲进主流分发渠道。",
     sources: [
       {
-        label: "AI Dungeon",
-        href: "https://aidungeon.com/",
-      },
-      {
-        label: "Hidden Door",
-        href: "https://www.hiddendoor.co/",
-      },
-      {
-        label: "Suck Up!",
-        href: "https://www.playsuckup.com/",
+        label: "Character.AI Books",
+        href: "https://blog.character.ai/introducing-c-ai-books-classic-literature-now-playable/",
       },
     ],
   },
@@ -616,22 +628,13 @@ const categoryHeatmapItems: CategoryHeatmapItem[] = [
     id: "game-cn",
     category: "AI 游戏/互动娱乐",
     market: "中国",
-    intensity: 2,
-    signalLabel: "中",
-    products: ["逆水寒手游", "星野", "名人朋友圈"],
-    pattern: "中国互动娱乐的 AI 信号更多来自 AI NPC、角色扮演社区和剧情互动，而不是独立 AI 游戏 App 爆发。",
-    opportunity: "更有潜力的方向是把 AI 角色变成游戏/社区内容供给的一部分，让玩家既消费剧情，也参与角色与世界观共创。",
-    watchNext: "继续看 TapTap、Bilibili、小游戏渠道和 App Store 游戏榜里的 AI 原生玩法。",
-    sources: [
-      {
-        label: "逆水寒手游官网",
-        href: "https://h.163.com/",
-      },
-      {
-        label: "星野 App Store",
-        href: "https://apps.apple.com/cn/app/%E6%98%9F%E9%87%8E-%E6%89%80%E5%BB%BA%E7%9A%86%E4%BD%A0%E6%89%80ai/id6463076337",
-      },
-    ],
+    intensity: 0,
+    signalLabel: "暂无",
+    products: [],
+    pattern: "近 30 天中国市场没有出现足够强、且可直接验证的 AI 游戏或互动娱乐新品信号，因此这一格维持空白观察，不再沿用更早的案例。",
+    opportunity: "这一方向后续仍可能从 AI NPC、剧情互动或小游戏渠道冒出来，但本期不强行补齐没有新证据的类目。",
+    watchNext: "继续看 TapTap、Bilibili 和小游戏渠道，确认是否有新的消费者级玩法在未来 30 天浮出水面。",
+    sources: [],
   },
   {
     id: "creation-us",
@@ -639,26 +642,18 @@ const categoryHeatmapItems: CategoryHeatmapItem[] = [
     market: "美国",
     intensity: 2,
     signalLabel: "中",
-    products: ["Meta AI", "Midjourney", "Runway", "Canva", "CapCut"],
-    pattern: "美国创作类覆盖图像、视频、设计和社交发布工具，本周信号主要来自 Meta AI 的入口分发和榜单可见度。",
-    opportunity: "创作工具需要把模型能力变成模板、品牌素材、发布链路和协作流程，单纯生成一张图的壁垒在下降。",
-    watchNext: "继续看 Meta AI 在 Photo & Video 榜的位置，以及 Runway、Canva、CapCut 等工具是否把 AI 创作推向更低门槛的发布流程。",
+    products: ["Meta AI"],
+    pattern: "近 30 天美国创作方向仍有消费者信号，但强度明显低于助手和效率；更清晰的变化主要来自 Meta AI 入口分发对图像生成消费的带动。",
+    opportunity: "这里的机会更像把生成能力贴到社交发布、模板和协作流程上，而不是再做一个只强调模型能力的单点生成器。",
+    watchNext: "继续看 Meta AI 在创作榜单和社交分发上的后劲，以及美国是否出现新的消费级视频生成更新进入主流视野。",
     sources: [
-      {
-        label: "Apple 美国 Photo & Video 榜",
-        href: "https://apps.apple.com/us/iphone/charts/6008?chart=top-free",
-      },
       {
         label: "TechCrunch",
         href: "https://techcrunch.com/2026/04/08/meta-debuts-the-muse-spark-model-in-a-ground-up-overhaul-of-its-ai/",
       },
       {
-        label: "Runway",
-        href: "https://runwayml.com/",
-      },
-      {
-        label: "Canva AI",
-        href: "https://www.canva.com/ai/",
+        label: "Apple 美国 Photo & Video 榜",
+        href: "https://apps.apple.com/us/iphone/charts/6008?chart=top-free",
       },
     ],
   },
@@ -668,10 +663,10 @@ const categoryHeatmapItems: CategoryHeatmapItem[] = [
     market: "中国",
     intensity: 4,
     signalLabel: "极强",
-    products: ["即梦AI", "可灵AI", "豆包", "海螺AI", "妙鸭相机"],
-    pattern: "中国视频生成、图片生成和人像创作工具既有模型更新，也有摄影与录像榜高位，占据本期最强分类信号之一。",
-    opportunity: "新产品可从模板化生产、短视频发布链路、多人协作、人像消费和会员权益切入，把模型能力变成日常内容生产流程。",
-    watchNext: "继续看即梦AI、可灵AI、海螺AI 是否加速会员化、模板化分发，或推出更明确的社交传播能力。",
+    products: ["即梦AI", "可灵AI", "豆包"],
+    pattern: "近 30 天中国创作方向是最强消费者信号之一：即梦AI 有明确版本更新，可灵AI 位于摄影与录像榜前列，视频生成已从尝鲜功能走向主流内容生产入口。",
+    opportunity: "更值得做的是把模型能力继续压进模板、协作、短视频发布和会员权益，而不只是强调一次性的生成效果。",
+    watchNext: "继续看即梦AI、可灵AI 和豆包里的创作能力是否进一步模板化、会员化，以及是否出现更明显的内容传播闭环。",
     sources: [
       {
         label: "即梦AI App Store",
@@ -685,10 +680,6 @@ const categoryHeatmapItems: CategoryHeatmapItem[] = [
         label: "可灵AI App Store",
         href: "https://apps.apple.com/cn/app/%E5%8F%AF%E7%81%B5ai-ai%E5%9B%BE%E7%89%87-%E8%A7%86%E9%A2%91%E5%88%9B%E4%BD%9C%E5%B7%A5%E5%85%B7/id6670396916",
       },
-      {
-        label: "海螺AI",
-        href: "https://hailuoai.com/",
-      },
     ],
   },
   {
@@ -697,10 +688,10 @@ const categoryHeatmapItems: CategoryHeatmapItem[] = [
     market: "美国",
     intensity: 4,
     signalLabel: "极强",
-    products: ["Gemini notebooks", "Google AI Edge Eloquent", "ChatGPT", "Notion AI", "Claude"],
-    pattern: "美国效率类信号覆盖长期工作台、本地语音转写、文档协作和订阅模型体验，都是高频任务型场景。",
-    opportunity: "效率产品可以优先做窄任务里的高质量闭环，例如离线语音成稿、项目资料整理、文档协作、会议纪要和配额后的稳定降级体验。",
-    watchNext: "继续看 Eloquent 是否进入键盘场景，notebooks 是否成为 Gemini 的核心留存模块，以及 Notion/Claude 这类工作流产品如何强化上下文。",
+    products: ["Gemini notebooks", "Google AI Edge Eloquent", "ChatGPT"],
+    pattern: "近 30 天美国效率方向的亮点很清晰：Gemini notebooks 把资料工作台产品化，Google AI Edge Eloquent 把离线语音转写做成独立工具，ChatGPT 则继续把模型层级设计成高频体验的一部分。",
+    opportunity: "效率产品更适合做窄任务里的高完成度闭环，比如本地语音成稿、资料整理和配额后的稳定降级，而不是把所有能力堆成一个大而全入口。",
+    watchNext: "继续看离线语音和 notebook 形态是否获得更高频入口，以及更多效率工具会不会用类似方式把 AI 变成默认工作流。",
     sources: [
       {
         label: "Google 官方",
@@ -726,10 +717,10 @@ const categoryHeatmapItems: CategoryHeatmapItem[] = [
     market: "中国",
     intensity: 3,
     signalLabel: "强",
-    products: ["豆包", "WPS AI", "飞书", "钉钉", "讯飞星火"],
-    pattern: "中国效率类一边被豆包等超级助手吸收，一边被 WPS、飞书、钉钉等办公套件嵌入既有工作流。",
-    opportunity: "办公能力在中国更可能被超级助手和办公套件同时夹击；垂直产品需要用更深模板、更强交付结果或行业数据建立差异化。",
-    watchNext: "继续看 AI PPT、专家模型、会议纪要和办公 Agent 是否形成明确付费层级，以及是否带动效率榜排名变化。",
+    products: ["豆包"],
+    pattern: "近 30 天中国效率方向的消费者信号主要被头部助手吸收，豆包把 AI PPT、专家模型和视频能力继续叠进主入口，说明效率能力正在被超级入口吞并。",
+    opportunity: "垂直效率产品要站住脚，得靠更明确的结果交付、行业模板或强数据壁垒，而不是只复刻通用助手已有的能力集合。",
+    watchNext: "继续看 AI PPT、会议纪要和办公 Agent 是否从功能点变成独立付费层，以及是否在效率榜单里出现新的强分发产品。",
     sources: [
       {
         label: "豆包 App Store",
@@ -739,10 +730,6 @@ const categoryHeatmapItems: CategoryHeatmapItem[] = [
         label: "Apple 中国效率榜",
         href: "https://apps.apple.com/cn/iphone/charts/6007?chart=top-free",
       },
-      {
-        label: "WPS AI",
-        href: "https://ai.wps.cn/",
-      },
     ],
   },
   {
@@ -751,10 +738,10 @@ const categoryHeatmapItems: CategoryHeatmapItem[] = [
     market: "美国",
     intensity: 2,
     signalLabel: "中",
-    products: ["Google AI Edge Eloquent", "ChatGPT Voice", "Perplexity Assistant"],
-    pattern: "美国生活工具更多从语音、搜索和个人助理入口渗透，而不是出现大量独立生活决策 App。",
-    opportunity: "可从隐私、本地运行、低摩擦输入和即时搜索切入，但需要绑定更具体的日常场景才能形成高频使用。",
-    watchNext: "观察 Eloquent 是否进入键盘或系统输入法层，ChatGPT/Perplexity 是否把语音和实时搜索做成日常入口。",
+    products: ["Google AI Edge Eloquent"],
+    pattern: "近 30 天美国生活工具的消费者信号主要落在低摩擦语音输入和轻助手场景，Google AI Edge Eloquent 是较清晰的独立新工具。",
+    opportunity: "如果做生活工具，切口最好足够轻、足够高频，比如语音输入、即时记录和手机上的低干扰入口。",
+    watchNext: "继续看离线语音工具是否进入键盘层或系统入口，以及美国市场会不会冒出更强的生活决策类 AI 产品。",
     sources: [
       {
         label: "Google AI Edge Eloquent App Store",
@@ -764,10 +751,6 @@ const categoryHeatmapItems: CategoryHeatmapItem[] = [
         label: "TechCrunch",
         href: "https://techcrunch.com/2026/04/07/google-quietly-releases-an-offline-first-ai-dictation-app-on-ios/",
       },
-      {
-        label: "Perplexity Assistant",
-        href: "https://www.perplexity.ai/assistant",
-      },
     ],
   },
   {
@@ -776,18 +759,14 @@ const categoryHeatmapItems: CategoryHeatmapItem[] = [
     market: "中国",
     intensity: 3,
     signalLabel: "强",
-    products: ["点点", "夸克", "豆包", "小红书"],
-    pattern: "中国生活工具更依赖内容社区和超级助手，把旅行、探店、购物、总结和推荐做成生活决策入口。",
-    opportunity: "社区内容平台可以把 AI 做成旅行、探店、购物的决策层，而不是只做内容搜索或问答；关键是把真实经验内容转成可信建议。",
-    watchNext: "继续看攻略模式是否扩展到更多生活场景，以及小红书、夸克、豆包类入口是否获得榜单或社交传播反馈。",
+    products: ["点点", "夸克"],
+    pattern: "近 30 天中国生活工具方向最清晰的信号来自点点的攻略模式，它把小红书社区内容进一步转成旅行、探店和购物场景里的生活决策建议。",
+    opportunity: "这一方向的关键不是多会回答，而是能不能把真实经验内容整理成可信、可执行的攻略和推荐。",
+    watchNext: "继续看点点是否把攻略模式扩到更多生活场景，以及类似入口会不会在榜单或社交传播里继续放大。",
     sources: [
       {
         label: "点点 App Store",
         href: "https://apps.apple.com/us/app/%E7%82%B9%E7%82%B9-%E4%BD%A0%E7%9A%84ai%E7%94%9F%E6%B4%BB%E5%B0%8F%E5%8A%A9%E6%89%8B/id6529536122",
-      },
-      {
-        label: "夸克 AI 超级框",
-        href: "https://www.ithome.com/0/848/833.htm",
       },
     ],
   },
@@ -795,24 +774,16 @@ const categoryHeatmapItems: CategoryHeatmapItem[] = [
     id: "hardware-us",
     category: "AI 硬件入口",
     market: "美国",
-    intensity: 3,
-    signalLabel: "强",
-    products: ["Ray-Ban Meta", "Meta AI glasses", "Plaud Note", "Rabbit R1", "Friend"],
-    pattern: "美国硬件入口覆盖 AI 眼镜、录音笔、独立 AI device 和陪伴硬件；Meta 的眼镜入口仍是最强平台级信号。",
-    opportunity: "硬件入口的机会在于把模型能力变成即时视觉、语音、记录和场景感知，而不是复制手机里的聊天窗口。",
-    watchNext: "继续看 Meta 是否把 Muse Spark 的能力更明确地落到眼镜端交互、拍摄和实时辅助，以及轻硬件是否找到持续使用场景。",
+    intensity: 2,
+    signalLabel: "中",
+    products: ["Meta AI glasses"],
+    pattern: "近 30 天美国硬件方向的有效信号仍然主要来自 Meta：官方在 4 月更新中明确把后续分发扩展到 AI glasses，这让硬件入口继续留在本期视野里。",
+    opportunity: "硬件机会依然在视觉、语音和场景感知，不在于把手机聊天窗口原样搬到新设备上。",
+    watchNext: "继续看 Meta 是否把新模型能力更具体地下沉到眼镜端交互和拍摄场景，以及是否有新的硬件入口跟进。",
     sources: [
       {
         label: "Meta 官方",
         href: "https://about.fb.com/news/2026/04/introducing-muse-spark-meta-superintelligence-labs/",
-      },
-      {
-        label: "Ray-Ban Meta",
-        href: "https://www.ray-ban.com/usa/ray-ban-meta-smart-glasses",
-      },
-      {
-        label: "Plaud",
-        href: "https://www.plaud.ai/",
       },
     ],
   },
@@ -820,25 +791,98 @@ const categoryHeatmapItems: CategoryHeatmapItem[] = [
     id: "hardware-cn",
     category: "AI 硬件入口",
     market: "中国",
-    intensity: 2,
-    signalLabel: "中",
-    products: ["学而思学习机", "讯飞 AI 学习机", "Rokid Glasses", "夸克 AI 眼镜"],
-    pattern: "中国硬件入口更偏学习硬件、翻译/会议记录和智能眼镜，AI 往往作为既有硬件的能力升级出现。",
-    opportunity: "机会在专用场景硬件，而不是泛 AI device；学习、翻译、会议和拍摄辅助更容易形成明确购买理由。",
-    watchNext: "继续关注手机发布会、学习硬件新品和可穿戴设备的 AI 助手入口。",
+    intensity: 0,
+    signalLabel: "暂无",
+    products: [],
+    pattern: "近 30 天中国 AI 硬件方向没有进入本期的强消费者信号集合，因此这里保留空白观察，不混入更早的学习机或眼镜案例。",
+    opportunity: "如果后续有学习硬件、可穿戴设备或手机 AI 入口发布，再把这一类目抬高会更准确。",
+    watchNext: "继续盯中国厂商的发布会、学习硬件新品和可穿戴设备更新，确认是否出现新的消费者级硬件信号。",
+    sources: [],
+  },
+];
+
+const usSummaryPoints: MarketSummaryPoint[] = [
+  {
+    title: "头部助手把模型升级直接做成分发事件",
+    bullets: [
+      [t("过去 30 天里，美国最强的消费端信号集中在 "), t("Meta AI、Gemini 和 ChatGPT", true), t("。这些动作不是单一小功能，而是把模型升级、工作台和订阅层级直接推到用户可感知的前台。")],
+      [t("从产品角度看，这意味着美国市场正在把 "), t("“模型能力”包装成增长和留存事件", true), t("，而不是只留在底层技术叙事里。")],
+    ],
     sources: [
-      {
-        label: "学而思智能",
-        href: "https://www.xessw.com/",
-      },
-      {
-        label: "讯飞 AI 学习机",
-        href: "https://mall.iflytek.com/category/100006",
-      },
-      {
-        label: "Rokid",
-        href: "https://www.rokid.com/",
-      },
+      { label: "Meta 官方", href: "https://about.fb.com/news/2026/04/introducing-muse-spark-meta-superintelligence-labs/" },
+      { label: "Google 官方", href: "https://blog.google/products/gemini/notebooks-gemini-notebooklm/" },
+      { label: "OpenAI Release Notes", href: "https://help.openai.com/en/articles/6825453-chatgpt-release-notes" },
+    ],
+  },
+  {
+    title: "效率与工作台类产品比“新娱乐形态”更有确定性",
+    bullets: [
+      [t("Gemini notebooks 和 Google AI Edge Eloquent 说明，美国近月更稳定的消费者信号来自 "), t("项目资料工作台、本地语音转写和高频任务工具", true), t("。")],
+      [t("相比之下，陪伴、游戏和创作虽然仍有活跃产品，但 "), t("近 30 天新增强信号没有同样密集", true), t("。")],
+    ],
+    sources: [
+      { label: "Google 官方", href: "https://blog.google/products/gemini/notebooks-gemini-notebooklm/" },
+      { label: "TechCrunch", href: "https://techcrunch.com/2026/04/07/google-quietly-releases-an-offline-first-ai-dictation-app-on-ios/" },
+      { label: "Character.AI Blog", href: "https://blog.character.ai/" },
+    ],
+  },
+  {
+    title: "美国市场这一个月的主线是“更强容器”，不是“更多 App”",
+    bullets: [
+      [t("无论是 Meta 的多入口分发、Gemini 的 notebook 工作台，还是 ChatGPT 的模型层级调整，核心都在于 "), t("把用户的长期上下文和使用路径握得更紧", true), t("。")],
+      [t("所以如果要从美国市场找灵感，优先应该看 "), t("上下文管理、订阅层设计和任务闭环", true), t("，而不是只追逐单一爆款界面。")],
+    ],
+    sources: [
+      { label: "Meta 官方", href: "https://about.fb.com/news/2026/04/introducing-muse-spark-meta-superintelligence-labs/" },
+      { label: "Google 官方", href: "https://blog.google/products/gemini/notebooks-gemini-notebooklm/" },
+      { label: "OpenAI Release Notes", href: "https://help.openai.com/en/articles/6825453-chatgpt-release-notes" },
+    ],
+  },
+];
+
+const cnSummaryPoints: MarketSummaryPoint[] = [
+  {
+    title: "中国近月最强的不是新品密度，而是超级入口继续叠能力",
+    bullets: [
+      [t("豆包在 4 月更新里把 "), t("专家模型、AI PPT 和视频生成", true), t(" 继续压进主入口，同时中国区总榜里仍然保持高位。")],
+      [t("这说明中国市场的竞争主线更像 "), t("“一个入口覆盖更多高频任务”", true), t("，而不是每周都冒出全新独立 App。")],
+    ],
+    sources: [
+      { label: "豆包 App Store", href: "https://apps.apple.com/cn/app/%E8%B1%86%E5%8C%85-%E9%9A%8F%E6%97%B6%E5%B8%AE%E5%BF%99%E7%9A%84-ai-%E5%8A%A9%E6%89%8B/id6459478672" },
+      { label: "Apple 中国总榜", href: "https://apps.apple.com/cn/charts/iphone" },
+    ],
+  },
+  {
+    title: "视频生成已经是中国消费 AI 的主流信号之一",
+    bullets: [
+      [t("即梦AI 在 2026-04-10 更新 Seedance 2.0 快速版后，仍处于 "), t("中国摄影与录像免费榜第 1 位", true), t("；可灵AI 也保持在前列。")],
+      [t("这意味着视频生成在中国更接近 "), t("高频内容生产工具", true), t("，而不是只在社交媒体里短暂爆一下。")],
+    ],
+    sources: [
+      { label: "即梦AI App Store", href: "https://apps.apple.com/cn/app/%E5%8D%B3%E6%A2%A6ai-%E6%8A%96%E9%9F%B3%E6%97%97%E4%B8%8Bai%E5%9B%BE%E7%89%87%E5%92%8C%E8%A7%86%E9%A2%91%E5%B7%A5%E5%85%B7/id6503676563" },
+      { label: "Apple 中国摄影与录像榜", href: "https://apps.apple.com/cn/iphone/charts/6008?chart=top-free" },
+      { label: "可灵AI App Store", href: "https://apps.apple.com/cn/app/%E5%8F%AF%E7%81%B5ai-ai%E5%9B%BE%E7%89%87-%E8%A7%86%E9%A2%91%E5%88%9B%E4%BD%9C%E5%B7%A5%E5%85%B7/id6670396916" },
+    ],
+  },
+  {
+    title: "生活决策类 AI 正在吸收社区内容这类本地优势",
+    bullets: [
+      [t("点点这次上线 "), t("攻略模式", true), t("，把小红书真实经验内容变成旅行、探店和购物建议，说明中国市场的一个差异化方向是把内容社区沉淀成 AI 决策层。")],
+      [t("这类产品如果跑通，竞争力不只来自模型，而来自 "), t("社区数据、场景理解和可信推荐", true), t("。")],
+    ],
+    sources: [{ label: "点点 App Store", href: "https://apps.apple.com/us/app/%E7%82%B9%E7%82%B9-%E4%BD%A0%E7%9A%84ai%E7%94%9F%E6%B4%BB%E5%B0%8F%E5%8A%A9%E6%89%8B/id6529536122" }],
+  },
+  {
+    title: "近 30 天中国市场更值得看“入口整合”和“分发惯性”",
+    bullets: [
+      [t("中国区总榜和摄影与录像榜里，"), t("豆包、腾讯元宝、千问、即梦AI、可灵AI", true), t(" 都处于容易被普通用户反复遇见的位置。")],
+      [t("这说明中国市场目前一个很强的现实是 "), t("分发惯性本身就会继续强化 AI 使用习惯", true), t("。")],
+    ],
+    sources: [
+      { label: "Apple 中国总榜", href: "https://apps.apple.com/cn/charts/iphone" },
+      { label: "Apple 中国摄影与录像榜", href: "https://apps.apple.com/cn/iphone/charts/6008?chart=top-free" },
+      { label: "腾讯元宝 App Store", href: "https://apps.apple.com/cn/app/%E8%85%BE%E8%AE%AF%E5%85%83%E5%AE%9D-%E6%8E%A5%E5%85%A5deepseek-r1%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/id6480446430" },
+      { label: "千问 App Store", href: "https://apps.apple.com/cn/app/%E5%8D%83%E9%97%AE-%E9%98%BF%E9%87%8C%E6%9C%80%E5%BC%BA%E6%A8%A1%E5%9E%8B%E5%AE%98%E6%96%B9ai%E5%8A%A9%E6%89%8B/id6466733523" },
     ],
   },
 ];
@@ -1010,6 +1054,33 @@ function FindingCard({ finding, index }: { finding: Finding; index: number }) {
   );
 }
 
+function SummaryPointCard({ point, index }: { point: MarketSummaryPoint; index: number }) {
+  return (
+    <article className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_18px_70px_rgba(15,23,42,0.08)] sm:p-7">
+      <div className="flex items-start gap-4">
+        <span className="inline-flex h-10 min-w-10 items-center justify-center rounded-full bg-slate-950 px-3 text-xs font-semibold tracking-[0.2em] text-white">
+          {String(index + 1).padStart(2, "0")}
+        </span>
+        <div className="min-w-0 flex-1">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-700">分点总结</p>
+          <h3 className="mt-3 font-display text-2xl font-bold leading-tight text-slate-950">{point.title}</h3>
+        </div>
+      </div>
+
+      <ul className="mt-6 space-y-4">
+        {point.bullets.map((block, bulletIndex) => (
+          <li key={bulletIndex} className="flex gap-3 text-sm leading-7 text-slate-700 sm:text-[15px]">
+            <span className="mt-2 h-2 w-2 rounded-full bg-cyan-600" />
+            <span>{renderInline(block)}</span>
+          </li>
+        ))}
+      </ul>
+
+      <SourceLine links={point.sources} />
+    </article>
+  );
+}
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-[linear-gradient(180deg,#f6f1e8_0%,#f8f7f2_28%,#eef4f7_100%)] text-slate-950">
@@ -1094,8 +1165,8 @@ export default function Home() {
           <section id="section-2" className="space-y-6 rounded-[2.25rem] border border-slate-200/80 bg-white/60 p-6 backdrop-blur sm:p-8">
             <SectionHeader
               eyebrow="Section 2"
-              title="Section 2：分类热力图"
-              description="按 AI C 端产品类型对比中美信号强度，并补充各品类代表产品；点击任意格子查看产品形态、机会和来源。"
+              title="Section 2：AI+各方向最新应用情况"
+              description="仅保留 2026-03-14 至 2026-04-14 的可验证信号，按方向对比中美近 30 天的代表产品、分发强度与产品机会；点击任意格子查看详细分析。"
             />
             <CategoryHeatmap items={categoryHeatmapItems} />
           </section>
@@ -1103,12 +1174,12 @@ export default function Home() {
           <section id="section-3" className="space-y-6 rounded-[2.25rem] border border-slate-200/80 bg-white/60 p-6 backdrop-blur sm:p-8">
             <SectionHeader
               eyebrow="Section 3"
-              title="Section 3：美国市场"
-              description="美国本周的重点更偏模型升级、助手工作台和任务型单点工具。"
+              title="Section 3：美国市场分点总结"
+              description="不再逐条罗列产品，而是把近 30 天美国市场最重要的消费者级变化拆成几个更适合快速阅读的结论点。"
             />
             <div className="grid gap-5">
-              {usFindings.map((finding, index) => (
-                <FindingCard key={`${finding.name}-${finding.date}-us`} finding={finding} index={index} />
+              {usSummaryPoints.map((point, index) => (
+                <SummaryPointCard key={point.title} point={point} index={index} />
               ))}
             </div>
           </section>
@@ -1116,12 +1187,44 @@ export default function Home() {
           <section id="section-4" className="space-y-6 rounded-[2.25rem] border border-slate-200/80 bg-white/60 p-6 backdrop-blur sm:p-8">
             <SectionHeader
               eyebrow="Section 4"
-              title="Section 4：中国市场"
-              description="中国本周正式新品不算密集，但头部 AI 助手、视频生成应用和社区型生活助手都保持了强更新或强分发。"
+              title="Section 4：中国市场分点总结"
+              description="这里保留中国市场近 30 天最值得看的几个判断，重点放在超级入口、视频创作和生活决策类 AI 的变化。"
             />
             <div className="grid gap-5">
-              {cnFindings.map((finding, index) => (
-                <FindingCard key={`${finding.name}-${finding.date}-cn`} finding={finding} index={index} />
+              {cnSummaryPoints.map((point, index) => (
+                <SummaryPointCard key={point.title} point={point} index={index} />
+              ))}
+            </div>
+          </section>
+
+          <section id="section-5" className="space-y-6 rounded-[2.25rem] border border-slate-200/80 bg-white/60 p-6 backdrop-blur sm:p-8">
+            <SectionHeader
+              eyebrow="Section 5"
+              title="Section 5：跨市场趋势判断"
+              description="以下判断都明确区分来源事实与推断，证据来自本期已收录条目与榜单快照。"
+            />
+            <div className="grid gap-5 lg:grid-cols-2">
+              {trendJudgments.map((item, index) => (
+                <article
+                  key={item.title}
+                  className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_18px_70px_rgba(15,23,42,0.08)]"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="inline-flex h-9 min-w-9 items-center justify-center rounded-full bg-cyan-600 px-3 text-xs font-semibold tracking-[0.2em] text-white">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-700">趋势判断</p>
+                  </div>
+                  <h3 className="mt-4 font-display text-2xl font-bold text-slate-950">{item.title}</h3>
+                  <div className="mt-5 space-y-4 text-sm leading-7 text-slate-700">
+                    <p>
+                      <span className="font-semibold text-slate-950">证据</span>: {renderInline(item.evidence)}
+                    </p>
+                    <p>
+                      <span className="font-semibold text-slate-950">对比</span>: {renderInline(item.comparison)}
+                    </p>
+                  </div>
+                </article>
               ))}
             </div>
           </section>
