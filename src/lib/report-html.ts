@@ -152,6 +152,50 @@ function renderArchive(archive: ReportArchiveItem[]) {
     .join("");
 }
 
+function renderArchiveWidget(reportDate: string, archive: ReportArchiveItem[]) {
+  return `
+      <details class="archive">
+        <summary>Weekly Archive</summary>
+        <div class="archive-grid" data-archive-grid data-current-report-date="${escapeHtml(reportDate)}">${renderArchive(archive)}</div>
+      </details>
+      <script>
+        (() => {
+          const grid = document.querySelector("[data-archive-grid]");
+          if (!grid) return;
+
+          const escapeHtml = (value) =>
+            String(value)
+              .replaceAll("&", "&amp;")
+              .replaceAll("<", "&lt;")
+              .replaceAll(">", "&gt;")
+              .replaceAll('"', "&quot;")
+              .replaceAll("'", "&#39;");
+
+          const renderItem = (item) => {
+            return \`
+              <a class="archive-item" href="\${escapeHtml(item.href)}">
+                <div class="meta-row">
+                  <span>\${escapeHtml(item.date)}</span>
+                  <span class="chip">\${escapeHtml(item.status)}</span>
+                </div>
+                <h3>\${escapeHtml(item.title)}</h3>
+                <p>\${escapeHtml(item.note)}</p>
+              </a>
+            \`;
+          };
+
+          fetch("/reports/archive.json", { cache: "no-store" })
+            .then((response) => (response.ok ? response.json() : null))
+            .then((items) => {
+              if (!Array.isArray(items) || items.length === 0) return;
+              grid.innerHTML = items.map(renderItem).join("");
+            })
+            .catch(() => {});
+        })();
+      </script>
+  `;
+}
+
 export function buildReportHtml(report: ReportData, archive: ReportArchiveItem[]) {
   return `<!DOCTYPE html>
 <html lang="zh-CN">
@@ -255,10 +299,7 @@ export function buildReportHtml(report: ReportData, archive: ReportArchiveItem[]
   </head>
   <body>
     <main>
-      <details class="archive">
-        <summary>Weekly Archive</summary>
-        <div class="archive-grid">${renderArchive(archive)}</div>
-      </details>
+      ${renderArchiveWidget(report.reportDate, archive)}
 
       <section class="hero">
         <p>${escapeHtml(report.reportDate)}</p>

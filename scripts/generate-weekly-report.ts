@@ -574,6 +574,10 @@ export const reportArchive: ReportArchiveItem[] = ${serialize(archive)};
 `;
 }
 
+function buildArchiveJson(archive: ReportArchiveItem[]) {
+  return serialize(archive);
+}
+
 function atomicWrite(path: string, content: string) {
   mkdirSync(dirname(path), { recursive: true });
   const tempPath = `${path}.tmp`;
@@ -1106,6 +1110,7 @@ async function main() {
     cnSummaryPoints: report.cnSummaryPoints,
   });
   const archiveModule = buildArchiveModule(archive);
+  const archiveJson = buildArchiveJson(archive);
   const html = buildReportHtml(report, archive);
 
   if (dryRun) {
@@ -1129,6 +1134,7 @@ async function main() {
 
   atomicWrite(join(process.cwd(), "src/data/reports/latest.ts"), latestModule);
   atomicWrite(join(process.cwd(), "src/data/reports/archive.ts"), archiveModule);
+  atomicWrite(join(process.cwd(), "public/reports/archive.json"), archiveJson);
   atomicWrite(join(process.cwd(), `public/reports/weekly-ai-report-${reportDate}.html`), html);
 }
 
