@@ -11,6 +11,8 @@ import type {
   MarketSummaryPoint,
   ReportArchiveItem,
   ReportData,
+  ReportLink,
+  RichTextBlock,
   TrendJudgment,
 } from "../src/lib/report-types";
 
@@ -188,12 +190,12 @@ const heatmapItemSchema = z.object({
   sources: z.array(z.object({ label: z.string().min(1), href: z.string().url() })),
 });
 
-const reportSchema = z.object({
+const modelReportSchema = z.object({
   topFindings: z.array(findingSchema).min(3).max(6),
-  trendJudgments: z.array(trendSchema).min(3).max(5),
+  trendJudgments: z.array(trendSchema).max(5).default([]),
   categoryHeatmapItems: z.array(heatmapItemSchema).min(1),
-  usSummaryPoints: z.array(marketSummarySchema).min(2).max(5),
-  cnSummaryPoints: z.array(marketSummarySchema).min(2).max(5),
+  usSummaryPoints: z.array(marketSummarySchema).max(5).default([]),
+  cnSummaryPoints: z.array(marketSummarySchema).max(5).default([]),
 });
 
 const responseSchema = {
@@ -796,9 +798,169 @@ async function enrichTopFindingsWithImages(findings: Finding[]) {
   );
 }
 
+function textBlock(text: string, strong = false): RichTextBlock {
+  return [{ text, strong }];
+}
+
+function dedupeLinks(links: ReportLink[]) {
+  const seen = new Set<string>();
+  const result: ReportLink[] = [];
+
+  for (const link of links) {
+    if (seen.has(link.href)) {
+      continue;
+    }
+
+    seen.add(link.href);
+    result.push(link);
+  }
+
+  return result;
+}
+
+function strongestHeatmap(items: CategoryHeatmapItem[], market: "美国" | "中国") {
+  return [...items]
+    .filter((item) => item.market === market)
+    .sort((a, b) => b.intensity - a.intensity || a.category.localeCompare(b.category))
+    .slice(0, 2);
+}
+
+function buildFallbackSummaryPoints({
+  market,
+  findings,
+  heatmapItems,
+}: {
+  market: "美国" | "中国";
+  findings: Finding[];
+  heatmapItems: CategoryHeatmapItem[];
+}) {
+  const marketFindings = findings.filter((finding) => finding.market === market);
+  const pointsFromFindings = marketFindings.map((finding) => ({
+    title: finding.name,
+    bullets: [...finding.summary.slice(0, 2), ...(finding.summary.length >= 2 ? [] : finding.whyItMatters.slice(0, 1))].slice(0, 2),
+    sources: finding.sources,
+  })) satisfies MarketSummaryPoint[];
+
+  const pointsFromHeatmap = strongestHeatmap(heatmapItems, market).map((item) => ({
+    title: `${item.category}：${market}方向信号`,
+    bullets: [textBlock(item.pattern), textBlock(item.opportunity)],
+    sources: item.sources.length > 0 ? item.sources : dedupeLinks(marketFindings.flatMap((finding) => finding.sources)).slice(0, 2),
+  })) satisfies MarketSummaryPoint[];
+
+  return [...pointsFromFindings, ...pointsFromHeatmap];
+}
+
+function ensureMarketSummaryPoints({
+  existing,
+  market,
+  findings,
+  heatmapItems,
+}: {
+  existing: MarketSummaryPoint[];
+  market: "美国" | "中国";
+  findings: Finding[];
+  heatmapItems: CategoryHeatmapItem[];
+}) {
+  const result = [...existing];
+  const seenTitles = new Set(result.map((item) => item.title));
+  const fallbackItems = buildFallbackSummaryPoints({ market, findings, heatmapItems });
+
+  for (const item of fallbackItems) {
+    if (result.length >= 5) {
+      break;
+    }
+
+    if (seenTitles.has(item.title)) {
+      continue;
+    }
+
+    if (item.sources.length === 0) {
+      continue;
+    }
+
+    seenTitles.add(item.title);
+    result.push(item);
+  }
+
+  return result.slice(0, 5);
+}
+
+function buildFallbackTrendJudgments({
+  findings,
+  heatmapItems,
+}: {
+  findings: Finding[];
+  heatmapItems: CategoryHeatmapItem[];
+}) {
+  const usFindings = findings.filter((finding) => finding.market === "美国").slice(0, 2);
+  const cnFindings = findings.filter((finding) => finding.market === "中国").slice(0, 2);
+  const [usStrongest] = strongestHeatmap(heatmapItems, "美国");
+  const [cnStrongest] = strongestHeatmap(heatmapItems, "中国");
+
+  return [
+    {
+      title: "中美都在继续把 AI 产品入口前移",
+      evidence: textBlock(
+        `本期美国的 ${usFindings.map((finding) => finding.name).join("、") || "头部助手更新"}，以及中国的 ${cnFindings.map((finding) => finding.name).join("、") || "头部入口迭代"}，都说明消费者能直接感知的 AI 入口还在继续前推。`,
+      ),
+      comparison: textBlock("这是基于本期已验证发布与分发信号的归纳，不直接外推为长期格局。"),
+    },
+    {
+      title: "美国更偏向模型能力和工作流深度升级",
+      evidence: textBlock(
+        usStrongest?.pattern ??
+          "美国本期最强信号仍集中在助手与生产力能力升级，重点是让模型更稳定地接住复杂任务。",
+      ),
+      comparison: textBlock(
+        cnStrongest?.pattern ??
+          "相比之下，中国更常把多个高频任务继续压进现有入口，而不是只强调单个模型升级。",
+      ),
+    },
+    {
+      title: "中国更偏向入口整合和高频场景覆盖",
+      evidence: textBlock(
+        cnStrongest?.pattern ??
+          "中国本期更清楚的信号，是头部产品继续把创作、学习、生活决策等能力压进主入口。",
+      ),
+      comparison: textBlock(
+        usStrongest?.watchNext ??
+          "和美国相比，中国更强调多场景覆盖；美国则更强调单次升级带来的产品能力跃迁。",
+      ),
+    },
+  ] satisfies TrendJudgment[];
+}
+
+function ensureTrendJudgments({
+  existing,
+  findings,
+  heatmapItems,
+}: {
+  existing: TrendJudgment[];
+  findings: Finding[];
+  heatmapItems: CategoryHeatmapItem[];
+}) {
+  const result = [...existing];
+  const seenTitles = new Set(result.map((item) => item.title));
+
+  for (const item of buildFallbackTrendJudgments({ findings, heatmapItems })) {
+    if (result.length >= 5) {
+      break;
+    }
+
+    if (seenTitles.has(item.title)) {
+      continue;
+    }
+
+    seenTitles.add(item.title);
+    result.push(item);
+  }
+
+  return result.slice(0, 5);
+}
+
 function parseReportText(text: string) {
   const raw = JSON.parse(text || "{}");
-  return reportSchema.safeParse(raw);
+  return modelReportSchema.safeParse(raw);
 }
 
 async function generateStructuredReport({
@@ -900,6 +1062,23 @@ async function main() {
   });
   const topFindings = await enrichTopFindingsWithImages(parsed.topFindings as Finding[]);
   const categoryHeatmapItems = normalizeHeatmapItems(parsed.categoryHeatmapItems as CategoryHeatmapItem[]);
+  const trendJudgments = ensureTrendJudgments({
+    existing: parsed.trendJudgments as TrendJudgment[],
+    findings: topFindings,
+    heatmapItems: categoryHeatmapItems,
+  });
+  const usSummaryPoints = ensureMarketSummaryPoints({
+    existing: parsed.usSummaryPoints as MarketSummaryPoint[],
+    market: "美国",
+    findings: topFindings,
+    heatmapItems: categoryHeatmapItems,
+  });
+  const cnSummaryPoints = ensureMarketSummaryPoints({
+    existing: parsed.cnSummaryPoints as MarketSummaryPoint[],
+    market: "中国",
+    findings: topFindings,
+    heatmapItems: categoryHeatmapItems,
+  });
 
   const findingsWithImages = topFindings.filter((finding) => finding.image).length;
   const minimumImageCount = Math.min(3, topFindings.length);
@@ -912,10 +1091,10 @@ async function main() {
   const report: ReportData = {
     reportDate,
     topFindings,
-    trendJudgments: parsed.trendJudgments as TrendJudgment[],
+    trendJudgments,
     categoryHeatmapItems,
-    usSummaryPoints: parsed.usSummaryPoints as MarketSummaryPoint[],
-    cnSummaryPoints: parsed.cnSummaryPoints as MarketSummaryPoint[],
+    usSummaryPoints,
+    cnSummaryPoints,
   };
 
   const archive = updateArchive(reportDate);
