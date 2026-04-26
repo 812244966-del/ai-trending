@@ -8,8 +8,9 @@
 ## 项目内容
 
 - 首页周报：展示中美 AI C 端周报的 5 个可见 section，包括重点发现、美国市场、中国市场、趋势判断和继续跟踪。
-- 静态落地页：[weekly-ai-report-2026-04-14.html](/Users/lulu/Desktop/codex/adhd/weekly-ai-report-2026-04-14.html)
+- 静态落地页归档目录：`public/reports/`
 - Next.js 首页实现：[src/app/page.tsx](/Users/lulu/Desktop/codex/adhd/src/app/page.tsx)
+- 周报数据文件：`src/data/reports/latest.ts` 与 `src/data/reports/archive.ts`
 
 ## 技术栈
 
@@ -41,6 +42,7 @@ npm run dev
 npm run build
 npm run start
 npm run lint
+npm run report:generate
 ```
 
 ## 说明
