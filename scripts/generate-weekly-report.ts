@@ -105,6 +105,213 @@ const reportSchema = z.object({
   cnSummaryPoints: z.array(marketSummarySchema).min(2).max(5),
 });
 
+const responseSchema = {
+  type: Type.OBJECT,
+  properties: {
+    topFindings: {
+      type: Type.ARRAY,
+      items: {
+        type: Type.OBJECT,
+        properties: {
+          name: { type: Type.STRING },
+          market: { type: Type.STRING },
+          date: { type: Type.STRING },
+          type: { type: Type.STRING },
+          summary: {
+            type: Type.ARRAY,
+            items: {
+              type: Type.ARRAY,
+              items: {
+                type: Type.OBJECT,
+                properties: {
+                  text: { type: Type.STRING },
+                  strong: { type: Type.BOOLEAN },
+                },
+                required: ["text"],
+              },
+            },
+          },
+          whyItMatters: {
+            type: Type.ARRAY,
+            items: {
+              type: Type.ARRAY,
+              items: {
+                type: Type.OBJECT,
+                properties: {
+                  text: { type: Type.STRING },
+                  strong: { type: Type.BOOLEAN },
+                },
+                required: ["text"],
+              },
+            },
+          },
+          sources: {
+            type: Type.ARRAY,
+            items: {
+              type: Type.OBJECT,
+              properties: {
+                label: { type: Type.STRING },
+                href: { type: Type.STRING },
+              },
+              required: ["label", "href"],
+            },
+          },
+        },
+        required: ["name", "market", "date", "type", "summary", "whyItMatters", "sources"],
+      },
+    },
+    trendJudgments: {
+      type: Type.ARRAY,
+      items: {
+        type: Type.OBJECT,
+        properties: {
+          title: { type: Type.STRING },
+          evidence: {
+            type: Type.ARRAY,
+            items: {
+              type: Type.OBJECT,
+              properties: {
+                text: { type: Type.STRING },
+                strong: { type: Type.BOOLEAN },
+              },
+              required: ["text"],
+            },
+          },
+          comparison: {
+            type: Type.ARRAY,
+            items: {
+              type: Type.OBJECT,
+              properties: {
+                text: { type: Type.STRING },
+                strong: { type: Type.BOOLEAN },
+              },
+              required: ["text"],
+            },
+          },
+        },
+        required: ["title", "evidence", "comparison"],
+      },
+    },
+    categoryHeatmapItems: {
+      type: Type.ARRAY,
+      items: {
+        type: Type.OBJECT,
+        properties: {
+          id: { type: Type.STRING },
+          category: { type: Type.STRING },
+          market: { type: Type.STRING },
+          intensity: { type: Type.NUMBER },
+          signalLabel: { type: Type.STRING },
+          products: { type: Type.ARRAY, items: { type: Type.STRING } },
+          pattern: { type: Type.STRING },
+          opportunity: { type: Type.STRING },
+          watchNext: { type: Type.STRING },
+          sources: {
+            type: Type.ARRAY,
+            items: {
+              type: Type.OBJECT,
+              properties: {
+                label: { type: Type.STRING },
+                href: { type: Type.STRING },
+              },
+              required: ["label", "href"],
+            },
+          },
+        },
+        required: [
+          "id",
+          "category",
+          "market",
+          "intensity",
+          "signalLabel",
+          "products",
+          "pattern",
+          "opportunity",
+          "watchNext",
+          "sources",
+        ],
+      },
+    },
+    usSummaryPoints: {
+      type: Type.ARRAY,
+      items: {
+        type: Type.OBJECT,
+        properties: {
+          title: { type: Type.STRING },
+          bullets: {
+            type: Type.ARRAY,
+            items: {
+              type: Type.ARRAY,
+              items: {
+                type: Type.OBJECT,
+                properties: {
+                  text: { type: Type.STRING },
+                  strong: { type: Type.BOOLEAN },
+                },
+                required: ["text"],
+              },
+            },
+          },
+          sources: {
+            type: Type.ARRAY,
+            items: {
+              type: Type.OBJECT,
+              properties: {
+                label: { type: Type.STRING },
+                href: { type: Type.STRING },
+              },
+              required: ["label", "href"],
+            },
+          },
+        },
+        required: ["title", "bullets", "sources"],
+      },
+    },
+    cnSummaryPoints: {
+      type: Type.ARRAY,
+      items: {
+        type: Type.OBJECT,
+        properties: {
+          title: { type: Type.STRING },
+          bullets: {
+            type: Type.ARRAY,
+            items: {
+              type: Type.ARRAY,
+              items: {
+                type: Type.OBJECT,
+                properties: {
+                  text: { type: Type.STRING },
+                  strong: { type: Type.BOOLEAN },
+                },
+                required: ["text"],
+              },
+            },
+          },
+          sources: {
+            type: Type.ARRAY,
+            items: {
+              type: Type.OBJECT,
+              properties: {
+                label: { type: Type.STRING },
+                href: { type: Type.STRING },
+              },
+              required: ["label", "href"],
+            },
+          },
+        },
+        required: ["title", "bullets", "sources"],
+      },
+    },
+  },
+  required: [
+    "topFindings",
+    "trendJudgments",
+    "categoryHeatmapItems",
+    "usSummaryPoints",
+    "cnSummaryPoints",
+  ],
+} as const;
+
 function parseArgs() {
   const args = process.argv.slice(2);
   const params = new Map<string, string | boolean>();
@@ -229,6 +436,16 @@ function buildPrompt({
 8. 如果某个分类缺少强证据，也要输出该项，并把 intensity 设为 0 或 1，signalLabel 设为 暂无 或 弱。
 9. sources 里只保留你实际使用到的来源链接。
 10. summary / whyItMatters / bullets / evidence / comparison 均使用 RichTextBlock 结构，即数组，数组内每项为 { "text": "...", "strong": true|false }。
+11. 严格使用以下英文键名，不要使用中文键名，也不要改写字段名：
+   - topFindings[].name / market / date / type / summary / whyItMatters / sources
+   - trendJudgments[].title / evidence / comparison
+   - categoryHeatmapItems[].id / category / market / intensity / signalLabel / products / pattern / opportunity / watchNext / sources
+   - usSummaryPoints[].title / bullets / sources
+   - cnSummaryPoints[].title / bullets / sources
+12. topFindings[].market 和 categoryHeatmapItems[].market 只能填写“美国”或“中国”。
+13. topFindings[].type 只能填写 "new app"、"feature launch"、"notable update"、"social signal" 四种之一。
+14. categoryHeatmapItems[].signalLabel 只能填写 “暂无 / 弱 / 中 / 强 / 极强”。
+15. 只返回 JSON，不要附带解释文字、Markdown、代码块标记。
 
 来源摘要：
 ${sourcePayload}
@@ -315,6 +532,70 @@ function updateArchive(reportDate: string) {
   ];
 }
 
+function parseReportText(text: string) {
+  const raw = JSON.parse(text || "{}");
+  return reportSchema.safeParse(raw);
+}
+
+async function generateStructuredReport({
+  client,
+  model,
+  prompt,
+}: {
+  client: GoogleGenAI;
+  model: string;
+  prompt: string;
+}) {
+  const config = {
+    responseMimeType: "application/json" as const,
+    responseSchema,
+  };
+
+  const initial = await client.models.generateContent({
+    model,
+    contents: prompt,
+    config,
+  });
+
+  const initialText = initial.text ?? "{}";
+  const initialParsed = parseReportText(initialText);
+
+  if (initialParsed.success) {
+    return initialParsed.data;
+  }
+
+  console.error("Initial model response failed schema validation. Retrying with repair prompt...");
+
+  const repairPrompt = `${prompt}
+
+上一版返回的 JSON 没有通过结构校验。请不要重新发挥，只基于上一版已有内容修复结构，并严格遵守指定键名。
+
+错误摘要：
+${JSON.stringify(initialParsed.error.issues.slice(0, 20), null, 2)}
+
+上一版 JSON：
+${initialText}
+`;
+
+  const repaired = await client.models.generateContent({
+    model,
+    contents: repairPrompt,
+    config,
+  });
+
+  const repairedText = repaired.text ?? "{}";
+  const repairedParsed = parseReportText(repairedText);
+
+  if (repairedParsed.success) {
+    return repairedParsed.data;
+  }
+
+  console.error("Final invalid JSON excerpt:");
+  console.error(repairedText.slice(0, 4000));
+  console.error(JSON.stringify(repairedParsed.error.issues.slice(0, 40), null, 2));
+  throw new Error("Generated report JSON did not match schema after repair retry.");
+}
+
 async function main() {
   const { date, dryRun } = parseArgs();
   const reportDate = resolveReportDate(date);
@@ -348,34 +629,11 @@ async function main() {
     heatmapEnd: reportDate,
     sourcePayload,
   });
-
-  const result = await client.models.generateContent({
+  const parsed = await generateStructuredReport({
+    client,
     model: process.env.GEMINI_MODEL || "gemini-2.5-flash",
-    contents: prompt,
-    config: {
-      responseMimeType: "application/json",
-      responseSchema: {
-        type: Type.OBJECT,
-        properties: {
-          topFindings: { type: Type.ARRAY, items: { type: Type.OBJECT } },
-          trendJudgments: { type: Type.ARRAY, items: { type: Type.OBJECT } },
-          categoryHeatmapItems: { type: Type.ARRAY, items: { type: Type.OBJECT } },
-          usSummaryPoints: { type: Type.ARRAY, items: { type: Type.OBJECT } },
-          cnSummaryPoints: { type: Type.ARRAY, items: { type: Type.OBJECT } },
-        },
-        required: [
-          "topFindings",
-          "trendJudgments",
-          "categoryHeatmapItems",
-          "usSummaryPoints",
-          "cnSummaryPoints",
-        ],
-      },
-    },
+    prompt,
   });
-
-  const raw = JSON.parse(result.text ?? "{}");
-  const parsed = reportSchema.parse(raw);
   const categoryHeatmapItems = normalizeHeatmapItems(parsed.categoryHeatmapItems as CategoryHeatmapItem[]);
 
   const report: ReportData = {
