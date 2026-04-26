@@ -7,6 +7,7 @@ import { reportArchive as currentArchive } from "../src/data/reports/archive";
 import { buildReportHtml } from "../src/lib/report-html";
 import type {
   Finding,
+  FindingImage,
   MarketSummaryPoint,
   ReportArchiveItem,
   ReportData,
@@ -18,6 +19,18 @@ type SourceSeed = {
   url: string;
   market: "美国" | "中国" | "跨市场";
   kind: "official" | "media" | "app-store" | "ranking";
+};
+
+type DirectFindingImageHint = {
+  sourceHref?: string;
+  nameIncludes?: string[];
+  image: FindingImage;
+};
+
+type AppStoreFallbackHint = {
+  label: string;
+  href: string;
+  nameIncludes: string[];
 };
 
 const CATEGORY_ORDER = [
@@ -53,6 +66,84 @@ const SOURCE_SEEDS: SourceSeed[] = [
   { label: "Rokid AI App Store", url: "https://apps.apple.com/cn/app/rokid-ai-%E4%B9%90%E5%A5%87ai%E7%9C%BC%E9%95%9C/id6738470564", market: "中国", kind: "app-store" },
   { label: "Apple 中国总榜", url: "https://apps.apple.com/cn/charts/iphone", market: "中国", kind: "ranking" },
   { label: "Apple 中国摄影与录像榜", url: "https://apps.apple.com/cn/iphone/charts/6008?chart=top-free", market: "中国", kind: "ranking" },
+];
+
+const DIRECT_FINDING_IMAGE_HINTS: DirectFindingImageHint[] = [
+  {
+    sourceHref: "https://about.fb.com/news/2026/04/introducing-muse-spark-meta-superintelligence-labs/",
+    nameIncludes: ["Meta", "Muse Spark"],
+    image: {
+      url: "https://about.fb.com/wp-content/uploads/2026/04/01_Subagent-1.gif?resize=960%2C836",
+      alt: "Meta AI 在官方新闻稿中的产品演示图",
+      type: "official newsroom",
+      sourceLabel: "Meta 官方新闻稿",
+      sourceHref: "https://about.fb.com/news/2026/04/introducing-muse-spark-meta-superintelligence-labs/",
+      note: "官方新闻稿里的 Meta AI 产品演示图，用来对应 Muse Spark 带动的消费端入口更新。",
+    },
+  },
+];
+
+const APP_STORE_FALLBACK_HINTS: AppStoreFallbackHint[] = [
+  {
+    label: "ChatGPT App Store",
+    href: "https://apps.apple.com/us/app/chatgpt/id6448311069",
+    nameIncludes: ["ChatGPT", "GPT-5.5", "GPT-5.3", "ChatGPT Images"],
+  },
+  {
+    label: "Gemini App Store",
+    href: "https://apps.apple.com/us/app/google-gemini/id6477489729",
+    nameIncludes: ["Gemini"],
+  },
+  {
+    label: "Claude App Store",
+    href: "https://apps.apple.com/us/app/claude-by-anthropic/id6473753684",
+    nameIncludes: ["Claude"],
+  },
+  {
+    label: "Replika App Store",
+    href: "https://apps.apple.com/us/app/replika/id1158555867",
+    nameIncludes: ["Replika"],
+  },
+  {
+    label: "豆包 App Store",
+    href: "https://apps.apple.com/cn/app/%E8%B1%86%E5%8C%85-%E9%9A%8F%E6%97%B6%E5%B8%AE%E5%BF%99%E7%9A%84-ai-%E5%8A%A9%E6%89%8B/id6459478672",
+    nameIncludes: ["豆包"],
+  },
+  {
+    label: "即梦AI App Store",
+    href: "https://apps.apple.com/cn/app/%E5%8D%B3%E6%A2%A6ai-%E6%8A%96%E9%9F%B3%E6%97%97%E4%B8%8Bai%E5%9B%BE%E7%89%87%E5%92%8C%E8%A7%86%E9%A2%91%E5%B7%A5%E5%85%B7/id6503676563",
+    nameIncludes: ["即梦AI", "即梦"],
+  },
+  {
+    label: "腾讯元宝 App Store",
+    href: "https://apps.apple.com/cn/app/%E8%85%BE%E8%AE%AF%E5%85%83%E5%AE%9D-%E6%8E%A5%E5%85%A5deepseek-r1%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/id6480446430",
+    nameIncludes: ["腾讯元宝", "元宝"],
+  },
+  {
+    label: "点点 App Store",
+    href: "https://apps.apple.com/us/app/%E7%82%B9%E7%82%B9-%E4%BD%A0%E7%9A%84ai%E7%94%9F%E6%B4%BB%E5%B0%8F%E5%8A%A9%E6%89%8B/id6529536122",
+    nameIncludes: ["点点"],
+  },
+  {
+    label: "星野 App Store",
+    href: "https://apps.apple.com/cn/app/%E6%98%9F%E9%87%8E-%E6%89%80%E5%BB%BA%E7%9A%86%E4%BD%A0%E6%89%80ai/id6463076337",
+    nameIncludes: ["星野"],
+  },
+  {
+    label: "千问智学 App Store",
+    href: "https://apps.apple.com/cn/app/%E5%8D%83%E9%97%AE%E6%99%BA%E5%AD%A6/id6749571440",
+    nameIncludes: ["千问智学", "千问"],
+  },
+  {
+    label: "Rokid AI App Store",
+    href: "https://apps.apple.com/cn/app/rokid-ai-%E4%B9%90%E5%A5%87ai%E7%9C%BC%E9%95%9C/id6738470564",
+    nameIncludes: ["Rokid AI", "Rokid"],
+  },
+  {
+    label: "Hi Rokid App Store",
+    href: "https://apps.apple.com/us/app/hi-rokid/id6749669942",
+    nameIncludes: ["Hi Rokid"],
+  },
 ];
 
 const richSegmentSchema = z.object({
@@ -532,6 +623,179 @@ function updateArchive(reportDate: string) {
   ];
 }
 
+function extractAppStoreId(url: string) {
+  const match = url.match(/id(\d+)/);
+  return match ? match[1] : undefined;
+}
+
+function extractAppStoreCountry(url: string) {
+  try {
+    const parsed = new URL(url);
+    const [, country] = parsed.pathname.split("/");
+    return /^[a-z]{2}$/i.test(country ?? "") ? country : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+const appStoreImageCache = new Map<string, Promise<FindingImage | undefined>>();
+
+async function fetchAppStoreImage({
+  href,
+  label,
+}: {
+  href: string;
+  label: string;
+}): Promise<FindingImage | undefined> {
+  const cacheKey = `${label}:${href}`;
+  const cached = appStoreImageCache.get(cacheKey);
+  if (cached) {
+    return cached;
+  }
+
+  const pending = (async () => {
+    const appId = extractAppStoreId(href);
+    if (!appId) {
+      return undefined;
+    }
+
+    const lookupUrl = new URL("https://itunes.apple.com/lookup");
+    lookupUrl.searchParams.set("id", appId);
+
+    const country = extractAppStoreCountry(href);
+    if (country) {
+      lookupUrl.searchParams.set("country", country);
+    }
+
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 20_000);
+
+    try {
+      const response = await fetch(lookupUrl, {
+        headers: {
+          accept: "application/json",
+          "user-agent":
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
+        },
+        signal: controller.signal,
+      });
+
+      if (!response.ok) {
+        return undefined;
+      }
+
+      const payload = (await response.json()) as {
+        results?: Array<{
+          trackName?: string;
+          screenshotUrls?: string[];
+          ipadScreenshotUrls?: string[];
+          artworkUrl512?: string;
+          artworkUrl100?: string;
+        }>;
+      };
+
+      const result = payload.results?.[0];
+      if (!result) {
+        return undefined;
+      }
+
+      const imageUrl =
+        result.screenshotUrls?.[0] ??
+        result.ipadScreenshotUrls?.[0] ??
+        result.artworkUrl512 ??
+        result.artworkUrl100;
+
+      if (!imageUrl) {
+        return undefined;
+      }
+
+      const productName = result.trackName ?? label.replace(/ App Store$/u, "");
+
+      return {
+        url: imageUrl,
+        alt: `${productName} App Store 预览图`,
+        type: "app store preview",
+        sourceLabel: label,
+        sourceHref: href,
+        note: `使用 ${productName} 的 App Store 官方预览图，帮助读者快速识别产品形态。`,
+      } satisfies FindingImage;
+    } catch {
+      return undefined;
+    } finally {
+      clearTimeout(timeout);
+    }
+  })();
+
+  appStoreImageCache.set(cacheKey, pending);
+  return pending;
+}
+
+function matchDirectFindingImage(finding: Finding) {
+  return DIRECT_FINDING_IMAGE_HINTS.find((hint) => {
+    const nameMatch =
+      hint.nameIncludes?.some((keyword) =>
+        finding.name.toLowerCase().includes(keyword.toLowerCase()),
+      ) ?? false;
+    const sourceMatch =
+      hint.sourceHref !== undefined &&
+      finding.sources.some((source) => source.href === hint.sourceHref);
+
+    return nameMatch || sourceMatch;
+  })?.image;
+}
+
+function matchAppStoreFallback(finding: Finding) {
+  const fromSources = finding.sources.find((source) => /apps\.apple\.com\/.+\/app\//.test(source.href));
+  if (fromSources) {
+    return {
+      label: fromSources.label,
+      href: fromSources.href,
+    };
+  }
+
+  const fallback = APP_STORE_FALLBACK_HINTS.find((hint) =>
+    hint.nameIncludes.some((keyword) => finding.name.toLowerCase().includes(keyword.toLowerCase())),
+  );
+
+  if (!fallback) {
+    return undefined;
+  }
+
+  return {
+    label: fallback.label,
+    href: fallback.href,
+  };
+}
+
+async function enrichTopFindingsWithImages(findings: Finding[]) {
+  return Promise.all(
+    findings.map(async (finding) => {
+      const directImage = matchDirectFindingImage(finding);
+      if (directImage) {
+        return {
+          ...finding,
+          image: directImage,
+        } satisfies Finding;
+      }
+
+      const appStoreSource = matchAppStoreFallback(finding);
+      if (!appStoreSource) {
+        return finding;
+      }
+
+      const image = await fetchAppStoreImage(appStoreSource);
+      if (!image) {
+        return finding;
+      }
+
+      return {
+        ...finding,
+        image,
+      } satisfies Finding;
+    }),
+  );
+}
+
 function parseReportText(text: string) {
   const raw = JSON.parse(text || "{}");
   return reportSchema.safeParse(raw);
@@ -634,11 +898,20 @@ async function main() {
     model: process.env.GEMINI_MODEL || "gemini-2.5-flash",
     prompt,
   });
+  const topFindings = await enrichTopFindingsWithImages(parsed.topFindings as Finding[]);
   const categoryHeatmapItems = normalizeHeatmapItems(parsed.categoryHeatmapItems as CategoryHeatmapItem[]);
+
+  const findingsWithImages = topFindings.filter((finding) => finding.image).length;
+  const minimumImageCount = Math.min(3, topFindings.length);
+  if (findingsWithImages < minimumImageCount) {
+    throw new Error(
+      `Generated report only has ${findingsWithImages} finding images after enrichment; expected at least ${minimumImageCount}.`,
+    );
+  }
 
   const report: ReportData = {
     reportDate,
-    topFindings: parsed.topFindings as Finding[],
+    topFindings,
     trendJudgments: parsed.trendJudgments as TrendJudgment[],
     categoryHeatmapItems,
     usSummaryPoints: parsed.usSummaryPoints as MarketSummaryPoint[],
