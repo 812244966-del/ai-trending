@@ -1026,11 +1026,36 @@ async function generateStructuredReport({
     responseSchema,
   };
 
-  const initial = await client.models.generateContent({
-    model,
-    contents: prompt,
-    config,
-  });
+  async function generateContentWithRetry(contents: string) {
+    let lastError: unknown;
+
+    for (let attempt = 0; attempt < 3; attempt += 1) {
+      try {
+        return await client.models.generateContent({
+          model,
+          contents,
+          config,
+        });
+      } catch (error) {
+        lastError = error;
+        const message = error instanceof Error ? error.message : String(error);
+        const isRetriable =
+          /503/.test(message) || /UNAVAILABLE/.test(message) || /high demand/i.test(message);
+
+        if (!isRetriable || attempt === 2) {
+          throw error;
+        }
+
+        const delayMs = 3000 * (attempt + 1);
+        console.warn(`Model request failed (${message}). Retrying in ${delayMs}ms...`);
+        await new Promise((resolve) => setTimeout(resolve, delayMs));
+      }
+    }
+
+    throw lastError instanceof Error ? lastError : new Error(String(lastError));
+  }
+
+  const initial = await generateContentWithRetry(prompt);
 
   const initialText = initial.text ?? "{}";
   const initialParsed = parseReportText(initialText);
@@ -1052,11 +1077,7 @@ ${JSON.stringify(initialParsed.error.issues.slice(0, 20), null, 2)}
 ${initialText}
 `;
 
-  const repaired = await client.models.generateContent({
-    model,
-    contents: repairPrompt,
-    config,
-  });
+  const repaired = await generateContentWithRetry(repairPrompt);
 
   const repairedText = repaired.text ?? "{}";
   const repairedParsed = parseReportText(repairedText);
