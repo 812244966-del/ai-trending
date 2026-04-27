@@ -36,15 +36,7 @@ function renderInline(block: RichTextBlock, strongClassName = "font-semibold tex
   );
 }
 
-function needsInlineSpace(previous: RichTextBlock, next: RichTextBlock) {
-  const previousText = previous.map((segment) => segment.text).join("").trim();
-  const nextText = next.map((segment) => segment.text).join("").trim();
-  const previousLast = previousText.slice(-1);
-  const nextFirst = nextText.charAt(0);
-  return /[A-Za-z0-9)]/.test(previousLast) && /[A-Za-z0-9(]/.test(nextFirst);
-}
-
-function RichInlineParagraph({
+function RichParagraphStack({
   blocks,
   className,
   strongClassName,
@@ -54,14 +46,13 @@ function RichInlineParagraph({
   strongClassName?: string;
 }) {
   return (
-    <p className={className ?? "text-sm leading-7 text-slate-700 sm:text-[15px]"}>
+    <div className="space-y-3">
       {blocks.map((block, index) => (
-        <span key={index}>
-          {index > 0 && needsInlineSpace(blocks[index - 1], block) ? " " : ""}
+        <p key={index} className={className ?? "text-sm leading-7 text-slate-700 sm:text-[15px]"}>
           {renderInline(block, strongClassName)}
-        </span>
+        </p>
       ))}
-    </p>
+    </div>
   );
 }
 
@@ -176,7 +167,9 @@ function FindingCard({ finding, index }: { finding: Finding; index: number }) {
         <div className="space-y-5">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">summary</p>
-            <RichInlineParagraph blocks={finding.summary} className="mt-3 text-sm leading-7 text-slate-700 sm:text-[15px]" />
+            <div className="mt-3">
+              <RichParagraphStack blocks={finding.summary} className="text-sm leading-7 text-slate-700 sm:text-[15px]" />
+            </div>
             <SourceLine links={finding.sources} />
           </div>
           <InsightBlock blocks={finding.whyItMatters} />

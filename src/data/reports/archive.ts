@@ -19,7 +19,6 @@ export const reportArchive: ReportArchiveItem[] = [
     "date": "2026-04-14",
     "title": "Weekly AI Consumer Trends",
     "href": "/reports/weekly-ai-report-2026-04-14.html",
-    "status": "archive",
-    "note": "当前线上版本，同时保留一份静态 HTML 归档页。"
+    "status": "archive"
   }
 ];

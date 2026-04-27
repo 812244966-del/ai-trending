@@ -99,7 +99,13 @@ function strongestCategories(items: CategoryHeatmapItem[], market: CategoryHeatm
 
 export function CategoryHeatmap({ items }: { items: CategoryHeatmapItem[] }) {
   const categories = useMemo(() => Array.from(new Set(items.map((item) => item.category))), [items]);
+  const defaultItem = useMemo(
+    () => [...items].sort((a, b) => b.intensity - a.intensity || a.category.localeCompare(b.category))[0],
+    [items],
+  );
+  const [selectedId, setSelectedId] = useState(defaultItem?.id ?? items[0]?.id ?? "");
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const selected = items.find((item) => item.id === selectedId) ?? defaultItem ?? items[0];
   const usStrongest = useMemo(() => strongestCategories(items, "美国"), [items]);
   const cnStrongest = useMemo(() => strongestCategories(items, "中国"), [items]);
   const watchCategories = useMemo(
@@ -149,141 +155,217 @@ export function CategoryHeatmap({ items }: { items: CategoryHeatmapItem[] }) {
         })}
       </div>
 
-      <div className="space-y-4 rounded-[2rem] border border-slate-200 bg-white p-4 shadow-[0_18px_70px_rgba(15,23,42,0.08)] sm:p-5">
-        <div className="hidden grid-cols-[180px_repeat(2,minmax(0,1fr))] gap-3 px-1 text-xs font-semibold uppercase tracking-[0.22em] text-slate-500 lg:grid">
-          <span>方向</span>
-          {markets.map((market) => (
-            <span key={market}>{market}</span>
-          ))}
-        </div>
+      <div className="grid gap-6 xl:grid-cols-[minmax(0,1.35fr)_minmax(320px,0.65fr)] xl:items-start">
+        <div className="space-y-4 rounded-[2rem] border border-slate-200 bg-white p-4 shadow-[0_18px_70px_rgba(15,23,42,0.08)] sm:p-5">
+          <div className="hidden grid-cols-[180px_repeat(2,minmax(0,1fr))] gap-3 px-1 text-xs font-semibold uppercase tracking-[0.22em] text-slate-500 lg:grid">
+            <span>方向</span>
+            {markets.map((market) => (
+              <span key={market}>{market}</span>
+            ))}
+          </div>
 
-        <div className="space-y-4">
-          {categories.map((category, categoryIndex) => (
-            <div key={category} className="grid gap-3 lg:grid-cols-[180px_repeat(2,minmax(0,1fr))] lg:items-stretch">
-              <div className="rounded-[1.25rem] border border-slate-200 bg-[#f5f6fb] px-4 py-4 text-slate-800 h-[9.75rem]">
-                <div className="flex h-full flex-col">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-400">
-                    {String(categoryIndex + 1).padStart(2, "0")}
-                  </p>
-                  <p className="mt-3 text-sm font-semibold leading-6">{category}</p>
+          <div className="space-y-4">
+            {categories.map((category, categoryIndex) => (
+              <div key={category} className="grid gap-3 lg:grid-cols-[180px_repeat(2,minmax(0,1fr))] lg:items-stretch">
+                <div className="rounded-[1.25rem] border border-slate-200 bg-[#f5f6fb] px-4 py-4 text-slate-800 h-[9.75rem]">
+                  <div className="flex h-full flex-col">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-400">
+                      {String(categoryIndex + 1).padStart(2, "0")}
+                    </p>
+                    <p className="mt-3 text-sm font-semibold leading-6">{category}</p>
+                  </div>
                 </div>
-              </div>
-              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:contents">
-                {markets.map((market) => {
-                  const item = items.find((candidate) => candidate.category === category && candidate.market === market);
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:contents">
+                  {markets.map((market) => {
+                    const item = items.find((candidate) => candidate.category === category && candidate.market === market);
 
-                  if (!item) {
-                    return null;
-                  }
+                    if (!item) {
+                      return null;
+                    }
 
-                  const style = heatStyles[item.intensity];
-                  const isHovered = hoveredId === item.id;
-                  const previewProducts = productPreview(item.products);
-                  const alignClass = market === "中国" ? "right-0 origin-top-right" : "left-0 origin-top-left";
-                  const isUpperPanel = categoryIndex >= categories.length - 2;
-                  const verticalClass = isUpperPanel ? "bottom-full mb-4" : "top-full mt-4";
-                  const panelShiftClass = market === "中国" ? "md:translate-x-1" : "md:-translate-x-1";
-                  const markerClass = isUpperPanel ? "bottom-[-7px]" : "top-[-7px]";
+                    const style = heatStyles[item.intensity];
+                    const isSelected = selected?.id === item.id;
+                    const isHovered = hoveredId === item.id;
+                    const previewProducts = productPreview(item.products);
+                    const alignClass = market === "中国" ? "right-0 origin-top-right" : "left-0 origin-top-left";
+                    const isUpperPanel = categoryIndex >= categories.length - 2;
+                    const verticalClass = isUpperPanel ? "bottom-full mb-4" : "top-full mt-4";
+                    const panelShiftClass = market === "中国" ? "md:translate-x-1" : "md:-translate-x-1";
+                    const markerClass = isUpperPanel ? "bottom-[-7px]" : "top-[-7px]";
 
-                  return (
-                    <div key={item.id} className="relative">
-                      <button
-                        type="button"
-                        onMouseEnter={() => setHoveredId(item.id)}
-                        onMouseLeave={() => setHoveredId(null)}
-                        onFocus={() => setHoveredId(item.id)}
-                        onBlur={() => setHoveredId(null)}
-                        className={`h-[9.75rem] w-full rounded-[1.25rem] border p-4 text-left transition focus:outline-none focus:ring-4 focus:ring-[#d9def8] ${style.cell} ${
-                          isHovered ? style.glow : `${style.glow} hover:-translate-y-0.5 hover:brightness-[1.02]`
-                        }`}
-                      >
-                        <div className="flex h-full flex-col">
-                          <span className="flex items-center justify-between gap-3">
-                            <span className="text-xs font-semibold uppercase tracking-[0.18em] opacity-75">{market}</span>
-                            <span className={`rounded-full px-2.5 py-1 text-xs font-semibold ring-1 ${style.label}`}>
-                              {item.signalLabel}
-                            </span>
-                          </span>
-                          <span className="mt-5 flex min-h-[2.75rem] flex-wrap content-start gap-2">
-                            {previewProducts.length > 0 ? (
-                              previewProducts.map((product) => (
-                                <span
-                                  key={product}
-                                  className="rounded-full border border-white/60 bg-white/72 px-2.5 py-1 text-xs font-semibold text-slate-700"
-                                >
-                                  {product}
-                                </span>
-                              ))
-                            ) : (
-                              <span className="rounded-full border border-white/60 bg-white/72 px-2.5 py-1 text-xs font-semibold text-slate-500">
-                                暂无代表产品
-                              </span>
-                            )}
-                          </span>
-                          <span className="mt-auto line-clamp-2 block text-sm leading-6 opacity-75">{patternPreview(item.pattern)}</span>
-                        </div>
-                      </button>
-
-                      {isHovered ? (
-                        <div
-                          className={`pointer-events-none absolute z-30 hidden w-[min(24rem,calc(100vw-2.5rem))] rounded-[1.35rem] border border-[#dfe5f7] bg-white/98 p-5 text-left shadow-[0_24px_70px_rgba(27,39,94,0.16)] backdrop-blur transition-transform md:block ${alignClass} ${verticalClass} ${panelShiftClass}`}
+                    return (
+                      <div key={item.id} className="relative">
+                        <button
+                          type="button"
+                          aria-pressed={isSelected}
+                          onClick={() => setSelectedId(item.id)}
+                          onMouseEnter={() => setHoveredId(item.id)}
+                          onMouseLeave={() => setHoveredId(null)}
+                          onFocus={() => setHoveredId(item.id)}
+                          onBlur={() => setHoveredId(null)}
+                          className={`h-[9.75rem] w-full rounded-[1.25rem] border p-4 text-left transition focus:outline-none focus:ring-4 focus:ring-[#d9def8] ${style.cell} ${
+                            isSelected
+                              ? "shadow-[0_0_0_3px_rgba(46,132,213,0.18),0_20px_48px_rgba(15,23,42,0.14)]"
+                              : isHovered
+                                ? style.glow
+                                : `${style.glow} hover:-translate-y-0.5 hover:brightness-[1.02]`
+                          }`}
                         >
-                          <span
-                            className={`absolute left-8 h-3.5 w-3.5 rotate-45 border border-[#dfe5f7] bg-white ${markerClass} ${market === "中国" ? "left-auto right-8" : ""}`}
-                          />
-                          <div className="flex items-center justify-between gap-3">
-                            <div className="flex items-center gap-3">
-                              <span className={`h-9 w-1.5 rounded-full ${style.panelAccent}`} />
-                              <div>
-                                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#5a67a8]">{item.market}</p>
-                                <p className="mt-1 text-sm font-bold text-slate-950">{item.category}</p>
-                              </div>
-                            </div>
-                            <p className={`rounded-full px-2.5 py-1 text-xs font-semibold ring-1 ${style.label}`}>{item.signalLabel}</p>
-                          </div>
-
-                          <div className="mt-4 border-t border-slate-100 pt-4">
-                            <div className="flex flex-wrap gap-2">
-                              {item.products.length > 0 ? (
-                                item.products.map((product) => (
+                          <div className="flex h-full flex-col">
+                            <span className="flex items-center justify-between gap-3">
+                              <span className="text-xs font-semibold uppercase tracking-[0.18em] opacity-75">{market}</span>
+                              <span className={`rounded-full px-2.5 py-1 text-xs font-semibold ring-1 ${style.label}`}>
+                                {item.signalLabel}
+                              </span>
+                            </span>
+                            <span className="mt-5 flex min-h-[2.75rem] flex-wrap content-start gap-2">
+                              {previewProducts.length > 0 ? (
+                                previewProducts.map((product) => (
                                   <span
                                     key={product}
-                                    className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] font-semibold text-slate-700"
+                                    className="rounded-full border border-white/60 bg-white/72 px-2.5 py-1 text-xs font-semibold text-slate-700"
                                   >
                                     {product}
                                   </span>
                                 ))
                               ) : (
-                                <span className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] font-semibold text-slate-500">
+                                <span className="rounded-full border border-white/60 bg-white/72 px-2.5 py-1 text-xs font-semibold text-slate-500">
                                   暂无代表产品
                                 </span>
                               )}
-                            </div>
+                            </span>
+                            <span className="mt-auto line-clamp-2 block text-sm leading-6 opacity-75">{patternPreview(item.pattern)}</span>
                           </div>
+                        </button>
 
-                          <div className="mt-4 space-y-4 text-sm leading-6 text-slate-700">
-                            <div>
-                              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">产品形态</p>
-                              <p className="mt-2">{item.pattern}</p>
+                        {isHovered ? (
+                          <div
+                            className={`pointer-events-none absolute z-30 hidden w-[min(24rem,calc(100vw-2.5rem))] rounded-[1.35rem] border border-[#dfe5f7] bg-white/98 p-5 text-left shadow-[0_24px_70px_rgba(27,39,94,0.16)] backdrop-blur transition-transform md:block ${alignClass} ${verticalClass} ${panelShiftClass}`}
+                          >
+                            <span
+                              className={`absolute left-8 h-3.5 w-3.5 rotate-45 border border-[#dfe5f7] bg-white ${markerClass} ${market === "中国" ? "left-auto right-8" : ""}`}
+                            />
+                            <div className="flex items-center justify-between gap-3">
+                              <div className="flex items-center gap-3">
+                                <span className={`h-9 w-1.5 rounded-full ${style.panelAccent}`} />
+                                <div>
+                                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#5a67a8]">{item.market}</p>
+                                  <p className="mt-1 text-sm font-bold text-slate-950">{item.category}</p>
+                                </div>
+                              </div>
+                              <p className={`rounded-full px-2.5 py-1 text-xs font-semibold ring-1 ${style.label}`}>{item.signalLabel}</p>
                             </div>
-                            <div>
-                              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">产品机会</p>
-                              <p className="mt-2">{item.opportunity}</p>
+
+                            <div className="mt-4 border-t border-slate-100 pt-4">
+                              <div className="flex flex-wrap gap-2">
+                                {item.products.length > 0 ? (
+                                  item.products.map((product) => (
+                                    <span
+                                      key={product}
+                                      className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] font-semibold text-slate-700"
+                                    >
+                                      {product}
+                                    </span>
+                                  ))
+                                ) : (
+                                  <span className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] font-semibold text-slate-500">
+                                    暂无代表产品
+                                  </span>
+                                )}
+                              </div>
                             </div>
-                            <div>
-                              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">继续观察</p>
-                              <p className="mt-2">{item.watchNext}</p>
+
+                            <div className="mt-4 space-y-4 text-sm leading-6 text-slate-700">
+                              <div>
+                                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">产品形态</p>
+                                <p className="mt-2">{item.pattern}</p>
+                              </div>
+                              <div>
+                                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">产品机会</p>
+                                <p className="mt-2">{item.opportunity}</p>
+                              </div>
+                              <div>
+                                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">继续观察</p>
+                                <p className="mt-2">{item.watchNext}</p>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      ) : null}
-                    </div>
-                  );
-                })}
+                        ) : null}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {selected ? (
+          <aside className="rounded-[2rem] border border-slate-200 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(246,248,255,0.95))] p-6 shadow-[0_18px_70px_rgba(15,23,42,0.08)] xl:sticky xl:top-28">
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="rounded-full bg-slate-950 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-white">
+                {selected.market}
+              </span>
+              <span className={`rounded-full px-3 py-1.5 text-xs font-semibold ring-1 ${heatStyles[selected.intensity].label}`}>
+                {selected.signalLabel}
+              </span>
+            </div>
+
+            <h3 className="mt-4 font-display text-3xl font-bold leading-tight text-slate-950">{selected.category}</h3>
+
+            <div className={`mt-2 h-1.5 w-16 rounded-full ${heatStyles[selected.intensity].panelAccent}`} />
+
+            <div className="mt-5 flex flex-wrap gap-2">
+              {selected.products.length > 0 ? (
+                selected.products.map((product) => (
+                  <span key={product} className="rounded-full border border-slate-200 bg-white/88 px-3 py-1.5 text-xs font-semibold text-slate-700">
+                    {product}
+                  </span>
+                ))
+              ) : (
+                <span className="rounded-full border border-slate-200 bg-white/88 px-3 py-1.5 text-xs font-semibold text-slate-500">
+                  本周暂无代表产品
+                </span>
+              )}
+            </div>
+
+            <div className="mt-6 space-y-5 text-sm leading-7 text-slate-700">
+              <div className="rounded-[1.25rem] border border-white/70 bg-white/70 p-4">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">产品形态</p>
+                <p className="mt-2">{selected.pattern}</p>
+              </div>
+              <div className="rounded-[1.25rem] border border-white/70 bg-white/70 p-4">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">产品机会</p>
+                <p className="mt-2">{selected.opportunity}</p>
+              </div>
+              <div className="rounded-[1.25rem] border border-white/70 bg-white/70 p-4">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">继续观察</p>
+                <p className="mt-2">{selected.watchNext}</p>
               </div>
             </div>
-          ))}
-        </div>
+
+            <div className="mt-6 border-t border-slate-200 pt-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">来源</p>
+              {selected.sources.length > 0 ? (
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {selected.sources.map((source) => (
+                    <a
+                      key={source.href}
+                      href={source.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 transition hover:border-cyan-500 hover:text-slate-950"
+                    >
+                      {source.label}
+                    </a>
+                  ))}
+                </div>
+              ) : (
+                <p className="mt-3 text-sm leading-7 text-slate-500">本周暂无足够可验证事件，未附来源。</p>
+              )}
+            </div>
+          </aside>
+        ) : null}
       </div>
     </div>
   );

@@ -529,6 +529,9 @@ function buildPrompt({
 8. 如果某个分类缺少强证据，也要输出该项，并把 intensity 设为 0 或 1，signalLabel 设为 暂无 或 弱。
 9. sources 里只保留你实际使用到的来源链接。
 10. summary / whyItMatters / bullets / evidence / comparison 均使用 RichTextBlock 结构，即数组，数组内每项为 { "text": "...", "strong": true|false }。
+10.1 topFindings[].summary 必须写成 2-4 个 block，优先分别覆盖：发生了什么 / 功能或分发细节 / 上线范围或用户对象。
+10.2 topFindings[].whyItMatters 必须写成 2-4 个 block，优先分别覆盖：用户价值 / 更大的产品趋势或中美对比 / 接下来该观察什么。
+10.3 不要把 summary 和 whyItMatters 压缩成单句；信息要尽量完整，保持接近研究周报原始分析的细节密度。
 11. 严格使用以下英文键名，不要使用中文键名，也不要改写字段名：
    - topFindings[].name / market / date / type / summary / whyItMatters / sources
    - trendJudgments[].title / evidence / comparison
@@ -810,6 +813,44 @@ function textBlock(text: string, strong = false): RichTextBlock {
   return [{ text, strong }];
 }
 
+function plainTextFromBlock(block: RichTextBlock) {
+  return block.map((segment) => segment.text).join("").trim();
+}
+
+function splitIntoNarrativeBlocks(blocks: RichTextBlock[]) {
+  const merged = blocks
+    .map(plainTextFromBlock)
+    .join(" ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  if (!merged) {
+    return blocks;
+  }
+
+  const sentences = merged
+    .split(/(?<=[。！？!?])\s+/)
+    .map((sentence) => sentence.trim())
+    .filter(Boolean);
+
+  if (sentences.length <= 1) {
+    return blocks;
+  }
+
+  return sentences.slice(0, 4).map((sentence) => textBlock(sentence));
+}
+
+function normalizeFindingNarrativeBlocks(findings: Finding[]) {
+  return findings.map((finding) => ({
+    ...finding,
+    summary: finding.summary.length >= 2 ? finding.summary.slice(0, 4) : splitIntoNarrativeBlocks(finding.summary),
+    whyItMatters:
+      finding.whyItMatters.length >= 2
+        ? finding.whyItMatters.slice(0, 4)
+        : splitIntoNarrativeBlocks(finding.whyItMatters),
+  }));
+}
+
 function dedupeLinks(links: ReportLink[]) {
   const seen = new Set<string>();
   const result: ReportLink[] = [];
@@ -1068,7 +1109,9 @@ async function main() {
     model: process.env.GEMINI_MODEL || "gemini-2.5-flash",
     prompt,
   });
-  const topFindings = await enrichTopFindingsWithImages(parsed.topFindings as Finding[]);
+  const topFindings = normalizeFindingNarrativeBlocks(
+    await enrichTopFindingsWithImages(parsed.topFindings as Finding[]),
+  );
   const categoryHeatmapItems = normalizeHeatmapItems(parsed.categoryHeatmapItems as CategoryHeatmapItem[]);
   const trendJudgments = ensureTrendJudgments({
     existing: parsed.trendJudgments as TrendJudgment[],
