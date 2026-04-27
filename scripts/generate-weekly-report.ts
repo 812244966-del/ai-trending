@@ -615,7 +615,11 @@ function normalizeHeatmapItems(items: CategoryHeatmapItem[]) {
 function updateArchive(reportDate: string) {
   const href = `/reports/weekly-ai-report-${reportDate}.html`;
   const deduped = currentArchive.filter((item) => item.date !== reportDate);
-  const archivedPrevious = deduped.map((item) => ({ ...item, status: "archive" as const }));
+  const archivedPrevious = deduped.map((item) => ({
+    ...item,
+    status: "archive" as const,
+    note: undefined,
+  }));
 
   return [
     {

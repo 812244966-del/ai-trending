@@ -49,7 +49,7 @@ export type ReportArchiveItem = {
   title: string;
   href: string;
   status: "current" | "archive";
-  note: string;
+  note?: string;
 };
 
 export type ReportData = {

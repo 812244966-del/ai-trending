@@ -256,7 +256,7 @@ export default function Home() {
                     </span>
                   </div>
                   <p className="mt-2 text-base font-semibold text-slate-950">{item.title}</p>
-                  <p className="mt-1 text-sm leading-7 text-slate-600">{item.note}</p>
+                  {item.note ? <p className="mt-1 text-sm leading-7 text-slate-600">{item.note}</p> : null}
                 </a>
               ))}
             </div>
