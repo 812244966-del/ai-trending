@@ -55,10 +55,14 @@ const SOURCE_SEEDS: SourceSeed[] = [
   { label: "OpenAI Release Notes", url: "https://help.openai.com/en/articles/6825453-chatgpt-release-notes", market: "美国", kind: "official" },
   { label: "Google AI Edge Eloquent", url: "https://apps.apple.com/us/app/google-ai-edge-eloquent/id6756505519", market: "美国", kind: "app-store" },
   { label: "Character.AI Blog", url: "https://blog.character.ai/pipsqueak2-and-more/", market: "美国", kind: "official" },
+  { label: "TechCrunch Gizmo funding", url: "https://techcrunch.com/2026/04/15/ai-learning-app-gizmo-levels-up-with-13m-users-and-a-22m-investment/", market: "美国", kind: "media" },
+  { label: "TechCrunch Series funding", url: "https://techcrunch.com/2026/04/24/two-college-kids-raise-a-5-1-million-pre-seed-to-build-an-ai-social-network-in-imessage/", market: "美国", kind: "media" },
+  { label: "TechCrunch Granola funding", url: "https://techcrunch.com/2026/03/25/granola-raises-125m-hits-1-5b-valuation-as-it-expands-from-meeting-notetaker-to-enterprise-ai-app/", market: "美国", kind: "media" },
   { label: "Replika App Store", url: "https://apps.apple.com/us/app/replika/id1158555867", market: "美国", kind: "app-store" },
   { label: "Hi Rokid App Store", url: "https://apps.apple.com/us/app/hi-rokid/id6749669942", market: "美国", kind: "app-store" },
   { label: "Apple 美国总榜", url: "https://apps.apple.com/us/genre/ios-apps/id6016", market: "美国", kind: "ranking" },
   { label: "Apple 美国摄影与录像榜", url: "https://apps.apple.com/us/iphone/charts/6008?chart=top-free", market: "美国", kind: "ranking" },
+  { label: "晚点聊 LateTalk AI季报26Q1", url: "https://podcast.latepost.com/156", market: "跨市场", kind: "media" },
   { label: "豆包 App Store", url: "https://apps.apple.com/cn/app/%E8%B1%86%E5%8C%85-%E9%9A%8F%E6%97%B6%E5%B8%AE%E5%BF%99%E7%9A%84-ai-%E5%8A%A9%E6%89%8B/id6459478672", market: "中国", kind: "app-store" },
   { label: "即梦AI App Store", url: "https://apps.apple.com/cn/app/%E5%8D%B3%E6%A2%A6ai-%E6%8A%96%E9%9F%B3%E6%97%97%E4%B8%8Bai%E5%9B%BE%E7%89%87%E5%92%8C%E8%A7%86%E9%A2%91%E5%B7%A5%E5%85%B7/id6503676563", market: "中国", kind: "app-store" },
   { label: "腾讯元宝 App Store", url: "https://apps.apple.com/cn/app/%E8%85%BE%E8%AE%AF%E5%85%83%E5%AE%9D-%E6%8E%A5%E5%85%A5deepseek-r1%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/id6480446430", market: "中国", kind: "app-store" },
@@ -513,6 +517,8 @@ function buildPrompt({
 要求：
 1. topFindings、usSummaryPoints、cnSummaryPoints、trendJudgments 只覆盖 ${weeklyStart} 到 ${weeklyEnd} 的最近 7 天动态。
 2. categoryHeatmapItems 覆盖 ${heatmapStart} 到 ${heatmapEnd} 的最近 60 天信号。
+2.1 categoryHeatmapItems 的 products 可以补充最近 60 天内获得超过 1000 万元人民币融资（或等值美元）的 consumer-facing 创新产品。
+2.2 融资不是单独充分条件；只有当产品确实面向消费者/创作者/学习者/陪伴社交/效率办公/硬件入口时，才可纳入代表产品。
 3. 只使用给定来源里的事实，不要编造不存在的发布。
 4. 语言为中文，产品名保留原文。
 5. topFindings 选择 3-6 条最重要发现。
@@ -528,6 +534,7 @@ function buildPrompt({
    - AI 硬件入口
 8. 如果某个分类缺少强证据，也要输出该项，并把 intensity 设为 0 或 1，signalLabel 设为 暂无 或 弱。
 9. sources 里只保留你实际使用到的来源链接。
+9.1 如果使用融资信号，sources 必须包含融资报道来源，并在 pattern 或 watchNext 中明确这是“融资 + 产品验证”的补充信号，而不是伪装成已大规模上线事实。
 10. summary / whyItMatters / bullets / evidence / comparison 均使用 RichTextBlock 结构，即数组，数组内每项为 { "text": "...", "strong": true|false }。
 10.1 topFindings[].summary 必须写成 2-4 个 block，优先分别覆盖：发生了什么 / 功能或分发细节 / 上线范围或用户对象。
 10.2 topFindings[].whyItMatters 必须写成 2-4 个 block，优先分别覆盖：用户价值 / 更大的产品趋势或中美对比 / 接下来该观察什么。

@@ -548,15 +548,20 @@ export const categoryHeatmapItems: CategoryHeatmapItem[] = [
     "intensity": 3,
     "signalLabel": "中",
     "products": [
-      "ChatGPT for Clinicians"
+      "ChatGPT for Clinicians",
+      "Gizmo"
     ],
-    "pattern": "OpenAI 推出面向临床医生的 ChatGPT 版本，专注于医疗文献审查、文档和研究，并支持获取 CME 学分。这表明 AI 在专业教育领域的垂直化应用日益成熟，正从通用知识辅助转向高门槛专业领域的深度赋能。",
-    "opportunity": "市场机会在于针对特定专业领域（如法律、金融、工程）开发高度专业化的 AI 学习工具，提供认证和实践支持。这些工具需要具备高准确性、可靠性和可信赖的知识源。",
-    "watchNext": "观察此类专业 AI 教育工具的用户采纳率、专业效用评估以及监管机构的认可情况，特别是在知识更新、隐私保护和伦理合规方面的挑战。",
+    "pattern": "美国 AI 学习产品一边沿着专业教育垂直化深入，一边出现了更轻、更偏消费者分发的新产品。OpenAI 推出面向临床医生的 ChatGPT for Clinicians，强调高门槛专业场景的可信知识辅助；与此同时，AI 学习应用 Gizmo 在 60 天窗口内披露获得 2200 万美元融资，并以 1300 万用户作为分发验证，说明记忆、复习和轻学习闭环仍有创业空间。",
+    "opportunity": "市场机会在于把“专业可信度”与“高频学习习惯”拆成两条不同产品线：一条服务医生、法律、金融等专业用户，另一条服务学生和泛知识用户的日常复习、测验和长期记忆管理。",
+    "watchNext": "继续观察融资驱动的新学习产品能否把增长转化为留存与付费，同时关注专业型 AI 教学工具在合规、知识准确性和机构合作上的推进速度。",
     "sources": [
       {
         "label": "OpenAI Release Notes",
         "href": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
+      },
+      {
+        "label": "TechCrunch Gizmo funding",
+        "href": "https://techcrunch.com/2026/04/15/ai-learning-app-gizmo-levels-up-with-13m-users-and-a-22m-investment/"
       }
     ]
   },
@@ -597,15 +602,20 @@ export const categoryHeatmapItems: CategoryHeatmapItem[] = [
     "signalLabel": "强",
     "products": [
       "Character.AI",
-      "Replika"
+      "Replika",
+      "Series"
     ],
-    "pattern": "Character.AI 在 4 月 14 日推出了 PipSqueak 2 模型，显著提升了 AI 角色的在性格、记忆力和写作质量方面的一致性，并预告了旨在增强世界观构建的 Lorebook 功能。Replika 在此前的一次重大更新中也加强了记忆功能、增加了主动签到、电话、互联网访问和图像生成等多样化互动能力。",
-    "opportunity": "市场机会在于持续提升 AI 角色的情感深度、记忆持久性和多模态互动能力，以提供更沉浸、个性化的陪伴体验。同时，通过 Lorebook 等工具增强用户共创世界的可能，将进一步丰富 AI 陪伴的生态。",
-    "watchNext": "观察 Lorebook 等新功能如何提升用户 UGC 的质量和深度，以及用户对 AI 陪伴的情感依赖和伦理考量如何演变。此外，AI 角色如何更自然地进行长期对话和情境感知也是关键。",
+    "pattern": "美国 AI 陪伴/社交方向已经从单纯“聊天角色”扩展到更轻量的社交入口。Character.AI 继续强化角色一致性、记忆和世界观工具，Replika 则在长期陪伴和多模态互动上持续打磨；与此同时，基于 iMessage 的 AI 社交网络 Series 在最近 60 天披露获得 510 万美元 pre-seed，说明市场也在押注“AI 先嵌进原生社交通道，再长出关系网络”的新形态。",
+    "opportunity": "市场机会不只在更像人的角色，还在更低摩擦的社交分发：把 AI 角色、关系维护、群聊互动和轻社区结合起来，可能比单独做一个 AI 陪伴 App 更容易切到年轻用户的高频使用场景。",
+    "watchNext": "继续观察 Lorebook 这类深互动能力是否能提升留存，也要关注像 Series 这样的融资型新产品能否把 iMessage 等现成入口真正转化成持续社交行为，而不是短期新鲜感。",
     "sources": [
       {
         "label": "Character.AI Blog",
         "href": "https://blog.character.ai/pipsqueak2-and-more/"
+      },
+      {
+        "label": "TechCrunch Series funding",
+        "href": "https://techcrunch.com/2026/04/24/two-college-kids-raise-a-5-1-million-pre-seed-to-build-an-ai-social-network-in-imessage/"
       }
     ]
   },
@@ -709,11 +719,12 @@ export const categoryHeatmapItems: CategoryHeatmapItem[] = [
     "products": [
       "Google AI Edge Eloquent",
       "ChatGPT",
-      "Gemini"
+      "Gemini",
+      "Granola"
     ],
-    "pattern": "美国 AI 效率工具市场呈现出设备端 AI 和现有办公工具深度整合的趋势。Google 发布了 Google AI Edge Eloquent，一款基于 Gemma 的免费、离线、设备端听写 App，能智能优化口语为专业文本。ChatGPT 增强了 Outlook 邮件和日历的整合，支持处理共享邮箱和日历。Gemini 也强化了与 Gmail、Photos、YouTube 的连接，提供个性化帮助。",
-    "opportunity": "离线、设备端 AI 应用在隐私和响应速度上有独特优势，是未来重要的发展方向。AI 与现有办公工具的深度整合能显著提升工作效率，尤其是在数据管理、日程安排和内容创作方面。",
-    "watchNext": "关注离线 AI 在企业应用中的普及程度，以及 AI 助手如何更智能地管理和利用用户在不同应用中的数据，同时确保数据隐私和安全性。此外，AI 在复杂、多步骤办公任务自动化方面的进展也值得关注。",
+    "pattern": "美国 AI 效率工具市场同时出现两条清晰路径：一条是设备端 AI 和现有办公套件的深整合，另一条是围绕单一高频工作流长出的新创业产品。Google 的 AI Edge Eloquent、ChatGPT 与 Gemini 代表前者；而会议笔记产品 Granola 在最近 60 天披露获得 1.25 亿美元融资，并试图从会议记录扩展成更完整的工作流 AI 应用，说明“先占一个高频入口、再向上延展”的路径仍然很有吸引力。",
+    "opportunity": "市场机会在于抓住一个最常发生、最容易验证 ROI 的工作环节切入，比如会议、销售跟进、项目复盘或团队同步，再逐步长成更大的 AI 工作台，而不是一开始就做过重的全能助手。",
+    "watchNext": "继续观察离线 AI 在隐私敏感场景的渗透，也要关注 Granola 这类融资型新产品能否把单点工具成功升级成更广的工作流系统，而不是停留在“好用但窄”的记事工具。",
     "sources": [
       {
         "label": "Google AI Edge Eloquent App - App Store",
@@ -726,6 +737,10 @@ export const categoryHeatmapItems: CategoryHeatmapItem[] = [
       {
         "label": "Gemini Drop",
         "href": "https://blog.google/innovation-and-ai/products/gemini-app/gemini-drop-updates-march-2026/"
+      },
+      {
+        "label": "TechCrunch Granola funding",
+        "href": "https://techcrunch.com/2026/03/25/granola-raises-125m-hits-1-5b-valuation-as-it-expands-from-meeting-notetaker-to-enterprise-ai-app/"
       }
     ]
   },
