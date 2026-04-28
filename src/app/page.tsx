@@ -24,7 +24,7 @@ const navigation = [
   ["section-5", "趋势判断"],
 ] as const;
 
-function renderInline(block: RichTextBlock, strongClassName = "font-semibold text-slate-950") {
+function renderInline(block: RichTextBlock, strongClassName = "font-bold text-slate-950") {
   return block.map((segment, index) =>
     segment.strong ? (
       <strong key={`${segment.text}-${index}`} className={strongClassName}>
@@ -36,7 +36,15 @@ function renderInline(block: RichTextBlock, strongClassName = "font-semibold tex
   );
 }
 
-function RichParagraphStack({
+function needsInlineSpace(previous: RichTextBlock, next: RichTextBlock) {
+  const previousText = previous.map((segment) => segment.text).join("").trim();
+  const nextText = next.map((segment) => segment.text).join("").trim();
+  const previousLast = previousText.slice(-1);
+  const nextFirst = nextText.charAt(0);
+  return /[A-Za-z0-9)]/.test(previousLast) && /[A-Za-z0-9(]/.test(nextFirst);
+}
+
+function RichInlineParagraph({
   blocks,
   className,
   strongClassName,
@@ -46,13 +54,14 @@ function RichParagraphStack({
   strongClassName?: string;
 }) {
   return (
-    <div className="space-y-3">
+    <p className={className ?? "text-sm leading-7 text-slate-700 sm:text-[15px]"}>
       {blocks.map((block, index) => (
-        <p key={index} className={className ?? "text-sm leading-7 text-slate-700 sm:text-[15px]"}>
+        <span key={index}>
+          {index > 0 && needsInlineSpace(blocks[index - 1], block) ? " " : ""}
           {renderInline(block, strongClassName)}
-        </p>
+        </span>
       ))}
-    </div>
+    </p>
   );
 }
 
@@ -86,7 +95,7 @@ function InsightBlock({ blocks }: { blocks: RichTextBlock[] }) {
       </div>
       <ul className="space-y-3">
         {blocks.map((block, index) => (
-          <li key={index} className="flex gap-3 text-sm leading-7 text-slate-700 sm:text-[15px]">
+          <li key={index} className="flex gap-3 text-sm font-medium leading-7 text-slate-800 sm:text-[15px]">
             <span className="mt-2 h-2 w-2 rounded-full bg-cyan-600" />
             <span>{renderInline(block)}</span>
           </li>
@@ -167,9 +176,7 @@ function FindingCard({ finding, index }: { finding: Finding; index: number }) {
         <div className="space-y-5">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">summary</p>
-            <div className="mt-3">
-              <RichParagraphStack blocks={finding.summary} className="text-sm leading-7 text-slate-700 sm:text-[15px]" />
-            </div>
+            <RichInlineParagraph blocks={finding.summary} className="mt-3 text-sm leading-7 text-slate-700 sm:text-[15px]" />
             <SourceLine links={finding.sources} />
           </div>
           <InsightBlock blocks={finding.whyItMatters} />

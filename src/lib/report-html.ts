@@ -29,8 +29,18 @@ function renderRichInline(block: RichTextBlock) {
     .join("");
 }
 
-function renderRichParagraphs(blocks: RichTextBlock[]) {
-  return blocks.map((block) => `<p>${renderRichInline(block)}</p>`).join("");
+function needsInlineSpace(previous: RichTextBlock, next: RichTextBlock) {
+  const previousText = previous.map((segment) => segment.text).join("").trim();
+  const nextText = next.map((segment) => segment.text).join("").trim();
+  const previousLast = previousText.slice(-1);
+  const nextFirst = nextText.charAt(0);
+  return /[A-Za-z0-9)]/.test(previousLast) && /[A-Za-z0-9(]/.test(nextFirst);
+}
+
+function renderRichInlineBlocks(blocks: RichTextBlock[]) {
+  return blocks
+    .map((block, index) => `${index > 0 && needsInlineSpace(blocks[index - 1], block) ? " " : ""}${renderRichInline(block)}`)
+    .join("");
 }
 
 function renderRichBulletList(blocks: RichTextBlock[]) {
@@ -80,7 +90,7 @@ function renderFinding(finding: Finding, index: number) {
         <div class="copy">
           <div class="summary">
             <p class="eyebrow">summary</p>
-            <div class="paragraph-stack">${renderRichParagraphs(finding.summary)}</div>
+            <p class="summary-inline">${renderRichInlineBlocks(finding.summary)}</p>
             <p class="sources"><strong>来源：</strong>${renderLinks(finding.sources)}</p>
           </div>
           <div class="insight">
@@ -633,15 +643,16 @@ export function buildReportHtml(report: ReportData, archive: ReportArchiveItem[]
       .chip { border: 1px solid #bae6fd; background: #ecfeff; color: #0e7490; text-transform: uppercase; letter-spacing: 0.08em; }
       .chip-muted { border-color: #e2e8f0; background: rgba(255,255,255,0.88); color: #64748b; }
       .label { color: #0e7490; text-transform: uppercase; letter-spacing: 0.18em; padding-left: 0; }
+      strong { font-weight: 800; color: #020617; }
       .summary p, .summary-list p, .sources { color: #334155; line-height: 1.9; }
-      .paragraph-stack { display: grid; gap: 12px; }
+      .summary-inline { margin: 12px 0 0; }
       .summary-bullet, .insight-list li { display: flex; gap: 12px; align-items: flex-start; }
       .bullet { width: 8px; height: 8px; margin-top: 11px; border-radius: 999px; background: #0891b2; flex: none; }
       .eyebrow { margin: 0; color: #64748b; text-transform: uppercase; letter-spacing: 0.18em; font-size: 12px; font-weight: 700; }
       .insight { margin-top: 20px; padding: 20px; border-radius: 24px; border: 1px solid rgba(165,243,252,0.8); background: linear-gradient(135deg, rgba(236,254,255,0.92), rgba(248,250,252,0.96)); }
       .insight-head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
       .insight-accent { width: 4px; height: 40px; border-radius: 999px; background: #06b6d4; }
-      .insight-list { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; color: #334155; line-height: 1.9; }
+      .insight-list { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; color: #1e293b; line-height: 1.9; font-weight: 600; }
       .thumb { margin: 0; overflow: hidden; border-radius: 22px; border: 1px solid #e2e8f0; background: #f8fafc; }
       .thumb img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
       .thumb figcaption { padding: 8px 12px; font-size: 11px; color: #64748b; background: rgba(255,255,255,0.92); border-top: 1px solid #e2e8f0; }
