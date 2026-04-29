@@ -86,7 +86,7 @@ function productPreview(products: string[]) {
 }
 
 function patternPreview(pattern: string) {
-  return pattern.length > 34 ? `${pattern.slice(0, 34)}...` : pattern;
+  return pattern.length > 48 ? `${pattern.slice(0, 48)}...` : pattern;
 }
 
 function strongestCategories(items: CategoryHeatmapItem[], market: CategoryHeatmapItem["market"]) {
@@ -167,7 +167,7 @@ export function CategoryHeatmap({ items }: { items: CategoryHeatmapItem[] }) {
           <div className="space-y-4">
             {categories.map((category, categoryIndex) => (
               <div key={category} className="grid gap-3 lg:grid-cols-[180px_repeat(2,minmax(0,1fr))] lg:items-stretch">
-                <div className="rounded-[1.25rem] border border-slate-200 bg-[#f5f6fb] px-4 py-4 text-slate-800 h-[9.75rem]">
+                <div className="rounded-[1.25rem] border border-slate-200 bg-[#f5f6fb] px-4 py-4 text-slate-800 h-[11.25rem]">
                   <div className="flex h-full flex-col">
                     <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-400">
                       {String(categoryIndex + 1).padStart(2, "0")}
@@ -203,7 +203,7 @@ export function CategoryHeatmap({ items }: { items: CategoryHeatmapItem[] }) {
                           onMouseLeave={() => setHoveredId(null)}
                           onFocus={() => setHoveredId(item.id)}
                           onBlur={() => setHoveredId(null)}
-                          className={`h-[9.75rem] w-full rounded-[1.25rem] border p-4 text-left transition focus:outline-none focus:ring-4 focus:ring-[#d9def8] ${style.cell} ${
+                          className={`h-[11.25rem] w-full overflow-hidden rounded-[1.25rem] border p-4 text-left transition focus:outline-none focus:ring-4 focus:ring-[#d9def8] ${style.cell} ${
                             isSelected
                               ? "shadow-[0_0_0_3px_rgba(46,132,213,0.18),0_20px_48px_rgba(15,23,42,0.14)]"
                               : isHovered
@@ -218,7 +218,7 @@ export function CategoryHeatmap({ items }: { items: CategoryHeatmapItem[] }) {
                                 {item.signalLabel}
                               </span>
                             </span>
-                            <span className="mt-5 flex min-h-[2.75rem] flex-wrap content-start gap-2">
+                            <span className="mt-5 flex min-h-[3.25rem] flex-wrap content-start gap-2 overflow-hidden">
                               {previewProducts.length > 0 ? (
                                 previewProducts.map((product) => (
                                   <span
@@ -234,7 +234,9 @@ export function CategoryHeatmap({ items }: { items: CategoryHeatmapItem[] }) {
                                 </span>
                               )}
                             </span>
-                            <span className="mt-auto line-clamp-2 block text-sm leading-6 opacity-75">{patternPreview(item.pattern)}</span>
+                            <span className="mt-auto block overflow-hidden text-sm leading-6 opacity-75 [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3]">
+                              {patternPreview(item.pattern)}
+                            </span>
                           </div>
                         </button>
 

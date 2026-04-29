@@ -164,7 +164,7 @@ function productPreview(products: string[]) {
 }
 
 function patternPreview(pattern: string) {
-  return pattern.length > 34 ? `${pattern.slice(0, 34)}...` : pattern;
+  return pattern.length > 48 ? `${pattern.slice(0, 48)}...` : pattern;
 }
 
 function strongestCategories(items: CategoryHeatmapItem[], market: CategoryHeatmapItem["market"]) {
@@ -689,7 +689,7 @@ export function buildReportHtml(report: ReportData, archive: ReportArchiveItem[]
       .heat-rows { display: grid; gap: 16px; }
       .heat-row { display: grid; gap: 12px; }
       .heat-category {
-        height: 156px;
+        height: 180px;
         padding: 16px;
         border-radius: 20px;
         border: 1px solid #e2e8f0;
@@ -701,21 +701,31 @@ export function buildReportHtml(report: ReportData, archive: ReportArchiveItem[]
       .heat-cell-wrap { position: relative; }
       .heat-cell {
         width: 100%;
-        height: 156px;
+        height: 180px;
         padding: 16px;
         border-radius: 20px;
         border: 1px solid transparent;
         text-align: left;
         transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, filter 180ms ease;
         cursor: pointer;
+        overflow: hidden;
       }
       .heat-cell:hover { transform: translateY(-2px); filter: brightness(1.02); }
       .heat-cell:focus-visible { outline: 0; box-shadow: 0 0 0 4px rgba(217, 222, 248, 0.9); }
       .heat-cell.is-selected { box-shadow: 0 0 0 3px rgba(46,132,213,0.18), 0 20px 48px rgba(15,23,42,0.14); }
       .heat-cell-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
       .heat-market { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; opacity: 0.8; }
-      .heat-products { display: flex; flex-wrap: wrap; gap: 8px; min-height: 44px; margin-top: 20px; align-content: flex-start; }
-      .heat-pattern { display: block; margin-top: auto; font-size: 14px; line-height: 1.7; opacity: 0.78; }
+      .heat-products { display: flex; flex-wrap: wrap; gap: 8px; min-height: 52px; margin-top: 20px; align-content: flex-start; overflow: hidden; }
+      .heat-pattern {
+        display: -webkit-box;
+        margin-top: auto;
+        overflow: hidden;
+        font-size: 14px;
+        line-height: 1.7;
+        opacity: 0.78;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+      }
       .heat-tag, .detail-tag, .hover-tag {
         display: inline-flex;
         align-items: center;
