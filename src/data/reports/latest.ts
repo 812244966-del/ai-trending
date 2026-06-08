@@ -1,30 +1,30 @@
 import type { CategoryHeatmapItem } from "../../components/category-heatmap";
 import type { Finding, MarketSummaryPoint, TrendJudgment } from "../../lib/report-types";
 
-export const reportDate = "2026-05-18";
+export const reportDate = "2026-06-08";
 
 export const topFindings: Finding[] = [
   {
-    "name": "Meta AI 核心能力升级并扩展至全生态应用与硬件",
+    "name": "Muse Spark 在 Meta 生态产品中的能力扩展",
     "market": "美国",
-    "date": "2026-05-12",
+    "date": "2026-06-01",
     "type": "feature launch",
     "summary": [
       [
         {
-          "text": "Meta AI 通过其最新模型Muse Spark进行了全面升级。此次升级增强了其语音交互能力，支持更自然的对话，允许用户打断、切换话题及多语言交流。",
+          "text": "Meta 于 5 月 12 日更新并逐步在旗下产品中推广其最新的 Muse Spark 模型，该模型将赋能 Meta AI 应用、WhatsApp、Instagram、Facebook、Messenger 和 Threads，以及 Ray-Ban Meta 和 Oakley Meta 眼镜。",
           "strong": false
         }
       ],
       [
         {
-          "text": "新功能包括实时AI眼镜的视觉问答（用户可将摄像头指向现实世界并提问所见内容），以及在Facebook Marketplace和全网范围内搜索商品的购物功能。",
+          "text": "在 Meta AI App 中，Muse Spark 实现了更快速自然的语音响应，用户可以自由打断、切换话题或语言。同时，新增购物功能，允许用户搜索 Facebook Marketplace 房源并直接与品牌或创作者互动。",
           "strong": false
         }
       ],
       [
         {
-          "text": "Muse Spark的核心智能将逐步扩展至Meta旗下的WhatsApp、Instagram、Facebook、Messenger和Threads等应用，涵盖搜索栏、群聊和帖子等多个触点。Meta还在测试群聊中的“侧边聊天”和Threads中的@meta.ai提及功能。",
+          "text": "对于智能眼镜，Muse Spark 将逐步支持实时 AI 功能，如通过摄像头识别并回答眼前物体的问题。",
           "strong": false
         }
       ]
@@ -32,19 +32,19 @@ export const topFindings: Finding[] = [
     "whyItMatters": [
       [
         {
-          "text": "此次更新标志着Meta在将AI深度融入用户日常数字生活方面的重大进展，旨在使AI助手更加无缝、上下文感知和实用。通过在多平台和AI眼镜上的集成，Meta正在构建一个统一的、泛在的AI体验。",
+          "text": "这一更新大幅提升了 Meta AI 的能力、上下文理解和日常实用性，通过多模态交互（语音、视觉、文本）满足用户在不同场景下的需求。",
           "strong": false
         }
       ],
       [
         {
-          "text": "实时视觉问答和增强的购物功能展现了多模态AI的强大潜力，即AI不仅能理解文本和语音，还能理解现实世界的视觉信息并采取行动，这预示着未来AI将成为更主动、更具交互性的生活助手。",
+          "text": "它展示了 AI 巨头将大模型能力深度集成到现有产品生态的策略，旨在让 AI 成为用户跨平台、无缝体验的核心部分。",
           "strong": false
         }
       ],
       [
         {
-          "text": "群聊中的“侧边聊天”和社交平台提及功能，旨在将AI作为一种便捷的协作工具，进一步模糊AI与人类社交互动的界限。接下来需关注这些新功能的用户接受度及其对现有产品生态的长期影响。",
+          "text": "未来需密切关注用户在各种 Meta 应用和 AI 眼镜中对这些新功能的实际接受度和使用频率，以及其对用户粘性的影响。",
           "strong": false
         }
       ]
@@ -65,146 +65,26 @@ export const topFindings: Finding[] = [
     }
   },
   {
-    "name": "ChatGPT 推出个人财务管理功能",
+    "name": "ChatGPT 记忆能力升级并全量上线“Lockdown Mode”",
     "market": "美国",
-    "date": "2026-05-15",
-    "type": "feature launch",
-    "summary": [
-      [
-        {
-          "text": "OpenAI正在为美国境内的ChatGPT Pro用户逐步推出一项新的个人财务管理体验。",
-          "strong": false
-        }
-      ],
-      [
-        {
-          "text": "用户可以通过Plaid安全连接其支持的金融账户，从而在一个集中的仪表板中查看支出、账单、订阅、净资产和投资信息。",
-          "strong": false
-        }
-      ],
-      [
-        {
-          "text": "该功能在网页和iOS平台上可用，允许用户直接在ChatGPT中提问或通过“财务”页面探索洞察、审阅即将到来的支付、追踪循环扣费，并思考预算、储蓄目标、债务偿还等财务决策。",
-          "strong": false
-        }
-      ]
-    ],
-    "whyItMatters": [
-      [
-        {
-          "text": "这一功能将ChatGPT从通用助手扩展到高度个性化的垂直领域，通过整合用户的敏感财务数据，为用户提供便捷的财务概览和决策支持，显著提升了AI的实用价值和用户粘性。",
-          "strong": false
-        }
-      ],
-      [
-        {
-          "text": "通过提供基于个人财务上下文的问答能力，ChatGPT在自动化和智能辅助个人理财方面迈出了重要一步，有望改变用户管理个人财务的方式。",
-          "strong": false
-        }
-      ],
-      [
-        {
-          "text": "此举也带来了数据隐私和安全方面的挑战，尽管声明通过Plaid安全连接，但用户对AI处理敏感信息的信任度将是关键。未来需观察其功能深度、与其他金融工具的整合以及用户反馈。",
-          "strong": false
-        }
-      ]
-    ],
-    "sources": [
-      {
-        "label": "OpenAI Release Notes",
-        "href": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
-      }
-    ],
-    "image": {
-      "url": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/bb/cd/85/bbcd8519-7d86-ec84-fad0-5b12880e3efc/AppIcon-0-0-1x_U007epad-0-0-0-1-0-P3-85-220.png/512x512bb.jpg",
-      "alt": "ChatGPT App Store 预览图",
-      "type": "app store preview",
-      "sourceLabel": "ChatGPT App Store",
-      "sourceHref": "https://apps.apple.com/us/app/chatgpt/id6448311069",
-      "note": "使用 ChatGPT 的 App Store 官方预览图，帮助读者快速识别产品形态。"
-    }
-  },
-  {
-    "name": "ChatGPT 移动应用支持 Codex 远程访问",
-    "market": "美国",
-    "date": "2026-05-14",
-    "type": "feature launch",
-    "summary": [
-      [
-        {
-          "text": "OpenAI在其ChatGPT移动应用中推出了Codex远程访问的预览功能。这项功能允许用户通过手机，远程连接并控制在Mac主机上运行的Codex编程工作。",
-          "strong": false
-        }
-      ],
-      [
-        {
-          "text": "用户可以在手机上启动或继续对话、回答问题、改变方向、批准操作、查看Codex的发现，并轻松切换连接的主机，从而在离开工作台时也能保持工作连接。",
-          "strong": false
-        }
-      ],
-      [
-        {
-          "text": "该功能将在iOS和Android平台上向所有ChatGPT用户（包括免费和Go套餐用户）逐步推出，并加载Mac主机上的实时上下文，例如项目上下文、插件、屏幕截图、终端输出等。",
-          "strong": false
-        }
-      ]
-    ],
-    "whyItMatters": [
-      [
-        {
-          "text": "此更新极大提升了开发者的工作灵活性和效率，特别是对于需要远程协作或在外出时监控、指导AI编程代理的用户而言。它将AI代理的能力从桌面延伸到移动端，实现更无缝的工作流。",
-          "strong": false
-        }
-      ],
-      [
-        {
-          "text": "这也是AI Agent走向“无处不在”的一个缩影，它不再局限于特定设备，而是通过云端和移动端的协同，使得复杂的AI任务可以在后台持续运行，并随时接受人类的指令和反馈。",
-          "strong": false
-        }
-      ],
-      [
-        {
-          "text": "未来需关注Codex在移动端远程访问的稳定性、安全性，以及如何更好地与移动设备特有功能结合，进一步优化开发者体验。",
-          "strong": false
-        }
-      ]
-    ],
-    "sources": [
-      {
-        "label": "OpenAI Release Notes",
-        "href": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
-      }
-    ],
-    "image": {
-      "url": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/bb/cd/85/bbcd8519-7d86-ec84-fad0-5b12880e3efc/AppIcon-0-0-1x_U007epad-0-0-0-1-0-P3-85-220.png/512x512bb.jpg",
-      "alt": "ChatGPT App Store 预览图",
-      "type": "app store preview",
-      "sourceLabel": "ChatGPT App Store",
-      "sourceHref": "https://apps.apple.com/us/app/chatgpt/id6448311069",
-      "note": "使用 ChatGPT 的 App Store 官方预览图，帮助读者快速识别产品形态。"
-    }
-  },
-  {
-    "name": "ChatGPT 免费用户获得更多内联图片",
-    "market": "美国",
-    "date": "2026-05-12",
+    "date": "2026-06-04",
     "type": "notable update",
     "summary": [
       [
         {
-          "text": "ChatGPT的免费用户现在将会在AI回答中看到更多来自网页的内联图片。",
+          "text": "ChatGPT 于 6 月 4 日升级了记忆功能，使其能更好地更新上下文，减少陈旧或矛盾的记忆，从而提高响应的相关性。",
           "strong": false
         }
       ],
       [
         {
-          "text": "这些图片旨在帮助用户更直观地理解视觉相关的话题，例如著名人物、地点和产品，图片将出现在回答的相关部分旁边。",
+          "text": "Plus 和 Pro 用户获得了双倍的记忆容量。记忆现在能够自动更新，ChatGPT 会追踪最重要的细节。",
           "strong": false
         }
       ],
       [
         {
-          "text": "此功能正在全球范围内的网页和iOS平台，面向使用5.5-Instant模型的免费用户逐步推出。",
+          "text": "此外，“Lockdown Mode”已对所有登录用户全量开放，这是一个可选的高级安全设置，限制对网络和外部服务的访问，以降低提示注入攻击的风险。",
           "strong": false
         }
       ]
@@ -212,19 +92,19 @@ export const topFindings: Finding[] = [
     "whyItMatters": [
       [
         {
-          "text": "此举显著提升了免费用户在理解复杂或视觉密集型信息时的体验，使得ChatGPT的回答不仅限于文本，更能结合视觉元素提供更全面的信息，从而降低了AI使用的门槛。",
+          "text": "记忆能力的提升直接改善了用户与 ChatGPT 的互动体验，减少重复信息输入，使对话更连贯、个性化。",
           "strong": false
         }
       ],
       [
         {
-          "text": "对于OpenAI而言，这是通过增强免费用户体验来扩大用户基础、提升产品吸引力的策略，也反映出多模态能力在AI助手中的重要性日益增加。",
+          "text": "“Lockdown Mode”的推出则显示了 OpenAI 对安全性和隐私的重视，为企业用户和关注数据安全的用户提供了更可靠的选择。",
           "strong": false
         }
       ],
       [
         {
-          "text": "未来需观察此类视觉辅助如何影响用户对信息来源的信任，以及其能否激发更多免费用户升级至付费版本。",
+          "text": "这些更新反映了 AI 助手在提升核心能力（记忆）和拓展用户需求（安全）方面的双重努力。",
           "strong": false
         }
       ]
@@ -236,7 +116,7 @@ export const topFindings: Finding[] = [
       }
     ],
     "image": {
-      "url": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/bb/cd/85/bbcd8519-7d86-ec84-fad0-5b12880e3efc/AppIcon-0-0-1x_U007epad-0-0-0-1-0-P3-85-220.png/512x512bb.jpg",
+      "url": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/cf/c8/33/cfc83360-f210-5c47-cee1-ef9458924dfa/AppIcon-0-0-1x_U007epad-0-0-0-1-0-P3-85-220.png/512x512bb.jpg",
       "alt": "ChatGPT App Store 预览图",
       "type": "app store preview",
       "sourceLabel": "ChatGPT App Store",
@@ -245,26 +125,86 @@ export const topFindings: Finding[] = [
     }
   },
   {
-    "name": "即梦AI 上线 Seedance2.0 fast 模型，强化多模态创作体验",
+    "name": "ChatGPT 推出求职与简历优化功能",
+    "market": "美国",
+    "date": "2026-06-01",
+    "type": "feature launch",
+    "summary": [
+      [
+        {
+          "text": "ChatGPT 于 6 月 1 日新增了求职功能，能够帮助用户寻找相关的实时职位和兼职机会。",
+          "strong": false
+        }
+      ],
+      [
+        {
+          "text": "它能够从 Indeed、Upwork、Appcast 等平台和整个网络抓取招聘信息，并根据用户的经验、技能和目标进行个性化推荐。",
+          "strong": false
+        }
+      ],
+      [
+        {
+          "text": "此外，用户还可以在 ChatGPT 中上传或创建简历，针对特定职位进行修改，并下载为专业格式的文档。",
+          "strong": false
+        }
+      ]
+    ],
+    "whyItMatters": [
+      [
+        {
+          "text": "这项功能将 AI 从通用对话扩展到具体的生产力场景，直接解决了用户的求职痛点，提供了从信息获取到内容生成的全流程支持。",
+          "strong": false
+        }
+      ],
+      [
+        {
+          "text": "它展示了 AI 助手在垂直领域提供“Agentic”服务的潜力，能够扮演更积极、更具执行力的角色。",
+          "strong": false
+        }
+      ],
+      [
+        {
+          "text": "后续需观察其推荐的精准度、简历优化效果以及用户对其作为求职工具的信赖程度。",
+          "strong": false
+        }
+      ]
+    ],
+    "sources": [
+      {
+        "label": "OpenAI Release Notes",
+        "href": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
+      }
+    ],
+    "image": {
+      "url": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/cf/c8/33/cfc83360-f210-5c47-cee1-ef9458924dfa/AppIcon-0-0-1x_U007epad-0-0-0-1-0-P3-85-220.png/512x512bb.jpg",
+      "alt": "ChatGPT App Store 预览图",
+      "type": "app store preview",
+      "sourceLabel": "ChatGPT App Store",
+      "sourceHref": "https://apps.apple.com/us/app/chatgpt/id6448311069",
+      "note": "使用 ChatGPT 的 App Store 官方预览图，帮助读者快速识别产品形态。"
+    }
+  },
+  {
+    "name": "即梦AI 上线 Seedance2.0 fast 模型",
     "market": "中国",
-    "date": "2026-05-12",
+    "date": "2026-06-01",
     "type": "notable update",
     "summary": [
       [
         {
-          "text": "抖音旗下AI图片和视频工具即梦AI最近上线了其Seedance2.0 fast模型。",
+          "text": "抖音旗下 AI 图片和视频工具即梦AI 于 6 月 1 日更新至 2.2.2 版本，并上线了 Seedance2.0 fast 模型。",
           "strong": false
         }
       ],
       [
         {
-          "text": "此更新旨在提供全新的多模态创作体验，通过自然语言描述即可生成独一无二的图片和视频。",
+          "text": "此次更新旨在提供全新的多模态创作体验，支持用户通过自然语言描述来生成图片和视频。",
           "strong": false
         }
       ],
       [
         {
-          "text": "用户可以进行多轮尝试以获得满意的效果，并支持编辑功能，进一步降低了用户创作高质量图片和视频的门槛。",
+          "text": "即梦AI 强调其快速生成能力，并允许用户对生成的作品进行编辑和分享。",
           "strong": false
         }
       ]
@@ -272,19 +212,19 @@ export const topFindings: Finding[] = [
     "whyItMatters": [
       [
         {
-          "text": "Seedance2.0 fast模型的推出，进一步提升了即梦AI在视觉内容生成方面的速度和效率，降低了用户创作高质量图片和视频的门槛。",
+          "text": "Seedance2.0 fast 模型的推出，有望进一步提升用户进行图片和视频创作的效率和质量，降低创作门槛。",
           "strong": false
         }
       ],
       [
         {
-          "text": "这反映了中国市场在AI创作工具领域对“快速、便捷、易用”的强烈需求，特别是在短视频和社交媒体内容创作日益增长的背景下，AI正在成为普通用户和创作者的得力助手。",
+          "text": "这反映了中国市场对多模态 AI 创作工具的旺盛需求，以及大厂在 AIGC 领域持续加码的趋势。",
           "strong": false
         }
       ],
       [
         {
-          "text": "接下来需关注该模型在实际应用中的用户反馈，尤其是生成内容的稳定性和创意性是否能持续满足用户期待，以及如何保持与市场竞品的差异化优势。",
+          "text": "未来需关注该模型在实际应用中的表现，以及用户对生成内容的满意度和创造力激发效果。",
           "strong": false
         }
       ]
@@ -296,7 +236,7 @@ export const topFindings: Finding[] = [
       }
     ],
     "image": {
-      "url": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/d6/2f/0b/d62f0b10-fbf6-d047-47ef-963c7d0a472f/AppIcon-0-0-1x_U007ephone-0-1-P3-85-220.png/512x512bb.jpg",
+      "url": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/6a/6c/e2/6a6ce2b4-24f9-a1a1-b45d-4d4471648f54/AppIcon-0-0-1x_U007ephone-0-1-P3-85-220.png/512x512bb.jpg",
       "alt": "即梦AI - 抖音旗下AI图片和视频工具 App Store 预览图",
       "type": "app store preview",
       "sourceLabel": "即梦AI App Store",
@@ -305,26 +245,26 @@ export const topFindings: Finding[] = [
     }
   },
   {
-    "name": "点点 全新上线攻略模式，提供深度生活决策辅助",
+    "name": "腾讯元宝上线“元宝高考通”",
     "market": "中国",
-    "date": "2026-05-16",
+    "date": "2026-06-05",
     "type": "feature launch",
     "summary": [
       [
         {
-          "text": "小红书旗下AI生活助手点点App全新上线“攻略模式”。",
+          "text": "腾讯元宝于 6 月 5 日更新至 2.71.0 版本，并正式上线了“元宝高考通”功能。",
           "strong": false
         }
       ],
       [
         {
-          "text": "该模式基于小红书海量的真人经验数据，能够为用户生成专属的深度攻略，覆盖旅行出游、生活兴趣、购物决策、美食探店、笔记总结和知识梳理等多个生活场景。",
+          "text": "该功能被称为“行业首个高考咨询师 Agent”，旨在提供一站式高考志愿填报辅助，覆盖查分、选校、选专业、填报及录取全流程。",
           "strong": false
         }
       ],
       [
         {
-          "text": "点点支持语音问和带图问，使用户能够以更自然、直观的方式获取信息和决策支持。",
+          "text": "通过 AI 智能体，元宝将为考生和家长提供个性化的建议和信息支持。",
           "strong": false
         }
       ]
@@ -332,19 +272,79 @@ export const topFindings: Finding[] = [
     "whyItMatters": [
       [
         {
-          "text": "此举将AI能力深度融入到用户的生活决策流程中，通过利用UGC社区（如小红书）的真实经验，解决了用户在信息过载时代获取高质量、个性化攻略的痛点，显著提升了生活效率和决策质量。",
+          "text": "“元宝高考通”的推出，标志着通用 AI 助手开始深度渗透中国教育这一重要垂直领域，解决高考志愿填报这一长期存在的痛点。",
           "strong": false
         }
       ],
       [
         {
-          "text": "“攻略模式”的推出，展现了AI在整合垂直内容生态、提供精准本地化服务方面的巨大潜力，这对于需要AI辅助生活消费决策的中国用户具有重要价值。",
+          "text": "这体现了 AI 产品在本地化、场景化应用上的创新，通过结合特定行业知识和数据，提升用户粘性和平台价值。",
           "strong": false
         }
       ],
       [
         {
-          "text": "接下来需要观察用户对AI生成攻略的信任度、内容的实时更新机制以及个性化推荐的精准性。同时，其商业化路径（如与商家合作、导流）也值得关注。",
+          "text": "未来需关注其推荐的准确性和权威性，以及用户对其作为高考决策辅助工具的信任度。",
+          "strong": false
+        }
+      ]
+    ],
+    "sources": [
+      {
+        "label": "腾讯元宝 App Store",
+        "href": "https://apps.apple.com/cn/app/%E8%85%BE%E8%AE%AF%E5%85%83%E5%AE%9D-%E6%8E%A5%E5%85%A5deepseek-r1%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/id6480446430"
+      }
+    ],
+    "image": {
+      "url": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/cd/83/60/cd836021-5c2e-6b29-3140-b5eb54f1cb2b/AppIcon-0-0-1x_U007epad-0-1-0-sRGB-85-220.png/512x512bb.jpg",
+      "alt": "元宝-腾讯全能AI助手 App Store 预览图",
+      "type": "app store preview",
+      "sourceLabel": "腾讯元宝 App Store",
+      "sourceHref": "https://apps.apple.com/cn/app/%E8%85%BE%E8%AE%AF%E5%85%83%E5%AE%9D-%E6%8E%A5%E5%85%A5deepseek-r1%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/id6480446430",
+      "note": "使用 元宝-腾讯全能AI助手 的 App Store 官方预览图，帮助读者快速识别产品形态。"
+    }
+  },
+  {
+    "name": "点点上线基于小红书数据的“攻略模式”",
+    "market": "中国",
+    "date": "2026-06-04",
+    "type": "feature launch",
+    "summary": [
+      [
+        {
+          "text": "生活助手 App “点点” 于 6 月 4 日更新至 3.23 版本，全新上线了“攻略模式”。",
+          "strong": false
+        }
+      ],
+      [
+        {
+          "text": "该模式基于小红书海量的真人经验数据，旨在为用户生成专属的深度攻略。",
+          "strong": false
+        }
+      ],
+      [
+        {
+          "text": "攻略内容覆盖旅行规划、生活兴趣、购物决策、美食探店、笔记总结和知识梳理等多个生活场景。",
+          "strong": false
+        }
+      ]
+    ],
+    "whyItMatters": [
+      [
+        {
+          "text": "“攻略模式”的推出，有效结合了 AI 的信息整合能力与小红书真实、丰富、生活化的内容生态。",
+          "strong": false
+        }
+      ],
+      [
+        {
+          "text": "这为用户提供了更精准、更个性化的生活决策支持，显著提升了生活工具的实用性和用户体验，也反映了 AI 与 UGC 社区内容结合的潜力。",
+          "strong": false
+        }
+      ],
+      [
+        {
+          "text": "未来需关注用户对 AI 生成攻略的信任度、内容的即时更新能力以及如何将其转化为实际消费行为。",
           "strong": false
         }
       ]
@@ -368,59 +368,90 @@ export const topFindings: Finding[] = [
 
 export const trendJudgments: TrendJudgment[] = [
   {
-    "title": "AI 助手正深度融入用户日常数字生活，向个性化、多模态、无处不在的方向发展",
+    "title": "AI 助手记忆与上下文理解能力持续强化",
     "evidence": [
       {
-        "text": "Meta AI 通过其Muse Spark模型实现了核心能力升级，支持更自然的语音交互、实时视觉问答和增强的购物功能，并计划将这些智能能力扩展至WhatsApp、Instagram、Facebook、Messenger和Threads等Meta全系应用及AI眼镜。",
-        "strong": false
+        "text": "ChatGPT 升级记忆功能，使系统能更好地更新上下文，减少陈旧或矛盾的记忆，从而提高响应的相关性。Plus 和 Pro 用户记忆容量翻倍。",
+        "strong": true
       },
       {
-        "text": "ChatGPT为美国Pro用户推出个人财务管理功能，允许安全连接金融账户以提供财务概览和决策支持，同时其移动应用也新增了Codex远程访问，让开发者能随时随地控制AI编程代理。",
-        "strong": false
+        "text": "Meta AI 的 Muse Spark 模型强调其更强的上下文理解能力，并正在逐步推广到旗下所有应用和智能眼镜。",
+        "strong": true
       },
       {
-        "text": "中国的小红书旗下AI生活助手点点全新上线“攻略模式”，基于海量真人经验提供深度生活决策辅助。这些进展都表明，AI不再仅仅是独立的对话工具，而是越来越成为集成在现有平台中、能感知多模态信息（语音、视觉、个人数据），并提供深度个性化服务的泛在助手。",
-        "strong": false
+        "text": "Character.AI 在 4 月份更新中，大幅改进了 Memory 功能，扩展了可跟踪的类别，增加了聊天内记忆记录通知，并预告将推出记忆可视化功能。",
+        "strong": true
+      },
+      {
+        "text": "Gemini App 在 3 月份的更新中，提到 Gemini Live 3.1 的对话流程更快，上下文保持时间翻倍，支持更自然、直观的对话。",
+        "strong": true
       }
     ],
     "comparison": [
       {
-        "text": "中美市场在这一趋势上表现出共通性：美国主要科技巨头正在通过自身强大的生态系统，将AI助手能力渗透到更广泛的消费场景中（如Meta AI的社交与购物，ChatGPT的财务与编程）。",
+        "text": "过去 AI 助手的一大痛点在于上下文丢失导致重复沟通和体验不佳。当前各主要 AI 平台都将提升记忆和上下文理解能力作为核心发展方向，旨在提供更自然、更连贯、更个性化的对话体验。",
         "strong": false
       },
       {
-        "text": "中国市场，以点点为代表的产品，也正通过整合语音、视觉、生态信源（如小红书内容）等能力，提供覆盖学习、工作、生活的全场景服务。双方都在努力通过深度集成和多模态交互，构建用户的AI“搭子”或“管家”体验。",
+        "text": "这种强化不仅限于模型层面，还体现在产品功能设计上，如 Character.AI 的记忆可视化，让用户对 AI 的“记忆”有更强的感知和控制力。",
         "strong": false
       }
     ]
   },
   {
-    "title": "多模态交互成为 AI 助手和内容创作领域的核心竞争力",
+    "title": "AI 功能加速融入垂直场景和平台生态",
     "evidence": [
       {
-        "text": "Meta AI的Muse Spark模型强调了“更快的声音响应”、“更智能的AI眼镜”以及通过摄像头进行“实时AI”的能力，这直接提升了多模态交互的流畅度和实用性。",
-        "strong": false
+        "text": "Meta AI 将 Muse Spark 深入整合至 WhatsApp、Instagram、Facebook、Messenger、Threads 等核心应用，并支持购物、实时视觉问答等特定场景。",
+        "strong": true
       },
       {
-        "text": "ChatGPT为免费用户提供了更多“内联图片”以帮助理解视觉主题，这使得AI的输出不再局限于文本，而是能够结合图像提供更直观的信息。",
-        "strong": false
+        "text": "ChatGPT 推出求职和简历优化功能，直接提供招聘信息和格式化简历服务，将 AI 能力引入专业办公场景。",
+        "strong": true
       },
       {
-        "text": "在中国，即梦AI上线了Seedance2.0 fast模型，强调“全新多模态创作体验”，用户可通过自然语言描述生成高质量的图片和视频。",
-        "strong": false
+        "text": "腾讯元宝上线高考通，提供高考志愿填报一站式服务，并整合微信生态信源，深度服务教育垂类用户。",
+        "strong": true
       },
       {
-        "text": "这些信号共同指向多模态能力在AI产品中的关键作用，无论是理解用户意图还是生成丰富内容。",
-        "strong": false
+        "text": "点点 App 基于小红书数据推出“攻略模式”，专注旅行、购物、生活兴趣等生活决策场景。",
+        "strong": true
       }
     ],
     "comparison": [
       {
-        "text": "无论是在美国还是中国，AI产品都在积极探索和强化多模态能力，这不仅体现在AI助手对用户输入的理解（语音、视觉），也体现在AI输出的丰富性（文本、图片、视频）。",
+        "text": "AI 产品的竞争已从单一模型能力转向如何将 AI 深度嵌入用户日常生活和特定工作流。通过结合自有生态数据或外部垂类内容，AI 正在从通用工具向专业化、场景化助手转变。",
         "strong": false
       },
       {
-        "text": "美国巨头倾向于将多模态能力集成到现有大流量平台（如Meta的应用和硬件），而中国市场则在独立AI创作工具（如即梦AI、豆包的P图和视频生成）和全能AI助手（腾讯元宝的AI绘图和视频生成）中双向发力。",
+        "text": "中美两国市场均呈现出这一趋势，但中国产品更注重结合本地化社交媒体和教育生态，提供更接地气的解决方案。",
+        "strong": false
+      }
+    ]
+  },
+  {
+    "title": "智能硬件作为 AI 入口的重要性日益凸显",
+    "evidence": [
+      {
+        "text": "Meta AI 的 Muse Spark 模型逐步推广到 Ray-Ban Meta 和 Oakley Meta 眼镜，支持实时 AI 功能，如通过摄像头识别并回答眼前物体的问题。",
+        "strong": true
+      },
+      {
+        "text": "Rokid AI 眼镜App 持续更新，优化 AI 助手交互、直播推流和城市伴游等功能，并接入通义千问、豆包等大模型。",
+        "strong": true
+      },
+      {
+        "text": "Google AI Edge Eloquent 作为端侧语音转文本应用，强调本地化处理和隐私，展示了端侧 AI 在硬件上的应用潜力。",
+        "strong": true
+      }
+    ],
+    "comparison": [
+      {
+        "text": "智能眼镜等设备正从传统显示功能向集成 AI 助手演进，通过多模态交互（语音、视觉）将 AI 能力从手机/PC 端延伸到更自然的物理世界。",
+        "strong": false
+      },
+      {
+        "text": "尽管 AI 硬件市场仍处于早期探索阶段，但科技巨头和创新公司都在积极布局，试图找到新的 AI 交互范式和杀手级应用。",
         "strong": false
       }
     ]
@@ -429,7 +460,7 @@ export const trendJudgments: TrendJudgment[] = [
     "title": "中美都在继续把 AI 产品入口前移",
     "evidence": [
       {
-        "text": "本期美国的 Meta AI 核心能力升级并扩展至全生态应用与硬件、ChatGPT 推出个人财务管理功能，以及中国的 即梦AI 上线 Seedance2.0 fast 模型，强化多模态创作体验、点点 全新上线攻略模式，提供深度生活决策辅助，都说明消费者能直接感知的 AI 入口还在继续前推。",
+        "text": "本期美国的 Muse Spark 在 Meta 生态产品中的能力扩展、ChatGPT 记忆能力升级并全量上线“Lockdown Mode”，以及中国的 即梦AI 上线 Seedance2.0 fast 模型、腾讯元宝上线“元宝高考通”，都说明消费者能直接感知的 AI 入口还在继续前推。",
         "strong": false
       }
     ],
@@ -444,28 +475,13 @@ export const trendJudgments: TrendJudgment[] = [
     "title": "美国更偏向模型能力和工作流深度升级",
     "evidence": [
       {
-        "text": "主流科技公司持续升级其AI助手核心模型，并积极将多模态能力（如语音、实时视觉、图片理解）深度集成到其现有产品生态和硬件中。",
+        "text": "AI 驱动的图片/视频编辑和生成工具日益普及，在 App Store 榜单上表现活跃，功能集成度不断提高。",
         "strong": false
       }
     ],
     "comparison": [
       {
-        "text": "中国市场在AI图片和视频创作领域展现出极强的活力，头部应用不断推出新模型（如Seedance2.0 fast），强化多模态生成和编辑能力。",
-        "strong": false
-      }
-    ]
-  },
-  {
-    "title": "中国更偏向入口整合和高频场景覆盖",
-    "evidence": [
-      {
-        "text": "中国市场在AI图片和视频创作领域展现出极强的活力，头部应用不断推出新模型（如Seedance2.0 fast），强化多模态生成和编辑能力。",
-        "strong": false
-      }
-    ],
-    "comparison": [
-      {
-        "text": "观察用户对集成式AI助手的接受度、隐私数据处理方式，以及垂直领域（如购物、金融）的AI辅助功能如何深化。",
+        "text": "中国巨头（尤其是字节跳动）在 AI 图片和视频生成领域投入巨大，通过旗下多款产品抢占市场，强调多模态创作和易用性。",
         "strong": false
       }
     ]
@@ -474,32 +490,32 @@ export const trendJudgments: TrendJudgment[] = [
 
 export const categoryHeatmapItems: CategoryHeatmapItem[] = [
   {
-    "id": "ai-assistant-search-us",
+    "id": "us-ai-assistant-search",
     "category": "AI 助手/搜索",
     "market": "美国",
     "intensity": 4,
-    "signalLabel": "极强",
+    "signalLabel": "强",
     "products": [
       "Meta AI",
-      "Gemini",
       "ChatGPT",
+      "Gemini App",
       "Google AI Edge Eloquent"
     ],
-    "pattern": "主流科技公司持续升级其AI助手核心模型，并积极将多模态能力（如语音、实时视觉、图片理解）深度集成到其现有产品生态和硬件中。",
-    "opportunity": "开发更具情境感知能力、无缝融入日常工作流、并能处理多模态复杂任务的AI助手插件或垂直应用。",
-    "watchNext": "观察用户对集成式AI助手的接受度、隐私数据处理方式，以及垂直领域（如购物、金融）的AI辅助功能如何深化。",
+    "pattern": "巨头 AI 助手持续深化多模态能力、生态整合和场景化应用，提升用户体验和安全性。",
+    "opportunity": "垂类场景 AI 助手、多模态交互创新，以及企业级部署的安全性和可控性。",
+    "watchNext": "用户在不同平台上的接受度和粘性，长尾场景的渗透以及商业模式的探索。",
     "sources": [
       {
         "label": "Meta 官方",
         "href": "https://about.fb.com/news/2026/04/introducing-muse-spark-meta-superintelligence-labs/"
       },
       {
-        "label": "Gemini Drop",
-        "href": "https://blog.google/innovation-and-ai/products/gemini-app/gemini-drop-updates-march-2026/"
-      },
-      {
         "label": "OpenAI Release Notes",
         "href": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
+      },
+      {
+        "label": "Gemini Drop",
+        "href": "https://blog.google/innovation-and-ai/products/gemini-app/gemini-drop-updates-march-2026/"
       },
       {
         "label": "Google AI Edge Eloquent App Store",
@@ -508,20 +524,19 @@ export const categoryHeatmapItems: CategoryHeatmapItem[] = [
     ]
   },
   {
-    "id": "ai-assistant-search-cn",
+    "id": "cn-ai-assistant-search",
     "category": "AI 助手/搜索",
     "market": "中国",
     "intensity": 4,
-    "signalLabel": "极强",
+    "signalLabel": "强",
     "products": [
       "豆包",
       "腾讯元宝",
-      "点点",
       "千问"
     ],
-    "pattern": "中国头部互联网公司正将旗下AI助手打造为“全能型管家”，通过接入先进大模型、打通生态信源（如微信公众号、视频号、小红书内容），提供多样化的辅助功能。",
-    "opportunity": "发掘AI助手在特定中国生活场景（如小红书攻略生成、本地化服务搜索）中的细分价值，优化多模态输入（语音、拍照）的准确性和便捷性。",
-    "watchNext": "关注各平台AI助手如何平衡功能广度与专业深度，以及用户对其内容生态整合的满意度，尤其是付费模式的接受度。",
+    "pattern": "中国巨头积极布局通用型 AI 助手，强调多模态能力与生态融合，并深入生活、办公、学习场景。",
+    "opportunity": "结合本地生态优势，深耕细分场景，提升用户粘性；在用户抱怨中发现优化体验和模型能力的着力点。",
+    "watchNext": "商业化路径、用户付费意愿，以及产品在复杂推理和精准性方面的持续提升。",
     "sources": [
       {
         "label": "豆包 App Store",
@@ -532,189 +547,147 @@ export const categoryHeatmapItems: CategoryHeatmapItem[] = [
         "href": "https://apps.apple.com/cn/app/%E8%85%BE%E8%AE%AF%E5%85%83%E5%AE%9D-%E6%8E%A5%E5%85%A5deepseek-r1%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/id6480446430"
       },
       {
-        "label": "点点 App Store",
-        "href": "https://apps.apple.com/us/app/%E7%82%B9%E7%82%B9-%E4%BD%A0%E7%9A%84ai%E7%94%9F%E6%B4%BB%E5%B0%8F%E5%8A%A9%E6%89%8B/id6529536122"
-      },
-      {
-        "label": "Apple 中国总榜 (千问)",
+        "label": "Apple 中国总榜",
         "href": "https://apps.apple.com/cn/charts/iphone"
       }
     ]
   },
   {
-    "id": "ai-education-learning-us",
+    "id": "us-ai-education-learning",
     "category": "AI 教育/学习",
     "market": "美国",
-    "intensity": 3,
+    "intensity": 4,
     "signalLabel": "强",
     "products": [
-      "Gizmo",
-      "ChatGPT"
+      "Gizmo"
     ],
-    "pattern": "AI学习平台获得大额融资，通过游戏化和交互式材料吸引学生用户；通用AI助手也开始涉足特定知识领域，如个人财务规划，提供辅助学习和决策。",
-    "opportunity": "开发更专注于个性化学习路径、自适应内容生成和技能评估的AI教育工具，尤其是在细分学科或职业技能培训领域。",
-    "watchNext": "关注游戏化学习的长期效果和用户留存率，以及AI在金融知识普及、投资教育等成人学习场景中的渗透程度。（融资 + 产品验证）",
+    "pattern": "AI 学习平台通过游戏化和个性化辅助学习，在年轻用户中获得显著增长和融资（融资 + 产品验证）。",
+    "opportunity": "细分学习场景的 AI 产品创新，结合沉浸式体验和互动机制，提高学生学习兴趣和效率。",
+    "watchNext": "长期学习效果的验证、用户留存，以及 AI 如何更好地适应不同学习风格和需求。",
     "sources": [
       {
         "label": "TechCrunch Gizmo funding",
         "href": "https://techcrunch.com/2026/04/15/ai-learning-app-gizmo-levels-up-with-13m-users-and-a-22m-investment/"
-      },
-      {
-        "label": "OpenAI Release Notes",
-        "href": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
       }
     ]
   },
   {
-    "id": "ai-education-learning-cn",
+    "id": "cn-ai-education-learning",
     "category": "AI 教育/学习",
     "market": "中国",
     "intensity": 4,
-    "signalLabel": "极强",
+    "signalLabel": "强",
     "products": [
       "千问智学",
-      "豆包",
       "腾讯元宝"
     ],
-    "pattern": "头部互联网公司积极布局AI教育，推出专业AI家教应用，提供拍照搜题、作业批改、定制资料、作文辅导和听写背诵等全方位服务，并将其集成到通用AI助手中。",
-    "opportunity": "优化AI教育在个性化辅导中的交互体验和内容质量，特别是在深度讲解和举一反三方面。同时，探索AI在素质教育、兴趣培养等非应试教育领域的应用。",
-    "watchNext": "观察AI教育产品如何有效提升学生成绩和学习兴趣，解决“减负”与“增效”的矛盾，以及其商业模式的成熟度。",
+    "pattern": "中国大厂在教育领域推出专业 AI 家教，覆盖多学科，从解题到批改、定制资料，满足学生及家长需求。",
+    "opportunity": "个性化学习路径、教育内容生成，以及如何提升 AI 辅助教学的信任度和市场渗透率。",
+    "watchNext": "用户对 AI 教学效果的反馈，以及 AI 在教育公平性方面的潜在贡献。",
     "sources": [
       {
         "label": "千问智学 App Store",
         "href": "https://apps.apple.com/cn/app/%E5%8D%83%E9%97%AE%E6%99%BA%E5%AD%A6/id6749571440"
       },
       {
-        "label": "豆包 App Store",
-        "href": "https://apps.apple.com/cn/app/%E8%B1%86%E5%8C%85-%E9%9A%8F%E6%97%B6%E5%B8%AE%E5%BF%99%E7%9A%84-ai-%E5%8A%A9%E6%89%8B/id6459478672"
-      },
-      {
         "label": "腾讯元宝 App Store",
         "href": "https://apps.apple.com/cn/app/%E8%85%BE%E8%AE%AF%E5%85%83%E5%AE%9D-%E6%8E%A5%E5%85%A5deepseek-r1%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/id6480446430"
       }
     ]
   },
   {
-    "id": "ai-companion-social-us",
+    "id": "us-ai-companion-social",
     "category": "AI 陪伴/情感/社交",
     "market": "美国",
     "intensity": 4,
-    "signalLabel": "极强",
+    "signalLabel": "强",
     "products": [
       "Character.AI",
-      "Replika",
       "Series",
-      "ChatGPT"
+      "Replika"
     ],
-    "pattern": "AI伴侣应用持续迭代模型，提升角色一致性和记忆能力；创新社交网络通过AI促成连接；通用AI助手也开始整合安全陪伴功能。",
-    "opportunity": "开发更具情感深度和个性化的AI伴侣，探索AI在特定兴趣社交、心理健康支持等领域的应用。同时，确保AI社交产品的隐私和安全。",
-    "watchNext": "关注AI伴侣的用户留存和付费意愿，以及AI社交产品如何解决冷启动和用户信任问题。ChatGPT的“信任联系人”功能将如何落地并保护用户安全。（融资 + 产品验证）",
+    "pattern": "AI 陪伴和社交产品强调更深度的关系建立、上下文记忆和场景互动，探索在 iMessage 等平台内构建新社交模式。",
+    "opportunity": "打造更具沉浸感和个性化的 AI 角色，探索 AI 辅助社交的新形态和用户情感连接的深度。",
+    "watchNext": "用户粘性、情感连接的深度、商业模式可持续性，以及如何在 AI 驱动的社交中保持真实性。",
     "sources": [
       {
         "label": "Character.AI Blog",
         "href": "https://blog.character.ai/pipsqueak2-and-more/"
       },
       {
-        "label": "Replika App Store",
-        "href": "https://apps.apple.com/us/app/replika/id1158555867"
-      },
-      {
         "label": "TechCrunch Series funding",
         "href": "https://techcrunch.com/2026/04/24/two-college-kids-raise-a-5-1-million-pre-seed-to-build-an-ai-social-network-in-imessage/"
       },
       {
-        "label": "OpenAI Release Notes",
-        "href": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
+        "label": "Replika App Store",
+        "href": "https://apps.apple.com/us/app/replika/id1158555867"
       }
     ]
   },
   {
-    "id": "ai-companion-social-cn",
+    "id": "cn-ai-companion-social",
     "category": "AI 陪伴/情感/社交",
     "market": "中国",
     "intensity": 3,
-    "signalLabel": "强",
+    "signalLabel": "中",
     "products": [
-      "星野",
-      "腾讯元宝"
+      "星野"
     ],
-    "pattern": "多模态AI智能体社区平台允许用户自由创造和分享AI伴侣，并提供沉浸式交互。一些通用AI助手也开始探索趣味性的社交互动功能。",
-    "opportunity": "深入挖掘用户在虚拟陪伴、角色扮演和情感支持方面的细分需求，提升AI伴侣的情商和共情能力。同时，加强社区治理和内容安全。",
-    "watchNext": "关注AI伴侣智能体的形象、声音和人设定制自由度对用户创造力的激发，以及这类社区如何构建活跃的用户生态和解决内容合规性问题。",
+    "pattern": "中国市场 AI 陪伴产品注重用户 UGC 创作 AI 角色，形成社区生态，满足个性化互动需求。",
+    "opportunity": "虚拟社交场景的创新，多模态人设的丰富性，以及如何平衡用户创作自由与内容监管。",
+    "watchNext": "用户创造内容的质量、社区活跃度、以及 AI 角色与用户之间情感连接的深度。",
     "sources": [
       {
         "label": "星野 App Store",
         "href": "https://apps.apple.com/cn/app/%E6%98%9F%E9%87%8E-%E6%89%80%E5%BB%BA%E7%9A%86%E4%BD%A0%E6%89%80ai/id6463076337"
       },
       {
-        "label": "腾讯元宝 App Store",
-        "href": "https://apps.apple.com/cn/app/%E8%85%BE%E8%AE%AF%E5%85%83%E5%AE%9D-%E6%8E%A5%E5%85%A5deepseek-r1%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/id6480446430"
+        "label": "Apple 中国总榜",
+        "href": "https://apps.apple.com/cn/charts/iphone"
       }
     ]
   },
   {
-    "id": "ai-gaming-entertainment-us",
+    "id": "us-ai-gaming-interactive-entertainment",
     "category": "AI 游戏/互动娱乐",
     "market": "美国",
     "intensity": 1,
     "signalLabel": "弱",
-    "products": [
-      "Gemini"
-    ],
-    "pattern": "暂无独立的AI原生游戏或互动娱乐应用大规模上线。AI能力更多以辅助或嵌入的形式出现，如音乐生成。",
-    "opportunity": "探索AI驱动的叙事游戏、个性化游戏体验（NPC行为、内容生成）或新的互动娱乐形式。",
-    "watchNext": "关注独立工作室在AI游戏领域的创新尝试，以及大厂是否会推出重磅AI游戏产品。",
-    "sources": [
-      {
-        "label": "Gemini Drop",
-        "href": "https://blog.google/innovation-and-ai/products/gemini-app/gemini-drop-updates-march-2026/"
-      }
-    ]
+    "products": [],
+    "pattern": "暂无明确产品信号。",
+    "opportunity": "AI NPC、AI 剧情生成、AI 辅助游戏开发和个性化游戏体验。",
+    "watchNext": "头部游戏厂商在 AI 领域的探索，以及独立开发者在创新互动娱乐方面的尝试。",
+    "sources": []
   },
   {
-    "id": "ai-gaming-entertainment-cn",
+    "id": "cn-ai-gaming-interactive-entertainment",
     "category": "AI 游戏/互动娱乐",
     "market": "中国",
     "intensity": 1,
     "signalLabel": "弱",
-    "products": [
-      "腾讯元宝"
-    ],
-    "pattern": "大型AI助手产品中开始出现实验性的互动娱乐功能（如元宝派的养龙虾），但尚未形成独立的AI游戏爆发趋势。",
-    "opportunity": "研究中国用户对AI生成互动内容、虚拟社交娱乐的需求，开发具有中国文化特色的AI游戏或互动故事。",
-    "watchNext": "关注游戏公司与AI技术结合的进展，以及AI在提升游戏可玩性、个性化体验方面的应用。",
-    "sources": [
-      {
-        "label": "腾讯元宝 App Store",
-        "href": "https://apps.apple.com/cn/app/%E8%85%BE%E8%AE%AF%E5%85%83%E5%AE%9D-%E6%8E%A5%E5%85%A5deepseek-r1%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/id6480446430"
-      }
-    ]
+    "products": [],
+    "pattern": "暂无明确产品信号。",
+    "opportunity": "AI NPC、AI 剧情生成、AI 辅助游戏开发和个性化游戏体验。",
+    "watchNext": "头部游戏厂商在 AI 领域的探索，以及独立开发者在创新互动娱乐方面的尝试。",
+    "sources": []
   },
   {
-    "id": "ai-creation-us",
+    "id": "us-ai-creation",
     "category": "AI 创作",
     "market": "美国",
-    "intensity": 2,
-    "signalLabel": "中",
+    "intensity": 4,
+    "signalLabel": "强",
     "products": [
-      "Gemini",
-      "Replika",
-      "CapCut",
       "Canva",
-      "Picsart AI Photo Editor"
+      "Picsart",
+      "Facetune",
+      "Lightroom",
+      "Cantina: AI Video & Characters"
     ],
-    "pattern": "AI在音乐生成（Gemini Lyria 3 Pro）和图像生成（Replika）方面持续发展。第三方图片/视频编辑工具也广泛集成AI功能。",
-    "opportunity": "开发更专业的AI辅助创意工具，支持更复杂的创作流程和风格定制，同时探索文本到三维模型等新创作范式。",
-    "watchNext": "关注AI生成内容的版权问题和商业化路径，以及AI在专业创意领域（如电影、设计）的应用突破。",
+    "pattern": "AI 驱动的图片/视频编辑和生成工具日益普及，在 App Store 榜单上表现活跃，功能集成度不断提高。",
+    "opportunity": "更多专业级 AI 创作功能下放给大众用户，降低创作门槛，激发用户创造力。",
+    "watchNext": "实际创作质量、用户付费意愿，以及 AI 在长视频和 3D 内容创作方面的突破。",
     "sources": [
-      {
-        "label": "Gemini Drop",
-        "href": "https://blog.google/innovation-and-ai/products/gemini-app/gemini-drop-updates-march-2026/"
-      },
-      {
-        "label": "Replika App Store",
-        "href": "https://apps.apple.com/us/app/replika/id1158555867"
-      },
       {
         "label": "Apple 美国摄影与录像榜",
         "href": "https://apps.apple.com/us/iphone/charts/6008?chart=top-free"
@@ -722,33 +695,25 @@ export const categoryHeatmapItems: CategoryHeatmapItem[] = [
     ]
   },
   {
-    "id": "ai-creation-cn",
+    "id": "cn-ai-creation",
     "category": "AI 创作",
     "market": "中国",
     "intensity": 4,
-    "signalLabel": "极强",
+    "signalLabel": "强",
     "products": [
-      "即梦AI",
-      "豆包",
-      "腾讯元宝",
       "剪映",
-      "醒图"
+      "即梦AI",
+      "小云雀",
+      "可灵AI",
+      "星绘"
     ],
-    "pattern": "中国市场在AI图片和视频创作领域展现出极强的活力，头部应用不断推出新模型（如Seedance2.0 fast），强化多模态生成和编辑能力。",
-    "opportunity": "针对短视频、直播等中国特色内容生态，开发更高效、易用的AI创作工具。探索AI在虚拟偶像、数字藏品等新兴领域的应用。",
-    "watchNext": "观察用户对AI生成视频质量的反馈，以及内容平台如何平衡AI创作的效率与原创性。警惕用户对生成质量、价格和排队的抱怨。",
+    "pattern": "中国巨头（尤其是字节跳动）在 AI 图片和视频生成领域投入巨大，通过旗下多款产品抢占市场，强调多模态创作和易用性。",
+    "opportunity": "更高质量、更低门槛、更场景化的 AI 创作工具，以及如何在内容版权和伦理问题上形成行业规范。",
+    "watchNext": "用户对生成内容的真实性、原创性认可，以及商业化盈利模式的成熟度。",
     "sources": [
       {
         "label": "即梦AI App Store",
         "href": "https://apps.apple.com/cn/app/%E5%8D%B3%E6%A2%A6ai-%E6%8A%96%E9%9F%B3%E6%97%97%E4%B8%8Bai%E5%9B%BE%E7%89%87%E5%92%8C%E8%A7%86%E9%A2%91%E5%B7%A5%E5%85%B7/id6503676563"
-      },
-      {
-        "label": "豆包 App Store",
-        "href": "https://apps.apple.com/cn/app/%E8%B1%86%E5%8C%85-%E9%9A%8F%E6%97%B6%E5%B8%AE%E5%BF%99%E7%9A%84-ai-%E5%8A%A9%E6%89%8B/id6459478672"
-      },
-      {
-        "label": "腾讯元宝 App Store",
-        "href": "https://apps.apple.com/cn/app/%E8%85%BE%E8%AE%AF%E5%85%83%E5%AE%9D-%E6%8E%A5%E5%85%A5deepseek-r1%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/id6480446430"
       },
       {
         "label": "Apple 中国摄影与录像榜",
@@ -757,47 +722,42 @@ export const categoryHeatmapItems: CategoryHeatmapItem[] = [
     ]
   },
   {
-    "id": "ai-efficiency-office-us",
+    "id": "us-ai-efficiency-office",
     "category": "AI 效率/办公",
     "market": "美国",
     "intensity": 4,
-    "signalLabel": "极强",
+    "signalLabel": "强",
     "products": [
-      "ChatGPT (Codex)",
-      "Google AI Edge Eloquent",
-      "Granola"
+      "Granola",
+      "ChatGPT"
     ],
-    "pattern": "AI能力正深度嵌入到专业工作流和日常办公工具中，提升编程效率、文本输入准确性及会议记录管理。融资信号补充了AI会议记录产品（Granola）的快速增长和企业级扩展。",
-    "opportunity": "开发针对特定行业或岗位的AI Agent，自动化复杂任务，提高团队协作效率。同时，关注本地化、隐私保护的AI效率工具。",
-    "watchNext": "观察AI代码助手、AI会议纪要等产品在企业中的普及率和实际效果，以及如何解决数据安全和合规性问题。（融资 + 产品验证）",
+    "pattern": "AI 工具从单一效率功能（如会议纪要）向企业级应用和更广泛的办公场景（如求职、简历优化）拓展。",
+    "opportunity": "垂直行业的 AI 办公解决方案，AI Agent 在办公自动化领域的应用，提升企业生产力。",
+    "watchNext": "数据安全、企业集成、用户付费习惯，以及 AI 在复杂任务协作方面的表现。",
     "sources": [
-      {
-        "label": "OpenAI Release Notes",
-        "href": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
-      },
-      {
-        "label": "Google AI Edge Eloquent App Store",
-        "href": "https://apps.apple.com/us/app/google-ai-edge-eloquent/id6756505519"
-      },
       {
         "label": "TechCrunch Granola funding",
         "href": "https://techcrunch.com/2026/03/25/granola-raises-125m-hits-1-5b-valuation-as-it-expands-from-meeting-notetaker-to-enterprise-ai-app/"
+      },
+      {
+        "label": "OpenAI Release Notes",
+        "href": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
       }
     ]
   },
   {
-    "id": "ai-efficiency-office-cn",
+    "id": "cn-ai-efficiency-office",
     "category": "AI 效率/办公",
     "market": "中国",
-    "intensity": 3,
+    "intensity": 4,
     "signalLabel": "强",
     "products": [
       "豆包",
       "腾讯元宝"
     ],
-    "pattern": "中国通用AI助手在办公效率方面提供多项服务，包括资料总结、数据分析、代码编写、文档和PPT生成，以及文档精读等，满足用户在学习和工作中的多样化需求。",
-    "opportunity": "开发更专注于文档自动化、数据可视化和跨平台协作的AI办公工具，尤其是在企业级部署和定制化服务方面。",
-    "watchNext": "观察通用AI助手在细分办公场景的专业性表现，以及企业用户对其数据隐私和安全性的关注。",
+    "pattern": "中国 AI 助手在效率办公领域功能全面，强调与本地办公生态的深度集成，提供从内容生成到文档处理的一站式服务。",
+    "opportunity": "深度结合行业知识的定制化 AI 办公助手，解决特定行业痛点，提高专业工作效率。",
+    "watchNext": "用户数据隐私、企业级部署和兼容性，以及 AI 在多团队协作中的实际应用效果。",
     "sources": [
       {
         "label": "豆包 App Store",
@@ -810,48 +770,37 @@ export const categoryHeatmapItems: CategoryHeatmapItem[] = [
     ]
   },
   {
-    "id": "ai-lifestyle-tools-us",
+    "id": "us-ai-life-tools",
     "category": "AI 生活工具",
     "market": "美国",
     "intensity": 3,
-    "signalLabel": "强",
+    "signalLabel": "中",
     "products": [
-      "ChatGPT",
-      "Meta AI",
-      "Replika"
+      "Google AI Edge Eloquent"
     ],
-    "pattern": "AI助手开始深度介入个人生活管理，如财务规划和购物辅助，并提供更广泛的日常信息探索和推荐。",
-    "opportunity": "开发针对特定生活场景（如健康管理、智能家居、个性化旅行规划）的AI工具，提供更精细化的服务。",
-    "watchNext": "关注用户对AI介入个人生活领域（尤其是财务）的信任程度，以及AI如何实现跨应用的数据整合以提供更全面的生活服务。",
+    "pattern": "端侧 AI 应用探索在日常生活中提高效率，强调隐私和离线能力，满足特定场景需求。",
+    "opportunity": "结合具体生活场景的智能助手，如健康管理、个人财务规划，提供更便捷、私密的解决方案。",
+    "watchNext": "端侧 AI 的性能提升、与云端 AI 的协同，以及用户对离线 AI 应用的接受度。",
     "sources": [
       {
-        "label": "OpenAI Release Notes",
-        "href": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
-      },
-      {
-        "label": "Meta 官方",
-        "href": "https://about.fb.com/news/2026/04/introducing-muse-spark-meta-superintelligence-labs/"
-      },
-      {
-        "label": "Replika App Store",
-        "href": "https://apps.apple.com/us/app/replika/id1158555867"
+        "label": "Google AI Edge Eloquent App Store",
+        "href": "https://apps.apple.com/us/app/google-ai-edge-eloquent/id6756505519"
       }
     ]
   },
   {
-    "id": "ai-lifestyle-tools-cn",
+    "id": "cn-ai-life-tools",
     "category": "AI 生活工具",
     "market": "中国",
     "intensity": 4,
-    "signalLabel": "极强",
+    "signalLabel": "强",
     "products": [
       "点点",
-      "豆包",
-      "腾讯元宝"
+      "豆包"
     ],
-    "pattern": "中国AI生活工具高度结合本土内容生态（如小红书），提供深度攻略生成、出行规划、美食探店等生活决策辅助，同时通用AI助手也具备全面的生活服务能力。",
-    "opportunity": "进一步优化AI在本地化生活服务、消费决策辅助方面的准确性和及时性，探索AI与O2O服务的深度融合。",
-    "watchNext": "关注AI生成攻略和推荐的实际用户转化率，以及用户对AI在购物、餐饮等领域“信任度”的建立。",
+    "pattern": "AI 生活工具与 UGC 社区内容深度融合，提供个性化、场景化的生活决策支持。",
+    "opportunity": "更多细分生活服务领域的 AI 创新，如旅游规划、购物推荐、美食探索等，提升用户生活品质。",
+    "watchNext": "用户对 AI 推荐的信任度、内容质量与时效性，以及如何将生活决策转化为实际消费。",
     "sources": [
       {
         "label": "点点 App Store",
@@ -860,55 +809,49 @@ export const categoryHeatmapItems: CategoryHeatmapItem[] = [
       {
         "label": "豆包 App Store",
         "href": "https://apps.apple.com/cn/app/%E8%B1%86%E5%8C%85-%E9%9A%8F%E6%97%B6%E5%B8%AE%E5%BF%99%E7%9A%84-ai-%E5%8A%A9%E6%89%8B/id6459478672"
-      },
-      {
-        "label": "腾讯元宝 App Store",
-        "href": "https://apps.apple.com/cn/app/%E8%85%BE%E8%AE%AF%E5%85%83%E5%AE%9D-%E6%8E%A5%E5%85%A5deepseek-r1%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/id6480446430"
       }
     ]
   },
   {
-    "id": "ai-hardware-entry-us",
+    "id": "us-ai-hardware-entry",
     "category": "AI 硬件入口",
     "market": "美国",
-    "intensity": 3,
+    "intensity": 4,
     "signalLabel": "强",
     "products": [
-      "Ray-Ban Meta",
-      "Oakley Meta",
-      "Meta Ray-Ban Display",
-      "Rokid Glasses (via Hi Rokid app)"
+      "Ray-Ban Meta glasses",
+      "Oakley Meta glasses"
     ],
-    "pattern": "Meta持续推进AI眼镜作为新的AI交互入口，强调实时视觉和语音AI能力；Rokid等厂商也在积极更新其智能眼镜应用，提升AI助手的性能和多模态理解。",
-    "opportunity": "探索AI硬件在日常穿戴、特定场景（如导游、辅助）的创新应用，注重用户隐私保护和佩戴舒适性。",
-    "watchNext": "关注AI眼镜在消费市场的普及速度，以及Meta和Rokid等厂商在功能、续航、价格等方面的竞争动态，尤其是独立计算能力的提升。",
+    "pattern": "智能眼镜作为 AI 新入口，通过整合多模态 AI 大模型，实现更自然的现实世界交互。",
+    "opportunity": "AR/VR 与 AI 的深度融合，更小巧、更时尚的 AI 硬件设计，以及杀手级应用场景的开发。",
+    "watchNext": "用户实际佩戴体验、续航能力、数据隐私保护，以及生态系统建设。",
     "sources": [
       {
         "label": "Meta 官方",
         "href": "https://about.fb.com/news/2026/04/introducing-muse-spark-meta-superintelligence-labs/"
-      },
-      {
-        "label": "Hi Rokid App Store",
-        "href": "https://apps.apple.com/us/app/hi-rokid/id6749669942"
       }
     ]
   },
   {
-    "id": "ai-hardware-entry-cn",
+    "id": "cn-ai-hardware-entry",
     "category": "AI 硬件入口",
     "market": "中国",
-    "intensity": 3,
+    "intensity": 4,
     "signalLabel": "强",
     "products": [
-      "Rokid Glasses (via Rokid AI App)"
+      "Rokid Glasses"
     ],
-    "pattern": "Rokid等中国厂商积极更新其AI眼镜配套应用，集成国内领先大模型（如通义千问、智谱）的最新视觉和智能体能力，提升语音识别和视觉理解的准确性。",
-    "opportunity": "开发结合中国本土生态（如支付宝扫码、高德导航）的AI眼镜应用，探索其在旅游、购物、教育等场景的深度价值。",
-    "watchNext": "关注AI眼镜在中国市场的用户反馈和应用落地情况，以及与手机、其他智能设备的协同体验。",
+    "pattern": "中国厂商积极探索 AI 眼镜产品形态，通过集成多模态大模型和丰富功能，拓展 AI 在移动场景的应用。",
+    "opportunity": "语音交互、视觉识别、AR 导航的深度融合，以及垂直行业（如旅游、工业）的应用探索。",
+    "watchNext": "产品市场接受度、内容生态建设、用户痛点解决，以及技术成熟度与成本控制。",
     "sources": [
       {
         "label": "Rokid AI App Store",
-        "href": "https://apps.apple.com/cn/app/rokid-ai-%E4%B9%90%E5%A5%87ai%E7%9C%BC%E9%95%9C/id6738470564"
+        "href": "https://apps.apple.com/cn/app/%E6%98%9F%E9%87%8E-%E6%89%80%E5%BB%BA%E7%9A%86%E4%BD%A0%E6%89%80ai/id6463076337"
+      },
+      {
+        "label": "Hi Rokid App Store",
+        "href": "https://apps.apple.com/us/app/hi-rokid/id6749669942"
       }
     ]
   }
@@ -916,23 +859,64 @@ export const categoryHeatmapItems: CategoryHeatmapItem[] = [
 
 export const usSummaryPoints: MarketSummaryPoint[] = [
   {
-    "title": "Meta AI 核心能力升级并扩展至全生态应用与硬件",
+    "title": "ChatGPT 生产力工具能力多维度提升",
     "bullets": [
       [
         {
-          "text": "Meta AI 通过其最新模型Muse Spark进行了全面升级，支持更自然的语音交互，包括打断、切换话题、多语言对话，并能实时生成图像和提供推荐。",
+          "text": "记忆能力升级，Plus 和 Pro 用户记忆容量翻倍，系统能自动跟踪和更新关键细节，提供更相关的响应。",
           "strong": false
         }
       ],
       [
         {
-          "text": "新功能包括通过AI眼镜实现实时视觉问答，用户可将摄像头指向世界并提问所见内容；以及新的购物功能，Meta AI可在Facebook Marketplace和全网范围内搜索商品，并支持按品牌或创作者浏览。",
+          "text": "新增求职功能，可搜索 Indeed、Upwork 等平台的实时职位，并根据用户经验、技能和目标定制简历。",
           "strong": false
         }
       ],
       [
         {
-          "text": "Muse Spark的智能将逐步推广至WhatsApp、Instagram、Facebook、Messenger和Threads等Meta全系应用，涵盖搜索栏、群聊和帖子等多个触点。Meta还在测试群聊中的“侧边聊天”和Threads中的@meta.ai提及功能。",
+          "text": "推出“Lockdown Mode”高级安全设置，限制网页和外部服务访问，以减少提示注入攻击风险。",
+          "strong": false
+        }
+      ],
+      [
+        {
+          "text": "新增活动会话管理，用户可查看并登出账户关联会话，增强账户安全性。",
+          "strong": false
+        }
+      ]
+    ],
+    "sources": [
+      {
+        "label": "OpenAI Release Notes",
+        "href": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
+      }
+    ]
+  },
+  {
+    "title": "Meta AI 持续深入 Meta 生态并增强多模态交互",
+    "bullets": [
+      [
+        {
+          "text": "Muse Spark 模型逐步在 WhatsApp、Instagram、Facebook、Messenger 和 Threads 等 Meta 旗下应用中推广，加强 AI 赋能。",
+          "strong": false
+        }
+      ],
+      [
+        {
+          "text": "Meta AI App 提升语音响应速度，支持更自然的对话中断、话题切换和语言切换。",
+          "strong": false
+        }
+      ],
+      [
+        {
+          "text": "引入购物功能，可在 Facebook Marketplace 搜索商品，并@特定品牌/创作者浏览内容。",
+          "strong": false
+        }
+      ],
+      [
+        {
+          "text": "AI 眼镜（Ray-Ban Meta、Oakley Meta）开始逐步获得 Muse Spark 的智能赋能，支持实时视觉问答等功能。",
           "strong": false
         }
       ]
@@ -945,23 +929,40 @@ export const usSummaryPoints: MarketSummaryPoint[] = [
     ]
   },
   {
-    "title": "ChatGPT 持续拓展个人化与专业化功能",
+    "title": "Muse Spark 在 Meta 生态产品中的能力扩展",
     "bullets": [
       [
         {
-          "text": "OpenAI为美国境内的ChatGPT Pro用户推出了个人财务管理功能，允许安全连接金融账户，在一个集中的仪表板中查看支出、账单、订阅、净资产和投资信息，并基于财务上下文进行问答和决策辅助。",
+          "text": "Meta 于 5 月 12 日更新并逐步在旗下产品中推广其最新的 Muse Spark 模型，该模型将赋能 Meta AI 应用、WhatsApp、Instagram、Facebook、Messenger 和 Threads，以及 Ray-Ban Meta 和 Oakley Meta 眼镜。",
           "strong": false
         }
       ],
       [
         {
-          "text": "ChatGPT移动应用现提供Codex远程访问的预览功能，允许用户通过手机远程控制和协作Mac上运行的Codex编程代理，在离开工作台时也能保持工作连接。",
+          "text": "在 Meta AI App 中，Muse Spark 实现了更快速自然的语音响应，用户可以自由打断、切换话题或语言。同时，新增购物功能，允许用户搜索 Facebook Marketplace 房源并直接与品牌或创作者互动。",
+          "strong": false
+        }
+      ]
+    ],
+    "sources": [
+      {
+        "label": "Meta 官方",
+        "href": "https://about.fb.com/news/2026/04/introducing-muse-spark-meta-superintelligence-labs/"
+      }
+    ]
+  },
+  {
+    "title": "ChatGPT 记忆能力升级并全量上线“Lockdown Mode”",
+    "bullets": [
+      [
+        {
+          "text": "ChatGPT 于 6 月 4 日升级了记忆功能，使其能更好地更新上下文，减少陈旧或矛盾的记忆，从而提高响应的相关性。",
           "strong": false
         }
       ],
       [
         {
-          "text": "针对免费用户，ChatGPT现在会提供更多来自网页的内联图片，以帮助用户更直观地理解视觉相关的话题，在全球范围内的网页和iOS平台逐步推出。",
+          "text": "Plus 和 Pro 用户获得了双倍的记忆容量。记忆现在能够自动更新，ChatGPT 会追踪最重要的细节。",
           "strong": false
         }
       ]
@@ -974,63 +975,17 @@ export const usSummaryPoints: MarketSummaryPoint[] = [
     ]
   },
   {
-    "title": "ChatGPT 推出个人财务管理功能",
+    "title": "ChatGPT 推出求职与简历优化功能",
     "bullets": [
       [
         {
-          "text": "OpenAI正在为美国境内的ChatGPT Pro用户逐步推出一项新的个人财务管理体验。",
+          "text": "ChatGPT 于 6 月 1 日新增了求职功能，能够帮助用户寻找相关的实时职位和兼职机会。",
           "strong": false
         }
       ],
       [
         {
-          "text": "用户可以通过Plaid安全连接其支持的金融账户，从而在一个集中的仪表板中查看支出、账单、订阅、净资产和投资信息。",
-          "strong": false
-        }
-      ]
-    ],
-    "sources": [
-      {
-        "label": "OpenAI Release Notes",
-        "href": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
-      }
-    ]
-  },
-  {
-    "title": "ChatGPT 移动应用支持 Codex 远程访问",
-    "bullets": [
-      [
-        {
-          "text": "OpenAI在其ChatGPT移动应用中推出了Codex远程访问的预览功能。这项功能允许用户通过手机，远程连接并控制在Mac主机上运行的Codex编程工作。",
-          "strong": false
-        }
-      ],
-      [
-        {
-          "text": "用户可以在手机上启动或继续对话、回答问题、改变方向、批准操作、查看Codex的发现，并轻松切换连接的主机，从而在离开工作台时也能保持工作连接。",
-          "strong": false
-        }
-      ]
-    ],
-    "sources": [
-      {
-        "label": "OpenAI Release Notes",
-        "href": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
-      }
-    ]
-  },
-  {
-    "title": "ChatGPT 免费用户获得更多内联图片",
-    "bullets": [
-      [
-        {
-          "text": "ChatGPT的免费用户现在将会在AI回答中看到更多来自网页的内联图片。",
-          "strong": false
-        }
-      ],
-      [
-        {
-          "text": "这些图片旨在帮助用户更直观地理解视觉相关的话题，例如著名人物、地点和产品，图片将出现在回答的相关部分旁边。",
+          "text": "它能够从 Indeed、Upwork、Appcast 等平台和整个网络抓取招聘信息，并根据用户的经验、技能和目标进行个性化推荐。",
           "strong": false
         }
       ]
@@ -1046,98 +1001,70 @@ export const usSummaryPoints: MarketSummaryPoint[] = [
 
 export const cnSummaryPoints: MarketSummaryPoint[] = [
   {
-    "title": "即梦AI 上线 Seedance2.0 fast 模型，强化多模态创作体验",
+    "title": "中国 AI 助手加速垂直场景化和生态融合",
     "bullets": [
       [
         {
-          "text": "抖音旗下AI图片和视频工具即梦AI最近上线了其Seedance2.0 fast模型，旨在提供全新的多模态创作体验。",
+          "text": "腾讯元宝上线“元宝高考通”，成为行业首个高考咨询师 Agent，提供一站式高考志愿填报辅助。",
           "strong": false
         }
       ],
       [
         {
-          "text": "用户可以通过自然语言描述快速生成独一无二的图片和视频，并支持编辑功能，进一步降低了创意表达的门槛。",
-          "strong": false
-        }
-      ]
-    ],
-    "sources": [
-      {
-        "label": "即梦AI App Store",
-        "href": "https://apps.apple.com/cn/app/%E5%8D%B3%E6%A2%A6ai-%E6%8A%96%E9%9F%B3%E6%97%97%E4%B8%8Bai%E5%9B%BE%E7%89%87%E5%92%8C%E8%A7%86%E9%A2%91%E5%B7%A5%E5%85%B7/id6503676563"
-      }
-    ]
-  },
-  {
-    "title": "点点 全新上线攻略模式，提供深度生活决策辅助",
-    "bullets": [
-      [
-        {
-          "text": "小红书旗下AI生活助手点点App全新上线“攻略模式”，基于小红书海量真人经验，为用户生成专属的深度攻略，覆盖旅行出游、生活兴趣、购物决策、美食探店等多个生活场景。",
+          "text": "点点 App 推出基于小红书真人经验的“攻略模式”，为用户提供旅行、生活、购物等深度决策支持。",
           "strong": false
         }
       ],
       [
         {
-          "text": "点点支持语音问和带图问，使用户能够以更自然、直观的方式获取信息和决策支持，极大地提升了生活效率和决策质量。",
-          "strong": false
-        }
-      ]
-    ],
-    "sources": [
-      {
-        "label": "点点 App Store",
-        "href": "https://apps.apple.com/us/app/%E7%82%B9%E7%82%B9-%E4%BD%A0%E7%9A%84ai%E7%94%9F%E6%B4%BB%E5%B0%8F%E5%8A%A9%E6%89%8B/id6529536122"
-      }
-    ]
-  },
-  {
-    "title": "AI 创作：中国方向信号",
-    "bullets": [
-      [
-        {
-          "text": "中国市场在AI图片和视频创作领域展现出极强的活力，头部应用不断推出新模型（如Seedance2.0 fast），强化多模态生成和编辑能力。",
+          "text": "即梦 AI 上线 Seedance2.0 fast 模型，持续提升多模态内容创作体验。",
           "strong": false
         }
       ],
       [
         {
-          "text": "针对短视频、直播等中国特色内容生态，开发更高效、易用的AI创作工具。探索AI在虚拟偶像、数字藏品等新兴领域的应用。",
+          "text": "Rokid AI 眼镜 App 优化 AI 助手交互，新增直播推流和城市伴游等功能，拓展 AI 硬件应用场景。",
           "strong": false
         }
       ]
     ],
     "sources": [
-      {
-        "label": "即梦AI App Store",
-        "href": "https://apps.apple.com/cn/app/%E5%8D%B3%E6%A2%A6ai-%E6%8A%96%E9%9F%B3%E6%97%97%E4%B8%8Bai%E5%9B%BE%E7%89%87%E5%92%8C%E8%A7%86%E9%A2%91%E5%B7%A5%E5%85%B7/id6503676563"
-      },
-      {
-        "label": "豆包 App Store",
-        "href": "https://apps.apple.com/cn/app/%E8%B1%86%E5%8C%85-%E9%9A%8F%E6%97%B6%E5%B8%AE%E5%BF%99%E7%9A%84-ai-%E5%8A%A9%E6%89%8B/id6459478672"
-      },
       {
         "label": "腾讯元宝 App Store",
         "href": "https://apps.apple.com/cn/app/%E8%85%BE%E8%AE%AF%E5%85%83%E5%AE%9D-%E6%8E%A5%E5%85%A5deepseek-r1%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/id6480446430"
       },
       {
-        "label": "Apple 中国摄影与录像榜",
-        "href": "https://apps.apple.com/cn/iphone/charts/6008?chart=top-free"
+        "label": "点点 App Store",
+        "href": "https://apps.apple.com/us/app/%E7%82%B9%E7%82%B9-%E4%BD%A0%E7%9A%84ai%E7%94%9F%E6%B4%BB%E5%B0%8F%E5%8A%A9%E6%89%8B/id6529536122"
+      },
+      {
+        "label": "即梦AI App Store",
+        "href": "https://apps.apple.com/cn/app/%E5%8D%B3%E6%A2%A6ai-%E6%8A%96%E9%9F%B3%E6%97%97%E4%B8%8Bai%E5%9B%BE%E7%89%87%E5%92%8C%E8%A7%86%E9%A2%91%E5%B7%A5%E5%85%B7/id6503676563"
+      },
+      {
+        "label": "Rokid AI App Store",
+        "href": "https://apps.apple.com/cn/app/%E6%98%9F%E9%87%8E-%E6%89%80%E5%BB%BA%E7%9A%86%E4%BD%A0%E6%89%80ai/id6463076337"
       }
     ]
   },
   {
-    "title": "AI 助手/搜索：中国方向信号",
+    "title": "中国 AI 助手竞争激烈，用户反馈凸显体验挑战",
     "bullets": [
       [
         {
-          "text": "中国头部互联网公司正将旗下AI助手打造为“全能型管家”，通过接入先进大模型、打通生态信源（如微信公众号、视频号、小红书内容），提供多样化的辅助功能。",
+          "text": "豆包、腾讯元宝、千问等主流 AI 产品在 App Store 获得大量用户评论和高分，但用户反馈也暴露出模型理解能力、响应速度和付费策略等方面的问题。",
           "strong": false
         }
       ],
       [
         {
-          "text": "发掘AI助手在特定中国生活场景（如小红书攻略生成、本地化服务搜索）中的细分价值，优化多模态输入（语音、拍照）的准确性和便捷性。",
+          "text": "部分用户对产品改版（如豆包智能体搜索栏合并）、复杂专业推理的准确性不足以及付费权益变动表示不满。",
+          "strong": false
+        }
+      ],
+      [
+        {
+          "text": "AI 眼镜等硬件配套软件仍在积极迭代，但初期用户反馈显示其稳定性、核心功能支持和语音交互体验仍有待提升。",
           "strong": false
         }
       ]
@@ -1152,12 +1079,81 @@ export const cnSummaryPoints: MarketSummaryPoint[] = [
         "href": "https://apps.apple.com/cn/app/%E8%85%BE%E8%AE%AF%E5%85%83%E5%AE%9D-%E6%8E%A5%E5%85%A5deepseek-r1%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/id6480446430"
       },
       {
-        "label": "点点 App Store",
-        "href": "https://apps.apple.com/us/app/%E7%82%B9%E7%82%B9-%E4%BD%A0%E7%9A%84ai%E7%94%9F%E6%B4%BB%E5%B0%8F%E5%8A%A9%E6%89%8B/id6529536122"
+        "label": "星野 App Store",
+        "href": "https://apps.apple.com/cn/app/%E6%98%9F%E9%87%8E-%E6%89%80%E5%BB%BA%E7%9A%86%E4%BD%A0%E6%89%80ai/id6463076337"
       },
       {
-        "label": "Apple 中国总榜 (千问)",
-        "href": "https://apps.apple.com/cn/charts/iphone"
+        "label": "Rokid AI App Store",
+        "href": "https://apps.apple.com/cn/app/%E6%98%9F%E9%87%8E-%E6%89%80%E5%BB%BA%E7%9A%86%E4%BD%A0%E6%89%80ai/id6463076337"
+      }
+    ]
+  },
+  {
+    "title": "即梦AI 上线 Seedance2.0 fast 模型",
+    "bullets": [
+      [
+        {
+          "text": "抖音旗下 AI 图片和视频工具即梦AI 于 6 月 1 日更新至 2.2.2 版本，并上线了 Seedance2.0 fast 模型。",
+          "strong": false
+        }
+      ],
+      [
+        {
+          "text": "此次更新旨在提供全新的多模态创作体验，支持用户通过自然语言描述来生成图片和视频。",
+          "strong": false
+        }
+      ]
+    ],
+    "sources": [
+      {
+        "label": "即梦AI App Store",
+        "href": "https://apps.apple.com/cn/app/%E5%8D%B3%E6%A2%A6ai-%E6%8A%96%E9%9F%B3%E6%97%97%E4%B8%8Bai%E5%9B%BE%E7%89%87%E5%92%8C%E8%A7%86%E9%A2%91%E5%B7%A5%E5%85%B7/id6503676563"
+      }
+    ]
+  },
+  {
+    "title": "腾讯元宝上线“元宝高考通”",
+    "bullets": [
+      [
+        {
+          "text": "腾讯元宝于 6 月 5 日更新至 2.71.0 版本，并正式上线了“元宝高考通”功能。",
+          "strong": false
+        }
+      ],
+      [
+        {
+          "text": "该功能被称为“行业首个高考咨询师 Agent”，旨在提供一站式高考志愿填报辅助，覆盖查分、选校、选专业、填报及录取全流程。",
+          "strong": false
+        }
+      ]
+    ],
+    "sources": [
+      {
+        "label": "腾讯元宝 App Store",
+        "href": "https://apps.apple.com/cn/app/%E8%85%BE%E8%AE%AF%E5%85%83%E5%AE%9D-%E6%8E%A5%E5%85%A5deepseek-r1%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/id6480446430"
+      }
+    ]
+  },
+  {
+    "title": "点点上线基于小红书数据的“攻略模式”",
+    "bullets": [
+      [
+        {
+          "text": "生活助手 App “点点” 于 6 月 4 日更新至 3.23 版本，全新上线了“攻略模式”。",
+          "strong": false
+        }
+      ],
+      [
+        {
+          "text": "该模式基于小红书海量的真人经验数据，旨在为用户生成专属的深度攻略。",
+          "strong": false
+        }
+      ]
+    ],
+    "sources": [
+      {
+        "label": "点点 App Store",
+        "href": "https://apps.apple.com/us/app/%E7%82%B9%E7%82%B9-%E4%BD%A0%E7%9A%84ai%E7%94%9F%E6%B4%BB%E5%B0%8F%E5%8A%A9%E6%89%8B/id6529536122"
       }
     ]
   }
