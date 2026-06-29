@@ -1,0 +1,1636 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>中美 AI C 端周报 | 2026-06-29</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --text: #0f172a;
+        --muted: #475569;
+        --border: #dbe1ea;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+        background: linear-gradient(180deg, #f6f1e8 0%, #f8f7f2 28%, #eef4f7 100%);
+        color: var(--text);
+      }
+      a { color: inherit; }
+      main { max-width: 1200px; margin: 0 auto; padding: 24px 16px 48px; }
+      .hero {
+        background: #020617;
+        color: white;
+        border-radius: 32px;
+        padding: 36px 32px;
+        box-shadow: 0 40px 120px rgba(15, 23, 42, 0.24);
+      }
+      .hero h1 { margin: 12px 0 0; font-size: clamp(42px, 7vw, 88px); line-height: 0.94; }
+      .hero p { max-width: 780px; color: #cbd5e1; line-height: 1.9; }
+      .archive { margin: 0 0 16px; }
+      .archive summary { cursor: pointer; font-weight: 700; list-style: none; }
+      .archive-grid { margin-top: 16px; display: grid; gap: 12px; padding-left: 16px; border-left: 1px solid var(--border); }
+      .archive-item, .card, .heat-board, .heat-detail, .heat-overview-card {
+        background: rgba(255,255,255,0.92);
+        border: 1px solid var(--border);
+        border-radius: 28px;
+        box-shadow: 0 18px 70px rgba(15,23,42,0.08);
+      }
+      .archive-item { display: block; padding: 16px; text-decoration: none; }
+      section { margin-top: 32px; padding: 28px; border-radius: 32px; border: 1px solid rgba(226,232,240,0.8); background: rgba(255,255,255,0.6); }
+      .section-head h2 { margin: 8px 0 0; font-size: 36px; line-height: 1.15; }
+      .section-head p { margin: 12px 0 0; color: var(--muted); line-height: 1.9; }
+      .section-grid { display: grid; gap: 20px; margin-top: 24px; }
+      .card { padding: 24px 28px; }
+      .card h3 { margin: 18px 0 0; font-size: 30px; line-height: 1.2; }
+      .card-head { display: flex; justify-content: space-between; gap: 16px; padding-bottom: 18px; border-bottom: 1px solid #e2e8f0; }
+      .card-body { padding-top: 24px; }
+      .card-body.with-image { display: grid; grid-template-columns: minmax(0,1fr) 240px; gap: 20px; }
+      .meta-row { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+      .meta-col { min-width: 220px; color: #475569; display: grid; gap: 8px; font-size: 14px; }
+      .index {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 36px;
+        height: 36px;
+        padding: 0 12px;
+        border-radius: 999px;
+        background: #020617;
+        color: white;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        font-size: 12px;
+      }
+      .chip, .label {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .chip { border: 1px solid #bae6fd; background: #ecfeff; color: #0e7490; text-transform: uppercase; letter-spacing: 0.08em; }
+      .chip-muted { border-color: #e2e8f0; background: rgba(255,255,255,0.88); color: #64748b; }
+      .label { color: #0e7490; text-transform: uppercase; letter-spacing: 0.18em; padding-left: 0; }
+      strong { font-weight: 800; color: #020617; }
+      .summary p, .summary-list p, .sources { color: #334155; line-height: 1.9; }
+      .summary-inline { margin: 12px 0 0; }
+      .summary-bullet, .insight-list li { display: flex; gap: 12px; align-items: flex-start; }
+      .bullet { width: 8px; height: 8px; margin-top: 11px; border-radius: 999px; background: #0891b2; flex: none; }
+      .eyebrow { margin: 0; color: #64748b; text-transform: uppercase; letter-spacing: 0.18em; font-size: 12px; font-weight: 700; }
+      .insight { margin-top: 20px; padding: 20px; border-radius: 24px; border: 1px solid rgba(165,243,252,0.8); background: linear-gradient(135deg, rgba(236,254,255,0.92), rgba(248,250,252,0.96)); }
+      .insight-head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+      .insight-accent { width: 4px; height: 40px; border-radius: 999px; background: #06b6d4; }
+      .insight-list { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; color: #1e293b; line-height: 1.9; font-weight: 600; }
+      .thumb { margin: 0; overflow: hidden; border-radius: 22px; border: 1px solid #e2e8f0; background: #f8fafc; }
+      .thumb img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+      .thumb figcaption { padding: 8px 12px; font-size: 11px; color: #64748b; background: rgba(255,255,255,0.92); border-top: 1px solid #e2e8f0; }
+
+      .heat-overview { display: grid; gap: 12px; margin-top: 24px; }
+      .heat-overview-card { padding: 18px; }
+      .heat-overview-card.us { border-color: #c9ddf7; background: linear-gradient(135deg,#fbfdff,rgba(231,243,255,0.96)); }
+      .heat-overview-card.cn { border-color: #f0d493; background: linear-gradient(135deg,#fffdf7,rgba(255,242,214,0.96)); }
+      .heat-overview-card.watch { border-color: #e2c0c4; background: linear-gradient(135deg,#fffdfd,rgba(247,228,231,0.96)); }
+      .overview-kicker { margin: 0; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.22em; }
+      .heat-overview-card.us .overview-kicker { color: #306ba7; }
+      .heat-overview-card.cn .overview-kicker { color: #8b6210; }
+      .heat-overview-card.watch .overview-kicker { color: #9a555c; }
+      .overview-value { margin: 12px 0 0; font-size: 18px; line-height: 1.6; font-weight: 700; }
+      .overview-copy { margin: 8px 0 0; color: #475569; line-height: 1.8; }
+
+      .heat-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 24px; }
+      .legend-title { margin-right: 8px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: #64748b; }
+      .legend-chip, .heat-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 7px 12px;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .legend-dot { width: 10px; height: 10px; border-radius: 999px; background: currentColor; opacity: 0.9; }
+
+      .heat-layout { position: relative; display: grid; gap: 24px; margin-top: 20px; }
+      .heat-board { padding: 18px; }
+      .heat-head { display: none; }
+      .heat-rows { display: grid; gap: 16px; }
+      .heat-row { display: grid; gap: 12px; }
+      .heat-category {
+        height: 180px;
+        padding: 16px;
+        border-radius: 20px;
+        border: 1px solid #e2e8f0;
+        background: #f5f6fb;
+      }
+      .heat-category-index { margin: 0; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.22em; color: #94a3b8; }
+      .heat-category-name { margin: 12px 0 0; font-size: 15px; line-height: 1.7; font-weight: 700; color: #1e293b; }
+      .heat-market-grid { display: grid; gap: 12px; }
+      .heat-cell-wrap { position: relative; }
+      .heat-cell {
+        width: 100%;
+        height: 180px;
+        padding: 16px;
+        border-radius: 20px;
+        border: 1px solid transparent;
+        text-align: left;
+        transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, filter 180ms ease;
+        cursor: pointer;
+        overflow: hidden;
+      }
+      .heat-cell:hover { transform: translateY(-2px); filter: brightness(1.02); }
+      .heat-cell:focus-visible { outline: 0; box-shadow: 0 0 0 4px rgba(217, 222, 248, 0.9); }
+      .heat-cell.is-selected { box-shadow: 0 0 0 3px rgba(46,132,213,0.18), 0 20px 48px rgba(15,23,42,0.14); }
+      .heat-cell-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+      .heat-market { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; opacity: 0.8; }
+      .heat-products { display: flex; flex-wrap: wrap; gap: 8px; min-height: 52px; margin-top: 20px; align-content: flex-start; overflow: hidden; }
+      .heat-pattern {
+        display: -webkit-box;
+        margin-top: auto;
+        overflow: hidden;
+        font-size: 14px;
+        line-height: 1.7;
+        opacity: 0.78;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+      }
+      .heat-tag, .detail-tag, .hover-tag {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(255,255,255,0.65);
+        background: rgba(255,255,255,0.75);
+        font-size: 12px;
+        font-weight: 700;
+        color: #334155;
+      }
+      .muted { color: #64748b; }
+
+      .heat-0 { background: #f6f6fb; border-color: #e2e8f0; color: #475569; }
+      .heat-1 { background: #eaf4ff; border-color: #b8d7fb; color: #0f172a; }
+      .heat-2 { background: #d6ebff; border-color: #79b5f1; color: #0f172a; }
+      .heat-3 { background: #ffe8b3; border-color: #ebbe59; color: #0f172a; }
+      .heat-4 { background: #efc1c7; border-color: #cf858d; color: #0f172a; }
+      .heat-pill.heat-0, .legend-chip.heat-0 { background: rgba(255,255,255,0.92); border-color: #e2e8f0; color: #64748b; }
+      .heat-pill.heat-1, .legend-chip.heat-1 { background: rgba(255,255,255,0.92); border-color: #cfe3fb; color: #2f6ba7; }
+      .heat-pill.heat-2, .legend-chip.heat-2 { background: rgba(255,255,255,0.92); border-color: #bddaf8; color: #235f9d; }
+      .heat-pill.heat-3, .legend-chip.heat-3 { background: rgba(255,255,255,0.92); border-color: #f2ddb1; color: #8b6210; }
+      .heat-pill.heat-4, .legend-chip.heat-4 { background: rgba(255,255,255,0.92); border-color: #e8c3c7; color: #9a555c; }
+
+      .heat-detail {
+        padding: 24px;
+        background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(246,248,255,0.95));
+      }
+      .heat-detail-head h3 { margin: 16px 0 0; font-size: 36px; line-height: 1.15; }
+      .detail-market {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: #020617;
+        color: white;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+      .detail-accent { width: 64px; height: 6px; margin-top: 12px; border-radius: 999px; }
+      .detail-accent.heat-0 { background: #cbd5e1; }
+      .detail-accent.heat-1 { background: #7fb5ee; }
+      .detail-accent.heat-2 { background: #2e84d5; }
+      .detail-accent.heat-3 { background: #d2941e; }
+      .detail-accent.heat-4 { background: #b85762; }
+      .detail-tags, .hover-tags, .source-chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
+      .detail-stack { display: grid; gap: 16px; margin-top: 24px; }
+      .detail-block {
+        padding: 16px;
+        border-radius: 20px;
+        border: 1px solid rgba(255,255,255,0.72);
+        background: rgba(255,255,255,0.72);
+      }
+      .detail-label {
+        margin: 0;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: #94a3b8;
+      }
+      .detail-block p:last-child, .detail-sources p:last-child, .hover-stack p:last-child { margin: 8px 0 0; color: #334155; line-height: 1.9; }
+      .detail-sources { margin-top: 24px; padding-top: 20px; border-top: 1px solid #e2e8f0; }
+      .source-chip {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid #e2e8f0;
+        background: white;
+        font-size: 12px;
+        font-weight: 700;
+        text-decoration: none;
+        color: #334155;
+      }
+      .detail-empty { color: #64748b; line-height: 1.9; }
+
+      .heat-hover {
+        position: fixed;
+        z-index: 30;
+        width: min(24rem, calc(100vw - 2.5rem));
+        padding: 20px;
+        border-radius: 22px;
+        border: 1px solid #dfe5f7;
+        background: rgba(255,255,255,0.98);
+        box-shadow: 0 24px 70px rgba(27,39,94,0.16);
+        backdrop-filter: blur(10px);
+        pointer-events: none;
+      }
+      .hidden { display: none; }
+      .hover-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+      .hover-accent { width: 6px; height: 36px; border-radius: 999px; flex: none; }
+      .hover-accent.heat-0 { background: #cbd5e1; }
+      .hover-accent.heat-1 { background: #7fb5ee; }
+      .hover-accent.heat-2 { background: #2e84d5; }
+      .hover-accent.heat-3 { background: #d2941e; }
+      .hover-accent.heat-4 { background: #b85762; }
+      .hover-market { margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #5a67a8; }
+      .hover-category { margin: 6px 0 0; font-size: 14px; font-weight: 700; color: #020617; }
+      .hover-stack { display: grid; gap: 16px; margin-top: 16px; color: #334155; line-height: 1.8; }
+
+      @media (min-width: 780px) {
+        .heat-overview { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .heat-market-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+      @media (min-width: 1100px) {
+        .heat-layout { grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr); align-items: start; }
+        .heat-head {
+          display: grid;
+          grid-template-columns: 180px repeat(2, minmax(0, 1fr));
+          gap: 12px;
+          padding: 0 4px;
+          margin-bottom: 12px;
+          font-size: 12px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.22em;
+          color: #64748b;
+        }
+        .heat-row { grid-template-columns: 180px minmax(0, 1fr); align-items: stretch; }
+        .heat-detail { position: sticky; top: 28px; }
+      }
+      @media (max-width: 860px) {
+        .card-head { flex-direction: column; }
+        .card-body.with-image { grid-template-columns: 1fr; }
+      }
+      @media (max-width: 767px) {
+        .heat-hover { display: none !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      
+      <details class="archive">
+        <summary>Weekly Archive</summary>
+        <div class="archive-grid" data-archive-grid data-current-report-date="2026-06-29">
+        <a class="archive-item" href="/reports/weekly-ai-report-2026-06-29.html">
+          <div class="meta-row">
+            <span>2026-06-29</span>
+            <span class="chip ">current</span>
+          </div>
+          <h3>Weekly AI Consumer Trends</h3>
+          <p>当前线上版本，同时保留一份静态 HTML 归档页。</p>
+        </a>
+      
+        <a class="archive-item" href="/reports/weekly-ai-report-2026-06-15.html">
+          <div class="meta-row">
+            <span>2026-06-15</span>
+            <span class="chip chip-muted">archive</span>
+          </div>
+          <h3>Weekly AI Consumer Trends</h3>
+          
+        </a>
+      
+        <a class="archive-item" href="/reports/weekly-ai-report-2026-06-08.html">
+          <div class="meta-row">
+            <span>2026-06-08</span>
+            <span class="chip chip-muted">archive</span>
+          </div>
+          <h3>Weekly AI Consumer Trends</h3>
+          
+        </a>
+      
+        <a class="archive-item" href="/reports/weekly-ai-report-2026-05-18.html">
+          <div class="meta-row">
+            <span>2026-05-18</span>
+            <span class="chip chip-muted">archive</span>
+          </div>
+          <h3>Weekly AI Consumer Trends</h3>
+          
+        </a>
+      
+        <a class="archive-item" href="/reports/weekly-ai-report-2026-05-11.html">
+          <div class="meta-row">
+            <span>2026-05-11</span>
+            <span class="chip chip-muted">archive</span>
+          </div>
+          <h3>Weekly AI Consumer Trends</h3>
+          
+        </a>
+      
+        <a class="archive-item" href="/reports/weekly-ai-report-2026-05-04.html">
+          <div class="meta-row">
+            <span>2026-05-04</span>
+            <span class="chip chip-muted">archive</span>
+          </div>
+          <h3>Weekly AI Consumer Trends</h3>
+          
+        </a>
+      
+        <a class="archive-item" href="/reports/weekly-ai-report-2026-04-27.html">
+          <div class="meta-row">
+            <span>2026-04-27</span>
+            <span class="chip chip-muted">archive</span>
+          </div>
+          <h3>Weekly AI Consumer Trends</h3>
+          
+        </a>
+      
+        <a class="archive-item" href="/reports/weekly-ai-report-2026-04-26.html">
+          <div class="meta-row">
+            <span>2026-04-26</span>
+            <span class="chip chip-muted">archive</span>
+          </div>
+          <h3>Weekly AI Consumer Trends</h3>
+          
+        </a>
+      
+        <a class="archive-item" href="/reports/weekly-ai-report-2026-04-14.html">
+          <div class="meta-row">
+            <span>2026-04-14</span>
+            <span class="chip chip-muted">archive</span>
+          </div>
+          <h3>Weekly AI Consumer Trends</h3>
+          
+        </a>
+      </div>
+      </details>
+      <script>
+        (() => {
+          const grid = document.querySelector("[data-archive-grid]");
+          if (!grid) return;
+
+          const escapeHtml = (value) =>
+            String(value)
+              .replaceAll("&", "&amp;")
+              .replaceAll("<", "&lt;")
+              .replaceAll(">", "&gt;")
+              .replaceAll('"', "&quot;")
+              .replaceAll("'", "&#39;");
+
+          const renderItem = (item) => {
+            return `
+              <a class="archive-item" href="${escapeHtml(item.href)}">
+                <div class="meta-row">
+                  <span>${escapeHtml(item.date)}</span>
+                  <span class="chip ${item.status === "archive" ? "chip-muted" : ""}">${escapeHtml(item.status)}</span>
+                </div>
+                <h3>${escapeHtml(item.title)}</h3>
+                ${item.note ? `<p>${escapeHtml(item.note)}</p>` : ""}
+              </a>
+            `;
+          };
+
+          fetch("/reports/archive.json", { cache: "no-store" })
+            .then((response) => (response.ok ? response.json() : null))
+            .then((items) => {
+              if (!Array.isArray(items) || items.length === 0) return;
+              grid.innerHTML = items.map(renderItem).join("");
+            })
+            .catch(() => {});
+        })();
+      </script>
+  
+
+      <section class="hero">
+        <p>2026-06-29</p>
+        <h1>Weekly AI<br />Consumer Trends</h1>
+        <p>本网站整理并分析在过去7天内中美市场的AI行业相关应用的最新趋势，信息来源于产品官网、App Store 及行业媒体。</p>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <p class="label">Section 1</p>
+          <h2>Section 1：本周重点发现</h2>
+          <p>保留最重要的 6 个中美 AI C 端信号，影响面较窄的条目下沉到对应市场模块中。</p>
+        </div>
+        <div class="section-grid">
+    <article class="card">
+      <div class="card-head">
+        <div>
+          <div class="meta-row">
+            <span class="index">01</span>
+            <span class="chip">notable update</span>
+          </div>
+          <h3>GPT-5.5 Instant 模型更新</h3>
+        </div>
+        <div class="meta-col">
+          <div><strong>market</strong>: 美国</div>
+          <div><strong>date</strong>: 2026-06-24</div>
+        </div>
+      </div>
+      <div class="card-body with-image">
+        <div class="copy">
+          <div class="summary">
+            <p class="eyebrow">summary</p>
+            <p class="summary-inline">OpenAI 对其最常用的 ChatGPT 模型 GPT-5.5 Instant 进行了更新，旨在提升对话质量。此次更新尤其改进了模型在用户进行决策、寻求建议、规划、研究选项或购物时的表现，能够更好地识别问题背后的潜在目标，并在多轮对话中保持上下文。模型现在能更可靠地遵循复杂指令，当请求包含多个约束或要求时，响应更有可能解决所有问题并清晰解释推荐理由。</p>
+            <p class="sources"><strong>来源：</strong><a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes" target="_blank" rel="noreferrer">OpenAI Release Notes</a></p>
+          </div>
+          <div class="insight">
+            <div class="insight-head">
+              <span class="insight-accent"></span>
+              <p class="eyebrow">why_it_matters</p>
+            </div>
+            <ul class="insight-list">
+        <li>
+          <span class="bullet"></span>
+          <span>更智能、更理解用户意图的 AI 助手将大幅提高用户解决复杂问题的效率和体验，尤其在需要深度思考和多步交互的场景。</span>
+        </li>
+      
+        <li>
+          <span class="bullet"></span>
+          <span>这预示着大模型在理解用户意图、保持上下文以及遵循复杂指令方面的持续进步，使其更接近通用人工智能的目标，并为更个性化的服务奠定基础。</span>
+        </li>
+      
+        <li>
+          <span class="bullet"></span>
+          <span>未来需要观察模型在实际应用中如何进一步降低用户操作负担，以及其在不同垂类任务上的泛化能力。</span>
+        </li>
+      </ul>
+          </div>
+        </div>
+        <figure class="thumb">
+                 <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/22/59/ed/2259edf9-6bd5-a17a-c035-074aac0954d2/AppIcon-0-0-1x_U007epad-0-0-0-1-0-P3-85-220.png/512x512bb.jpg" alt="ChatGPT App Store 预览图" />
+                 <figcaption>ChatGPT App Store</figcaption>
+               </figure>
+      </div>
+    </article>
+  
+    <article class="card">
+      <div class="card-head">
+        <div>
+          <div class="meta-row">
+            <span class="index">02</span>
+            <span class="chip">feature launch</span>
+          </div>
+          <h3>个人理财功能拓展与听写能力增强</h3>
+        </div>
+        <div class="meta-col">
+          <div><strong>market</strong>: 美国</div>
+          <div><strong>date</strong>: 2026-06-26</div>
+        </div>
+      </div>
+      <div class="card-body ">
+        <div class="copy">
+          <div class="summary">
+            <p class="eyebrow">summary</p>
+            <p class="summary-inline">ChatGPT 的个人理财体验现已拓展至美国区的 Plus 用户（网页、iOS）和 Pro/Plus Android 用户。符合条件的用户可以安全地连接受支持的金融账户，查看财务仪表盘，并向 ChatGPT 提出基于其财务背景的问题。同时，ChatGPT 的听写功能也进行了改进，采用了新的语音转文本模型，显著提升了多语言和不同口音的转录准确性，并在嘈杂公共空间和职场环境中表现更稳定。</p>
+            <p class="sources"><strong>来源：</strong><a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes" target="_blank" rel="noreferrer">OpenAI Release Notes</a></p>
+          </div>
+          <div class="insight">
+            <div class="insight-head">
+              <span class="insight-accent"></span>
+              <p class="eyebrow">why_it_matters</p>
+            </div>
+            <ul class="insight-list">
+        <li>
+          <span class="bullet"></span>
+          <span>ChatGPT 开始深入专业领域，通过连接真实数据源提供个性化服务而非泛泛的回答，代表了 AI 助手从通用走向垂类深度集成的趋势。</span>
+        </li>
+      
+        <li>
+          <span class="bullet"></span>
+          <span>听写功能的改进大幅提升了用户在多场景下的交互便利性和效率，使其更具通用性和无障碍性，有助于拓宽用户群体。</span>
+        </li>
+      
+        <li>
+          <span class="bullet"></span>
+          <span>这标志着 AI 助手在数据安全、隐私保护下的实际应用落地，也预示着更多与个人生活数据相关的 AI 助理服务将出现。</span>
+        </li>
+      </ul>
+          </div>
+        </div>
+        
+      </div>
+    </article>
+  
+    <article class="card">
+      <div class="card-head">
+        <div>
+          <div class="meta-row">
+            <span class="index">03</span>
+            <span class="chip">notable update</span>
+          </div>
+          <h3>Meta AI 基于 Muse Spark 全面升级及功能扩展</h3>
+        </div>
+        <div class="meta-col">
+          <div><strong>market</strong>: 美国</div>
+          <div><strong>date</strong>: 2026-05-12</div>
+        </div>
+      </div>
+      <div class="card-body with-image">
+        <div class="copy">
+          <div class="summary">
+            <p class="eyebrow">summary</p>
+            <p class="summary-inline">Meta AI 的最新模型 Muse Spark 正逐步推广到 WhatsApp、Instagram、Facebook、Messenger 和 Threads 等 Meta 旗下应用，以及 Ray-Ban Meta 和 Oakley Meta 智能眼镜（美国和加拿大市场）。此次更新带来了多项功能增强，包括 Meta AI 应用中更快的语音响应、支持通过摄像头实时提问的 Live AI 功能，以及新的购物功能（可在 Facebook Marketplace 上搜索商品）。Meta AI 在群聊中测试“侧边聊天”功能，允许用户私下提问，并在 Threads 帖子和回复中支持 @meta.ai 提及。</p>
+            <p class="sources"><strong>来源：</strong><a href="https://about.fb.com/news/2026/04/introducing-muse-spark-meta-superintelligence-labs/" target="_blank" rel="noreferrer">Meta 官方</a></p>
+          </div>
+          <div class="insight">
+            <div class="insight-head">
+              <span class="insight-accent"></span>
+              <p class="eyebrow">why_it_matters</p>
+            </div>
+            <ul class="insight-list">
+        <li>
+          <span class="bullet"></span>
+          <span>Meta 正在其全生态产品中深度整合 AI 能力，旨在通过统一的 AI 模型提升用户在社交、购物、内容消费等日常场景的体验，并强化 AI 在硬件入口（智能眼镜）上的应用潜力。</span>
+        </li>
+      
+        <li>
+          <span class="bullet"></span>
+          <span>这表明了科技巨头在多模态、实时交互和跨应用场景下打造“超级助手”的决心，寻求将 AI 渗透到用户数字生活的每一个角落，形成强大的生态壁垒。</span>
+        </li>
+      
+        <li>
+          <span class="bullet"></span>
+          <span>未来需观察 Muse Spark 在实际用户中的采纳情况，以及 Meta 在 AI 硬件和平台生态上的竞争优势是否能进一步扩大。</span>
+        </li>
+      </ul>
+          </div>
+        </div>
+        <figure class="thumb">
+                 <img src="https://about.fb.com/wp-content/uploads/2026/04/01_Subagent-1.gif?resize=960%2C836" alt="Meta AI 在官方新闻稿中的产品演示图" />
+                 <figcaption>Meta 官方新闻稿</figcaption>
+               </figure>
+      </div>
+    </article>
+  
+    <article class="card">
+      <div class="card-head">
+        <div>
+          <div class="meta-row">
+            <span class="index">04</span>
+            <span class="chip">notable update</span>
+          </div>
+          <h3>Rokid Glasses 伴侣应用 Hi Rokid 1.9.0 更新</h3>
+        </div>
+        <div class="meta-col">
+          <div><strong>market</strong>: 中国</div>
+          <div><strong>date</strong>: 2026-06-27</div>
+        </div>
+      </div>
+      <div class="card-body with-image">
+        <div class="copy">
+          <div class="summary">
+            <p class="eyebrow">summary</p>
+            <p class="summary-inline">Rokid Glasses 的伴侣应用 Hi Rokid 更新至 1.9.0 版本。此次更新新增了“工具箱”功能，支持眼镜端本地应用安装、Wi-Fi 连接管理及全新的遥控功能，提升了设备的独立性和可控性。此外，AI 聊天支持 A2UI 渲染，能够根据场景自动生成 UI 页面，提供更可视化的 AI 交互体验，并优化了翻译准确性和整体 AI 助手体验，新增实时同声传译功能。</p>
+            <p class="sources"><strong>来源：</strong><a href="https://apps.apple.com/us/app/hi-rokid/id6749669942" target="_blank" rel="noreferrer">Hi Rokid App Store</a>、<a href="https://apps.apple.com/cn/app/rokid-ai-%E4%B9%90%E5%A5%87ai%E7%9C%BC%E9%95%9C/id6738470564" target="_blank" rel="noreferrer">Rokid AI App Store</a></p>
+          </div>
+          <div class="insight">
+            <div class="insight-head">
+              <span class="insight-accent"></span>
+              <p class="eyebrow">why_it_matters</p>
+            </div>
+            <ul class="insight-list">
+        <li>
+          <span class="bullet"></span>
+          <span>这次更新显著提升了 Rokid AI 眼镜作为 AI 硬件入口的独立性和易用性，通过本地应用支持和更智能的 AI 交互（如 A2UI），向“AI 个人终端”迈进。</span>
+        </li>
+      
+        <li>
+          <span class="bullet"></span>
+          <span>实时翻译、场景化 UI 等功能增强了 AI 眼镜的实用价值，预示着 AI 硬件在日常生活中扮演更重要角色的潜力，特别是对于提升生产力和无障碍体验。</span>
+        </li>
+      
+        <li>
+          <span class="bullet"></span>
+          <span>未来观察重点在于 Rokid 如何构建围绕眼镜的 AI 生态，吸引更多开发者，以及其在多模态交互上的进一步创新。</span>
+        </li>
+      </ul>
+          </div>
+        </div>
+        <figure class="thumb">
+                 <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/e1/c1/3a/e1c13a22-5be8-25e7-00f6-4a4750fde840/AppIcon-0-0-1x_U007ephone-0-1-0-85-220.png/512x512bb.jpg" alt="Hi Rokid - Rokid Glasses App Store 预览图" />
+                 <figcaption>Hi Rokid App Store</figcaption>
+               </figure>
+      </div>
+    </article>
+  
+    <article class="card">
+      <div class="card-head">
+        <div>
+          <div class="meta-row">
+            <span class="index">05</span>
+            <span class="chip">feature launch</span>
+          </div>
+          <h3>Codex Remote 全面开放给 ChatGPT 用户</h3>
+        </div>
+        <div class="meta-col">
+          <div><strong>market</strong>: 美国</div>
+          <div><strong>date</strong>: 2026-06-25</div>
+        </div>
+      </div>
+      <div class="card-body with-image">
+        <div class="copy">
+          <div class="summary">
+            <p class="eyebrow">summary</p>
+            <p class="summary-inline">OpenAI 宣布 Codex Remote 功能现已全面向所有 ChatGPT 计划的用户开放。用户可以通过 ChatGPT 移动应用，在连接的 Mac 或 Windows 主机上开始或继续开发工作，并远程审查进度和批准操作。此外，还新增了 DigitalOcean Droplet Workspace 插件，允许 Codex 预置 DigitalOcean Droplet、配置 SSH 访问，并将其连接到 Codex 应用作为远程工作区。</p>
+            <p class="sources"><strong>来源：</strong><a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes" target="_blank" rel="noreferrer">OpenAI Release Notes</a></p>
+          </div>
+          <div class="insight">
+            <div class="insight-head">
+              <span class="insight-accent"></span>
+              <p class="eyebrow">why_it_matters</p>
+            </div>
+            <ul class="insight-list">
+        <li>
+          <span class="bullet"></span>
+          <span>这标志着 ChatGPT 在从对话式 AI 助手向更强大的 AI Agent 演进方面迈出了重要一步，使其能够直接介入用户的计算环境并执行复杂任务。</span>
+        </li>
+      
+        <li>
+          <span class="bullet"></span>
+          <span>它为开发者和高级用户提供了在移动设备上管理和控制远程开发工作流的能力，极大地提升了 AI 在效率办公和代码辅助领域的应用深度和便捷性。</span>
+        </li>
+      
+        <li>
+          <span class="bullet"></span>
+          <span>未来需观察此类 AI Agent 功能的稳定性和安全性，以及其如何与其他开发工具链深度整合，推动软件开发方式的变革。</span>
+        </li>
+      </ul>
+          </div>
+        </div>
+        <figure class="thumb">
+                 <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/22/59/ed/2259edf9-6bd5-a17a-c035-074aac0954d2/AppIcon-0-0-1x_U007epad-0-0-0-1-0-P3-85-220.png/512x512bb.jpg" alt="ChatGPT App Store 预览图" />
+                 <figcaption>ChatGPT App Store</figcaption>
+               </figure>
+      </div>
+    </article>
+  </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <p class="label">Section 2</p>
+          <h2>Section 2：AI+各方向最新应用情况</h2>
+          <p>按方向对比中美近期的代表产品、分发强度与产品机会。</p>
+        </div>
+        
+    <div class="heat-overview">
+      <article class="heat-overview-card us">
+        <p class="overview-kicker">美国更强</p>
+        <p class="overview-value">AI 助手/搜索 / AI 教育/学习</p>
+        <p class="overview-copy">近 60 天的强信号主要集中在助手、效率与工作台类入口。</p>
+      </article>
+      <article class="heat-overview-card cn">
+        <p class="overview-kicker">中国更强</p>
+        <p class="overview-value">AI 创作 / AI 助手/搜索</p>
+        <p class="overview-copy">近 60 天更清晰的是超级入口、视频创作和生活决策类能力整合。</p>
+      </article>
+      <article class="heat-overview-card watch">
+        <p class="overview-kicker">空白观察</p>
+        <p class="overview-value">AI 游戏/互动娱乐</p>
+        <p class="overview-copy">这些方向没有强行延用旧案例，等下一个可验证发布窗口再抬高权重。</p>
+      </article>
+    </div>
+
+    <div class="heat-legend">
+      <span class="legend-title">信号强度</span>
+      
+            <span class="legend-chip heat-0">
+              <span class="legend-dot"></span>
+              暂无
+            </span>
+          
+            <span class="legend-chip heat-1">
+              <span class="legend-dot"></span>
+              弱
+            </span>
+          
+            <span class="legend-chip heat-2">
+              <span class="legend-dot"></span>
+              中
+            </span>
+          
+            <span class="legend-chip heat-3">
+              <span class="legend-dot"></span>
+              强
+            </span>
+          
+            <span class="legend-chip heat-4">
+              <span class="legend-dot"></span>
+              极强
+            </span>
+          
+    </div>
+
+    <div class="heat-layout" data-heatmap-root data-selected-id="CN-AI-Creation-JImengAI">
+      <div class="heat-board">
+        <div class="heat-head">
+          <span>方向</span>
+          <span>美国</span><span>中国</span>
+        </div>
+        <div class="heat-rows">
+          
+                <div class="heat-row">
+                  <div class="heat-category">
+                    <p class="heat-category-index">01</p>
+                    <p class="heat-category-name">AI 助手/搜索</p>
+                  </div>
+                  <div class="heat-market-grid">
+                    
+    <div class="heat-cell-wrap">
+      <button
+        type="button"
+        class="heat-cell heat-4 "
+        data-heatmap-id="US-AI-Assistant-ChatGPT"
+        data-category-index="0"
+        data-market="美国"
+        aria-pressed="false"
+      >
+        <span class="heat-cell-top">
+          <span class="heat-market">美国</span>
+          <span class="heat-pill heat-4">强</span>
+        </span>
+        <span class="heat-products">
+          <span class="heat-tag">ChatGPT</span>
+        </span>
+        <span class="heat-pattern">GPT-5.5 Instant 模型更新，提升通用对话质量、上下文理解和指令遵循能力；个人理财功...</span>
+      </button>
+    </div>
+  
+    <div class="heat-cell-wrap">
+      <button
+        type="button"
+        class="heat-cell heat-4 "
+        data-heatmap-id="CN-AI-Assistant-Doubao"
+        data-category-index="0"
+        data-market="中国"
+        aria-pressed="false"
+      >
+        <span class="heat-cell-top">
+          <span class="heat-market">中国</span>
+          <span class="heat-pill heat-4">强</span>
+        </span>
+        <span class="heat-products">
+          <span class="heat-tag">豆包</span>
+        </span>
+        <span class="heat-pattern">字节跳动旗下豆包APP持续迭代，最新版本（2.2.4）上线Seedance2.0 fast模型以...</span>
+      </button>
+    </div>
+  
+                  </div>
+                </div>
+              
+                <div class="heat-row">
+                  <div class="heat-category">
+                    <p class="heat-category-index">02</p>
+                    <p class="heat-category-name">AI 教育/学习</p>
+                  </div>
+                  <div class="heat-market-grid">
+                    
+    <div class="heat-cell-wrap">
+      <button
+        type="button"
+        class="heat-cell heat-4 "
+        data-heatmap-id="US-AI-Education-Gizmo"
+        data-category-index="1"
+        data-market="美国"
+        aria-pressed="false"
+      >
+        <span class="heat-cell-top">
+          <span class="heat-market">美国</span>
+          <span class="heat-pill heat-4">强</span>
+        </span>
+        <span class="heat-products">
+          <span class="heat-tag">Gizmo</span>
+        </span>
+        <span class="heat-pattern">AI学习平台Gizmo完成2200万美元A轮融资（约合1.6亿元人民币），用户数达1300万。该...</span>
+      </button>
+    </div>
+  
+    <div class="heat-cell-wrap">
+      <button
+        type="button"
+        class="heat-cell heat-3 "
+        data-heatmap-id="CN-AI-Education-TencentYuanbao"
+        data-category-index="1"
+        data-market="中国"
+        aria-pressed="false"
+      >
+        <span class="heat-cell-top">
+          <span class="heat-market">中国</span>
+          <span class="heat-pill heat-3">中</span>
+        </span>
+        <span class="heat-products">
+          <span class="heat-tag">腾讯元宝</span>
+        </span>
+        <span class="heat-pattern">腾讯元宝App近期推出“高考志愿通”功能，提供查分、选校选专业、填报、录取等一站式AI辅助咨询。...</span>
+      </button>
+    </div>
+  
+                  </div>
+                </div>
+              
+                <div class="heat-row">
+                  <div class="heat-category">
+                    <p class="heat-category-index">03</p>
+                    <p class="heat-category-name">AI 陪伴/情感/社交</p>
+                  </div>
+                  <div class="heat-market-grid">
+                    
+    <div class="heat-cell-wrap">
+      <button
+        type="button"
+        class="heat-cell heat-4 "
+        data-heatmap-id="US-AI-Companion-CharacterAI"
+        data-category-index="2"
+        data-market="美国"
+        aria-pressed="false"
+      >
+        <span class="heat-cell-top">
+          <span class="heat-market">美国</span>
+          <span class="heat-pill heat-4">强</span>
+        </span>
+        <span class="heat-products">
+          <span class="heat-tag">Character.AI</span>
+        </span>
+        <span class="heat-pattern">Character.AI 在4月发布了 PipSqueak 2 模型更新，大幅提升了角色一致性、...</span>
+      </button>
+    </div>
+  
+    <div class="heat-cell-wrap">
+      <button
+        type="button"
+        class="heat-cell heat-4 "
+        data-heatmap-id="CN-AI-Companion-Xingye"
+        data-category-index="2"
+        data-market="中国"
+        aria-pressed="false"
+      >
+        <span class="heat-cell-top">
+          <span class="heat-market">中国</span>
+          <span class="heat-pill heat-4">强</span>
+        </span>
+        <span class="heat-products">
+          <span class="heat-tag">星野</span>
+        </span>
+        <span class="heat-pattern">星野作为多模态智能体内容社区，持续优化用户创建和分享AI智能体的体验，近期更新修复了问题并优化用...</span>
+      </button>
+    </div>
+  
+                  </div>
+                </div>
+              
+                <div class="heat-row">
+                  <div class="heat-category">
+                    <p class="heat-category-index">04</p>
+                    <p class="heat-category-name">AI 游戏/互动娱乐</p>
+                  </div>
+                  <div class="heat-market-grid">
+                    
+    <div class="heat-cell-wrap">
+      <button
+        type="button"
+        class="heat-cell heat-1 "
+        data-heatmap-id="US-AI-Game-None"
+        data-category-index="3"
+        data-market="美国"
+        aria-pressed="false"
+      >
+        <span class="heat-cell-top">
+          <span class="heat-market">美国</span>
+          <span class="heat-pill heat-1">弱</span>
+        </span>
+        <span class="heat-products">
+          <span class="heat-tag muted">暂无代表产品</span>
+        </span>
+        <span class="heat-pattern">暂无明确的AI游戏或互动娱乐类产品在近期有显著更新或发布。</span>
+      </button>
+    </div>
+  
+    <div class="heat-cell-wrap">
+      <button
+        type="button"
+        class="heat-cell heat-1 "
+        data-heatmap-id="CN-AI-Game-None"
+        data-category-index="3"
+        data-market="中国"
+        aria-pressed="false"
+      >
+        <span class="heat-cell-top">
+          <span class="heat-market">中国</span>
+          <span class="heat-pill heat-1">弱</span>
+        </span>
+        <span class="heat-products">
+          <span class="heat-tag muted">暂无代表产品</span>
+        </span>
+        <span class="heat-pattern">暂无明确的AI游戏或互动娱乐类产品在近期有显著更新或发布。</span>
+      </button>
+    </div>
+  
+                  </div>
+                </div>
+              
+                <div class="heat-row">
+                  <div class="heat-category">
+                    <p class="heat-category-index">05</p>
+                    <p class="heat-category-name">AI 创作</p>
+                  </div>
+                  <div class="heat-market-grid">
+                    
+    <div class="heat-cell-wrap">
+      <button
+        type="button"
+        class="heat-cell heat-3 "
+        data-heatmap-id="US-AI-Creation-MetaAI"
+        data-category-index="4"
+        data-market="美国"
+        aria-pressed="false"
+      >
+        <span class="heat-cell-top">
+          <span class="heat-market">美国</span>
+          <span class="heat-pill heat-3">中</span>
+        </span>
+        <span class="heat-products">
+          <span class="heat-tag">Meta AI</span>
+        </span>
+        <span class="heat-pattern">Meta AI 的 Muse Spark 全面推出，支持图像生成功能，使用户可以在对话中将想法、...</span>
+      </button>
+    </div>
+  
+    <div class="heat-cell-wrap">
+      <button
+        type="button"
+        class="heat-cell heat-4 is-selected"
+        data-heatmap-id="CN-AI-Creation-JImengAI"
+        data-category-index="4"
+        data-market="中国"
+        aria-pressed="true"
+      >
+        <span class="heat-cell-top">
+          <span class="heat-market">中国</span>
+          <span class="heat-pill heat-4">强</span>
+        </span>
+        <span class="heat-products">
+          <span class="heat-tag">即梦AI</span>
+        </span>
+        <span class="heat-pattern">字节跳动旗下即梦AI App （版本2.2.4，6月22日更新）上线 Seedance 2.0 ...</span>
+      </button>
+    </div>
+  
+                  </div>
+                </div>
+              
+                <div class="heat-row">
+                  <div class="heat-category">
+                    <p class="heat-category-index">06</p>
+                    <p class="heat-category-name">AI 效率/办公</p>
+                  </div>
+                  <div class="heat-market-grid">
+                    
+    <div class="heat-cell-wrap">
+      <button
+        type="button"
+        class="heat-cell heat-3 "
+        data-heatmap-id="US-AI-Efficiency-ChatGPT"
+        data-category-index="5"
+        data-market="美国"
+        aria-pressed="false"
+      >
+        <span class="heat-cell-top">
+          <span class="heat-market">美国</span>
+          <span class="heat-pill heat-3">中</span>
+        </span>
+        <span class="heat-products">
+          <span class="heat-tag">ChatGPT</span>
+        </span>
+        <span class="heat-pattern">OpenAI 宣布 Codex Remote 全面开放给所有 ChatGPT 用户（6月25日）...</span>
+      </button>
+    </div>
+  
+    <div class="heat-cell-wrap">
+      <button
+        type="button"
+        class="heat-cell heat-3 "
+        data-heatmap-id="CN-AI-Efficiency-DianDian"
+        data-category-index="5"
+        data-market="中国"
+        aria-pressed="false"
+      >
+        <span class="heat-cell-top">
+          <span class="heat-market">中国</span>
+          <span class="heat-pill heat-3">中</span>
+        </span>
+        <span class="heat-products">
+          <span class="heat-tag">点点</span>
+        </span>
+        <span class="heat-pattern">点点APP上线全新“攻略模式”（版本3.26，6月25日更新），基于小红书海量真人经验，生成深度...</span>
+      </button>
+    </div>
+  
+                  </div>
+                </div>
+              
+                <div class="heat-row">
+                  <div class="heat-category">
+                    <p class="heat-category-index">07</p>
+                    <p class="heat-category-name">AI 生活工具</p>
+                  </div>
+                  <div class="heat-market-grid">
+                    
+    <div class="heat-cell-wrap">
+      <button
+        type="button"
+        class="heat-cell heat-3 "
+        data-heatmap-id="US-AI-LifeTool-ChatGPT"
+        data-category-index="6"
+        data-market="美国"
+        aria-pressed="false"
+      >
+        <span class="heat-cell-top">
+          <span class="heat-market">美国</span>
+          <span class="heat-pill heat-3">中</span>
+        </span>
+        <span class="heat-products">
+          <span class="heat-tag">ChatGPT</span>
+        </span>
+        <span class="heat-pattern">ChatGPT 个人理财功能拓展至美国 Plus 和 Android 用户（6月26日），允许用...</span>
+      </button>
+    </div>
+  
+    <div class="heat-cell-wrap">
+      <button
+        type="button"
+        class="heat-cell heat-4 "
+        data-heatmap-id="CN-AI-LifeTool-DianDian"
+        data-category-index="6"
+        data-market="中国"
+        aria-pressed="false"
+      >
+        <span class="heat-cell-top">
+          <span class="heat-market">中国</span>
+          <span class="heat-pill heat-4">强</span>
+        </span>
+        <span class="heat-products">
+          <span class="heat-tag">点点</span>
+        </span>
+        <span class="heat-pattern">点点APP上线全新“攻略模式”（版本3.26，6月25日更新），基于小红书海量真人经验，一键生成...</span>
+      </button>
+    </div>
+  
+                  </div>
+                </div>
+              
+                <div class="heat-row">
+                  <div class="heat-category">
+                    <p class="heat-category-index">08</p>
+                    <p class="heat-category-name">AI 硬件入口</p>
+                  </div>
+                  <div class="heat-market-grid">
+                    
+    <div class="heat-cell-wrap">
+      <button
+        type="button"
+        class="heat-cell heat-4 "
+        data-heatmap-id="US-AI-Hardware-MetaAIGlasses"
+        data-category-index="7"
+        data-market="美国"
+        aria-pressed="false"
+      >
+        <span class="heat-cell-top">
+          <span class="heat-market">美国</span>
+          <span class="heat-pill heat-4">强</span>
+        </span>
+        <span class="heat-products">
+          <span class="heat-tag">Ray-Ban Meta</span><span class="heat-tag">Oakley Meta</span>
+        </span>
+        <span class="heat-pattern">Meta AI 的 Muse Spark 模型全面推广到 Ray-Ban Meta 和 Oakl...</span>
+      </button>
+    </div>
+  
+    <div class="heat-cell-wrap">
+      <button
+        type="button"
+        class="heat-cell heat-4 "
+        data-heatmap-id="CN-AI-Hardware-RokidAIGlasses"
+        data-category-index="7"
+        data-market="中国"
+        aria-pressed="false"
+      >
+        <span class="heat-cell-top">
+          <span class="heat-market">中国</span>
+          <span class="heat-pill heat-4">强</span>
+        </span>
+        <span class="heat-products">
+          <span class="heat-tag">Rokid Glasses</span>
+        </span>
+        <span class="heat-pattern">Rokid AI 伴侣应用更新至 1.9.0 版本（6月27日），为 Rokid Glasses...</span>
+      </button>
+    </div>
+  
+                  </div>
+                </div>
+              
+        </div>
+      </div>
+      <aside class="heat-detail" data-heatmap-detail>
+        
+    <div class="heat-detail-head">
+      <div class="meta-row">
+        <span class="detail-market">中国</span>
+        <span class="heat-pill heat-4">强</span>
+      </div>
+      <h3>AI 创作</h3>
+      <div class="detail-accent heat-4"></div>
+    </div>
+    <div class="detail-tags">
+      <span class="detail-tag">即梦AI</span>
+    </div>
+    <div class="detail-stack">
+      <div class="detail-block">
+        <p class="detail-label">产品形态</p>
+        <p>字节跳动旗下即梦AI App （版本2.2.4，6月22日更新）上线 Seedance 2.0 fast 模型，大幅提升图片和视频创作体验，支持用自然语言描述想法生成独一无二的图片和视频，并提供编辑和分享功能。</p>
+      </div>
+      <div class="detail-block">
+        <p class="detail-label">产品机会</p>
+        <p>中国市场对AI短视频和图像创作需求旺盛，AI工具通过模型升级和优化用户体验，赋能普通用户快速生成高质量创意内容，抢占内容生产高地。</p>
+      </div>
+      <div class="detail-block">
+        <p class="detail-label">继续观察</p>
+        <p>关注其在视频生成领域的质量提升和功能扩展，以及如何更好地与抖音生态融合，形成更强大的创作闭环。</p>
+      </div>
+    </div>
+    <div class="detail-sources">
+      <p class="detail-label">来源</p>
+      <div class="source-chip-row"><a class="source-chip" href="https://apps.apple.com/cn/app/%E5%8D%B3%E6%A2%A6ai-%E6%8A%96%E9%9F%B3%E6%97%97%E4%B8%8Bai%E5%9B%BE%E7%89%87%E5%92%8C%E8%A7%86%E9%A2%91%E5%B7%A5%E5%85%B7/id6503676563" target="_blank" rel="noreferrer">即梦AI App Store</a></div>
+    </div>
+  
+      </aside>
+      <div class="heat-hover hidden" data-heatmap-hover></div>
+      <script type="application/json" data-heatmap-items>[{"id":"US-AI-Assistant-ChatGPT","category":"AI 助手/搜索","market":"美国","intensity":4,"signalLabel":"强","products":["ChatGPT"],"pattern":"GPT-5.5 Instant 模型更新，提升通用对话质量、上下文理解和指令遵循能力；个人理财功能拓展至 Plus 和 Android 用户，支持连接金融账户；听写功能升级，多语言识别更准确。","opportunity":"传统AI助手通过模型升级和深度集成，向更智能、更个性化、更实用的方向发展，尤其在专业垂类数据连接方面，存在巨大用户价值和商业化空间。","watchNext":"观察其在专业领域的进一步拓展，以及多模态交互的深化，例如更自然的视觉问答和更强的行动执行能力。","sources":[{"label":"OpenAI Release Notes","href":"https://help.openai.com/en/articles/6825453-chatgpt-release-notes"}]},{"id":"CN-AI-Assistant-Doubao","category":"AI 助手/搜索","market":"中国","intensity":4,"signalLabel":"强","products":["豆包"],"pattern":"字节跳动旗下豆包APP持续迭代，最新版本（2.2.4）上线Seedance2.0 fast模型以提供全新多模态创作体验，并强化其在学习辅导、生活规划、图片编辑、视频生成等全能型AI助手功能，稳居效率榜前列。","opportunity":"本土AI助手依托平台生态和技术模型优势，快速占据用户心智，并通过多模态能力和场景化服务满足日益增长的泛生活需求，有望成为国民级AI入口。","watchNext":"关注豆包在多模态技术（如视频生成）上的持续领先性，及其在垂直领域的深耕，以及用户留存和商业化模式的探索。","sources":[{"label":"豆包 App Store","href":"https://apps.apple.com/cn/app/%E8%B1%86%E5%8C%85-%E9%9A%8F%E6%97%B6%E5%B8%AE%E5%BF%99%E7%9A%84-ai-%E5%8A%A9%E6%89%8B/id6459478672"}]},{"id":"US-AI-Education-Gizmo","category":"AI 教育/学习","market":"美国","intensity":4,"signalLabel":"强","products":["Gizmo"],"pattern":"AI学习平台Gizmo完成2200万美元A轮融资（约合1.6亿元人民币），用户数达1300万。该平台将学生笔记转化为互动学习材料，并通过游戏化机制提升学习效率和参与度。融资+产品验证的补充信号。","opportunity":"AI通过游戏化和个性化辅助，有效解决学生学习动力和效率问题，特别是在传统教育表现下降的背景下。市场对寓教于乐的AI学习产品需求旺盛。","watchNext":"观察其如何拓展大学市场，以及更多教育场景下的 AI 创新模式，特别是针对不同年龄段学生的个性化学习路径设计。","sources":[{"label":"TechCrunch Gizmo funding","href":"https://techcrunch.com/2026/04/15/ai-learning-app-gizmo-levels-up-with-13m-users-and-a-22m-investment/"}]},{"id":"CN-AI-Education-TencentYuanbao","category":"AI 教育/学习","market":"中国","intensity":3,"signalLabel":"中","products":["腾讯元宝"],"pattern":"腾讯元宝App近期推出“高考志愿通”功能，提供查分、选校选专业、填报、录取等一站式AI辅助咨询。同时，其拍题答疑和AI讲解功能也持续优化，为学生和家长提供学习支持。","opportunity":"AI助手向特定教育场景深化，解决学生和家长在升学决策等关键环节的信息不对称和效率痛点，具有较强的实用价值和市场需求。","watchNext":"观察其在高考后期的用户反馈和转化，以及未来在其他教育垂类场景的拓展，例如职业规划、兴趣学习等。","sources":[{"label":"腾讯元宝 App Store","href":"https://apps.apple.com/cn/app/%E8%85%BE%E8%AE%AF%E5%85%83%E5%AE%9D-%E6%8E%A5%E5%85%A5deepseek-r1%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/id6480446430"}]},{"id":"US-AI-Companion-CharacterAI","category":"AI 陪伴/情感/社交","market":"美国","intensity":4,"signalLabel":"强","products":["Character.AI"],"pattern":"Character.AI 在4月发布了 PipSqueak 2 模型更新，大幅提升了角色一致性、记忆力和对话质量，并改进了 Memory 页面和即将上线的 Lorebook 功能，增强用户与虚拟角色的沉浸式互动体验。","opportunity":"AI在情感陪伴和虚拟社交领域持续创新，通过提升模型“人格”的稳定性与上下文理解能力，满足用户对深度、个性化互动的需求，市场潜力巨大。","watchNext":"观察 Lorebook 功能上线后的用户反馈，以及更多提升沉浸感的交互方式，例如更逼真的语音、表情和动作集成。","sources":[{"label":"Character.AI Blog","href":"https://blog.character.ai/pipsqueak2-and-more/"}]},{"id":"CN-AI-Companion-Xingye","category":"AI 陪伴/情感/社交","market":"中国","intensity":4,"signalLabel":"强","products":["星野"],"pattern":"星野作为多模态智能体内容社区，持续优化用户创建和分享AI智能体的体验，近期更新修复了问题并优化用户体验（2.54.000版本，6月17日）。其通过高自由度定制智能体，满足用户在娱乐、工作、学习等多场景的陪伴社交需求。","opportunity":"中国市场对AI虚拟陪伴和角色扮演需求旺盛，平台通过降低创作门槛、丰富互动方式和维护社区生态，激发用户创造力，构建繁荣的UGC AI社交生态。","watchNext":"关注其在多模态（如语音、形象）交互上的持续优化，以及社区内容的质量管理和商业化路径。","sources":[{"label":"星野 App Store","href":"https://apps.apple.com/cn/app/%E6%98%9F%E9%87%8E-%E6%89%80%E5%BB%BA%E7%9A%86%E4%BD%A0%E6%89%80ai/id6463076337"}]},{"id":"US-AI-Game-None","category":"AI 游戏/互动娱乐","market":"美国","intensity":1,"signalLabel":"弱","products":[],"pattern":"暂无明确的AI游戏或互动娱乐类产品在近期有显著更新或发布。","opportunity":"市场仍处于探索期，期待更多AI驱动的创新游戏或娱乐体验出现，特别是在AI生成内容、智能NPC、个性化剧情等方面。","watchNext":"关注现有游戏平台的AI功能集成，以及独立AI游戏工作室的动向，特别是AI与元宇宙、XR技术的结合。","sources":[]},{"id":"CN-AI-Game-None","category":"AI 游戏/互动娱乐","market":"中国","intensity":1,"signalLabel":"弱","products":[],"pattern":"暂无明确的AI游戏或互动娱乐类产品在近期有显著更新或发布。","opportunity":"中国游戏市场庞大，AI在NPC智能化、内容生成、个性化体验方面有巨大潜力。期待更多本土创新。","watchNext":"关注游戏大厂或新兴团队在AI游戏技术和产品上的突破，尤其是结合中国文化和IP的创新。","sources":[]},{"id":"US-AI-Creation-MetaAI","category":"AI 创作","market":"美国","intensity":3,"signalLabel":"中","products":["Meta AI"],"pattern":"Meta AI 的 Muse Spark 全面推出，支持图像生成功能，使用户可以在对话中将想法、情绪和记忆转化为图像，降低了视觉内容创作的门槛。","opportunity":"AI创作能力作为通用AI助手的一部分，将进一步普及，使普通用户能更便捷地进行视觉内容的表达，提升社交媒体内容多样性。","watchNext":"观察 Meta AI 在创作功能上的进一步专业化和多模态融合，例如视频生成、3D内容创作等。","sources":[{"label":"Meta 官方","href":"https://about.fb.com/news/2026/04/introducing-muse-spark-meta-superintelligence-labs/"}]},{"id":"CN-AI-Creation-JImengAI","category":"AI 创作","market":"中国","intensity":4,"signalLabel":"强","products":["即梦AI"],"pattern":"字节跳动旗下即梦AI App （版本2.2.4，6月22日更新）上线 Seedance 2.0 fast 模型，大幅提升图片和视频创作体验，支持用自然语言描述想法生成独一无二的图片和视频，并提供编辑和分享功能。","opportunity":"中国市场对AI短视频和图像创作需求旺盛，AI工具通过模型升级和优化用户体验，赋能普通用户快速生成高质量创意内容，抢占内容生产高地。","watchNext":"关注其在视频生成领域的质量提升和功能扩展，以及如何更好地与抖音生态融合，形成更强大的创作闭环。","sources":[{"label":"即梦AI App Store","href":"https://apps.apple.com/cn/app/%E5%8D%B3%E6%A2%A6ai-%E6%8A%96%E9%9F%B3%E6%97%97%E4%B8%8Bai%E5%9B%BE%E7%89%87%E5%92%8C%E8%A7%86%E9%A2%91%E5%B7%A5%E5%85%B7/id6503676563"}]},{"id":"US-AI-Efficiency-ChatGPT","category":"AI 效率/办公","market":"美国","intensity":3,"signalLabel":"中","products":["ChatGPT"],"pattern":"OpenAI 宣布 Codex Remote 全面开放给所有 ChatGPT 用户（6月25日），允许从移动应用远程控制 Mac/Windows 主机进行开发工作，并推出 DigitalOcean 插件，强化 AI 在编程和远程协作中的应用。","opportunity":"AI Agent 化工具在编程、远程办公等专业效率场景中展现潜力，通过自动化和集成提升开发者的工作流效率，改变传统工作模式。","watchNext":"观察更多 AI Agent 专注于特定办公场景的落地和集成，以及其对传统软件的替代性影响，例如在项目管理、数据分析等领域。","sources":[{"label":"OpenAI Release Notes","href":"https://help.openai.com/en/articles/6825453-chatgpt-release-notes"}]},{"id":"CN-AI-Efficiency-DianDian","category":"AI 效率/办公","market":"中国","intensity":3,"signalLabel":"中","products":["点点"],"pattern":"点点APP上线全新“攻略模式”（版本3.26，6月25日更新），基于小红书海量真人经验，生成深度旅行、生活兴趣、购物决策、美食探店等攻略，并支持笔记总结和知识梳理，提升信息获取和整理效率。","opportunity":"AI在信息整合和内容摘要方面提升用户获取和管理信息的效率，尤其是在个性化知识管理和决策辅助方面，具有广阔的应用前景。","watchNext":"关注其在企业级或更复杂办公场景中的应用潜力，例如自动化报告生成、会议纪要整理等。","sources":[{"label":"点点 App Store","href":"https://apps.apple.com/us/app/%E7%82%B9%E7%82%B9-%E4%BD%A0%E7%9A%84ai%E7%94%9F%E6%B4%BB%E5%B0%8F%E5%8A%A9%E6%89%8B/id6529536122"}]},{"id":"US-AI-LifeTool-ChatGPT","category":"AI 生活工具","market":"美国","intensity":3,"signalLabel":"中","products":["ChatGPT"],"pattern":"ChatGPT 个人理财功能拓展至美国 Plus 和 Android 用户（6月26日），允许用户连接金融账户并提问，提供个性化财务洞察。GPT-5.5 Instant 也提升了购物和本地查询的实用性。","opportunity":"AI助手向生活服务领域渗透，通过连接个人数据和增强通用能力，提供个性化和便捷的日常决策支持，有望成为用户管理个人生活的入口。","watchNext":"观察其在更广泛生活服务（如健康、出行）领域的集成，以及如何处理敏感数据和提供高价值服务。","sources":[{"label":"OpenAI Release Notes","href":"https://help.openai.com/en/articles/6825453-chatgpt-release-notes"}]},{"id":"CN-AI-LifeTool-DianDian","category":"AI 生活工具","market":"中国","intensity":4,"signalLabel":"强","products":["点点"],"pattern":"点点APP上线全新“攻略模式”（版本3.26，6月25日更新），基于小红书海量真人经验，一键生成旅行、生活兴趣、购物、美食等深度攻略，极大地提升了用户在日常生活决策中的效率和体验。","opportunity":"AI深度融合本土内容生态（如小红书），通过高质量内容整合，成为用户生活决策的“智能参谋”，满足个性化、场景化的生活需求，具有独特的市场竞争力。","watchNext":"关注其如何进一步提升攻略内容的实时性和深度，以及与其他生活服务平台的联动，形成更全面的生活服务闭环。","sources":[{"label":"点点 App Store","href":"https://apps.apple.com/us/app/%E7%82%B9%E7%82%B9-%E4%BD%A0%E7%9A%84ai%E7%94%9F%E6%B4%BB%E5%B0%8F%E5%8A%A9%E6%89%8B/id6529536122"}]},{"id":"US-AI-Hardware-MetaAIGlasses","category":"AI 硬件入口","market":"美国","intensity":4,"signalLabel":"强","products":["Ray-Ban Meta","Oakley Meta"],"pattern":"Meta AI 的 Muse Spark 模型全面推广到 Ray-Ban Meta 和 Oakley Meta 智能眼镜（5月12日更新），提升了语音响应速度和 AI 智能性，并支持 Meta AI 应用中的 Live AI 功能，通过摄像头实时提问。","opportunity":"智能眼镜作为 AI 硬件的自然入口，正通过大模型集成和多模态交互（视觉、语音）实现更自然的感知和交互，逐渐成为用户数字生活的延伸，具备替代智能手机的潜力。","watchNext":"关注 Meta AI 眼镜在更多市场和功能上的拓展，以及用户接受度，特别是其在AR体验和日常应用中的表现。","sources":[{"label":"Meta 官方","href":"https://about.fb.com/news/2026/04/introducing-muse-spark-meta-superintelligence-labs/"}]},{"id":"CN-AI-Hardware-RokidAIGlasses","category":"AI 硬件入口","market":"中国","intensity":4,"signalLabel":"强","products":["Rokid Glasses"],"pattern":"Rokid AI 伴侣应用更新至 1.9.0 版本（6月27日），为 Rokid Glasses 引入工具箱（本地应用安装、Wi-Fi、遥控），AI 聊天支持 A2UI 渲染，慧眼视觉模型升级到 Qwen 3.6plus，并优化翻译功能（实时同声传译），显著提升智能眼镜的AI能力和独立性。","opportunity":"中国智能眼镜厂商积极整合最新大模型技术，通过提升多模态感知和交互，探索AI在真实世界中的落地应用，为用户带来更智能、便捷的体验，有望成为新的计算平台。","watchNext":"关注 Rokid 在 AI 硬件生态建设、本地应用支持以及更多垂直场景解决方案上的进展，以及其与国内主流 AI 模型的深度融合。","sources":[{"label":"Rokid AI App Store","href":"https://apps.apple.com/cn/app/rokid-ai-%E4%B9%90%E5%A5%87ai%E7%9C%BC%E9%95%9C/id6738470564"},{"label":"Hi Rokid App Store","href":"https://apps.apple.com/us/app/hi-rokid/id6749669942"}]}]</script>
+    </div>
+    <script>
+      (() => {
+        const root = document.querySelector("[data-heatmap-root]");
+        if (!root) return;
+
+        const dataNode = root.querySelector("[data-heatmap-items]");
+        const detailNode = root.querySelector("[data-heatmap-detail]");
+        const hoverNode = root.querySelector("[data-heatmap-hover]");
+        if (!dataNode || !detailNode || !hoverNode) return;
+
+        const items = JSON.parse(dataNode.textContent || "[]");
+        if (!Array.isArray(items) || items.length === 0) return;
+
+        const byId = new Map(items.map((item) => [item.id, item]));
+        const buttons = Array.from(root.querySelectorAll("[data-heatmap-id]"));
+        const desktopQuery = window.matchMedia("(min-width: 768px)");
+
+        const escapeHtml = (value) =>
+          String(value)
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#39;");
+
+        const heatClass = (intensity) => "heat-" + intensity;
+        const renderProductTags = (products, emptyText, tagClass) => {
+          if (!Array.isArray(products) || products.length === 0) {
+            return '<span class="' + tagClass + ' muted">' + escapeHtml(emptyText) + "</span>";
+          }
+
+          return products
+            .map((product) => '<span class="' + tagClass + '">' + escapeHtml(product) + "</span>")
+            .join("");
+        };
+
+        const renderSourceChips = (sources) => {
+          if (!Array.isArray(sources) || sources.length === 0) {
+            return '<p class="detail-empty">本周暂无足够可验证事件，未附来源。</p>';
+          }
+
+          return '<div class="source-chip-row">' + sources
+            .map(
+              (source) =>
+                '<a class="source-chip" href="' +
+                escapeHtml(source.href) +
+                '" target="_blank" rel="noreferrer">' +
+                escapeHtml(source.label) +
+                "</a>",
+            )
+            .join("") + "</div>";
+        };
+
+        const renderDetail = (item) => {
+          return '' +
+            '<div class="heat-detail-head">' +
+              '<div class="meta-row">' +
+                '<span class="detail-market">' + escapeHtml(item.market) + '</span>' +
+                '<span class="heat-pill ' + heatClass(item.intensity) + '">' + escapeHtml(item.signalLabel) + '</span>' +
+              '</div>' +
+              '<h3>' + escapeHtml(item.category) + '</h3>' +
+              '<div class="detail-accent ' + heatClass(item.intensity) + '"></div>' +
+            '</div>' +
+            '<div class="detail-tags">' + renderProductTags(item.products, '本周暂无代表产品', 'detail-tag') + '</div>' +
+            '<div class="detail-stack">' +
+              '<div class="detail-block"><p class="detail-label">产品形态</p><p>' + escapeHtml(item.pattern) + '</p></div>' +
+              '<div class="detail-block"><p class="detail-label">产品机会</p><p>' + escapeHtml(item.opportunity) + '</p></div>' +
+              '<div class="detail-block"><p class="detail-label">继续观察</p><p>' + escapeHtml(item.watchNext) + '</p></div>' +
+            '</div>' +
+            '<div class="detail-sources"><p class="detail-label">来源</p>' + renderSourceChips(item.sources) + '</div>';
+        };
+
+        const renderHover = (item) => {
+          return '' +
+            '<div class="hover-head">' +
+              '<div class="meta-row">' +
+                '<span class="hover-accent ' + heatClass(item.intensity) + '"></span>' +
+                '<div><p class="hover-market">' + escapeHtml(item.market) + '</p><p class="hover-category">' + escapeHtml(item.category) + '</p></div>' +
+              '</div>' +
+              '<span class="heat-pill ' + heatClass(item.intensity) + '">' + escapeHtml(item.signalLabel) + '</span>' +
+            '</div>' +
+            '<div class="hover-tags">' + renderProductTags(item.products, '暂无代表产品', 'hover-tag') + '</div>' +
+            '<div class="hover-stack">' +
+              '<div><p class="detail-label">产品形态</p><p>' + escapeHtml(item.pattern) + '</p></div>' +
+              '<div><p class="detail-label">产品机会</p><p>' + escapeHtml(item.opportunity) + '</p></div>' +
+              '<div><p class="detail-label">继续观察</p><p>' + escapeHtml(item.watchNext) + '</p></div>' +
+            '</div>';
+        };
+
+        const setSelected = (id) => {
+          const item = byId.get(id);
+          if (!item) return;
+          root.dataset.selectedId = id;
+          detailNode.innerHTML = renderDetail(item);
+          buttons.forEach((button) => {
+            const selected = button.dataset.heatmapId === id;
+            button.setAttribute("aria-pressed", selected ? "true" : "false");
+            button.classList.toggle("is-selected", selected);
+          });
+        };
+
+        const hideHover = () => {
+          hoverNode.classList.add("hidden");
+          hoverNode.innerHTML = "";
+          hoverNode.style.left = "";
+          hoverNode.style.top = "";
+        };
+
+        const showHover = (id, button) => {
+          if (!desktopQuery.matches) return;
+          const item = byId.get(id);
+          if (!item) return;
+
+          hoverNode.innerHTML = renderHover(item);
+          hoverNode.classList.remove("hidden");
+
+          const rect = button.getBoundingClientRect();
+          const hoverRect = hoverNode.getBoundingClientRect();
+          const gap = 16;
+          let left = item.market === "中国" ? rect.right - hoverRect.width : rect.left;
+          let top = rect.bottom + gap;
+
+          if (top + hoverRect.height > window.innerHeight - 16) {
+            top = rect.top - hoverRect.height - gap;
+          }
+
+          left = Math.max(16, Math.min(left, window.innerWidth - hoverRect.width - 16));
+          top = Math.max(16, Math.min(top, window.innerHeight - hoverRect.height - 16));
+
+          hoverNode.style.left = left + "px";
+          hoverNode.style.top = top + "px";
+        };
+
+        buttons.forEach((button) => {
+          const id = button.dataset.heatmapId;
+          if (!id) return;
+
+          button.addEventListener("click", () => setSelected(id));
+          button.addEventListener("mouseenter", () => showHover(id, button));
+          button.addEventListener("mouseleave", hideHover);
+          button.addEventListener("focus", () => showHover(id, button));
+          button.addEventListener("blur", hideHover);
+        });
+
+        window.addEventListener("scroll", hideHover, { passive: true });
+        window.addEventListener("resize", hideHover);
+
+        setSelected(root.dataset.selectedId || buttons[0]?.dataset.heatmapId || items[0]?.id);
+      })();
+    </script>
+  
+      </section>
+
+      <section>
+        <div class="section-head">
+          <p class="label">Section 3</p>
+          <h2>Section 3：美国市场近1周动态</h2>
+          <p>以下总结了美国市场近1周的市场动态，方便你快速了解市场上发生了什么。</p>
+        </div>
+        <div class="section-grid">
+    <article class="card">
+      <div class="meta-row">
+        <span class="index">01</span>
+        <span class="label">分点总结</span>
+      </div>
+      <h3>美国市场：AI 助手深化集成与多模态交互升级</h3>
+      <div class="summary-list">
+        
+              <div class="summary-bullet">
+                <span class="bullet"></span>
+                <p>AI 助手功能持续强化与扩展，例如 <strong>ChatGPT </strong>新增个人理财功能并改进听写，而 <strong>Meta AI </strong>的 <strong>Muse Spark </strong>模型在全系应用及智能眼镜上推出更快的语音响应、实时 AI 识别和新的购物功能，显示出 AI 助理向“超级应用”方向发展。</p>
+              </div>
+            
+              <div class="summary-bullet">
+                <span class="bullet"></span>
+                <p>工作流自动化和专业工具出现新进展，例如 <strong>OpenAI </strong>的 <strong>Codex Remote </strong>全面开放，允许用户从移动应用控制远程开发工作，预示着 AI Agent 在效率办公领域的深入应用。</p>
+              </div>
+            
+              <div class="summary-bullet">
+                <span class="bullet"></span>
+                <p>AI 语音交互和多模态能力显著提升，无论是 <strong>ChatGPT </strong>更准确的多语言听写，还是 <strong>Meta AI </strong>的 <strong>Live AI </strong>功能（通过摄像头实时提问），都让 AI 更自然地融入用户日常交互，增强了实际可用性。</p>
+              </div>
+            
+      </div>
+      <p class="sources"><strong>来源：</strong><a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes" target="_blank" rel="noreferrer">OpenAI Release Notes</a>、<a href="https://about.fb.com/news/2026/04/introducing-muse-spark-meta-superintelligence-labs/" target="_blank" rel="noreferrer">Meta 官方</a></p>
+    </article>
+  
+    <article class="card">
+      <div class="meta-row">
+        <span class="index">02</span>
+        <span class="label">分点总结</span>
+      </div>
+      <h3>GPT-5.5 Instant 模型更新</h3>
+      <div class="summary-list">
+        
+              <div class="summary-bullet">
+                <span class="bullet"></span>
+                <p>OpenAI 对其最常用的 ChatGPT 模型 GPT-5.5 Instant 进行了更新，旨在提升对话质量。</p>
+              </div>
+            
+              <div class="summary-bullet">
+                <span class="bullet"></span>
+                <p>此次更新尤其改进了模型在用户进行决策、寻求建议、规划、研究选项或购物时的表现，能够更好地识别问题背后的潜在目标，并在多轮对话中保持上下文。</p>
+              </div>
+            
+      </div>
+      <p class="sources"><strong>来源：</strong><a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes" target="_blank" rel="noreferrer">OpenAI Release Notes</a></p>
+    </article>
+  
+    <article class="card">
+      <div class="meta-row">
+        <span class="index">03</span>
+        <span class="label">分点总结</span>
+      </div>
+      <h3>个人理财功能拓展与听写能力增强</h3>
+      <div class="summary-list">
+        
+              <div class="summary-bullet">
+                <span class="bullet"></span>
+                <p>ChatGPT 的个人理财体验现已拓展至美国区的 Plus 用户（网页、iOS）和 Pro/Plus Android 用户。</p>
+              </div>
+            
+              <div class="summary-bullet">
+                <span class="bullet"></span>
+                <p>符合条件的用户可以安全地连接受支持的金融账户，查看财务仪表盘，并向 ChatGPT 提出基于其财务背景的问题。</p>
+              </div>
+            
+      </div>
+      <p class="sources"><strong>来源：</strong><a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes" target="_blank" rel="noreferrer">OpenAI Release Notes</a></p>
+    </article>
+  
+    <article class="card">
+      <div class="meta-row">
+        <span class="index">04</span>
+        <span class="label">分点总结</span>
+      </div>
+      <h3>Meta AI 基于 Muse Spark 全面升级及功能扩展</h3>
+      <div class="summary-list">
+        
+              <div class="summary-bullet">
+                <span class="bullet"></span>
+                <p>Meta AI 的最新模型 Muse Spark 正逐步推广到 WhatsApp、Instagram、Facebook、Messenger 和 Threads 等 Meta 旗下应用，以及 Ray-Ban Meta 和 Oakley Meta 智能眼镜（美国和加拿大市场）。</p>
+              </div>
+            
+              <div class="summary-bullet">
+                <span class="bullet"></span>
+                <p>此次更新带来了多项功能增强，包括 Meta AI 应用中更快的语音响应、支持通过摄像头实时提问的 Live AI 功能，以及新的购物功能（可在 Facebook Marketplace 上搜索商品）。</p>
+              </div>
+            
+      </div>
+      <p class="sources"><strong>来源：</strong><a href="https://about.fb.com/news/2026/04/introducing-muse-spark-meta-superintelligence-labs/" target="_blank" rel="noreferrer">Meta 官方</a></p>
+    </article>
+  
+    <article class="card">
+      <div class="meta-row">
+        <span class="index">05</span>
+        <span class="label">分点总结</span>
+      </div>
+      <h3>Codex Remote 全面开放给 ChatGPT 用户</h3>
+      <div class="summary-list">
+        
+              <div class="summary-bullet">
+                <span class="bullet"></span>
+                <p>OpenAI 宣布 Codex Remote 功能现已全面向所有 ChatGPT 计划的用户开放。</p>
+              </div>
+            
+              <div class="summary-bullet">
+                <span class="bullet"></span>
+                <p>用户可以通过 ChatGPT 移动应用，在连接的 Mac 或 Windows 主机上开始或继续开发工作，并远程审查进度和批准操作。</p>
+              </div>
+            
+      </div>
+      <p class="sources"><strong>来源：</strong><a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes" target="_blank" rel="noreferrer">OpenAI Release Notes</a></p>
+    </article>
+  </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <p class="label">Section 4</p>
+          <h2>Section 4：中国市场近1周动态</h2>
+          <p>以下总结了中国市场近1周的市场动态，方便你快速了解市场上发生了什么。</p>
+        </div>
+        <div class="section-grid">
+    <article class="card">
+      <div class="meta-row">
+        <span class="index">01</span>
+        <span class="label">分点总结</span>
+      </div>
+      <h3>中国市场：本土AI助手多模态创新与硬件结合提速</h3>
+      <div class="summary-list">
+        
+              <div class="summary-bullet">
+                <span class="bullet"></span>
+                <p>本土 AI 助手在多模态交互和垂类场景持续发力，例如 <strong>豆包 </strong>和 <strong>腾讯元宝 </strong>在图片编辑、视频生成、拍题答疑、高考志愿咨询等功能上持续迭代，显示出对用户多元化需求的快速响应。</p>
+              </div>
+            
+              <div class="summary-bullet">
+                <span class="bullet"></span>
+                <p>AI 内容创作工具不断优化，字节跳动旗下的 <strong>即梦 AI </strong>上线 <strong>Seedance 2.0 fast </strong>模型，提供更快的图像和视频创作体验，降低了内容创作门槛。</p>
+              </div>
+            
+              <div class="summary-bullet">
+                <span class="bullet"></span>
+                <p>智能硬件与 AI 助手的融合进一步提速，<strong>Rokid AI </strong>眼镜伴侣应用更新，提升 AI 助手的视觉识别、翻译及交互体验，并支持 A2UI 协议实现场景化 UI 渲染，进一步强化 AI 硬件的实用性。</p>
+              </div>
+            
+      </div>
+      <p class="sources"><strong>来源：</strong><a href="https://apps.apple.com/cn/app/%E8%B1%86%E5%8C%85-%E9%9A%8F%E6%97%B6%E5%B8%AE%E5%BF%99%E7%9A%84-ai-%E5%8A%A9%E6%89%8B/id6459478672" target="_blank" rel="noreferrer">豆包 App Store</a>、<a href="https://apps.apple.com/cn/app/%E8%85%BE%E8%AE%AF%E5%85%83%E5%AE%9D-%E6%8E%A5%E5%85%A5deepseek-r1%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/id6480446430" target="_blank" rel="noreferrer">腾讯元宝 App Store</a>、<a href="https://apps.apple.com/cn/app/%E5%8D%B3%E6%A2%A6ai-%E6%8A%96%E9%9F%B3%E6%97%97%E4%B8%8Bai%E5%9B%BE%E7%89%87%E5%92%8C%E8%A7%86%E9%A2%91%E5%B7%A5%E5%85%B7/id6503676563" target="_blank" rel="noreferrer">即梦AI App Store</a>、<a href="https://apps.apple.com/cn/app/rokid-ai-%E4%B9%90%E5%A5%87ai%E7%9C%BC%E9%95%9C/id6738470564" target="_blank" rel="noreferrer">Rokid AI App Store</a></p>
+    </article>
+  
+    <article class="card">
+      <div class="meta-row">
+        <span class="index">02</span>
+        <span class="label">分点总结</span>
+      </div>
+      <h3>Rokid Glasses 伴侣应用 Hi Rokid 1.9.0 更新</h3>
+      <div class="summary-list">
+        
+              <div class="summary-bullet">
+                <span class="bullet"></span>
+                <p>Rokid Glasses 的伴侣应用 Hi Rokid 更新至 1.9.0 版本。</p>
+              </div>
+            
+              <div class="summary-bullet">
+                <span class="bullet"></span>
+                <p>此次更新新增了“工具箱”功能，支持眼镜端本地应用安装、Wi-Fi 连接管理及全新的遥控功能，提升了设备的独立性和可控性。</p>
+              </div>
+            
+      </div>
+      <p class="sources"><strong>来源：</strong><a href="https://apps.apple.com/us/app/hi-rokid/id6749669942" target="_blank" rel="noreferrer">Hi Rokid App Store</a>、<a href="https://apps.apple.com/cn/app/rokid-ai-%E4%B9%90%E5%A5%87ai%E7%9C%BC%E9%95%9C/id6738470564" target="_blank" rel="noreferrer">Rokid AI App Store</a></p>
+    </article>
+  
+    <article class="card">
+      <div class="meta-row">
+        <span class="index">03</span>
+        <span class="label">分点总结</span>
+      </div>
+      <h3>AI 创作：中国方向信号</h3>
+      <div class="summary-list">
+        
+              <div class="summary-bullet">
+                <span class="bullet"></span>
+                <p>字节跳动旗下即梦AI App （版本2.2.4，6月22日更新）上线 Seedance 2.0 fast 模型，大幅提升图片和视频创作体验，支持用自然语言描述想法生成独一无二的图片和视频，并提供编辑和分享功能。</p>
+              </div>
+            
+              <div class="summary-bullet">
+                <span class="bullet"></span>
+                <p>中国市场对AI短视频和图像创作需求旺盛，AI工具通过模型升级和优化用户体验，赋能普通用户快速生成高质量创意内容，抢占内容生产高地。</p>
+              </div>
+            
+      </div>
+      <p class="sources"><strong>来源：</strong><a href="https://apps.apple.com/cn/app/%E5%8D%B3%E6%A2%A6ai-%E6%8A%96%E9%9F%B3%E6%97%97%E4%B8%8Bai%E5%9B%BE%E7%89%87%E5%92%8C%E8%A7%86%E9%A2%91%E5%B7%A5%E5%85%B7/id6503676563" target="_blank" rel="noreferrer">即梦AI App Store</a></p>
+    </article>
+  
+    <article class="card">
+      <div class="meta-row">
+        <span class="index">04</span>
+        <span class="label">分点总结</span>
+      </div>
+      <h3>AI 助手/搜索：中国方向信号</h3>
+      <div class="summary-list">
+        
+              <div class="summary-bullet">
+                <span class="bullet"></span>
+                <p>字节跳动旗下豆包APP持续迭代，最新版本（2.2.4）上线Seedance2.0 fast模型以提供全新多模态创作体验，并强化其在学习辅导、生活规划、图片编辑、视频生成等全能型AI助手功能，稳居效率榜前列。</p>
+              </div>
+            
+              <div class="summary-bullet">
+                <span class="bullet"></span>
+                <p>本土AI助手依托平台生态和技术模型优势，快速占据用户心智，并通过多模态能力和场景化服务满足日益增长的泛生活需求，有望成为国民级AI入口。</p>
+              </div>
+            
+      </div>
+      <p class="sources"><strong>来源：</strong><a href="https://apps.apple.com/cn/app/%E8%B1%86%E5%8C%85-%E9%9A%8F%E6%97%B6%E5%B8%AE%E5%BF%99%E7%9A%84-ai-%E5%8A%A9%E6%89%8B/id6459478672" target="_blank" rel="noreferrer">豆包 App Store</a></p>
+    </article>
+  </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <p class="label">Section 5</p>
+          <h2>Section 5：跨市场趋势判断</h2>
+          <p>以下判断都明确区分来源事实与推断，证据来自本期已收录条目与榜单快照。</p>
+        </div>
+        <div class="section-grid">
+    <article class="card">
+      <div class="meta-row">
+        <span class="index">01</span>
+        <span class="label">趋势判断</span>
+      </div>
+      <h3>AI 助手向多模态超级应用演进，硬件入口价值凸显</h3>
+      <div class="summary-list">
+        <p><strong>证据</strong>: Meta AI 的 Muse Spark 全面集成到其所有社交应用和智能眼镜中，提供语音、实时视觉（Live AI）、购物等多种能力。ChatGPT 拓展个人理财、增强听写，GPT-5.5 Instant 提升多轮对话能力。Rokid Glasses 的伴侣应用更新，支持 A2UI 渲染和实时翻译，强化眼镜的 AI 交互能力。</p>
+        <p><strong>对比</strong>: 中美巨头均在将 AI 助手打造成无处不在的“超级应用”，通过多模态交互（语音、视觉）和跨平台集成，渗透用户日常生活的方方面面。尤其是在硬件入口上的竞争，如 Meta 和 Rokid 的智能眼镜，显示出 AI 终端化和“AI Everywhere”的趋势。</p>
+      </div>
+    </article>
+  
+    <article class="card">
+      <div class="meta-row">
+        <span class="index">02</span>
+        <span class="label">趋势判断</span>
+      </div>
+      <h3>AI Agent 化加速，深入垂类工作流和代码执行</h3>
+      <div class="summary-list">
+        <p><strong>证据</strong>: OpenAI 推出 Codex Remote 通用可用，允许用户通过手机控制远程 Mac/Windows 进行开发工作，并支持 DigitalOcean 插件。《晚点聊 LateTalk》提及 OpenClaw 案例，强调“Coding→Agent 大主线明细，从模型的竞争到系统的竞争”，以及 OpenAI 与 Anthropic 在 Coding 产品上的竞争。</p>
+        <p><strong>对比</strong>: 美国的 AI Agent 发展正从通用辅助转向更具体、可执行的“工作流代理”，尤其是在开发者工具和效率办公领域，通过实际操作提升工作流效率。中国市场虽然直接的 Agent 独立产品提及较少，但豆包和腾讯元宝等助手开始集成更复杂的文档处理、代码生成等能力，暗示了 Agent 逻辑的渗透，预示着未来本土 Agent 产品的快速发展。</p>
+      </div>
+    </article>
+  
+    <article class="card">
+      <div class="meta-row">
+        <span class="index">03</span>
+        <span class="label">趋势判断</span>
+      </div>
+      <h3>内容创作与生活服务 AI 化，注重用户体验与个性化</h3>
+      <div class="summary-list">
+        <p><strong>证据</strong>: 中国的即梦 AI 推出 Seedance 2.0 fast 模型，提升图像视频创作效率。点点 APP 基于小红书数据提供“攻略模式”，解决旅行、生活兴趣、购物决策等问题。Replika 等陪伴类 AI 不断提升记忆和个性化互动，旨在帮助用户找到前行的方向。</p>
+        <p><strong>对比</strong>: 中美两地 AI 产品在内容创作和生活服务领域均注重用户体验优化，通过 AI 降低创作门槛、提供便捷生活决策。中国产品更强调与本土内容生态（如小红书、微信）的结合，提供贴近国人生活习惯的垂直服务。美国产品则在通用能力增强的同时，向更深层次的情感陪伴和个性化互动发展。</p>
+      </div>
+    </article>
+  
+    <article class="card">
+      <div class="meta-row">
+        <span class="index">04</span>
+        <span class="label">趋势判断</span>
+      </div>
+      <h3>中美都在继续把 AI 产品入口前移</h3>
+      <div class="summary-list">
+        <p><strong>证据</strong>: 本期美国的 GPT-5.5 Instant 模型更新、个人理财功能拓展与听写能力增强，以及中国的 Rokid Glasses 伴侣应用 Hi Rokid 1.9.0 更新，都说明消费者能直接感知的 AI 入口还在继续前推。</p>
+        <p><strong>对比</strong>: 这是基于本期已验证发布与分发信号的归纳，不直接外推为长期格局。</p>
+      </div>
+    </article>
+  
+    <article class="card">
+      <div class="meta-row">
+        <span class="index">05</span>
+        <span class="label">趋势判断</span>
+      </div>
+      <h3>美国更偏向模型能力和工作流深度升级</h3>
+      <div class="summary-list">
+        <p><strong>证据</strong>: GPT-5.5 Instant 模型更新，提升通用对话质量、上下文理解和指令遵循能力；个人理财功能拓展至 Plus 和 Android 用户，支持连接金融账户；听写功能升级，多语言识别更准确。</p>
+        <p><strong>对比</strong>: 字节跳动旗下即梦AI App （版本2.2.4，6月22日更新）上线 Seedance 2.0 fast 模型，大幅提升图片和视频创作体验，支持用自然语言描述想法生成独一无二的图片和视频，并提供编辑和分享功能。</p>
+      </div>
+    </article>
+  </div>
+      </section>
+    </main>
+  </body>
+</html>
