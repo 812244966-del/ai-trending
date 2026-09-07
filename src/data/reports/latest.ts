@@ -1,150 +1,30 @@
 import type { CategoryHeatmapItem } from "../../components/category-heatmap";
 import type { Finding, MarketSummaryPoint, TrendJudgment } from "../../lib/report-types";
 
-export const reportDate = "2026-08-31";
+export const reportDate = "2026-09-07";
 
 export const topFindings: Finding[] = [
   {
-    "name": "ChatGPT Work新增网站交互和任务分享",
+    "name": "OpenAI 推出 GPT-6 Astra 模型",
     "market": "美国",
-    "date": "2026-08-25",
-    "type": "feature launch",
-    "summary": [
-      [
-        {
-          "text": "ChatGPT Work现在可以利用Webhook响应支持应用的更新，例如Gmail、Slack和GitHub，以实现定时任务的自动化处理。",
-          "strong": false
-        }
-      ],
-      [
-        {
-          "text": "所有用户都可以分享已调度的任务；Plus和Pro用户还能创建由Webhook触发的任务。",
-          "strong": false
-        }
-      ],
-      [
-        {
-          "text": "此外，ChatGPT Work的浏览器现在支持与需要登录的网站进行交互，用户可授权ChatGPT代为完成注册、预约或查询保险费用等复杂任务。",
-          "strong": false
-        }
-      ]
-    ],
-    "whyItMatters": [
-      [
-        {
-          "text": "这些功能显著提升了ChatGPT Work的自动化和执行能力，使其能够作为更强大的个人或团队智能代理，深入日常工作流。",
-          "strong": false
-        }
-      ],
-      [
-        {
-          "text": "支持与已登录网站交互极大地扩展了AI代理的应用场景，将AI从信息检索工具转变为主动的任务完成者。",
-          "strong": false
-        }
-      ],
-      [
-        {
-          "text": "这一进展预示着AI工具将更深层次地融入数字工作环境，减少手动操作，提高整体效率，并重新定义“智能助理”的边界。",
-          "strong": false
-        }
-      ]
-    ],
-    "sources": [
-      {
-        "label": "OpenAI Release Notes",
-        "href": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
-      }
-    ],
-    "image": {
-      "url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/fb/d0/1e/fbd01e50-8973-d53b-9414-bfc5b0b67881/1_iPhone.jpg/320x480bb.jpg",
-      "alt": "ChatGPT App Store 预览图",
-      "type": "app store preview",
-      "sourceLabel": "ChatGPT App Store",
-      "sourceHref": "https://apps.apple.com/us/app/chatgpt/id6448311069",
-      "note": "使用 ChatGPT 的 App Store 官方预览图，帮助读者快速识别产品形态。"
-    }
-  },
-  {
-    "name": "ChatGPT支持连接多个Google账户",
-    "market": "美国",
-    "date": "2026-08-28",
-    "type": "feature launch",
-    "summary": [
-      [
-        {
-          "text": "ChatGPT现在允许用户连接多个Google账户的插件，包括Gmail、Google Calendar和Google Contacts。",
-          "strong": false
-        }
-      ],
-      [
-        {
-          "text": "这使得用户能够在同一对话中，跨个人和工作账户获取信息并协调任务，例如同时查询不同日历的空闲时间或搜索所有收件箱的邮件。",
-          "strong": false
-        }
-      ],
-      [
-        {
-          "text": "此功能在全球范围内面向Plus、Pro、Business和Enterprise订阅计划的用户开放，支持网页、桌面、iOS和Android平台。",
-          "strong": false
-        }
-      ]
-    ],
-    "whyItMatters": [
-      [
-        {
-          "text": "多账户连接极大地提升了AI助手的个人化和上下文理解能力，使其能够更好地服务于用户复杂的跨情境工作和生活需求。",
-          "strong": false
-        }
-      ],
-      [
-        {
-          "text": "这一更新反映了AI向更深层、更一体化的个人数据集成方向发展，旨在成为用户跨平台、跨身份的“超级助理”。",
-          "strong": false
-        }
-      ],
-      [
-        {
-          "text": "未来需观察其他AI平台如何效仿或创新，以在保护用户隐私的同时，深化与个人数字生活的融合，提供更无缝的体验。",
-          "strong": false
-        }
-      ]
-    ],
-    "sources": [
-      {
-        "label": "OpenAI Release Notes",
-        "href": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
-      }
-    ],
-    "image": {
-      "url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/fb/d0/1e/fbd01e50-8973-d53b-9414-bfc5b0b67881/1_iPhone.jpg/320x480bb.jpg",
-      "alt": "ChatGPT App Store 预览图",
-      "type": "app store preview",
-      "sourceLabel": "ChatGPT App Store",
-      "sourceHref": "https://apps.apple.com/us/app/chatgpt/id6448311069",
-      "note": "使用 ChatGPT 的 App Store 官方预览图，帮助读者快速识别产品形态。"
-    }
-  },
-  {
-    "name": "ChatGPT临时对话功能升级",
-    "market": "美国",
-    "date": "2026-08-27",
+    "date": "2026-09-03",
     "type": "notable update",
     "summary": [
       [
         {
-          "text": "ChatGPT推出了临时对话的新控制功能，用户可以自主选择是否开启记忆、插件和自定义指令，以个性化临时对话的响应。",
+          "text": "OpenAI 宣布推出其最新的核心模型 GPT-6 Astra，该模型在编码、研究、计算机使用和处理复杂多步骤任务方面实现了显著改进。",
           "strong": false
         }
       ],
       [
         {
-          "text": "个性化的临时对话在默认情况下不会创建新的记忆或计入聊天历史，除非用户明确选择保存。",
+          "text": "Astra 能够根据用户提供的模板和指令，自动创建文档、电子表格和演示文稿，并能灵活适应后续的需求变化或方向调整。",
           "strong": false
         }
       ],
       [
         {
-          "text": "用户现在可以将任何临时对话保存为常规对话，使其遵循账户级别的个性化设置和模型改进偏好。",
+          "text": "目前，该模型正向有限的组织逐步开放访问权限，计划在未来几天内实现更广泛的可用性。",
           "strong": false
         }
       ]
@@ -152,19 +32,71 @@ export const topFindings: Finding[] = [
     "whyItMatters": [
       [
         {
-          "text": "此更新在便利性和隐私之间提供了更好的平衡，用户可以在需要时利用个性化功能，同时保持对数据存储和记忆的控制权。",
+          "text": "GPT-6 Astra 的推出预示着 AI 在执行复杂、多步骤工作流方面的能力达到了新高度，将大幅提升企业和专业用户的生产力。",
           "strong": false
         }
       ],
       [
         {
-          "text": "这表明AI助手正在不断优化用户体验，以适应不同场景下的需求，例如快速查询、私密讨论或需要记忆上下文的长期项目。",
+          "text": "尤其在内容创作、数据分析和项目管理等领域，Astra 自动化生成和适应性强的特点将带来变革。",
           "strong": false
         }
       ],
       [
         {
-          "text": "临时对话的灵活性将有助于用户更自由地尝试AI功能，降低数据留存的顾虑，从而促进AI的日常使用和普及。",
+          "text": "其安全监控机制也反映了业界对高级 AI 系统潜在误用和风险的关注，旨在确保其负责任地部署。",
+          "strong": false
+        }
+      ]
+    ],
+    "sources": [
+      {
+        "label": "OpenAI Release Notes",
+        "href": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
+      }
+    ]
+  },
+  {
+    "name": "ChatGPT 推出面向美国临床医生的医疗公共数据插件",
+    "market": "美国",
+    "date": "2026-09-01",
+    "type": "feature launch",
+    "summary": [
+      [
+        {
+          "text": "ChatGPT 为符合条件的美国临床医生用户推出了“医疗公共数据”插件，该插件整合了九个应用程序，用于搜索公开的医疗保健信息来源。",
+          "strong": false
+        }
+      ],
+      [
+        {
+          "text": "这些信息源包括生物医学研究、临床试验、药物信息、Medicare 数据和提供者记录等。",
+          "strong": false
+        }
+      ],
+      [
+        {
+          "text": "该插件为只读模式，不访问患者病历，并提醒用户在搜索时避免包含受保护的健康信息。",
+          "strong": false
+        }
+      ]
+    ],
+    "whyItMatters": [
+      [
+        {
+          "text": "这一功能将大幅提升临床医生获取最新医疗信息和研究的效率，辅助决策过程。",
+          "strong": false
+        }
+      ],
+      [
+        {
+          "text": "它展示了 AI 在垂直领域专业化应用的潜力，通过整合特定行业数据源，为专业人士提供定制化服务。",
+          "strong": false
+        }
+      ],
+      [
+        {
+          "text": "未来，AI 将在更多专业领域扮演关键信息检索和分析的角色，但数据隐私和准确性仍是核心挑战。",
           "strong": false
         }
       ]
@@ -182,53 +114,240 @@ export const topFindings: Finding[] = [
       "sourceLabel": "ChatGPT App Store",
       "sourceHref": "https://apps.apple.com/us/app/chatgpt/id6448311069",
       "note": "使用 ChatGPT 的 App Store 官方预览图，帮助读者快速识别产品形态。"
+    }
+  },
+  {
+    "name": "ChatGPT 全球移动端上线个性化贴纸包功能",
+    "market": "美国",
+    "date": "2026-08-31",
+    "type": "feature launch",
+    "summary": [
+      [
+        {
+          "text": "ChatGPT 在全球移动端面向所有用户推出了全新的个性化贴纸包功能，允许用户将自己的想法或照片转化为独特的贴纸。",
+          "strong": false
+        }
+      ],
+      [
+        {
+          "text": "用户可以通过提供提示词或选择模板，让 ChatGPT 制作一套贴纸，并可下载或直接添加到 iMessage 或 WhatsApp 等消息应用中进行分享。",
+          "strong": false
+        }
+      ],
+      [
+        {
+          "text": "此功能旨在通过 AI 驱动的创作，丰富用户在消息交流中的个性化表达。",
+          "strong": false
+        }
+      ]
+    ],
+    "whyItMatters": [
+      [
+        {
+          "text": "该功能降低了普通用户进行个性化内容创作的门槛，让 AI 成为日常生活中小创意的实现者。",
+          "strong": false
+        }
+      ],
+      [
+        {
+          "text": "它将 AI 能力融入到社交和娱乐场景中，提升了用户互动的趣味性和表现力。",
+          "strong": false
+        }
+      ],
+      [
+        {
+          "text": "此举也可能促使其他消息和社交应用探索更多 AI 驱动的个性化内容生成功能。",
+          "strong": false
+        }
+      ]
+    ],
+    "sources": [
+      {
+        "label": "OpenAI Release Notes",
+        "href": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
+      }
+    ],
+    "image": {
+      "url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/fb/d0/1e/fbd01e50-8973-d53b-9414-bfc5b0b67881/1_iPhone.jpg/320x480bb.jpg",
+      "alt": "ChatGPT App Store 预览图",
+      "type": "app store preview",
+      "sourceLabel": "ChatGPT App Store",
+      "sourceHref": "https://apps.apple.com/us/app/chatgpt/id6448311069",
+      "note": "使用 ChatGPT 的 App Store 官方预览图，帮助读者快速识别产品形态。"
+    }
+  },
+  {
+    "name": "腾讯元宝上线 Hy4 preview 模型、专家模式与 AI 精讲功能",
+    "market": "中国",
+    "date": "2026-08-31",
+    "type": "notable update",
+    "summary": [
+      [
+        {
+          "text": "腾讯元宝接入全新 Hy4 preview 模型，全面升级其 Agent 能力，尤其在综合多方信源进行深度推理和处理复杂任务方面表现更可靠。",
+          "strong": false
+        }
+      ],
+      [
+        {
+          "text": "同时，元宝同步上线了“专家模式”，专为需要深度思考和逻辑优化的复杂任务设计。",
+          "strong": false
+        }
+      ],
+      [
+        {
+          "text": "此外，还推出了“AI 精讲”功能，用户可拍题或输入文字，获得动态板书和语音讲解，提供一对一的专属教学体验。",
+          "strong": false
+        }
+      ]
+    ],
+    "whyItMatters": [
+      [
+        {
+          "text": "核心模型的升级和专家模式的引入，标志着腾讯元宝在处理复杂、高要求任务方面迈出了重要一步，提升了其作为全能 AI 助手的竞争力。",
+          "strong": false
+        }
+      ],
+      [
+        {
+          "text": "“AI 精讲”功能直击教育痛点，利用 AI 提供个性化、互动式的学习辅导，有望变革传统学习方式。",
+          "strong": false
+        }
+      ],
+      [
+        {
+          "text": "这些更新体现了中国 AI 产品在基础模型能力、垂直应用创新和用户体验优化上的持续投入。",
+          "strong": false
+        }
+      ]
+    ],
+    "sources": [
+      {
+        "label": "腾讯元宝 App Store",
+        "href": "https://apps.apple.com/cn/app/%E8%85%BE%E8%AE%AF%E5%85%83%E5%AE%9D-%E6%8E%A5%E5%85%A5deepseek-r1%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/id6480446430"
+      }
+    ],
+    "image": {
+      "url": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/80/cc/77/80cc77eb-85fe-58bd-a0ac-4d9d64a0cc02/d70ce9940f73eaad66210721e467670d_1.jpg/320x480bb.jpg",
+      "alt": "元宝-腾讯全能AI助手 App Store 预览图",
+      "type": "app store preview",
+      "sourceLabel": "腾讯元宝 App Store",
+      "sourceHref": "https://apps.apple.com/cn/app/%E8%85%BE%E8%AE%AF%E5%85%83%E5%AE%9D-%E6%8E%A5%E5%85%A5deepseek-r1%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/id6480446430",
+      "note": "使用 元宝-腾讯全能AI助手 的 App Store 官方预览图，帮助读者快速识别产品形态。"
     }
   }
 ];
 
 export const trendJudgments: TrendJudgment[] = [
   {
-    "title": "AI助手正深化与个人及工作流的集成",
+    "title": "AI 助手/模型能力持续向复杂任务深化",
     "evidence": [
       {
-        "text": "ChatGPT Work新增了与已登录网站交互的能力，并通过Webhook支持对应用更新（如Gmail、Slack、GitHub）作出响应的定时任务。",
+        "text": "美国 OpenAI 发布 ",
         "strong": false
       },
       {
-        "text": "ChatGPT现在允许用户连接多个Google账户的插件，使其能在个人和工作情境中跨账户处理邮件和日程。",
+        "text": "GPT-6 Astra",
+        "strong": true
+      },
+      {
+        "text": "，侧重编码、研究、计算机使用和复杂的、多步骤工作，能够创建符合模板的文档、表格和演示文稿。",
+        "strong": false
+      },
+      {
+        "text": "此外，",
+        "strong": false
+      },
+      {
+        "text": "ChatGPT",
+        "strong": true
+      },
+      {
+        "text": " 新增了 ",
+        "strong": false
+      },
+      {
+        "text": "Zendesk",
+        "strong": true
+      },
+      {
+        "text": " 和 ",
+        "strong": true
+      },
+      {
+        "text": "OneNote",
+        "strong": true
+      },
+      {
+        "text": " 插件，进一步拓展了其在企业级应用中的复杂任务处理能力。",
         "strong": false
       }
     ],
     "comparison": [
       {
-        "text": "这一趋势表明AI不仅是信息查询工具，更在向用户的工作和生活深度渗透，成为可执行具体操作的智能代理。",
+        "text": "中国腾讯元宝上线 ",
         "strong": false
       },
       {
-        "text": "与早期AI更多聚焦于通用问答相比，当前头部产品致力于打通数据孤岛，提升在复杂任务中的实用性，预示着“智能助理”的定义正在被拓展。",
+        "text": "Hy4 preview",
+        "strong": true
+      },
+      {
+        "text": " 模型及专家模式，显著提升了处理复杂任务的逻辑推理能力，并支持多方信源深度推理，使得其在内容生成和问题解决上更为可靠和专业。",
         "strong": false
       }
     ]
   },
   {
-    "title": "AI对话体验朝个性化与隐私平衡方向发展",
+    "title": "AI 教育与个性化学习工具创新加速",
     "evidence": [
       {
-        "text": "ChatGPT新增了临时对话控制功能，用户可选择性地开启记忆、插件和自定义指令以获得个性化回复，同时默认不存储对话记录。",
+        "text": "中国腾讯元宝推出“",
         "strong": false
       },
       {
-        "text": "用户可自主决定是否将临时对话保存为常规对话，从而灵活控制数据留存和未来的个性化体验。",
+        "text": "AI 精讲",
+        "strong": true
+      },
+      {
+        "text": "”功能，支持用户拍题或文字输入，通过动态板书和语音讲解，像专属老师一样逐步教解题，实现了高度个性化的学习辅导体验。",
         "strong": false
       }
     ],
     "comparison": [
       {
-        "text": "这一更新反映了AI产品在提供便利的个性化服务的同时，也开始更加重视用户对数据隐私和控制权的需求，力求在二者之间找到最佳平衡点。",
+        "text": "美国市场本周未见直接的 AI 教育领域强信号，但 ",
         "strong": false
       },
       {
-        "text": "这与过去“默认收集数据以优化模型”的策略有所不同，显示出AI平台正逐步回应用户对透明度和选择权的呼声。",
+        "text": "ChatGPT",
+        "strong": true
+      },
+      {
+        "text": " 针对临床医生的医疗公共数据插件，也体现了 AI 在垂直专业知识获取方面的辅助能力，间接支持了专业领域的学习。",
+        "strong": false
+      }
+    ]
+  },
+  {
+    "title": "消费级 AI 注重个性化创作与生态融合",
+    "evidence": [
+      {
+        "text": "美国 ",
+        "strong": false
+      },
+      {
+        "text": "ChatGPT",
+        "strong": true
+      },
+      {
+        "text": " 发布全球移动端个性化贴纸包功能，让用户能将想法或照片转化为贴纸，并通过主流消息应用分享，极大地丰富了用户在社交互动中的个性化表达。",
+        "strong": false
+      }
+    ],
+    "comparison": [
+      {
+        "text": "中国腾讯元宝持续深化与微信生态（如公众号、视频号、腾讯文档）的融合，提升了其在信息获取、内容创作和协作上的便捷性，通过生态协同增强用户粘性。",
         "strong": false
       }
     ]
@@ -237,7 +356,7 @@ export const trendJudgments: TrendJudgment[] = [
     "title": "中美都在继续把 AI 产品入口前移",
     "evidence": [
       {
-        "text": "本期美国的 ChatGPT Work新增网站交互和任务分享、ChatGPT支持连接多个Google账户，以及中国的 头部入口迭代，都说明消费者能直接感知的 AI 入口还在继续前推。",
+        "text": "本期美国的 OpenAI 推出 GPT-6 Astra 模型、ChatGPT 推出面向美国临床医生的医疗公共数据插件，以及中国的 腾讯元宝上线 Hy4 preview 模型、专家模式与 AI 精讲功能，都说明消费者能直接感知的 AI 入口还在继续前推。",
         "strong": false
       }
     ],
@@ -252,28 +371,13 @@ export const trendJudgments: TrendJudgment[] = [
     "title": "美国更偏向模型能力和工作流深度升级",
     "evidence": [
       {
-        "text": "头部AI助手持续推出深度集成与个性化功能，巨头加速AI能力全产品线渗透。",
+        "text": "OpenAI 的 GPT-6 Astra 模型在文档、表格、演示文稿的创作能力上有所提升，并能适应用户修改需求。Gemini 的 Lyria 3 Pro 也支持生成长达3分钟的音乐曲目。",
         "strong": false
       }
     ],
     "comparison": [
       {
-        "text": "本周期内未观察到中国市场AI创作领域的显著信号。",
-        "strong": false
-      }
-    ]
-  },
-  {
-    "title": "中国更偏向入口整合和高频场景覆盖",
-    "evidence": [
-      {
-        "text": "本周期内未观察到中国市场AI创作领域的显著信号。",
-        "strong": false
-      }
-    ],
-    "comparison": [
-      {
-        "text": "观察用户数据与隐私政策的平衡、以及用户在多平台AI间的选择倾向。",
+        "text": "国内短视频/修图巨头持续迭代 AI 创作工具，如抖音旗下的即梦 AI、小云雀等，腾讯元宝也支持 AI 图片编辑、AI 生成视频、AI 绘图，丰富了消费级 AI 创作生态。",
         "strong": false
       }
     ]
@@ -282,54 +386,61 @@ export const trendJudgments: TrendJudgment[] = [
 
 export const categoryHeatmapItems: CategoryHeatmapItem[] = [
   {
-    "id": "us-ai-assistant-search",
+    "id": "US-AS-1",
     "category": "AI 助手/搜索",
     "market": "美国",
     "intensity": 4,
-    "signalLabel": "强",
+    "signalLabel": "极强",
     "products": [
       "ChatGPT",
-      "Meta AI"
+      "GPT-6 Astra"
     ],
-    "pattern": "头部AI助手持续推出深度集成与个性化功能，巨头加速AI能力全产品线渗透。",
-    "opportunity": "深挖跨应用、跨账户的整合需求，提供智能且高度个性化的工作流与生活助手。",
-    "watchNext": "观察用户数据与隐私政策的平衡、以及用户在多平台AI间的选择倾向。",
+    "pattern": "OpenAI 发布核心模型 GPT-6 Astra，并持续强化 ChatGPT 的企业级应用能力及插件生态，将 AI 助手向更复杂的任务处理和专业化方向推进。",
+    "opportunity": "关注通用 AI 模型在复杂任务处理和专业领域（如医疗、企业工具集成）的深化应用，以及其与现有 SaaS 服务的无缝融合。",
+    "watchNext": "GPT-6 Astra 的更广泛可用性及企业采用情况，以及更多专业领域插件的推出。",
+    "sources": [
+      {
+        "label": "OpenAI Release Notes",
+        "href": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
+      }
+    ]
+  },
+  {
+    "id": "CN-AS-1",
+    "category": "AI 助手/搜索",
+    "market": "中国",
+    "intensity": 4,
+    "signalLabel": "强",
+    "products": [
+      "腾讯元宝"
+    ],
+    "pattern": "腾讯元宝核心模型升级至 Hy4 preview，并引入专家模式，显著提升复杂任务处理能力，同时深度整合腾讯生态，强化信息获取和生成能力。",
+    "opportunity": "关注国内头部 AI 助手在模型能力提升、生态深度融合及垂直场景（如教育）的创新，以实现差异化竞争和用户增长。",
+    "watchNext": "腾讯元宝 Hy4 模型的全面开放及用户反馈，以及其在多模态搜索和跨应用协作方面的进一步突破。",
+    "sources": [
+      {
+        "label": "腾讯元宝 App Store",
+        "href": "https://apps.apple.com/cn/app/%E8%85%BE%E8%AE%AF%E5%85%83%E5%AE%9D-%E6%8E%A5%E5%85%A5deepseek-r1%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/id6480446430"
+      }
+    ]
+  },
+  {
+    "id": "US-EL-1",
+    "category": "AI 教育/学习",
+    "market": "美国",
+    "intensity": 1,
+    "signalLabel": "弱",
+    "products": [
+      "Gizmo"
+    ],
+    "pattern": "本周美国市场无直接针对 AI 教育/学习的强信号，但 ChatGPT 的通用能力及专业插件可间接赋能学习和研究。AI 学习平台 Gizmo 获得高额融资，其游戏化学习模式受青睐。",
+    "opportunity": "留意 AI 助手在个性化学习、研究辅助和语言学习（如发音改进）方面的潜在应用，将现有 AI 能力整合到教育场景中。同时关注游戏化、互动性强的 AI 学习产品。",
+    "watchNext": "观察是否有新的 AI 教育应用或现有 AI 助手推出明确的学习功能，以及 K12 领域的 AI 辅助工具发展。",
     "sources": [
       {
         "label": "OpenAI Release Notes",
         "href": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
       },
-      {
-        "label": "Meta 官方",
-        "href": "https://about.fb.com/news/2026/04/introducing-muse-spark-meta-superintelligence-labs/"
-      }
-    ]
-  },
-  {
-    "id": "cn-ai-assistant-search",
-    "category": "AI 助手/搜索",
-    "market": "中国",
-    "intensity": 0,
-    "signalLabel": "暂无",
-    "products": [],
-    "pattern": "本周期内未观察到中国市场AI助手/搜索领域的显著信号。",
-    "opportunity": "潜在机会在于结合中国用户习惯的个性化AI助手，尤其是在移动生态中的深度整合。",
-    "watchNext": "关注是否有新的国产AI大模型应用涌现，或现有互联网巨头在AI助手方向的最新布局。",
-    "sources": []
-  },
-  {
-    "id": "us-ai-education-learning",
-    "category": "AI 教育/学习",
-    "market": "美国",
-    "intensity": 3,
-    "signalLabel": "中",
-    "products": [
-      "Gizmo"
-    ],
-    "pattern": "AI学习平台Gizmo完成2200万美元A轮融资，用户数达1300万。融资与用户增长结合的产品验证信号。",
-    "opportunity": "通过游戏化、个性化等手段，提升AI学习产品的用户留存和参与度，尤其关注学生行为变化。",
-    "watchNext": "观察Gizmo的市场扩张（特别是美国大学市场）和产品迭代，以及其他EdTech AI的创新模式。",
-    "sources": [
       {
         "label": "TechCrunch Gizmo funding",
         "href": "https://techcrunch.com/2026/04/15/ai-learning-app-gizmo-levels-up-with-13m-users-and-a-22m-investment/"
@@ -337,194 +448,261 @@ export const categoryHeatmapItems: CategoryHeatmapItem[] = [
     ]
   },
   {
-    "id": "cn-ai-education-learning",
+    "id": "CN-EL-1",
     "category": "AI 教育/学习",
     "market": "中国",
-    "intensity": 0,
-    "signalLabel": "暂无",
-    "products": [],
-    "pattern": "本周期内未观察到中国市场AI教育/学习领域的显著信号。",
-    "opportunity": "潜在机会存在于结合中国教育特色和学习习惯的AI产品，如个性化辅导、智能题库或语言学习应用。",
-    "watchNext": "关注教育政策变化对AI技术应用的影响，以及是否有新的融资或产品发布。",
-    "sources": []
-  },
-  {
-    "id": "us-ai-companion-social",
-    "category": "AI 陪伴/情感/社交",
-    "market": "美国",
     "intensity": 4,
     "signalLabel": "强",
     "products": [
-      "Series",
-      "Character.AI",
-      "Meta AI"
+      "腾讯元宝"
     ],
-    "pattern": "AI社交和陪伴平台获得高额融资并展现强劲用户留存；AI模型在角色一致性和记忆方面持续提升；主流社交应用开始集成AI能力。",
-    "opportunity": "利用AI创造更深层、更具互动性和个性化的社交体验，探索基于AI的虚拟社交和陪伴新模式。",
-    "watchNext": "观察AI在iMessage等原生平台上的社交能力表现，Character.AI Lorebook功能的实际效果及Meta AI在社交应用中的用户接受度。",
+    "pattern": "腾讯元宝推出“AI 精讲”功能，通过动态板书和语音讲解，提供专属老师一对一解题体验，显著提升了 AI 在教育场景的实用性和互动性。",
+    "opportunity": "AI 在 K12 及高等教育领域的互动式、个性化辅导存在巨大潜力，特别是在解决痛点和提升学习效率方面。",
+    "watchNext": "用户对 AI 精讲功能的接受度及其他平台跟进类似功能的情况，以及 AI 在教育内容生成和评估方面的进一步应用。",
     "sources": [
       {
-        "label": "TechCrunch Series funding",
-        "href": "https://techcrunch.com/2026/04/24/two-college-kids-raise-a-5-1-million-pre-seed-to-build-an-ai-social-network-in-imessage/"
-      },
-      {
-        "label": "Character.AI Blog",
-        "href": "https://blog.character.ai/pipsqueak2-and-more/"
-      },
-      {
-        "label": "Meta 官方",
-        "href": "https://about.fb.com/news/2026/04/introducing-muse-spark-meta-superintelligence-labs/"
+        "label": "腾讯元宝 App Store",
+        "href": "https://apps.apple.com/cn/app/%E8%85%BE%E8%AE%AF%E5%85%83%E5%AE%9D-%E6%8E%A5%E5%85%A5deepseek-r1%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/id6480446430"
       }
     ]
   },
   {
-    "id": "cn-ai-companion-social",
+    "id": "US-CES-1",
     "category": "AI 陪伴/情感/社交",
-    "market": "中国",
-    "intensity": 0,
-    "signalLabel": "暂无",
-    "products": [],
-    "pattern": "本周期内未观察到中国市场AI陪伴/情感/社交领域的显著信号。",
-    "opportunity": "关注年轻群体对虚拟陪伴和创新社交的需求，以及AI技术在提供情感支持和社群互动方面的潜力。",
-    "watchNext": "观察现有社交平台是否开始大规模集成AI功能，或是否有新的AI原生社交产品出现。",
-    "sources": []
-  },
-  {
-    "id": "us-ai-game-entertainment",
-    "category": "AI 游戏/互动娱乐",
     "market": "美国",
-    "intensity": 0,
-    "signalLabel": "暂无",
-    "products": [],
-    "pattern": "本周期内未观察到美国市场AI游戏/互动娱乐领域的显著信号。",
-    "opportunity": "AI在游戏内容生成、智能NPC、个性化游戏体验等方面有巨大潜力，或将出现颠覆性产品。",
-    "watchNext": "关注大型游戏公司或创新工作室在AI游戏方面的研发投入和产品demo。",
-    "sources": []
-  },
-  {
-    "id": "cn-ai-game-entertainment",
-    "category": "AI 游戏/互动娱乐",
-    "market": "中国",
-    "intensity": 0,
-    "signalLabel": "暂无",
-    "products": [],
-    "pattern": "本周期内未观察到中国市场AI游戏/互动娱乐领域的显著信号。",
-    "opportunity": "AI在互动小说、角色扮演游戏或数字内容创作辅助方面可能存在创新机会。",
-    "watchNext": "关注游戏版号政策对AI游戏的影响，以及国内游戏厂商的AI战略布局。",
-    "sources": []
-  },
-  {
-    "id": "us-ai-creation",
-    "category": "AI 创作",
-    "market": "美国",
-    "intensity": 2,
+    "intensity": 3,
     "signalLabel": "中",
     "products": [
-      "Character.AI"
+      "Character.AI",
+      "ChatGPT",
+      "Series"
     ],
-    "pattern": "Character.AI即将推出“Lorebook”功能，赋能创作者构建更详细的角色世界观，提升角色一致性。",
-    "opportunity": "AI工具赋能创作者，降低创作门槛，提升内容质量和一致性，尤其在角色扮演、故事生成等领域。",
-    "watchNext": "观察Lorebook功能上线后，创作者社区的反馈和采用情况，以及AI在其他创作领域（如音乐、视频）的进展。",
-    "sources": [
-      {
-        "label": "Character.AI Blog",
-        "href": "https://blog.character.ai/pipsqueak2-and-more/"
-      }
-    ]
-  },
-  {
-    "id": "cn-ai-creation",
-    "category": "AI 创作",
-    "market": "中国",
-    "intensity": 0,
-    "signalLabel": "暂无",
-    "products": [],
-    "pattern": "本周期内未观察到中国市场AI创作领域的显著信号。",
-    "opportunity": "中文内容创作特有的需求，如诗词、小说、剧本等，是AI发挥优势的领域。",
-    "watchNext": "关注国内AI大模型在内容生成质量上的提升，以及创作者对AI工具的接受度。",
-    "sources": []
-  },
-  {
-    "id": "us-ai-efficiency-office",
-    "category": "AI 效率/办公",
-    "market": "美国",
-    "intensity": 4,
-    "signalLabel": "强",
-    "products": [
-      "ChatGPT Work"
-    ],
-    "pattern": "AI工具通过与现有系统集成和自主执行任务，向更深度的企业级应用和自动化方向发展，大幅提升办公效率。融资不再是该类别60天内的主要信号。",
-    "opportunity": "提供定制化的AI办公解决方案，尤其是能够处理复杂、多步骤任务的智能代理，打通信息孤岛，并注重与主流SaaS工具的无缝衔接。",
-    "watchNext": "观察ChatGPT Work与更多企业应用的集成广度，以及用户对其自主执行任务功能的接受度。",
+    "pattern": "ChatGPT 推出个性化贴纸包功能，用户可将想法或照片转化为贴纸，增强社交互动中的个性表达。AI 驱动的社交产品 Series 通过 iMessage 平台，利用 AI 促进用户连接。",
+    "opportunity": "AI 驱动的个性化内容生成能丰富社交互动形式，提升用户表达乐趣，并为 AI 陪伴和虚拟社交带来更多可能性。",
+    "watchNext": "更多 AI 生成内容在主流社交平台中的应用与普及，以及 AI 角色在情感交互和多模态沟通上的突破。",
     "sources": [
       {
         "label": "OpenAI Release Notes",
         "href": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
+      },
+      {
+        "label": "TechCrunch Series funding",
+        "href": "https://techcrunch.com/2026/04/24/two-college-kids-raise-a-5-1-million-pre-seed-to-build-an-ai-social-network-in-imessage/"
       }
     ]
   },
   {
-    "id": "cn-ai-efficiency-office",
-    "category": "AI 效率/办公",
+    "id": "CN-CES-1",
+    "category": "AI 陪伴/情感/社交",
     "market": "中国",
-    "intensity": 0,
-    "signalLabel": "暂无",
+    "intensity": 3,
+    "signalLabel": "中",
+    "products": [
+      "星野",
+      "腾讯元宝"
+    ],
+    "pattern": "星野持续通过用户创建的 AI 智能体构建多模态内容社区，腾讯元宝推出“元宝派”养龙虾等娱乐互动，探索 AI 陪伴和社交的新形态。",
+    "opportunity": "关注 UGC 模式下 AI 智能体的多样化发展及 AI 在休闲娱乐、陪伴社交场景中的创新，尤其是在虚拟形象和情感交互方面。",
+    "watchNext": "星野用户留存和内容多样性，元宝派等 AI 互动游戏的用户参与度及商业化探索。",
+    "sources": [
+      {
+        "label": "星野 App Store",
+        "href": "https://apps.apple.com/cn/app/%E6%98%9F%E9%87%8E-%E6%89%80%E5%BB%BA%E7%9A%86%E4%BD%A0%E6%89%80ai/id6463076337"
+      },
+      {
+        "label": "腾讯元宝 App Store",
+        "href": "https://apps.apple.com/cn/app/%E8%85%BE%E8%AE%AF%E5%85%83%E5%AE%9D-%E6%8E%A5%E5%85%A5deepseek-r1%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/id6480446430"
+      }
+    ]
+  },
+  {
+    "id": "US-GIE-1",
+    "category": "AI 游戏/互动娱乐",
+    "market": "美国",
+    "intensity": 1,
+    "signalLabel": "弱",
     "products": [],
-    "pattern": "本周期内未观察到中国市场AI效率/办公领域的显著信号。",
-    "opportunity": "开发基于中国办公场景和SaaS生态的AI效率工具，尤其关注协同、审批和数据处理等痛点。",
-    "watchNext": "关注中国本土大模型在Agent能力上的突破，以及企业级AI办公产品的落地情况。",
+    "pattern": "本周美国市场无直接 AI 游戏或互动娱乐的强信号。",
+    "opportunity": "关注 AI 在游戏 NPC 智能、内容生成（如剧情、任务、道具）及个性化体验方面的潜力，提升游戏的沉浸感和可玩性。",
+    "watchNext": "市场是否有新的 AI 游戏或大型游戏集成 AI 功能，以及 AI 在电竞和虚拟世界中的应用。",
     "sources": []
   },
   {
-    "id": "us-ai-life-tools",
-    "category": "AI 生活工具",
+    "id": "CN-GIE-1",
+    "category": "AI 游戏/互动娱乐",
+    "market": "中国",
+    "intensity": 2,
+    "signalLabel": "中",
+    "products": [
+      "腾讯元宝"
+    ],
+    "pattern": "腾讯元宝在其“元宝派”功能中上线了养龙虾等 AI 新玩法，探索 AI 互动娱乐的边界，将 AI 融入休闲游戏化体验。",
+    "opportunity": "AI 游戏化互动可以提高用户粘性和产品趣味性，特别是与现有主流应用结合，更容易触达用户。",
+    "watchNext": "腾讯元宝及其他平台在 AI 互动游戏方面的进一步尝试及用户反馈，以及独立 AI 游戏产品的市场表现。",
+    "sources": [
+      {
+        "label": "腾讯元宝 App Store",
+        "href": "https://apps.apple.com/cn/app/%E8%85%BE%E8%AE%AF%E5%85%83%E5%AE%9D-%E6%8E%A5%E5%85%A5deepseek-r1%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/id6480446430"
+      }
+    ]
+  },
+  {
+    "id": "US-CRE-1",
+    "category": "AI 创作",
     "market": "美国",
     "intensity": 4,
     "signalLabel": "强",
     "products": [
       "ChatGPT",
-      "Meta AI"
+      "GPT-6 Astra",
+      "Gemini",
+      "Lyria 3 Pro"
     ],
-    "pattern": "AI助手正通过多账户连接、情境感知和新功能（如AI购物、实时视觉AI）深入日常生活场景。",
-    "opportunity": "开发基于AI的个性化生活服务工具，涵盖购物、出行、健康管理等领域，提升用户体验的便捷性和智能化水平。",
-    "watchNext": "观察Meta AI在集成购物功能后的用户转化率，以及ChatGPT多Google账户连接后对用户粘性的影响。",
+    "pattern": "OpenAI 的 GPT-6 Astra 模型在文档、表格、演示文稿的创作能力上有所提升，并能适应用户修改需求。Gemini 的 Lyria 3 Pro 也支持生成长达3分钟的音乐曲目。",
+    "opportunity": "AI 模型在多模态、多步骤内容创作上的能力将是未来竞争的关键，特别是在设计、文案和代码生成等专业领域。",
+    "watchNext": "GPT-6 Astra 在实际内容创作场景中的表现及用户接受度，以及 Adobe 等创意软件巨头在 AI 集成上的进展。",
     "sources": [
       {
         "label": "OpenAI Release Notes",
         "href": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
       },
       {
-        "label": "Meta 官方",
-        "href": "https://about.fb.com/news/2026/04/introducing-muse-spark-meta-superintelligence-labs/"
+        "label": "Gemini Drop",
+        "href": "https://blog.google/innovation-and-ai/products/gemini-app/gemini-drop-updates-march-2026/"
       }
     ]
   },
   {
-    "id": "cn-ai-life-tools",
-    "category": "AI 生活工具",
+    "id": "CN-CRE-1",
+    "category": "AI 创作",
     "market": "中国",
-    "intensity": 0,
-    "signalLabel": "暂无",
-    "products": [],
-    "pattern": "本周期内未观察到中国市场AI生活工具领域的显著信号。",
-    "opportunity": "结合中国特色生活服务平台（如外卖、电商、本地生活）的AI集成，提供更智能、便捷的服务。",
-    "watchNext": "关注各大互联网平台是否会推出内置AI助手的超级应用，以及独立AI生活工具的创新。",
-    "sources": []
-  },
-  {
-    "id": "us-ai-hardware-entry",
-    "category": "AI 硬件入口",
-    "market": "美国",
     "intensity": 4,
     "signalLabel": "强",
     "products": [
-      "Ray-Ban Meta",
-      "Oakley Meta",
-      "Meta Ray-Ban Display"
+      "剪映",
+      "像素蛋糕",
+      "醒图",
+      "即梦AI",
+      "腾讯元宝"
     ],
-    "pattern": "Meta的Muse Spark模型正陆续部署到Ray-Ban Meta和Oakley Meta智能眼镜，以及Meta Ray-Ban Display上，增强其AI能力。",
-    "opportunity": "AI与可穿戴设备的深度结合，创造全新的交互范式和环境感知能力，将AI带入真实世界。",
-    "watchNext": "观察AI眼镜的市场接受度，用户对其AI能力的实际反馈，以及其他科技巨头在AI硬件领域的布局。",
+    "pattern": "国内短视频/修图巨头持续迭代 AI 创作工具，如抖音旗下的即梦 AI、小云雀等，腾讯元宝也支持 AI 图片编辑、AI 生成视频、AI 绘图，丰富了消费级 AI 创作生态。",
+    "opportunity": "丰富多样的 AI 创作工具正降低创作门槛，提升内容生产效率和趣味性，尤其是在短视频、图片处理等大众消费领域。",
+    "watchNext": "头部平台 AI 创作工具的功能创新及用户增长，以及 AI 辅助创作工具的商业模式探索。",
+    "sources": [
+      {
+        "label": "Apple 中国摄影与录像榜",
+        "href": "https://apps.apple.com/cn/iphone/charts/6008?chart=top-free"
+      },
+      {
+        "label": "腾讯元宝 App Store",
+        "href": "https://apps.apple.com/cn/app/%E8%85%BE%E8%AE%AF%E5%85%83%E5%AE%9D-%E6%8E%A5%E5%85%A5deepseek-r1%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/id6480446430"
+      }
+    ]
+  },
+  {
+    "id": "US-PRO-1",
+    "category": "AI 效率/办公",
+    "market": "美国",
+    "intensity": 4,
+    "signalLabel": "极强",
+    "products": [
+      "ChatGPT",
+      "GPT-6 Astra",
+      "Granola"
+    ],
+    "pattern": "ChatGPT 通过 GPT-6 Astra 提升多步任务处理能力，并新增 Zendesk、OneNote 插件及支持连接多个 Google 账户，大幅强化企业和个人效率。Granola 在会议记录和企业 AI 应用方面获得大额融资。",
+    "opportunity": "AI 与现有办公流程和 SaaS 工具的深度集成是提升效率的关键，特别是通过开放平台和丰富的插件生态。",
+    "watchNext": "ChatGPT 在企业级市场渗透率和插件生态的拓展，以及其他 AI 办公助手的竞争态势。",
+    "sources": [
+      {
+        "label": "OpenAI Release Notes",
+        "href": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
+      },
+      {
+        "label": "TechCrunch Granola funding",
+        "href": "https://techcrunch.com/2026/03/25/granola-raises-125m-hits-1-5b-valuation-as-it-expands-from-meeting-notetaker-to-enterprise-ai-app/"
+      }
+    ]
+  },
+  {
+    "id": "CN-PRO-1",
+    "category": "AI 效率/办公",
+    "market": "中国",
+    "intensity": 4,
+    "signalLabel": "强",
+    "products": [
+      "腾讯元宝"
+    ],
+    "pattern": "腾讯元宝强化 AI 秒写报告、文案、代码，并升级文档精读助手，深度对接腾讯文档，提升办公效率，满足国内用户对全能型 AI 办公工具的需求。",
+    "opportunity": "国内 AI 助手在文档处理、内容生成和生态协作方面持续发力，有望在企业级和个人效率市场取得突破。",
+    "watchNext": "腾讯元宝在企业级和个人效率市场的实际应用效果和用户反馈，以及与其他主流办公软件的集成度。",
+    "sources": [
+      {
+        "label": "腾讯元宝 App Store",
+        "href": "https://apps.apple.com/cn/app/%E8%85%BE%E8%AE%AF%E5%85%83%E5%AE%9D-%E6%8E%A5%E5%85%A5deepseek-r1%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/id6480446430"
+      }
+    ]
+  },
+  {
+    "id": "US-DT-1",
+    "category": "AI 生活工具",
+    "market": "美国",
+    "intensity": 2,
+    "signalLabel": "中",
+    "products": [
+      "ChatGPT",
+      "Gemini"
+    ],
+    "pattern": "ChatGPT 的浏览器扩展支持更多浏览器，并能使用网站工具，同时改进了发音帮助，使其成为更便捷的日常工具，无缝融入用户日常工作流。Gemini 提供了个性化智能服务，可连接 Gmail、Photos、YouTube。",
+    "opportunity": "将 AI 能力无缝融入日常网页浏览、语言学习等场景，提升用户体验，并通过集成实现更广泛的应用。",
+    "watchNext": "AI 助手在智能家居、个人助理等更广泛生活场景的落地，以及多模态交互在日常工具中的应用。",
+    "sources": [
+      {
+        "label": "OpenAI Release Notes",
+        "href": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
+      },
+      {
+        "label": "Gemini Drop",
+        "href": "https://blog.google/innovation-and-ai/products/gemini-app/gemini-drop-updates-march-2026/"
+      }
+    ]
+  },
+  {
+    "id": "CN-DT-1",
+    "category": "AI 生活工具",
+    "market": "中国",
+    "intensity": 3,
+    "signalLabel": "中",
+    "products": [
+      "腾讯元宝",
+      "Rokid AI"
+    ],
+    "pattern": "腾讯元宝支持语音通话、精准识图、拍照翻译等功能，Rokid AI 眼镜更新双向翻译播报模式，提升日常语言障碍处理能力和信息获取效率。",
+    "opportunity": "AI 在图像识别、实时翻译、语音交互等生活实用工具领域的创新，有望解决日常生活中的实际问题，提升便利性。",
+    "watchNext": "Rokid AI 眼镜等硬件 AI 在实际生活场景中的普及率和用户满意度，以及 AI 驱动的个性化生活服务发展。",
+    "sources": [
+      {
+        "label": "腾讯元宝 App Store",
+        "href": "https://apps.apple.com/cn/app/%E8%85%BE%E8%AE%AF%E5%85%83%E5%AE%9D-%E6%8E%A5%E5%85%A5deepseek-r1%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/id6480446430"
+      },
+      {
+        "label": "Rokid AI App Store",
+        "href": "https://apps.apple.com/cn/app/rokid-ai-%E4%B9%90%E5%A5%87ai%E7%9C%BC%E9%95%9C/id6738470564"
+      }
+    ]
+  },
+  {
+    "id": "US-HW-1",
+    "category": "AI 硬件入口",
+    "market": "美国",
+    "intensity": 2,
+    "signalLabel": "中",
+    "products": [
+      "Ray-Ban Meta Smart Glasses"
+    ],
+    "pattern": "Meta AI 持续在 AI 眼镜上部署智能功能，未来有望成为重要的硬件入口，通过隐形计算改变人机交互。",
+    "opportunity": "智能眼镜等可穿戴设备结合 AI，提供无缝、自然的交互体验，有望成为下一代计算平台的重要组成部分。",
+    "watchNext": "Meta 等厂商 AI 眼镜的功能拓展和市场接受度，以及其他科技巨头在 AI 硬件领域的布局。",
     "sources": [
       {
         "label": "Meta 官方",
@@ -533,44 +711,97 @@ export const categoryHeatmapItems: CategoryHeatmapItem[] = [
     ]
   },
   {
-    "id": "cn-ai-hardware-entry",
+    "id": "CN-HW-1",
     "category": "AI 硬件入口",
     "market": "中国",
-    "intensity": 0,
-    "signalLabel": "暂无",
-    "products": [],
-    "pattern": "本周期内未观察到中国市场AI硬件入口领域的显著信号。",
-    "opportunity": "探索将AI与智能家居、智能穿戴、车载系统等硬件结合，提升智能化体验。",
-    "watchNext": "关注国内手机厂商和家电巨头在AI硬件上的投入，以及新兴硬件创业公司的动向。",
-    "sources": []
+    "intensity": 3,
+    "signalLabel": "中",
+    "products": [
+      "Rokid Glasses"
+    ],
+    "pattern": "Rokid AI 眼镜 App 持续更新，提升慧眼服务、导航功能及引入双向翻译播报模式，不断强化 AI 硬件的实用性和交互体验，以提升产品竞争力。",
+    "opportunity": "国内厂商在 AR 眼镜等 AI 硬件领域积极探索，通过 AI 功能提升产品竞争力，旨在打造更自然、更便捷的下一代人机交互界面。",
+    "watchNext": "Rokid Glasses 等国产 AI 眼镜的销量和应用生态发展，以及 AI 硬件在垂直场景（如工业、旅游）的落地情况。",
+    "sources": [
+      {
+        "label": "Rokid AI App Store",
+        "href": "https://apps.apple.com/cn/app/rokid-ai-%E4%B9%90%E5%A5%87ai%E7%9C%BC%E9%95%9C/id6738470564"
+      }
+    ]
   }
 ];
 
 export const usSummaryPoints: MarketSummaryPoint[] = [
   {
-    "title": "美国市场要点速览",
+    "title": "AI 助手与核心模型能力持续深化",
     "bullets": [
       [
         {
-          "text": "OpenAI对ChatGPT进行了多项重要更新，旨在深化其在个人和工作场景中的集成与自动化：",
+          "text": "OpenAI 推出其最新核心模型 ",
+          "strong": false
+        },
+        {
+          "text": "GPT-6 Astra",
           "strong": true
-        }
-      ],
-      [
+        },
         {
-          "text": "ChatGPT Work新增了通过Webhook响应应用更新的定时任务功能，并首次支持在已登录网站上完成任务，大幅提升了自动化和执行能力。",
+          "text": "，显著提升了在编码、研究、计算机使用和处理复杂多步骤任务方面的能力，能够创建适应性强的文档、表格和演示文稿，目前正逐步向有限组织开放。",
           "strong": false
         }
       ],
       [
         {
-          "text": "ChatGPT现在允许用户连接多个Google账户（Gmail、日历、通讯录）的插件，以实现更全面的个人与工作信息整合。",
+          "text": "ChatGPT",
+          "strong": true
+        },
+        {
+          "text": " 新增了 ",
+          "strong": false
+        },
+        {
+          "text": "Zendesk",
+          "strong": true
+        },
+        {
+          "text": " 和 ",
+          "strong": true
+        },
+        {
+          "text": "OneNote",
+          "strong": true
+        },
+        {
+          "text": " 插件（Beta 版），旨在帮助团队在 ",
+          "strong": true
+        },
+        {
+          "text": "ChatGPT",
+          "strong": true
+        },
+        {
+          "text": " 和 ",
+          "strong": true
+        },
+        {
+          "text": "Codex",
+          "strong": true
+        },
+        {
+          "text": " 中处理支持票据、客户历史记录、查找知识并准备回复，以及管理笔记和行动项。",
           "strong": false
         }
       ],
       [
         {
-          "text": "临时对话功能得到增强，用户可以自主选择是否开启个性化（记忆、插件、自定义指令）并灵活控制对话的保存与否，兼顾了用户体验与隐私。",
+          "text": "面向美国临床医生，",
+          "strong": true
+        },
+        {
+          "text": "ChatGPT",
+          "strong": true
+        },
+        {
+          "text": " 现已推出“医疗公共数据”插件，整合了九个公开医疗保健信息源，包括生物医学研究、临床试验、药物信息和 Medicare 数据等，以辅助专业查询。",
           "strong": false
         }
       ]
@@ -583,17 +814,79 @@ export const usSummaryPoints: MarketSummaryPoint[] = [
     ]
   },
   {
-    "title": "ChatGPT Work新增网站交互和任务分享",
+    "title": "消费级 AI 体验与日常工具集成",
     "bullets": [
       [
         {
-          "text": "ChatGPT Work现在可以利用Webhook响应支持应用的更新，例如Gmail、Slack和GitHub，以实现定时任务的自动化处理。",
+          "text": "ChatGPT",
+          "strong": true
+        },
+        {
+          "text": " 在全球移动端上线了“创建和分享个性化贴纸包”功能，用户可以将想法或照片转化为一套贴纸，并在消息应用中分享。",
           "strong": false
         }
       ],
       [
         {
-          "text": "所有用户都可以分享已调度的任务；Plus和Pro用户还能创建由Webhook触发的任务。",
+          "text": "对于 ",
+          "strong": false
+        },
+        {
+          "text": "iPhone",
+          "strong": true
+        },
+        {
+          "text": " 用户，",
+          "strong": false
+        },
+        {
+          "text": "ChatGPT",
+          "strong": true
+        },
+        {
+          "text": " 的 Live voice 对话内容现在可以在锁屏界面和灵动岛上显示，提升了在应用外的互动便捷性。",
+          "strong": false
+        }
+      ],
+      [
+        {
+          "text": "ChatGPT",
+          "strong": true
+        },
+        {
+          "text": " 的桌面应用内置浏览器现在支持直接使用网站提供的工具，无需额外连接，同时其浏览器扩展也新增支持 ",
+          "strong": true
+        },
+        {
+          "text": "Microsoft Edge",
+          "strong": true
+        },
+        {
+          "text": "、",
+          "strong": true
+        },
+        {
+          "text": "Brave",
+          "strong": true
+        },
+        {
+          "text": "、",
+          "strong": true
+        },
+        {
+          "text": "Opera",
+          "strong": true
+        },
+        {
+          "text": " 和 ",
+          "strong": true
+        },
+        {
+          "text": "Vivaldi",
+          "strong": true
+        },
+        {
+          "text": " 浏览器。",
           "strong": false
         }
       ]
@@ -606,17 +899,17 @@ export const usSummaryPoints: MarketSummaryPoint[] = [
     ]
   },
   {
-    "title": "ChatGPT支持连接多个Google账户",
+    "title": "OpenAI 推出 GPT-6 Astra 模型",
     "bullets": [
       [
         {
-          "text": "ChatGPT现在允许用户连接多个Google账户的插件，包括Gmail、Google Calendar和Google Contacts。",
+          "text": "OpenAI 宣布推出其最新的核心模型 GPT-6 Astra，该模型在编码、研究、计算机使用和处理复杂多步骤任务方面实现了显著改进。",
           "strong": false
         }
       ],
       [
         {
-          "text": "这使得用户能够在同一对话中，跨个人和工作账户获取信息并协调任务，例如同时查询不同日历的空闲时间或搜索所有收件箱的邮件。",
+          "text": "Astra 能够根据用户提供的模板和指令，自动创建文档、电子表格和演示文稿，并能灵活适应后续的需求变化或方向调整。",
           "strong": false
         }
       ]
@@ -629,17 +922,17 @@ export const usSummaryPoints: MarketSummaryPoint[] = [
     ]
   },
   {
-    "title": "ChatGPT临时对话功能升级",
+    "title": "ChatGPT 推出面向美国临床医生的医疗公共数据插件",
     "bullets": [
       [
         {
-          "text": "ChatGPT推出了临时对话的新控制功能，用户可以自主选择是否开启记忆、插件和自定义指令，以个性化临时对话的响应。",
+          "text": "ChatGPT 为符合条件的美国临床医生用户推出了“医疗公共数据”插件，该插件整合了九个应用程序，用于搜索公开的医疗保健信息来源。",
           "strong": false
         }
       ],
       [
         {
-          "text": "个性化的临时对话在默认情况下不会创建新的记忆或计入聊天历史，除非用户明确选择保存。",
+          "text": "这些信息源包括生物医学研究、临床试验、药物信息、Medicare 数据和提供者记录等。",
           "strong": false
         }
       ]
@@ -652,17 +945,17 @@ export const usSummaryPoints: MarketSummaryPoint[] = [
     ]
   },
   {
-    "title": "AI 助手/搜索：美国方向信号",
+    "title": "ChatGPT 全球移动端上线个性化贴纸包功能",
     "bullets": [
       [
         {
-          "text": "头部AI助手持续推出深度集成与个性化功能，巨头加速AI能力全产品线渗透。",
+          "text": "ChatGPT 在全球移动端面向所有用户推出了全新的个性化贴纸包功能，允许用户将自己的想法或照片转化为独特的贴纸。",
           "strong": false
         }
       ],
       [
         {
-          "text": "深挖跨应用、跨账户的整合需求，提供智能且高度个性化的工作流与生活助手。",
+          "text": "用户可以通过提供提示词或选择模板，让 ChatGPT 制作一套贴纸，并可下载或直接添加到 iMessage 或 WhatsApp 等消息应用中进行分享。",
           "strong": false
         }
       ]
@@ -671,10 +964,6 @@ export const usSummaryPoints: MarketSummaryPoint[] = [
       {
         "label": "OpenAI Release Notes",
         "href": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes"
-      },
-      {
-        "label": "Meta 官方",
-        "href": "https://about.fb.com/news/2026/04/introducing-muse-spark-meta-superintelligence-labs/"
       }
     ]
   }
@@ -682,25 +971,173 @@ export const usSummaryPoints: MarketSummaryPoint[] = [
 
 export const cnSummaryPoints: MarketSummaryPoint[] = [
   {
-    "title": "中国市场要点速览",
+    "title": "腾讯元宝核心能力与垂直应用升级",
     "bullets": [
       [
         {
-          "text": "根据对本周报收集的来源信息进行检阅，中国市场在过去7天内（2026-08-24至2026-08-31）未观察到有显著的AI消费产品发布或重大更新。",
+          "text": "腾讯元宝接入全新的 ",
+          "strong": false
+        },
+        {
+          "text": "Hy4 preview",
+          "strong": true
+        },
+        {
+          "text": " 模型，全面升级了 Agent 能力，提升了在综合多方信源深度推理和处理复杂任务上的可靠性和专业度。",
           "strong": false
         }
       ],
       [
         {
-          "text": "这可能表明在当前周期内，中国AI消费产品领域未出现公开且有影响力的新动向，或相关信息暂未通过现有渠道披露。",
+          "text": "同时，元宝上线了“专家模式”，专为复杂任务设计，以及“",
+          "strong": false
+        },
+        {
+          "text": "AI 精讲",
+          "strong": true
+        },
+        {
+          "text": "”功能，提供拍题/文字输入后的动态板书和语音讲解，实现个性化教学辅导。",
+          "strong": false
+        }
+      ],
+      [
+        {
+          "text": "腾讯元宝持续深化与腾讯生态的联动，支持联网搜索公众号、视频号等优质信源，并强化了 AI 图片编辑、AI 生成视频、AI 绘图、AI 秒写报告/文案/代码等创作和效率工具。",
           "strong": false
         }
       ]
     ],
     "sources": [
       {
-        "label": "晚点聊 LateTalk AI季报26Q1",
-        "href": "https://podcast.latepost.com/156"
+        "label": "腾讯元宝 App Store",
+        "href": "https://apps.apple.com/cn/app/%E8%85%BE%E8%AE%AF%E5%85%83%E5%AE%9D-%E6%8E%A5%E5%85%A5deepseek-r1%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/id6480446430"
+      }
+    ]
+  },
+  {
+    "title": "AI 社交与硬件产品持续优化",
+    "bullets": [
+      [
+        {
+          "text": "星野 App",
+          "strong": true
+        },
+        {
+          "text": " 持续进行版本优化和 bug 修复，作为多模态智能体内容社区，其核心价值在于用户可自由创造和分享 AI 智能体，并通过沉浸式交互建立伙伴关系。",
+          "strong": false
+        }
+      ],
+      [
+        {
+          "text": "Rokid AI",
+          "strong": true
+        },
+        {
+          "text": " 眼镜 App 在 ",
+          "strong": false
+        },
+        {
+          "text": "8",
+          "strong": false
+        },
+        {
+          "text": " 月底的更新中，新增了双向翻译播报模式，佩戴者说的话可以自动翻译并用手机喇叭播报给对方，提升了跨语言交流的便捷性。",
+          "strong": false
+        }
+      ],
+      [
+        {
+          "text": "Rokid AI",
+          "strong": true
+        },
+        {
+          "text": " 眼镜 App 还在近期更新中提升了慧眼服务识别准确度、降低延迟，并优化了 App 功能页面设计和交互易用性，增强了 AI 硬件的实用体验。",
+          "strong": false
+        }
+      ]
+    ],
+    "sources": [
+      {
+        "label": "星野 App Store",
+        "href": "https://apps.apple.com/cn/app/%E6%98%9F%E9%87%8E-%E6%89%80%E5%BB%BA%E7%9A%86%E4%BD%A0%E6%89%80ai/id6463076337"
+      },
+      {
+        "label": "Rokid AI App Store",
+        "href": "https://apps.apple.com/cn/app/rokid-ai-%E4%B9%90%E5%A5%87ai%E7%9C%BC%E9%95%9C/id6738470564"
+      }
+    ]
+  },
+  {
+    "title": "腾讯元宝上线 Hy4 preview 模型、专家模式与 AI 精讲功能",
+    "bullets": [
+      [
+        {
+          "text": "腾讯元宝接入全新 Hy4 preview 模型，全面升级其 Agent 能力，尤其在综合多方信源进行深度推理和处理复杂任务方面表现更可靠。",
+          "strong": false
+        }
+      ],
+      [
+        {
+          "text": "同时，元宝同步上线了“专家模式”，专为需要深度思考和逻辑优化的复杂任务设计。",
+          "strong": false
+        }
+      ]
+    ],
+    "sources": [
+      {
+        "label": "腾讯元宝 App Store",
+        "href": "https://apps.apple.com/cn/app/%E8%85%BE%E8%AE%AF%E5%85%83%E5%AE%9D-%E6%8E%A5%E5%85%A5deepseek-r1%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/id6480446430"
+      }
+    ]
+  },
+  {
+    "title": "AI 创作：中国方向信号",
+    "bullets": [
+      [
+        {
+          "text": "国内短视频/修图巨头持续迭代 AI 创作工具，如抖音旗下的即梦 AI、小云雀等，腾讯元宝也支持 AI 图片编辑、AI 生成视频、AI 绘图，丰富了消费级 AI 创作生态。",
+          "strong": false
+        }
+      ],
+      [
+        {
+          "text": "丰富多样的 AI 创作工具正降低创作门槛，提升内容生产效率和趣味性，尤其是在短视频、图片处理等大众消费领域。",
+          "strong": false
+        }
+      ]
+    ],
+    "sources": [
+      {
+        "label": "Apple 中国摄影与录像榜",
+        "href": "https://apps.apple.com/cn/iphone/charts/6008?chart=top-free"
+      },
+      {
+        "label": "腾讯元宝 App Store",
+        "href": "https://apps.apple.com/cn/app/%E8%85%BE%E8%AE%AF%E5%85%83%E5%AE%9D-%E6%8E%A5%E5%85%A5deepseek-r1%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/id6480446430"
+      }
+    ]
+  },
+  {
+    "title": "AI 助手/搜索：中国方向信号",
+    "bullets": [
+      [
+        {
+          "text": "腾讯元宝核心模型升级至 Hy4 preview，并引入专家模式，显著提升复杂任务处理能力，同时深度整合腾讯生态，强化信息获取和生成能力。",
+          "strong": false
+        }
+      ],
+      [
+        {
+          "text": "关注国内头部 AI 助手在模型能力提升、生态深度融合及垂直场景（如教育）的创新，以实现差异化竞争和用户增长。",
+          "strong": false
+        }
+      ]
+    ],
+    "sources": [
+      {
+        "label": "腾讯元宝 App Store",
+        "href": "https://apps.apple.com/cn/app/%E8%85%BE%E8%AE%AF%E5%85%83%E5%AE%9D-%E6%8E%A5%E5%85%A5deepseek-r1%E6%9C%80%E6%96%B0%E6%A8%A1%E5%9E%8B/id6480446430"
       }
     ]
   }
